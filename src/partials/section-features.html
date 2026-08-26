@@ -1,0 +1,67 @@
+<!-- 核心特性：小标题 + 大标题 + 编号卡片 + 配图 -->
+<section class="bg-white py-16 sm:py-24">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <!-- 区块标题 -->
+    <div class="mx-auto mb-12 max-w-2xl text-center">
+      <p
+        th:if="${not #strings.isEmpty(theme.config.features?.eyebrow)}"
+        th:text="${theme.config.features.eyebrow}"
+        class="text-primary mb-3 text-sm font-semibold tracking-widest uppercase"
+      >
+        小标题
+      </p>
+      <h2
+        th:text="${theme.config.features?.title}"
+        class="text-ink-900 text-3xl font-bold tracking-tight sm:text-4xl"
+      >
+        大标题
+      </h2>
+    </div>
+
+    <!-- 卡片与配图：有配图时左右分栏，无配图时卡片铺满四列 -->
+    <div th:with="hasImage = ${not #strings.isEmpty(theme.config.features?.image)}">
+      <div th:classappend="${hasImage} ? 'lg:flex lg:items-center lg:gap-14' : ''">
+        <!-- 编号卡片 -->
+        <div
+          class="grid gap-6 sm:grid-cols-2"
+          th:classappend="${not hasImage} ? 'lg:grid-cols-4' : ''"
+          th:if="${not #lists.isEmpty(theme.config.features?.items)}"
+        >
+          <div
+            th:each="item, stat : ${theme.config.features.items}"
+            class="group hover:border-primary/30 relative flex flex-col gap-4 rounded-[var(--radius-card)] border border-slate-200 bg-slate-50/60 p-8 transition-all duration-300 hover:bg-white hover:shadow-lg"
+          >
+            <!-- 编号 -->
+            <span
+              th:text="${stat.count < 10 ? '0' + stat.count : stat.count}"
+              class="text-primary/25 group-hover:text-primary text-3xl font-bold transition-colors"
+            >
+              01
+            </span>
+            <h3 th:text="${item.title}" class="text-ink-900 text-lg font-bold">条目标题</h3>
+            <p th:text="${item.description}" class="text-ink-500 text-sm leading-relaxed">
+              条目描述
+            </p>
+          </div>
+        </div>
+
+        <!-- 配图 -->
+        <img
+          th:if="${hasImage}"
+          th:src="${theme.config.features.image}"
+          th:alt="${theme.config.features?.title ?: '配图'}"
+          loading="lazy"
+          class="mt-10 w-full rounded-[var(--radius-card)] object-cover shadow-xl shadow-slate-900/10 lg:mt-0 lg:w-2/5"
+        />
+      </div>
+
+      <!-- 无条目时的占位 -->
+      <p
+        th:if="${#lists.isEmpty(theme.config.features?.items)}"
+        class="text-ink-500 text-center text-sm"
+      >
+        请在后台「核心特性」设置中添加特性条目
+      </p>
+    </div>
+  </div>
+</section>

@@ -3,11 +3,15 @@
     <title th:text="|${tag.spec.displayName} - ${site.title}|">Tag Archive</title>
   </template>
 
-  <h1 th:text="|Tag: ${tag.spec.displayName}|"></h1>
+  <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+    <h1 class="text-ink-900 mb-8 text-3xl font-bold" th:text="|${tag.spec.displayName}|"></h1>
 
-  <ul class="post-list">
-    <include src="post-card.html"></include>
-  </ul>
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <th:block th:each="post : ${posts.items}">
+        <include src="post-card.html"></include>
+      </th:block>
+    </div>
 
-  <include src="pagination.html"></include>
+    <include src="pagination.html"></include>
+  </div>
 </include>

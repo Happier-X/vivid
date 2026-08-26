@@ -1,0 +1,17 @@
+<!-- 数据统计栏：统计项数组 -->
+<section class="bg-secondary py-14 sm:py-16">
+  <div
+    class="mx-auto grid max-w-7xl grid-cols-2 gap-x-6 gap-y-10 px-4 sm:px-6 lg:grid-cols-4 lg:px-8"
+    th:classappend="${#lists.isEmpty(theme.config.stats?.items)} ? 'hidden' : ''"
+  >
+    <div
+      th:each="item : ${theme.config.stats.items}"
+      class="flex flex-col items-center gap-2 text-center"
+    >
+      <span th:text="${item.value}" class="text-4xl font-bold tracking-tight text-white sm:text-5xl"
+        >500万+</span
+      >
+      <span th:text="${item.label}" class="text-sm font-medium text-slate-400">说明文字</span>
+    </div>
+  </div>
+</section>

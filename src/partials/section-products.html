@@ -1,0 +1,81 @@
+<!-- 精选产品：categorySelect 来源分类 + postFinder 查询 + 卡片网格 -->
+<section class="bg-slate-50 py-16 sm:py-24">
+  <div
+    class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
+    th:with="
+    productPosts = ${#strings.isEmpty(theme.config.products?.category)
+      ? postFinder.list({ page: 1, size: theme.config.products?.count ?: 4 })
+      : postFinder.list({ page: 1, size: theme.config.products?.count ?: 4, categoryName: theme.config.products.category })}"
+  >
+    <!-- 区块标题 + 查看全部 -->
+    <header class="mb-12 flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <p
+          th:if="${not #strings.isEmpty(theme.config.products?.eyebrow)}"
+          th:text="${theme.config.products.eyebrow}"
+          class="text-primary mb-3 text-sm font-semibold tracking-widest uppercase"
+        >
+          小标题
+        </p>
+        <h2
+          th:text="${theme.config.products?.title}"
+          class="text-ink-900 text-3xl font-bold tracking-tight sm:text-4xl"
+        >
+          大标题
+        </h2>
+      </div>
+
+      <a
+        th:if="${theme.config.products?.show_more and not #strings.isEmpty(theme.config.products?.more_link)}"
+        th:href="@{${theme.config.products.more_link}}"
+        class="group text-primary hover:text-primary-dark inline-flex items-center gap-1.5 text-sm font-semibold transition-colors"
+      >
+        查看全部
+        <svg
+          class="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M13.5 4.5L21 12l-7.5 7.5M21 12H3"
+          />
+        </svg>
+      </a>
+    </header>
+
+    <!-- 产品卡片网格 -->
+    <div
+      class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
+      th:if="${not #lists.isEmpty(productPosts.items)}"
+    >
+      <th:block th:each="post : ${productPosts.items}">
+        <include src="post-card.html"></include>
+      </th:block>
+    </div>
+
+    <!-- 暂无内容占位 -->
+    <div
+      th:if="${#lists.isEmpty(productPosts.items)}"
+      class="flex flex-col items-center gap-3 rounded-[var(--radius-card)] border border-dashed border-slate-300 bg-white py-20"
+    >
+      <svg
+        class="h-10 w-10 text-slate-300"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
+        />
+      </svg>
+      <p class="text-ink-500 text-sm">暂无内容，请在后台发布文章并选择对应分类</p>
+    </div>
+  </div>
+</section>

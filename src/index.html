@@ -1,12 +1,31 @@
 <include src="layout.html">
   <template name="head">
-    <title th:text="${site.title}">Home</title>
+    <title th:text="${site.title}">首页</title>
     <script type="module" src="./js/index.ts"></script>
   </template>
 
-  <ul class="post-list">
-    <include src="post-card.html"></include>
-  </ul>
+  <!-- 首页区块按序组装，各区块可通过后台开关控制显隐 -->
+  <th:block th:if="${theme.config.hero?.enabled}">
+    <include src="section-hero.html"></include>
+  </th:block>
 
-  <include src="pagination.html"></include>
+  <th:block th:if="${theme.config.features?.enabled}">
+    <include src="section-features.html"></include>
+  </th:block>
+
+  <th:block th:if="${theme.config.products?.enabled}">
+    <include src="section-products.html"></include>
+  </th:block>
+
+  <th:block th:if="${theme.config.intro?.enabled}">
+    <include src="section-intro.html"></include>
+  </th:block>
+
+  <th:block th:if="${theme.config.cta?.enabled}">
+    <include src="section-cta.html"></include>
+  </th:block>
+
+  <th:block th:if="${theme.config.stats?.enabled}">
+    <include src="section-stats.html"></include>
+  </th:block>
 </include>

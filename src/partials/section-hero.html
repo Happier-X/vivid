@@ -1,0 +1,104 @@
+<!-- Hero 首屏：顶部标签 + 大标题 + 副标题 + 双 CTA + 特性标签 + 主图 -->
+<section class="relative overflow-hidden bg-gradient-to-b from-slate-50 to-white">
+  <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
+    <div class="grid items-center gap-12 lg:grid-cols-2">
+      <!-- 左侧文案区 -->
+      <div class="flex flex-col items-start gap-6">
+        <!-- 顶部标签 -->
+        <span
+          th:if="${not #strings.isEmpty(theme.config.hero?.badge)}"
+          th:text="${theme.config.hero.badge}"
+          class="border-primary/20 bg-primary/5 text-primary inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-medium"
+        >
+          标签
+        </span>
+
+        <h1
+          th:text="${theme.config.hero?.title}"
+          class="text-ink-900 text-4xl leading-tight font-bold tracking-tight sm:text-5xl"
+        >
+          主标题
+        </h1>
+
+        <p
+          th:if="${not #strings.isEmpty(theme.config.hero?.subtitle)}"
+          th:text="${theme.config.hero.subtitle}"
+          class="text-ink-500 max-w-xl text-lg leading-relaxed"
+        >
+          副标题
+        </p>
+
+        <!-- 双 CTA 按钮 -->
+        <div class="flex flex-wrap items-center gap-4">
+          <a
+            th:if="${not #strings.isEmpty(theme.config.hero?.primary_button_text)}"
+            th:href="@{${theme.config.hero.primary_button_link ?: '#'}}"
+            th:text="${theme.config.hero.primary_button_text}"
+            class="bg-primary shadow-primary/30 hover:bg-primary-dark hover:shadow-primary/40 inline-flex items-center rounded-[var(--radius-card)] px-7 py-3.5 text-base font-semibold text-white shadow-lg transition-all hover:shadow-xl"
+          >
+            主按钮
+          </a>
+          <a
+            th:if="${not #strings.isEmpty(theme.config.hero?.secondary_button_text)}"
+            th:href="@{${theme.config.hero.secondary_button_link ?: '#'}}"
+            th:text="${theme.config.hero.secondary_button_text}"
+            class="text-ink-700 hover:border-primary hover:text-primary inline-flex items-center rounded-[var(--radius-card)] border border-slate-300 bg-white px-7 py-3.5 text-base font-semibold transition-all"
+          >
+            次按钮
+          </a>
+        </div>
+
+        <!-- 特性标签组 -->
+        <ul
+          th:if="${not #lists.isEmpty(theme.config.hero?.highlights)}"
+          class="text-ink-500 mt-2 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm"
+        >
+          <li th:each="tag : ${theme.config.hero.highlights}" class="flex items-center gap-2">
+            <svg
+              class="text-primary h-4 w-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+            </svg>
+            <span th:text="${tag}">特性标签</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 右侧主图 -->
+      <div class="relative">
+        <div
+          class="from-primary/10 to-primary-light/20 absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-to-tr blur-2xl"
+        ></div>
+        <img
+          th:if="${not #strings.isEmpty(theme.config.hero?.image)}"
+          th:src="${theme.config.hero.image}"
+          th:alt="${theme.config.hero?.title ?: site.title}"
+          class="w-full rounded-[var(--radius-card)] object-cover shadow-2xl shadow-slate-900/10"
+        />
+        <!-- 未配置主图时的占位视觉 -->
+        <div
+          th:unless="${not #strings.isEmpty(theme.config.hero?.image)}"
+          class="from-primary/80 to-primary-dark shadow-primary/30 flex aspect-video w-full items-center justify-center rounded-[var(--radius-card)] bg-gradient-to-br text-white shadow-2xl"
+        >
+          <svg
+            class="h-20 w-20 opacity-70"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M18 6h.008v.008H18V6z"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

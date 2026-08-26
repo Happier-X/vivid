@@ -3,12 +3,20 @@
     <title th:text="|${category.spec.displayName} - ${site.title}|">Category Archive</title>
   </template>
 
-  <h1 th:text="|Category: ${category.spec.displayName}|"></h1>
-  <p th:if="${category.spec.description}" th:text="${category.spec.description}"></p>
+  <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+    <h1 class="text-ink-900 mb-8 text-3xl font-bold" th:text="|${category.spec.displayName}|"></h1>
+    <p
+      th:if="${not #strings.isEmpty(category.spec.description)}"
+      th:text="${category.spec.description}"
+      class="text-ink-500 mb-8 max-w-2xl"
+    ></p>
 
-  <ul class="post-list">
-    <include src="post-card.html"></include>
-  </ul>
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <th:block th:each="post : ${posts.items}">
+        <include src="post-card.html"></include>
+      </th:block>
+    </div>
 
-  <include src="pagination.html"></include>
+    <include src="pagination.html"></include>
+  </div>
 </include>
