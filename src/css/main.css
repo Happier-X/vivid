@@ -18,6 +18,9 @@
   --color-ink-500: #64748b;
   --color-surface: #f8fafc;
 
+  /* 品牌辅助色，可由后台 theme.config.style.secondary_color 覆盖 */
+  --color-secondary: #0f172a;
+
   /* 圆角风格 */
   --radius-card: 0.75rem;
 

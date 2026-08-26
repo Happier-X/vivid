@@ -1,42 +1,29 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <slot name="head">
-      <title th:text="${site.title}">Site Title</title>
+      <title th:text="${site.title}">站点标题</title>
     </slot>
+    <link rel="stylesheet" href="./css/main.css" />
     <script type="module" src="./js/main.ts"></script>
+    <!-- 运行时注入后台「样式」设置，覆盖设计令牌，实现配色即时生效 -->
+    <style th:inline="css">
+      :root {
+        --color-primary: [(${theme.config.style?.primary_color ?: '#2563eb'})];
+        --color-secondary: [(${theme.config.style?.secondary_color ?: '#0f172a'})];
+        --radius-card: [(${theme.config.style?.radius_style == 'sharp' ? '0rem' : '0.75rem'})];
+      }
+    </style>
   </head>
-  <body>
-    <header class="site-header">
-      <div class="container">
-        <a class="site-title" th:href="@{/}" th:text="${site.title}">Site Title</a>
-        <nav class="site-nav" th:with="menu = ${menuFinder.getPrimary()}">
-          <ul>
-            <li th:each="item : ${menu.menuItems}">
-              <a
-                th:href="@{${item.status.href}}"
-                th:text="${item.status.displayName}"
-                th:target="${item.spec.target?.value}"
-              ></a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+  <body class="bg-white font-sans text-ink-900 antialiased">
+    <include src="header.html"></include>
 
-    <main class="site-main">
-      <div class="container">
-        <slot />
-      </div>
+    <main>
+      <slot />
     </main>
 
-    <footer class="site-footer">
-      <div class="container">
-        <p th:text="${theme.config.basic.custom_footer ?: site.title}"></p>
-        <halo:footer />
-      </div>
-    </footer>
+    <include src="footer.html"></include>
   </body>
 </html>

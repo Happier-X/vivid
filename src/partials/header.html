@@ -1,0 +1,60 @@
+<!-- 全局顶部导航：桌面端水平菜单 + 移动端汉堡菜单 -->
+<header
+  id="site-header"
+  th:with="menu = ${menuFinder.getPrimary()}"
+  class="sticky top-0 z-50 border-b border-slate-200/70 bg-white/90 backdrop-blur transition-shadow duration-300"
+>
+  <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <!-- Logo / 站点名称 -->
+    <a th:href="@{/}" class="flex items-center gap-2 text-lg font-bold text-ink-900">
+      <span class="inline-block h-2.5 w-2.5 rounded-full bg-primary"></span>
+      <span th:text="${site.title}">站点标题</span>
+    </a>
+
+    <!-- 桌面端导航 -->
+    <nav class="hidden items-center gap-8 md:flex" aria-label="主导航">
+      <a
+        th:each="item : ${menu.menuItems}"
+        th:href="@{${item.status.href}}"
+        th:text="${item.status.displayName}"
+        th:target="${item.spec.target?.value}"
+        class="text-sm font-medium text-ink-700 transition-colors hover:text-primary"
+        >菜单项</a
+      >
+    </nav>
+
+    <!-- 移动端汉堡按钮 -->
+    <button
+      id="menu-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      class="inline-flex h-10 w-10 items-center justify-center rounded-lg text-ink-700 hover:bg-slate-100 md:hidden"
+    >
+      <span class="sr-only">打开菜单</span>
+      <!-- 汉堡图标 -->
+      <svg id="icon-open" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+      </svg>
+      <!-- 关闭图标（默认隐藏） -->
+      <svg id="icon-close" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- 移动端下拉菜单 -->
+  <nav id="mobile-menu" class="hidden border-t border-slate-200/70 bg-white md:hidden" aria-label="移动端导航">
+    <ul class="space-y-1 px-4 py-3">
+      <li th:each="item : ${menu.menuItems}">
+        <a
+          th:href="@{${item.status.href}}"
+          th:text="${item.status.displayName}"
+          th:target="${item.spec.target?.value}"
+          class="block rounded-lg px-3 py-2.5 text-base font-medium text-ink-700 transition-colors hover:bg-slate-100 hover:text-primary"
+          >菜单项</a
+        >
+      </li>
+    </ul>
+  </nav>
+</header>
