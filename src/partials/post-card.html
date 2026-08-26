@@ -37,7 +37,7 @@
     <div class="text-ink-500 flex items-center gap-3 text-xs">
       <th:block th:if="${not #lists.isEmpty(post.categories)}">
         <span
-          th:classappend="'rounded-full bg-primary/10 px-3 py-1 font-medium text-primary'"
+          class="bg-primary/10 text-primary rounded-full px-3 py-1 font-medium"
           th:text="${post.categories[0].spec.displayName}"
         ></span>
       </th:block>

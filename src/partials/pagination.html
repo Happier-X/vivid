@@ -1,5 +1,22 @@
-<nav class="pagination" th:if="${posts.hasPrevious() || posts.hasNext()}">
-  <a th:if="${posts.hasPrevious()}" th:href="@{${posts.prevUrl}}">Previous</a>
-  <span th:text="|${posts.page} / ${posts.totalPages}|"></span>
-  <a th:if="${posts.hasNext()}" th:href="@{${posts.nextUrl}}">Next</a>
+<!-- 通用分页导航（posts 变量）：与新视觉统一的按钮样式 -->
+<nav
+  class="mt-12 flex items-center justify-center gap-3"
+  th:if="${posts.hasPrevious() || posts.hasNext()}"
+  aria-label="分页导航"
+>
+  <a
+    th:if="${posts.hasPrevious()}"
+    th:href="@{${posts.prevUrl}}"
+    class="text-ink-700 hover:border-primary hover:text-primary inline-flex h-10 items-center rounded-lg border border-slate-200 bg-white px-4 text-sm font-medium transition-colors"
+    >上一页</a
+  >
+  <span class="text-ink-500 text-sm" th:text="|第 ${posts.page} / ${posts.totalPages} 页|"
+    >第 1 / 1 页</span
+  >
+  <a
+    th:if="${posts.hasNext()}"
+    th:href="@{${posts.nextUrl}}"
+    class="text-ink-700 hover:border-primary hover:text-primary inline-flex h-10 items-center rounded-lg border border-slate-200 bg-white px-4 text-sm font-medium transition-colors"
+    >下一页</a
+  >
 </nav>

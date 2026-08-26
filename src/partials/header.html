@@ -14,7 +14,7 @@
     <!-- 桌面端导航 -->
     <nav class="hidden items-center gap-8 md:flex" aria-label="主导航">
       <a
-        th:each="item : ${menu.menuItems}"
+        th:each="item : ${menu?.menuItems}"
         th:href="@{${item.status.href}}"
         th:text="${item.status.displayName}"
         th:target="${item.spec.target?.value}"
@@ -68,7 +68,7 @@
     aria-label="移动端导航"
   >
     <ul class="space-y-1 px-4 py-3">
-      <li th:each="item : ${menu.menuItems}">
+      <li th:each="item : ${menu?.menuItems}">
         <a
           th:href="@{${item.status.href}}"
           th:text="${item.status.displayName}"
