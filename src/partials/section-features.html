@@ -12,7 +12,7 @@
       </p>
       <h2
         th:text="${theme.config.features?.title}"
-        class="text-ink-900 text-3xl font-bold tracking-tight sm:text-4xl"
+        class="text-ink-900 text-3xl font-extrabold tracking-tight sm:text-4xl"
       >
         大标题
       </h2>
@@ -29,16 +29,18 @@
         >
           <div
             th:each="item, stat : ${theme.config.features.items}"
-            class="group hover:border-primary/30 relative flex flex-col gap-4 rounded-[var(--radius-card)] border border-slate-200 bg-slate-50/60 p-8 transition-all duration-300 hover:bg-white hover:shadow-lg"
+            class="card-hover group hover:border-primary/30 border-line shadow-soft relative flex flex-col gap-4 rounded-[var(--radius-card)] border bg-white p-8"
           >
             <!-- 编号 -->
             <span
               th:text="${stat.count < 10 ? '0' + stat.count : stat.count}"
-              class="text-primary/25 group-hover:text-primary text-3xl font-bold transition-colors"
+              class="text-primary/25 group-hover:text-primary text-3xl font-black tabular-nums transition-colors duration-200"
             >
               01
             </span>
-            <h3 th:text="${item.title}" class="text-ink-900 text-lg font-bold">条目标题</h3>
+            <h3 th:text="${item.title}" class="text-ink-900 text-lg font-extrabold tracking-tight">
+              条目标题
+            </h3>
             <p th:text="${item.description}" class="text-ink-500 text-sm leading-relaxed">
               条目描述
             </p>
@@ -51,7 +53,7 @@
           th:src="${theme.config.features.image}"
           th:alt="${theme.config.features?.title ?: '配图'}"
           loading="lazy"
-          class="mt-10 w-full rounded-[var(--radius-card)] object-cover shadow-xl shadow-slate-900/10 lg:mt-0 lg:w-2/5"
+          class="shadow-lift mt-10 w-full rounded-[var(--radius-card)] object-cover lg:mt-0 lg:w-2/5"
         />
       </div>
 

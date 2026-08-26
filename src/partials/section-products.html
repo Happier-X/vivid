@@ -1,5 +1,5 @@
 <!-- 精选产品：categorySelect 来源分类 + postFinder 查询 + 卡片网格 -->
-<section class="bg-slate-50 py-16 sm:py-24">
+<section class="section-tinted py-16 sm:py-24">
   <div
     class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
     th:with="
@@ -19,7 +19,7 @@
         </p>
         <h2
           th:text="${theme.config.products?.title}"
-          class="text-ink-900 text-3xl font-bold tracking-tight sm:text-4xl"
+          class="text-ink-900 text-3xl font-extrabold tracking-tight sm:text-4xl"
         >
           大标题
         </h2>
@@ -60,10 +60,10 @@
     <!-- 暂无内容占位 -->
     <div
       th:if="${#lists.isEmpty(productPosts.items)}"
-      class="flex flex-col items-center gap-3 rounded-[var(--radius-card)] border border-dashed border-slate-300 bg-white py-20"
+      class="border-line/80 flex flex-col items-center gap-3 rounded-[var(--radius-card)] border border-dashed bg-white/70 py-20"
     >
       <svg
-        class="h-10 w-10 text-slate-300"
+        class="text-line h-10 w-10"
         fill="none"
         viewBox="0 0 24 24"
         stroke-width="1.5"

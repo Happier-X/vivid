@@ -1,4 +1,4 @@
-<!-- 通用分页导航（posts 变量）：与新视觉统一的按钮样式 -->
+<!-- 通用分页导航（posts 变量）：与新视觉统一的胶囊按钮样式 -->
 <nav
   class="mt-12 flex items-center justify-center gap-3"
   th:if="${posts.hasPrevious() || posts.hasNext()}"
@@ -7,7 +7,7 @@
   <a
     th:if="${posts.hasPrevious()}"
     th:href="@{${posts.prevUrl}}"
-    class="text-ink-700 hover:border-primary hover:text-primary inline-flex h-10 items-center rounded-lg border border-slate-200 bg-white px-4 text-sm font-medium transition-colors"
+    class="text-ink-700 hover:border-primary hover:text-primary hover:shadow-soft border-line inline-flex h-10 items-center rounded-full border bg-white px-5 text-sm font-medium transition-all duration-200"
     >上一页</a
   >
   <span class="text-ink-500 text-sm" th:text="|第 ${posts.page} / ${posts.totalPages} 页|"
@@ -16,7 +16,7 @@
   <a
     th:if="${posts.hasNext()}"
     th:href="@{${posts.nextUrl}}"
-    class="text-ink-700 hover:border-primary hover:text-primary inline-flex h-10 items-center rounded-lg border border-slate-200 bg-white px-4 text-sm font-medium transition-colors"
+    class="text-ink-700 hover:border-primary hover:text-primary hover:shadow-soft border-line inline-flex h-10 items-center rounded-full border bg-white px-5 text-sm font-medium transition-all duration-200"
     >下一页</a
   >
 </nav>

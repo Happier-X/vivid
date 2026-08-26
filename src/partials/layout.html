@@ -11,13 +11,13 @@
     <!-- 运行时注入后台「样式」设置，覆盖设计令牌，实现配色即时生效 -->
     <style th:inline="css">
       :root {
-        --color-primary: [(${theme.config.style?.primary_color ?: "#2563eb"})];
-        --color-secondary: [(${theme.config.style?.secondary_color ?: "#0f172a"})];
-        --radius-card: [(${theme.config.style?.radius_style == "sharp" ? "0rem": "0.75rem"})];
+        --color-primary: [(${theme.config.style?.primary_color ?: "#4fc7b7"})];
+        --color-secondary: [(${theme.config.style?.secondary_color ?: "#ffd86b"})];
+        --radius-card: [(${theme.config.style?.radius_style == "sharp" ? "0rem": "0.5rem"})];
       }
     </style>
   </head>
-  <body class="text-ink-900 bg-white font-sans antialiased">
+  <body class="text-ink-900 bg-surface font-sans antialiased">
     <include src="header.html"></include>
 
     <main>

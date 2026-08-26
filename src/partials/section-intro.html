@@ -13,7 +13,7 @@
         </p>
         <h2
           th:text="${theme.config.intro?.title}"
-          class="text-ink-900 text-3xl font-bold tracking-tight sm:text-4xl"
+          class="text-ink-900 text-3xl font-extrabold tracking-tight sm:text-4xl"
         >
           大标题
         </h2>
@@ -32,7 +32,7 @@
         >
           <li th:each="point : ${theme.config.intro.points}" class="flex items-start gap-4">
             <span
-              class="bg-primary/10 text-primary mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg"
+              class="bg-mist text-primary border-primary/15 mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border"
             >
               <svg
                 class="h-4.5 w-4.5"
@@ -49,7 +49,9 @@
               </svg>
             </span>
             <div>
-              <h3 th:text="${point.title}" class="text-ink-900 font-bold">功能点标题</h3>
+              <h3 th:text="${point.title}" class="text-ink-900 font-extrabold tracking-tight">
+                功能点标题
+              </h3>
               <p th:text="${point.description}" class="text-ink-500 mt-1 text-sm leading-relaxed">
                 功能点描述
               </p>
@@ -64,12 +66,12 @@
         th:src="${theme.config.intro.image}"
         th:alt="${theme.config.intro?.title ?: '功能介绍'}"
         loading="lazy"
-        class="w-full rounded-[var(--radius-card)] object-cover shadow-2xl shadow-slate-900/10"
+        class="shadow-lift w-full rounded-[var(--radius-card)] object-cover"
       />
       <!-- 未配置配图时的占位视觉 -->
       <div
         th:unless="${not #strings.isEmpty(theme.config.intro?.image)}"
-        class="flex aspect-[4/3] w-full items-center justify-center rounded-[var(--radius-card)] bg-gradient-to-br from-slate-100 to-slate-200 text-slate-400"
+        class="from-mist to-primary/20 text-primary/50 flex aspect-[4/3] w-full items-center justify-center rounded-[var(--radius-card)] bg-gradient-to-br"
       >
         <svg
           class="h-16 w-16"

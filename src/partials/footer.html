@@ -1,5 +1,5 @@
 <!-- 全局页脚：版权 / 备案号 / 附加链接 + halo:footer 扩展挂载点 -->
-<footer class="border-t border-slate-200 bg-slate-50">
+<footer class="section-tinted border-line border-t">
   <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
     <div class="text-ink-500 flex flex-col items-center gap-4 text-sm">
       <!-- 附加链接（后台配置，格式：链接地址|显示文字） -->
@@ -12,7 +12,7 @@
             th:with="parts = ${#strings.split(link, '|')}"
             th:href="@{${parts[0]}}"
             th:text="${#arrays.length(parts) > 1 ? parts[1] : link}"
-            class="hover:text-primary transition-colors"
+            class="hover:text-primary transition-colors duration-200"
             >链接</a
           >
         </li>
@@ -28,7 +28,7 @@
         rel="noopener noreferrer"
         th:if="${not #strings.isEmpty(theme.config.footer?.icp)}"
         th:text="${theme.config.footer.icp}"
-        class="hover:text-primary transition-colors"
+        class="hover:text-primary transition-colors duration-200"
         >备案号</a
       >
 

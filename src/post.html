@@ -4,7 +4,7 @@
   </template>
 
   <!-- 文章页头：面包屑 + 大标题 + 元信息 -->
-  <header class="border-b border-slate-200 bg-slate-50">
+  <header class="section-tinted border-line/70 border-b">
     <div class="mx-auto max-w-4xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
       <!-- 面包屑：首页 / 分类 -->
       <nav
@@ -13,7 +13,7 @@
         th:if="${not #lists.isEmpty(post.categories)}"
       >
         <a th:href="@{/}" class="hover:text-primary transition-colors">首页</a>
-        <span class="text-slate-300">/</span>
+        <span class="text-line">/</span>
         <a
           th:href="@{${post.categories[0].status.permalink}}"
           th:text="${post.categories[0].spec.displayName}"
@@ -24,7 +24,7 @@
 
       <!-- 大标题 -->
       <h1
-        class="text-ink-900 text-3xl leading-tight font-bold tracking-tight sm:text-4xl"
+        class="text-ink-900 text-3xl leading-tight font-extrabold tracking-tight sm:text-4xl"
         th:text="${post.spec.title}"
       >
         文章标题
@@ -39,11 +39,11 @@
             th:src="${post.owner.avatar}"
             th:alt="${post.owner?.displayName}"
             loading="lazy"
-            class="h-6 w-6 rounded-full border border-slate-200 object-cover"
+            class="border-line h-6 w-6 rounded-full border object-cover"
           />
           <span
             th:unless="${not #strings.isEmpty(post.owner?.avatar)}"
-            class="bg-primary/10 text-primary inline-flex h-6 w-6 items-center justify-center rounded-full"
+            class="bg-mist text-primary-dark inline-flex h-6 w-6 items-center justify-center rounded-full"
           >
             <svg
               class="h-3.5 w-3.5"
@@ -79,7 +79,7 @@
     <!-- 封面图：有封面时才显示 -->
     <figure
       th:if="${not #strings.isEmpty(post.spec.cover)}"
-      class="mb-10 overflow-hidden rounded-[var(--radius-card)] border border-slate-200 shadow-sm"
+      class="border-line shadow-soft mb-10 overflow-hidden rounded-[var(--radius-card)] border"
     >
       <img th:src="${post.spec.cover}" th:alt="${post.spec.title}" class="w-full object-cover" />
     </figure>
@@ -93,14 +93,14 @@
         th:each="tag : ${post.tags}"
         th:href="@{${tag.status.permalink}}"
         th:text="|# ${tag.spec.displayName}|"
-        class="text-ink-700 hover:border-primary hover:text-primary inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-1.5 text-sm transition-colors"
+        class="text-primary-dark hover:border-primary hover:bg-mist border-line inline-flex items-center rounded-full border bg-white px-4 py-1.5 text-sm transition-colors duration-200"
         >标签</a
       >
     </div>
 
     <!-- 上一篇 / 下一篇 -->
     <nav
-      class="mt-14 grid gap-4 border-t border-slate-200 pt-10 sm:grid-cols-2"
+      class="border-line mt-14 grid gap-4 border-t pt-10 sm:grid-cols-2"
       th:with="cursor = ${postFinder.cursor(post.metadata.name)}"
       aria-label="上下篇导航"
     >
@@ -108,9 +108,9 @@
       <a
         th:if="${cursor.hasPrevious()}"
         th:href="@{${cursor.previous.status.permalink}}"
-        class="group hover:border-primary flex flex-col gap-2 rounded-[var(--radius-card)] border border-slate-200 p-5 transition-colors"
+        class="card-hover group hover:border-primary/40 border-line shadow-soft flex flex-col gap-2 rounded-[var(--radius-card)] border bg-white p-5"
       >
-        <span class="text-primary inline-flex items-center gap-1.5 text-xs font-semibold">
+        <span class="text-primary-dark inline-flex items-center gap-1.5 text-xs font-semibold">
           <svg
             class="h-3.5 w-3.5"
             fill="none"
@@ -138,9 +138,9 @@
       <a
         th:if="${cursor.hasNext()}"
         th:href="@{${cursor.next.status.permalink}}"
-        class="group hover:border-primary flex flex-col items-start gap-2 rounded-[var(--radius-card)] border border-slate-200 p-5 text-left transition-colors sm:items-end sm:text-right"
+        class="card-hover group hover:border-primary/40 border-line shadow-soft flex flex-col items-start gap-2 rounded-[var(--radius-card)] border bg-white p-5 text-left sm:items-end sm:text-right"
       >
-        <span class="text-primary inline-flex items-center gap-1.5 text-xs font-semibold">
+        <span class="text-primary-dark inline-flex items-center gap-1.5 text-xs font-semibold">
           下一篇
           <svg
             class="h-3.5 w-3.5"
@@ -165,8 +165,8 @@
     </nav>
 
     <!-- 评论区挂载点 -->
-    <section class="mt-14 border-t border-slate-200 pt-10" th:if="${haloCommentEnabled}">
-      <h2 class="text-ink-900 mb-6 text-xl font-bold">评论</h2>
+    <section class="border-line mt-14 border-t pt-10" th:if="${haloCommentEnabled}">
+      <h2 class="text-ink-900 mb-6 text-xl font-extrabold tracking-tight">评论</h2>
       <halo:comment group="content.halo.run" kind="Post" th:attr="name=${post.metadata.name}" />
     </section>
   </article>

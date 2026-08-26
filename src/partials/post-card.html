@@ -1,10 +1,10 @@
 <!-- 文章卡片（企业风格）：封面 + 分类徽标 + 标题 + 摘要 -->
 <!-- 使用方式：外层自行包裹 th:each="post : ${...}" 循环 -->
 <article
-  class="group flex flex-col overflow-hidden rounded-[var(--radius-card)] border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+  class="card-hover group border-line shadow-soft flex flex-col overflow-hidden rounded-[var(--radius-card)] border bg-white"
 >
   <!-- 封面图：无封面时显示品牌渐变占位 -->
-  <a th:href="@{${post.status.permalink}}" class="block aspect-video overflow-hidden bg-slate-100">
+  <a th:href="@{${post.status.permalink}}" class="bg-mist block aspect-video overflow-hidden">
     <img
       th:if="${not #strings.isEmpty(post.spec.cover)}"
       th:src="${post.spec.cover}"
@@ -14,7 +14,7 @@
     />
     <div
       th:unless="${not #strings.isEmpty(post.spec.cover)}"
-      class="from-primary/10 via-primary/20 to-primary/40 flex h-full w-full items-center justify-center bg-gradient-to-br"
+      class="from-mist via-primary/20 to-primary/40 flex h-full w-full items-center justify-center bg-gradient-to-br"
     >
       <svg
         class="text-primary/60 h-12 w-12"
@@ -37,7 +37,7 @@
     <div class="text-ink-500 flex items-center gap-3 text-xs">
       <th:block th:if="${not #lists.isEmpty(post.categories)}">
         <span
-          class="bg-primary/10 text-primary rounded-full px-3 py-1 font-medium"
+          class="bg-mist text-primary-dark rounded-full px-3 py-1 font-semibold"
           th:text="${post.categories[0].spec.displayName}"
         ></span>
       </th:block>
@@ -48,7 +48,9 @@
     </div>
 
     <!-- 标题 -->
-    <h3 class="text-ink-900 group-hover:text-primary leading-snug font-bold transition-colors">
+    <h3
+      class="text-ink-900 group-hover:text-primary leading-snug font-extrabold tracking-tight transition-colors duration-200"
+    >
       <a th:href="@{${post.status.permalink}}" th:text="${post.spec.title}" class="line-clamp-2"
         >文章标题</a
       >

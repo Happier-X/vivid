@@ -3,30 +3,43 @@
 
 /*
  * 设计令牌（Tailwind 4 @theme）
+ * 对齐参考站（--mk-* 变量）提取的企业官网视觉体系：
+ * 青绿主色 + 浅青渐变背景 + 大而柔的青色调阴影 + 超粗标题排版。
  * 颜色变量可在运行时被 layout.html 注入的内联样式覆盖，
  * 从而实现后台「样式设置」即时生效。
  */
 @theme {
-  /* 品牌主色：企业蓝，可由后台 theme.config.style.primary_color 覆盖 */
-  --color-primary: #2563eb;
-  --color-primary-dark: #1d4ed8;
-  --color-primary-light: #3b82f6;
+  /* 品牌主色：青绿，可由后台 theme.config.style.primary_color 覆盖 */
+  --color-primary: #4fc7b7;
+  --color-primary-dark: #2b8d89;
+  --color-primary-light: #8fded3;
 
-  /* 中性色 */
-  --color-ink-900: #0f172a;
-  --color-ink-700: #334155;
-  --color-ink-500: #64748b;
-  --color-surface: #f8fafc;
+  /* 渐变深端（主按钮渐变终点） */
+  --color-primary-deep: #27a898;
 
-  /* 品牌辅助色，可由后台 theme.config.style.secondary_color 覆盖 */
-  --color-secondary: #0f172a;
+  /* 中性色（正文 / 次要文字 / 页面底色） */
+  --color-ink-900: #1f2d38;
+  --color-ink-700: #3f505c;
+  --color-ink-500: #687783;
+  --color-surface: #fbfefe;
 
-  /* 圆角风格 */
-  --radius-card: 0.75rem;
+  /* 浅色底与线条色 */
+  --color-mist: #eef9f7;
+  --color-line: #d9ece9;
+
+  /* 多彩点缀，可由后台 theme.config.style.secondary_color 覆盖其一 */
+  --color-secondary: #ffd86b;
+  --color-accent-pink: #f7b8c8;
+
+  /* 阴影：大而柔的青色调 */
+  --shadow-soft: 0 8px 30px rgba(36, 109, 116, 0.07);
+  --shadow-lift: 0 18px 45px rgba(36, 109, 116, 0.12);
+
+  /* 圆角风格：基准 8px，按钮 / 标签大量使用胶囊形 */
+  --radius-card: 0.5rem;
 
   /* 字体栈 */
-  --font-sans:
-    system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  --font-sans: "Geist", "Inter", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
 }
 
 /* ---------- 基础样式 ---------- */
@@ -38,10 +51,104 @@ html {
 body {
   font-family: var(--font-sans);
   color: var(--color-ink-900);
-  background-color: #ffffff;
+  background-color: var(--color-surface);
 }
 
-/* 文章正文排版（详情页内容区，无法完全依赖工具类） */
+/* ---------- 区块背景：浅青渐变（白 与 渐变交替） ---------- */
+
+.section-tinted {
+  background-image: linear-gradient(140deg, #f6fbfa, #dff3f0);
+}
+
+/* ---------- 胶囊按钮基础样式 ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  padding: 0.875rem 1.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+  transition: all 0.22s ease;
+}
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+/* 主按钮：青绿渐变 + 白字 */
+.btn-primary {
+  color: #ffffff;
+  background-image: linear-gradient(145deg, #3ecbb8, #27a898);
+  box-shadow: 0 8px 24px rgba(39, 168, 152, 0.28);
+}
+.btn-primary:hover {
+  box-shadow: var(--shadow-lift);
+}
+
+/* 次按钮：白底描边 */
+.btn-outline {
+  color: var(--color-ink-900);
+  background-color: #ffffff;
+  border: 1px solid var(--color-line);
+}
+.btn-outline:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  box-shadow: var(--shadow-soft);
+}
+
+/* CTA 横幅内使用的白底按钮 */
+.btn-white {
+  color: var(--color-primary-dark);
+  background-color: #ffffff;
+  box-shadow: 0 8px 24px rgba(31, 45, 56, 0.18);
+}
+.btn-white:hover {
+  box-shadow: var(--shadow-lift);
+}
+
+/* CTA 横幅内使用的幽灵按钮 */
+.btn-ghost {
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+.btn-ghost:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  border-color: #ffffff;
+}
+
+/* ---------- 动效：hero 产品图轻微上下漂浮（6s 循环） ---------- */
+
+@keyframes mk-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+.animate-float {
+  animation: mk-float 6s ease-in-out infinite;
+}
+
+/* 卡片悬浮上浮通用过渡 */
+.card-hover {
+  transition:
+    transform 0.24s ease,
+    box-shadow 0.24s ease,
+    border-color 0.24s ease,
+    background-color 0.24s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lift);
+}
+
+/* ---------- 文章正文排版（详情页内容区，无法完全依赖工具类） ---------- */
+
 .rich-content {
   line-height: 1.8;
   color: var(--color-ink-700);
@@ -55,7 +162,8 @@ body {
 .rich-content h3,
 .rich-content h4 {
   color: var(--color-ink-900);
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: -0.02em;
   margin-top: 2rem;
   margin-bottom: 0.75rem;
 }
@@ -69,13 +177,13 @@ body {
   margin-bottom: 1rem;
 }
 .rich-content a {
-  color: var(--color-primary);
+  color: var(--color-primary-dark);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 .rich-content blockquote {
-  border-left: 4px solid var(--color-primary-light);
-  background-color: var(--color-surface);
+  border-left: 4px solid var(--color-primary);
+  background-color: var(--color-mist);
   padding: 0.75rem 1.25rem;
   border-radius: 0 var(--radius-card) var(--radius-card) 0;
   margin: 1.5rem 0;

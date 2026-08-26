@@ -1,6 +1,6 @@
-<!-- 数据统计栏：统计项数组（无条目时整块隐藏） -->
+<!-- 数据统计栏：统计项数组（无条目时整块隐藏）；浅青渐变底 + 超粗主色数字 -->
 <section
-  class="bg-secondary py-14 sm:py-16"
+  class="section-tinted border-line/70 border-y py-14 sm:py-16"
   th:classappend="${#lists.isEmpty(theme.config.stats?.items)} ? 'hidden' : ''"
 >
   <div
@@ -10,10 +10,16 @@
       th:each="item : ${theme.config.stats.items}"
       class="flex flex-col items-center gap-2 text-center"
     >
-      <span th:text="${item.value}" class="text-4xl font-bold tracking-tight text-white sm:text-5xl"
+      <span
+        th:text="${item.value}"
+        class="text-primary-dark text-4xl font-black tracking-tight tabular-nums sm:text-5xl"
         >500万+</span
       >
-      <span th:text="${item.label}" class="text-sm font-medium text-slate-400">说明文字</span>
+      <span
+        th:text="${item.label}"
+        class="bg-mist text-ink-500 inline-flex items-center rounded-full px-4 py-1 text-sm font-medium"
+        >说明文字</span
+      >
     </div>
   </div>
 </section>

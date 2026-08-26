@@ -4,10 +4,10 @@
   </template>
 
   <!-- 页头横幅 -->
-  <header class="border-b border-slate-200 bg-slate-50">
+  <header class="section-tinted border-line/70 border-b">
     <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
       <p class="text-primary mb-3 text-sm font-semibold tracking-widest uppercase">站点归档</p>
-      <h1 class="text-ink-900 text-3xl font-bold tracking-tight sm:text-4xl">全部文章</h1>
+      <h1 class="text-ink-900 text-3xl font-extrabold tracking-tight sm:text-4xl">全部文章</h1>
       <p class="text-ink-500 mt-3 text-base" th:text="|共 ${archives.total} 篇文章|">共 N 篇文章</p>
     </div>
   </header>
@@ -18,13 +18,13 @@
       <section th:each="archive : ${archives.items}">
         <!-- 年份标题 + 分隔线 -->
         <h2 class="flex items-center gap-5">
-          <span class="text-primary text-3xl font-extrabold tabular-nums" th:text="${archive.year}"
+          <span class="text-primary-dark text-3xl font-black tabular-nums" th:text="${archive.year}"
             >2024</span
           >
-          <span class="h-px flex-1 bg-slate-200"></span>
+          <span class="bg-line h-px flex-1"></span>
         </h2>
 
-        <ul class="mt-4 divide-y divide-slate-100">
+        <ul class="divide-line/60 mt-4 divide-y">
           <th:block th:each="month : ${archive.months}">
             <li th:each="post : ${month.posts}" class="group flex items-center gap-4 py-3.5">
               <!-- 日期（年-月-日） -->
@@ -59,7 +59,7 @@
     <!-- 空状态 -->
     <div
       th:if="${#lists.isEmpty(archives.items)}"
-      class="text-ink-500 rounded-[var(--radius-card)] border border-dashed border-slate-300 py-20 text-center text-sm"
+      class="text-ink-500 border-line rounded-[var(--radius-card)] border border-dashed py-20 text-center text-sm"
     >
       暂无文章，请在后台发布内容
     </div>
@@ -73,7 +73,7 @@
       <a
         th:if="${archives.hasPrevious()}"
         th:href="@{${archives.prevUrl}}"
-        class="text-ink-700 hover:border-primary hover:text-primary inline-flex h-10 items-center rounded-lg border border-slate-200 bg-white px-4 text-sm font-medium transition-colors"
+        class="text-ink-700 hover:border-primary hover:text-primary hover:shadow-soft border-line inline-flex h-10 items-center rounded-full border bg-white px-5 text-sm font-medium transition-all duration-200"
         >上一页</a
       >
       <span class="text-ink-500 text-sm" th:text="|第 ${archives.page} / ${archives.totalPages} 页|"
@@ -82,7 +82,7 @@
       <a
         th:if="${archives.hasNext()}"
         th:href="@{${archives.nextUrl}}"
-        class="text-ink-700 hover:border-primary hover:text-primary inline-flex h-10 items-center rounded-lg border border-slate-200 bg-white px-4 text-sm font-medium transition-colors"
+        class="text-ink-700 hover:border-primary hover:text-primary hover:shadow-soft border-line inline-flex h-10 items-center rounded-full border bg-white px-5 text-sm font-medium transition-all duration-200"
         >下一页</a
       >
     </nav>

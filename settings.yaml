@@ -11,12 +11,12 @@ spec:
         - $formkit: color
           name: primary_color
           label: 品牌主色
-          value: "#2563eb"
+          value: "#4fc7b7"
           help: 用于按钮、链接、强调元素等品牌色场景
         - $formkit: color
           name: secondary_color
           label: 辅助色
-          value: "#0f172a"
+          value: "#ffd86b"
           help: 用于标题、深色区块等辅助色场景
         - $formkit: radio
           name: radius_style
