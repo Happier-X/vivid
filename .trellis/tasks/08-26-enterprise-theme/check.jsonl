@@ -1,0 +1,3 @@
+{"file": ".trellis/tasks/08-26-enterprise-theme/prd.md", "reason": "验收标准 1–8 为检查依据"}
+{"file": ".agents/skills/halo-theme-dev/references/thymeleaf-tips.md", "reason": "Thymeleaf 安全导航、字面量替换等检查要点"}
+{"file": ".agents/skills/halo-theme-dev/references/templates.md", "reason": "各模板路由与可用变量，校验模板正确性"}

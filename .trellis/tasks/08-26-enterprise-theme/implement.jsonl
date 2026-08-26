@@ -1,0 +1,5 @@
+{"file": ".trellis/tasks/08-26-enterprise-theme/prd.md", "reason": "需求、验收标准与范围边界"}
+{"file": ".trellis/tasks/08-26-enterprise-theme/design.md", "reason": "技术设计：settings 分组、模板结构、Tailwind 令牌方案"}
+{"file": ".agents/skills/halo-theme-dev/references/vite-plugin.md", "reason": "include/slot 语法、静态资源路径规则、Tailwind 4 集成方式"}
+{"file": ".agents/skills/halo-theme-dev/references/structure-and-config.md", "reason": "theme.yaml 字段与 settings.yaml FormKit 表单类型（switch/attachment/array/list/categorySelect）"}
+{"file": ".agents/skills/halo-theme-dev/references/finder-apis.md", "reason": "postFinder/menuFinder 查询模式（写代码前须核对在线文档参数名）"}

@@ -7,6 +7,7 @@
 ## Current Status
 
 <!-- @@@auto:current-status -->
+
 - **Active File**: `journal-1.md`
 - **Total Sessions**: 0
 - **Last Active**: -
@@ -17,9 +18,11 @@
 ## Active Documents
 
 <!-- @@@auto:active-documents -->
-| File | Lines | Status |
-|------|-------|--------|
-| `journal-1.md` | ~0 | Active |
+
+| File           | Lines | Status |
+| -------------- | ----- | ------ |
+| `journal-1.md` | ~0    | Active |
+
 <!-- @@@/auto:active-documents -->
 
 ---
@@ -27,8 +30,10 @@
 ## Session History
 
 <!-- @@@auto:session-history -->
-| # | Date | Title | Commits | Branch |
-|---|------|-------|---------|--------|
+
+| #   | Date | Title | Commits | Branch |
+| --- | ---- | ----- | ------- | ------ |
+
 <!-- @@@/auto:session-history -->
 
 ---

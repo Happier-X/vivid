@@ -1,167 +1,101 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+/* TailwindCSS 4 入口：引入工具类并定义设计令牌 */
+@import "tailwindcss";
+
+/*
+ * 设计令牌（Tailwind 4 @theme）
+ * 颜色变量可在运行时被 layout.html 注入的内联样式覆盖，
+ * 从而实现后台「样式设置」即时生效。
+ */
+@theme {
+  /* 品牌主色：企业蓝，可由后台 theme.config.style.primary_color 覆盖 */
+  --color-primary: #2563eb;
+  --color-primary-dark: #1d4ed8;
+  --color-primary-light: #3b82f6;
+
+  /* 中性色 */
+  --color-ink-900: #0f172a;
+  --color-ink-700: #334155;
+  --color-ink-500: #64748b;
+  --color-surface: #f8fafc;
+
+  /* 圆角风格 */
+  --radius-card: 0.75rem;
+
+  /* 字体栈 */
+  --font-sans:
+    system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+}
+
+/* ---------- 基础样式 ---------- */
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  margin: 0;
-  font-family:
-    system-ui,
-    -apple-system,
-    sans-serif;
-  line-height: 1.6;
-  color: #333;
+  font-family: var(--font-sans);
+  color: var(--color-ink-900);
+  background-color: #ffffff;
 }
 
-a {
-  color: #0070f3;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-.site-header {
-  border-bottom: 1px solid #eee;
-  padding: 1rem 0;
-}
-
-.site-header .container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.site-title {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #333;
-}
-
-.site-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: 1rem;
-}
-
-.site-main {
-  padding: 2rem 0;
-}
-
-.post-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.post-item {
-  padding: 1.5rem 0;
-  border-bottom: 1px solid #eee;
-}
-
-.post-item:last-child {
-  border-bottom: none;
-}
-
-.post-title {
-  margin: 0 0 0.25rem;
-  font-size: 1.25rem;
-}
-
-.post-meta {
-  color: #666;
-  font-size: 0.875rem;
-  margin: 0 0 0.5rem;
-}
-
-.post-excerpt {
-  color: #555;
-  margin: 0;
-}
-
-.pagination {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  padding: 2rem 0;
-}
-
-.article-header {
-  margin-bottom: 2rem;
-}
-
-.article-title {
-  margin: 0 0 0.5rem;
-  font-size: 2rem;
-}
-
-.article-meta {
-  color: #666;
-  font-size: 0.875rem;
-}
-
-.article-content {
-  max-width: 100%;
+/* 文章正文排版（详情页内容区，无法完全依赖工具类） */
+.rich-content {
   line-height: 1.8;
+  color: var(--color-ink-700);
 }
-
-.article-content img {
+.rich-content img {
   max-width: 100%;
+  border-radius: var(--radius-card);
 }
-
-.article-tags,
-.article-categories {
-  margin-top: 1.5rem;
-}
-
-.tag,
-.category {
-  display: inline-block;
-  padding: 0.125rem 0.5rem;
-  background: #f0f0f0;
-  border-radius: 4px;
-  font-size: 0.875rem;
-  margin: 0.25rem;
-}
-
-.post-nav {
-  display: flex;
-  justify-content: space-between;
-  padding: 2rem 0;
-  border-top: 1px solid #eee;
+.rich-content h1,
+.rich-content h2,
+.rich-content h3,
+.rich-content h4 {
+  color: var(--color-ink-900);
+  font-weight: 700;
   margin-top: 2rem;
+  margin-bottom: 0.75rem;
 }
-
-.site-footer {
-  border-top: 1px solid #eee;
-  padding: 1.5rem 0;
-  text-align: center;
-  color: #666;
-  font-size: 0.875rem;
+.rich-content h2 {
+  font-size: 1.5rem;
 }
-
-.archive-year {
-  margin-top: 2rem;
+.rich-content h3 {
+  font-size: 1.25rem;
 }
-
-.tag-list,
-.category-list {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+.rich-content p {
+  margin-bottom: 1rem;
+}
+.rich-content a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.rich-content blockquote {
+  border-left: 4px solid var(--color-primary-light);
+  background-color: var(--color-surface);
+  padding: 0.75rem 1.25rem;
+  border-radius: 0 var(--radius-card) var(--radius-card) 0;
+  margin: 1.5rem 0;
+}
+.rich-content pre {
+  background-color: var(--color-ink-900);
+  color: #e2e8f0;
+  padding: 1.25rem;
+  border-radius: var(--radius-card);
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+.rich-content code {
+  font-size: 0.9em;
+}
+.rich-content ul,
+.rich-content ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+.rich-content ul {
+  list-style: disc;
+}
+.rich-content ol {
+  list-style: decimal;
 }

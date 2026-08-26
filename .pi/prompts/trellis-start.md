@@ -5,6 +5,7 @@ Initialize a Trellis-managed development session. This platform has no session-s
 ---
 
 ## Step 1: Current state
+
 Identity, git status, current task, active tasks, journal location.
 
 ```bash
@@ -14,6 +15,7 @@ python ./.trellis/scripts/get_context.py
 If this output includes a line beginning `Trellis update available:`, copy the full line verbatim when summarizing session context. Do not shorten operational command hints.
 
 ## Step 2: Workflow overview
+
 Compact Phase Index, request triage rules, planning artifact contract, and the step-detail command.
 
 ```bash
@@ -23,6 +25,7 @@ python ./.trellis/scripts/get_context.py --mode phase
 Full guide in `.trellis/workflow.md` (read on demand).
 
 ## Step 3: Guideline indexes
+
 Discover packages + spec layers, then read each relevant index file.
 
 ```bash
@@ -34,6 +37,7 @@ cat .trellis/spec/<package>/<layer>/index.md   # for each relevant layer
 Index files list the specific guideline docs to read when you actually start coding.
 
 ## Step 4: Decide next action
+
 From Step 1 you know the current task and status. Check the task directory:
 
 - **Active task status `planning` + no `prd.md`** → Phase 1.1. Load the `trellis-brainstorm` skill.
@@ -48,12 +52,12 @@ From Step 1 you know the current task and status. Check the task directory:
 
 ## Skill routing (quick reference)
 
-| User intent | Skill |
-|---|---|
-| New feature / unclear requirements | `trellis-brainstorm` |
-| About to write code | `trellis-before-dev` |
-| Done coding / quality check | `trellis-check` |
-| Stuck / fixed same bug multiple times | `trellis-break-loop` |
-| Learned something worth capturing | `trellis-update-spec` |
+| User intent                           | Skill                 |
+| ------------------------------------- | --------------------- |
+| New feature / unclear requirements    | `trellis-brainstorm`  |
+| About to write code                   | `trellis-before-dev`  |
+| Done coding / quality check           | `trellis-check`       |
+| Stuck / fixed same bug multiple times | `trellis-break-loop`  |
+| Learned something worth capturing     | `trellis-update-spec` |
 
 Full rules + anti-rationalization table in `.trellis/workflow.md`.

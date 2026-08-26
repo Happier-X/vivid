@@ -11,7 +11,9 @@
   "devDependencies": {
     "@halo-dev/theme-package-cli": "^1.0.1",
     "@halo-dev/vite-plugin-halo-theme": "^1.0.3",
+    "@tailwindcss/vite": "^4.3.3",
     "@types/node": "18.11.9",
+    "tailwindcss": "^4.3.3",
     "typescript": "^5.9.3",
     "vite": "npm:@voidzero-dev/vite-plus-core@latest",
     "vite-plus": "latest"
