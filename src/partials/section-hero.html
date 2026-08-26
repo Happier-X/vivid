@@ -14,7 +14,7 @@
   <div class="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
     <div class="grid items-center gap-12 lg:grid-cols-2">
       <!-- 左侧文案区 -->
-      <div class="flex flex-col items-start gap-6">
+      <div class="reveal flex flex-col items-start gap-6">
         <!-- 顶部标签 -->
         <span
           th:if="${not #strings.isEmpty(theme.config.hero?.badge)}"
@@ -84,35 +84,37 @@
         </ul>
       </div>
 
-      <!-- 右侧主图（带浮动动画） -->
-      <div class="animate-float relative">
-        <div
-          class="from-primary/15 to-accent-pink/20 absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-to-tr blur-2xl"
-        ></div>
-        <img
-          th:if="${not #strings.isEmpty(theme.config.hero?.image)}"
-          th:src="${theme.config.hero.image}"
-          th:alt="${theme.config.hero?.title ?: site.title}"
-          class="shadow-lift w-full rounded-[var(--radius-card)] object-cover"
-        />
-        <!-- 未配置主图时的占位视觉 -->
-        <div
-          th:unless="${not #strings.isEmpty(theme.config.hero?.image)}"
-          class="shadow-lift from-primary to-primary-deep flex aspect-video w-full items-center justify-center rounded-[var(--radius-card)] bg-gradient-to-br text-white"
-        >
-          <svg
-            class="h-20 w-20 opacity-70"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1"
-            stroke="currentColor"
+      <!-- 右侧主图：外层入场滑入，内层持续浮动（避免 transform 互相覆盖） -->
+      <div class="reveal reveal-right">
+        <div class="animate-float relative">
+          <div
+            class="from-primary/15 to-accent-pink/20 absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-to-tr blur-2xl"
+          ></div>
+          <img
+            th:if="${not #strings.isEmpty(theme.config.hero?.image)}"
+            th:src="${theme.config.hero.image}"
+            th:alt="${theme.config.hero?.title ?: site.title}"
+            class="shadow-lift w-full rounded-[var(--radius-card)] object-cover"
+          />
+          <!-- 未配置主图时的占位视觉 -->
+          <div
+            th:unless="${not #strings.isEmpty(theme.config.hero?.image)}"
+            class="shadow-lift from-primary to-primary-deep flex aspect-video w-full items-center justify-center rounded-[var(--radius-card)] bg-gradient-to-br text-white"
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M18 6h.008v.008H18V6z"
-            />
-          </svg>
+            <svg
+              class="h-20 w-20 opacity-70"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M18 6h.008v.008H18V6z"
+              />
+            </svg>
+          </div>
         </div>
       </div>
     </div>

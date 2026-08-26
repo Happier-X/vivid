@@ -3,7 +3,7 @@
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="grid items-center gap-12 lg:grid-cols-2">
       <!-- 左侧文案 -->
-      <div class="flex flex-col items-start gap-6">
+      <div class="reveal flex flex-col items-start gap-6">
         <p
           th:if="${not #strings.isEmpty(theme.config.intro?.eyebrow)}"
           th:text="${theme.config.intro.eyebrow}"
@@ -66,12 +66,12 @@
         th:src="${theme.config.intro.image}"
         th:alt="${theme.config.intro?.title ?: '功能介绍'}"
         loading="lazy"
-        class="shadow-lift w-full rounded-[var(--radius-card)] object-cover"
+        class="shadow-lift reveal-right w-full rounded-[var(--radius-card)] object-cover"
       />
       <!-- 未配置配图时的占位视觉 -->
       <div
         th:unless="${not #strings.isEmpty(theme.config.intro?.image)}"
-        class="from-mist to-primary/20 text-primary/50 flex aspect-[4/3] w-full items-center justify-center rounded-[var(--radius-card)] bg-gradient-to-br"
+        class="from-mist to-primary/20 reveal-right text-primary/50 flex aspect-[4/3] w-full items-center justify-center rounded-[var(--radius-card)] bg-gradient-to-br"
       >
         <svg
           class="h-16 w-16"

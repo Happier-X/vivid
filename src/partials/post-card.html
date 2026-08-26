@@ -1,7 +1,7 @@
 <!-- 文章卡片（企业风格）：封面 + 分类徽标 + 标题 + 摘要 -->
 <!-- 使用方式：外层自行包裹 th:each="post : ${...}" 循环 -->
 <article
-  class="card-hover group border-line shadow-soft flex flex-col overflow-hidden rounded-[var(--radius-card)] border bg-white"
+  class="card-hover reveal group border-line shadow-soft flex flex-col overflow-hidden rounded-[var(--radius-card)] border bg-white"
 >
   <!-- 封面图：无封面时显示品牌渐变占位 -->
   <a th:href="@{${post.status.permalink}}" class="bg-mist block aspect-video overflow-hidden">

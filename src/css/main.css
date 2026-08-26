@@ -60,56 +60,61 @@ body {
   background-image: linear-gradient(140deg, #f6fbfa, #dff3f0);
 }
 
-/* ---------- 胶囊按钮基础样式 ---------- */
+/* ---------- 按钮基础样式（8px 圆角，非胶囊）---------- */
 
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 9999px;
-  padding: 0.875rem 1.75rem;
+  min-height: 46px;
+  padding: 11px 20px;
+  border-radius: 8px;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 800;
   line-height: 1.5rem;
-  transition: all 0.22s ease;
-}
-.btn:hover {
-  transform: translateY(-2px);
+  transition:
+    background-color 0.22s ease,
+    border-color 0.22s ease,
+    color 0.22s ease,
+    box-shadow 0.22s ease,
+    transform 0.22s ease;
 }
 
-/* 主按钮：青绿渐变 + 白字 */
+/* 主按钮：纯色青绿底白字 + 彩色投影（非渐变） */
 .btn-primary {
   color: #ffffff;
-  background-image: linear-gradient(145deg, #3ecbb8, #27a898);
-  box-shadow: 0 8px 24px rgba(39, 168, 152, 0.28);
+  background-color: #4fc7b7;
+  box-shadow: 0 16px 30px rgba(79, 199, 183, 0.22);
 }
 .btn-primary:hover {
-  box-shadow: var(--shadow-lift);
+  background-color: #2b8d89;
+  transform: translateY(-3px);
 }
 
-/* 次按钮：白底描边 */
+/* 次按钮：ghost——白底 + 青绿半透明描边 + 深青字 */
 .btn-outline {
-  color: var(--color-ink-900);
+  color: #2b8d89;
   background-color: #ffffff;
-  border: 1px solid var(--color-line);
+  border: 1px solid rgba(79, 199, 183, 0.35);
 }
 .btn-outline:hover {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
+  border-color: rgba(79, 199, 183, 0.7);
+  transform: translateY(-3px);
   box-shadow: var(--shadow-soft);
 }
 
-/* CTA 横幅内使用的白底按钮 */
+/* CTA 横幅内使用：light——白底深青字 */
 .btn-white {
-  color: var(--color-primary-dark);
+  color: #2b8d89;
   background-color: #ffffff;
   box-shadow: 0 8px 24px rgba(31, 45, 56, 0.18);
 }
 .btn-white:hover {
+  transform: translateY(-3px);
   box-shadow: var(--shadow-lift);
 }
 
-/* CTA 横幅内使用的幽灵按钮 */
+/* CTA 横幅内使用：outline-light——白色半透明描边白字 */
 .btn-ghost {
   color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.5);
@@ -117,6 +122,7 @@ body {
 .btn-ghost:hover {
   background-color: rgba(255, 255, 255, 0.12);
   border-color: #ffffff;
+  transform: translateY(-3px);
 }
 
 /* ---------- 动效：hero 产品图轻微上下漂浮（6s 循环） ---------- */
@@ -124,14 +130,58 @@ body {
 @keyframes mk-float {
   0%,
   100% {
-    transform: translateY(0);
+    transform: translateY(0) rotate(0);
   }
   50% {
-    transform: translateY(-14px);
+    transform: translateY(-14px) rotate(1.2deg);
   }
 }
 .animate-float {
   animation: mk-float 6s ease-in-out infinite;
+}
+
+/* ---------- 滚动入场动画（mk-reveal 对齐） ----------
+ * 仅在 html.js 前缀下隐藏元素，保证无 JS 时内容直接可见。
+ * main.ts 首行给 documentElement 加 .js，IntersectionObserver
+ * 给进入视口的元素加 .is-visible。 */
+.js .reveal,
+.js .reveal-left,
+.js .reveal-right {
+  opacity: 0;
+  transform: translateY(36px);
+  filter: blur(4px);
+  transition:
+    opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.js .reveal-left {
+  transform: translateX(-48px);
+}
+.js .reveal-right {
+  transform: translateX(48px);
+}
+.js .reveal.is-visible,
+.js .reveal-left.is-visible,
+.js .reveal-right.is-visible {
+  opacity: 1;
+  transform: translate(0, 0);
+  filter: blur(0);
+}
+
+/* 尊重系统减少动态效果偏好：禁用入场动画与漂浮动画 */
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal,
+  .js .reveal-left,
+  .js .reveal-right {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+  .animate-float {
+    animation: none;
+  }
 }
 
 /* 卡片悬浮上浮通用过渡 */
