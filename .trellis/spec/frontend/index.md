@@ -20,6 +20,7 @@ This directory contains guidelines for frontend development. Fill in each file w
 | [State Management](./state-management.md)         | Local state, global state, server state | To fill |
 | [Quality Guidelines](./quality-guidelines.md)     | Code standards, forbidden patterns      | To fill |
 | [Type Safety](./type-safety.md)                   | Type patterns, validation               | To fill |
+| [Halo Theme](./halo-theme.md)                     | Halo 主题开发规范（双层模板/settings 契约/Finder API/令牌） | ✅ Filled |
 
 ---
 
