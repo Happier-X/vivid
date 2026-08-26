@@ -1,56 +1,173 @@
 <include src="layout.html">
   <template name="head">
-    <title th:text="|${post.spec.title} - ${site.title}|">Post Title</title>
-    <script type="module" src="./js/post.ts"></script>
+    <title th:text="|${post.spec.title} - ${site.title}|">文章标题</title>
   </template>
 
-  <article>
-    <header class="article-header">
-      <h1 class="article-title" th:text="${post.spec.title}"></h1>
-      <div class="article-meta">
-        <time th:text="${#temporals.format(post.spec.publishTime, 'yyyy-MM-dd')}"></time>
-        <span th:if="${not #lists.isEmpty(post.categories)}">
-          &nbsp;·&nbsp;
-          <a
-            th:each="cat : ${post.categories}"
-            th:href="@{${cat.status.permalink}}"
-            th:text="${cat.spec.displayName}"
-            class="category"
-          ></a>
+  <!-- 文章页头：面包屑 + 大标题 + 元信息 -->
+  <header class="border-b border-slate-200 bg-slate-50">
+    <div class="mx-auto max-w-4xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
+      <!-- 面包屑：首页 / 分类 -->
+      <nav
+        aria-label="面包屑"
+        class="text-ink-500 mb-6 flex flex-wrap items-center gap-1.5 text-sm"
+        th:if="${not #lists.isEmpty(post.categories)}"
+      >
+        <a th:href="@{/}" class="hover:text-primary transition-colors">首页</a>
+        <span class="text-slate-300">/</span>
+        <a
+          th:href="@{${post.categories[0].status.permalink}}"
+          th:text="${post.categories[0].spec.displayName}"
+          class="hover:text-primary transition-colors"
+          >分类</a
+        >
+      </nav>
+
+      <!-- 大标题 -->
+      <h1
+        class="text-ink-900 text-3xl leading-tight font-bold tracking-tight sm:text-4xl"
+        th:text="${post.spec.title}"
+      >
+        文章标题
+      </h1>
+
+      <!-- 元信息：作者 / 发布时间 / 访问量 -->
+      <div class="text-ink-500 mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+        <!-- 作者 -->
+        <span class="inline-flex items-center gap-2">
+          <img
+            th:if="${not #strings.isEmpty(post.owner?.avatar)}"
+            th:src="${post.owner.avatar}"
+            th:alt="${post.owner?.displayName}"
+            loading="lazy"
+            class="h-6 w-6 rounded-full border border-slate-200 object-cover"
+          />
+          <span
+            th:unless="${not #strings.isEmpty(post.owner?.avatar)}"
+            class="bg-primary/10 text-primary inline-flex h-6 w-6 items-center justify-center rounded-full"
+          >
+            <svg
+              class="h-3.5 w-3.5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25a8.25 8.25 0 0115 0"
+              />
+            </svg>
+          </span>
+          <span th:text="${post.owner?.displayName ?: '佚名'}">作者</span>
         </span>
+
+        <!-- 发布时间 -->
+        <time
+          th:if="${post.spec.publishTime != null}"
+          th:text="${#temporals.format(post.spec.publishTime, 'yyyy-MM-dd HH:mm')}"
+          >发布时间</time
+        >
+
+        <!-- 访问量 -->
+        <span th:if="${post.stats != null}" th:text="|${post.stats.visit} 次阅读|">阅读量</span>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <div class="article-content" th:utext="${post.content.content}"></div>
+  <article class="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8">
+    <!-- 封面图：有封面时才显示 -->
+    <figure
+      th:if="${not #strings.isEmpty(post.spec.cover)}"
+      class="mb-10 overflow-hidden rounded-[var(--radius-card)] border border-slate-200 shadow-sm"
+    >
+      <img th:src="${post.spec.cover}" th:alt="${post.spec.title}" class="w-full object-cover" />
+    </figure>
 
-    <div class="article-tags" th:if="${not #lists.isEmpty(post.tags)}">
+    <!-- 正文排版（使用 main.css 中的 .rich-content） -->
+    <div class="rich-content" th:utext="${post.content.content}"></div>
+
+    <!-- 标签列表 -->
+    <div class="mt-10 flex flex-wrap gap-2" th:if="${not #lists.isEmpty(post.tags)}">
       <a
         th:each="tag : ${post.tags}"
         th:href="@{${tag.status.permalink}}"
-        th:text="${tag.spec.displayName}"
-        class="tag"
-      ></a>
+        th:text="|# ${tag.spec.displayName}|"
+        class="text-ink-700 hover:border-primary hover:text-primary inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-1.5 text-sm transition-colors"
+        >标签</a
+      >
     </div>
 
-    <nav class="post-nav" th:with="cursor = ${postFinder.cursor(post.metadata.name)}">
-      <span>
-        <a
-          th:if="${cursor.hasPrevious()}"
-          th:href="@{${cursor.previous.status.permalink}}"
-          th:text="|← ${cursor.previous.spec.title}|"
-        ></a>
-      </span>
-      <span>
-        <a
-          th:if="${cursor.hasNext()}"
-          th:href="@{${cursor.next.status.permalink}}"
-          th:text="|${cursor.next.spec.title} →|"
-        ></a>
-      </span>
-    </nav>
-  </article>
+    <!-- 上一篇 / 下一篇 -->
+    <nav
+      class="mt-14 grid gap-4 border-t border-slate-200 pt-10 sm:grid-cols-2"
+      th:with="cursor = ${postFinder.cursor(post.metadata.name)}"
+      aria-label="上下篇导航"
+    >
+      <!-- 上一篇 -->
+      <a
+        th:if="${cursor.hasPrevious()}"
+        th:href="@{${cursor.previous.status.permalink}}"
+        class="group hover:border-primary flex flex-col gap-2 rounded-[var(--radius-card)] border border-slate-200 p-5 transition-colors"
+      >
+        <span class="text-primary inline-flex items-center gap-1.5 text-xs font-semibold">
+          <svg
+            class="h-3.5 w-3.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M10.5 19.5L3 12l7.5-7.5M3 12h18"
+            />
+          </svg>
+          上一篇
+        </span>
+        <span
+          class="text-ink-900 group-hover:text-primary line-clamp-2 font-medium transition-colors"
+          th:text="${cursor.previous.spec.title}"
+          >上篇标题</span
+        >
+      </a>
+      <span th:unless="${cursor.hasPrevious()}" aria-hidden="true"></span>
 
-  <div th:if="${haloCommentEnabled}">
-    <halo:comment group="content.halo.run" kind="Post" th:attr="name=${post.metadata.name}" />
-  </div>
+      <!-- 下一篇（桌面端靠右对齐） -->
+      <a
+        th:if="${cursor.hasNext()}"
+        th:href="@{${cursor.next.status.permalink}}"
+        class="group hover:border-primary flex flex-col items-start gap-2 rounded-[var(--radius-card)] border border-slate-200 p-5 text-left transition-colors sm:items-end sm:text-right"
+      >
+        <span class="text-primary inline-flex items-center gap-1.5 text-xs font-semibold">
+          下一篇
+          <svg
+            class="h-3.5 w-3.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M13.5 4.5L21 12l-7.5 7.5M21 12H3"
+            />
+          </svg>
+        </span>
+        <span
+          class="text-ink-900 group-hover:text-primary line-clamp-2 font-medium transition-colors"
+          th:text="${cursor.next.spec.title}"
+          >下篇标题</span
+        >
+      </a>
+    </nav>
+
+    <!-- 评论区挂载点 -->
+    <section class="mt-14 border-t border-slate-200 pt-10" th:if="${haloCommentEnabled}">
+      <h2 class="text-ink-900 mb-6 text-xl font-bold">评论</h2>
+      <halo:comment group="content.halo.run" kind="Post" th:attr="name=${post.metadata.name}" />
+    </section>
+  </article>
 </include>

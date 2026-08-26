@@ -1,32 +1,90 @@
 <include src="layout.html">
   <template name="head">
-    <title th:text="|Archives - ${site.title}|">Archives</title>
+    <title th:text="|归档 - ${site.title}|">归档</title>
   </template>
 
-  <h1>Archives</h1>
-
-  <th:block th:each="archive : ${archives.items}">
-    <div class="archive-year">
-      <h2 th:text="${archive.year}"></h2>
-      <th:block th:each="month : ${archive.months}">
-        <h3 th:text="|${archive.year}-${month.month}|"></h3>
-        <ul class="post-list">
-          <li class="post-item" th:each="post : ${month.posts}">
-            <h2 class="post-title">
-              <a th:href="@{${post.status.permalink}}" th:text="${post.spec.title}"></a>
-            </h2>
-            <p class="post-meta">
-              <time th:text="${#temporals.format(post.spec.publishTime, 'yyyy-MM-dd')}"></time>
-            </p>
-          </li>
-        </ul>
-      </th:block>
+  <!-- 页头横幅 -->
+  <header class="border-b border-slate-200 bg-slate-50">
+    <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+      <p class="text-primary mb-3 text-sm font-semibold tracking-widest uppercase">站点归档</p>
+      <h1 class="text-ink-900 text-3xl font-bold tracking-tight sm:text-4xl">全部文章</h1>
+      <p class="text-ink-500 mt-3 text-base" th:text="|共 ${archives.total} 篇文章|">共 N 篇文章</p>
     </div>
-  </th:block>
+  </header>
 
-  <nav class="pagination" th:if="${archives.hasPrevious() || archives.hasNext()}">
-    <a th:if="${archives.hasPrevious()}" th:href="@{${archives.prevUrl}}">Previous</a>
-    <span th:text="|${archives.page} / ${archives.totalPages}|"></span>
-    <a th:if="${archives.hasNext()}" th:href="@{${archives.nextUrl}}">Next</a>
-  </nav>
+  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <!-- 按年月分组的归档时间线 -->
+    <div class="space-y-14">
+      <section th:each="archive : ${archives.items}">
+        <!-- 年份标题 + 分隔线 -->
+        <h2 class="flex items-center gap-5">
+          <span class="text-primary text-3xl font-extrabold tabular-nums" th:text="${archive.year}"
+            >2024</span
+          >
+          <span class="h-px flex-1 bg-slate-200"></span>
+        </h2>
+
+        <ul class="mt-4 divide-y divide-slate-100">
+          <th:block th:each="month : ${archive.months}">
+            <li th:each="post : ${month.posts}" class="group flex items-center gap-4 py-3.5">
+              <!-- 日期（年-月-日） -->
+              <time
+                th:if="${post.spec.publishTime != null}"
+                th:text="${#temporals.format(post.spec.publishTime, 'yyyy-MM-dd')}"
+                class="text-ink-500 w-24 shrink-0 text-sm tabular-nums"
+                >2024-01-01</time
+              >
+              <a
+                th:href="@{${post.status.permalink}}"
+                th:text="${post.spec.title}"
+                class="text-ink-700 group-hover:text-primary min-w-0 flex-1 truncate font-medium transition-colors"
+                >文章标题</a
+              >
+              <!-- 悬停出现的箭头 -->
+              <svg
+                class="text-primary h-4 w-4 -translate-x-1 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12l-7.5 7.5" />
+              </svg>
+            </li>
+          </th:block>
+        </ul>
+      </section>
+    </div>
+
+    <!-- 空状态 -->
+    <div
+      th:if="${#lists.isEmpty(archives.items)}"
+      class="text-ink-500 rounded-[var(--radius-card)] border border-dashed border-slate-300 py-20 text-center text-sm"
+    >
+      暂无文章，请在后台发布内容
+    </div>
+
+    <!-- 分页 -->
+    <nav
+      class="mt-12 flex items-center justify-center gap-3"
+      th:if="${archives.hasPrevious() || archives.hasNext()}"
+      aria-label="归档分页"
+    >
+      <a
+        th:if="${archives.hasPrevious()}"
+        th:href="@{${archives.prevUrl}}"
+        class="text-ink-700 hover:border-primary hover:text-primary inline-flex h-10 items-center rounded-lg border border-slate-200 bg-white px-4 text-sm font-medium transition-colors"
+        >上一页</a
+      >
+      <span class="text-ink-500 text-sm" th:text="|第 ${archives.page} / ${archives.totalPages} 页|"
+        >第 1 / 1 页</span
+      >
+      <a
+        th:if="${archives.hasNext()}"
+        th:href="@{${archives.nextUrl}}"
+        class="text-ink-700 hover:border-primary hover:text-primary inline-flex h-10 items-center rounded-lg border border-slate-200 bg-white px-4 text-sm font-medium transition-colors"
+        >下一页</a
+      >
+    </nav>
+  </div>
 </include>

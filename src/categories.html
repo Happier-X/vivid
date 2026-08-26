@@ -1,22 +1,105 @@
 <include src="layout.html">
   <template name="head">
-    <title th:text="|Categories - ${site.title}|">Categories</title>
+    <title th:text="|分类 - ${site.title}|">分类</title>
   </template>
 
-  <h1>Categories</h1>
-  <ul class="category-list">
-    <li th:each="cat : ${categories.items}">
-      <a
-        th:href="@{${cat.status.permalink}}"
-        th:text="|${cat.spec.displayName} (${cat.postCount})|"
-        class="category"
-      ></a>
-    </li>
-  </ul>
+  <!-- 页头横幅 -->
+  <header class="border-b border-slate-200 bg-slate-50">
+    <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+      <p class="text-primary mb-3 text-sm font-semibold tracking-widest uppercase">内容导航</p>
+      <h1 class="text-ink-900 text-3xl font-bold tracking-tight sm:text-4xl">全部分类</h1>
+      <p class="text-ink-500 mt-3 text-base">按分类浏览站点内容</p>
+    </div>
+  </header>
 
-  <nav class="pagination" th:if="${categories.hasPrevious() || categories.hasNext()}">
-    <a th:if="${categories.hasPrevious()}" th:href="@{${categories.prevUrl}}">Previous</a>
-    <span th:text="|${categories.page} / ${categories.totalPages}|"></span>
-    <a th:if="${categories.hasNext()}" th:href="@{${categories.nextUrl}}">Next</a>
-  </nav>
+  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <!-- 分类卡片网格 -->
+    <ul
+      class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+      th:if="${not #lists.isEmpty(categories.items)}"
+    >
+      <li th:each="cat : ${categories.items}">
+        <a
+          th:href="@{${cat.status.permalink}}"
+          class="group hover:border-primary flex h-full flex-col gap-4 rounded-[var(--radius-card)] border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md"
+        >
+          <div class="flex items-start justify-between">
+            <!-- 分类图标 -->
+            <span
+              class="bg-primary/10 text-primary inline-flex h-11 w-11 items-center justify-center rounded-xl"
+            >
+              <svg
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z"
+                />
+              </svg>
+            </span>
+            <!-- 文章数徽标 -->
+            <span
+              class="group-hover:bg-primary/10 group-hover:text-primary rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600 transition-colors"
+              th:text="|${cat.postCount} 篇|"
+              >N 篇</span
+            >
+          </div>
+
+          <div>
+            <h2
+              class="text-ink-900 group-hover:text-primary text-lg font-bold transition-colors"
+              th:text="${cat.spec.displayName}"
+            >
+              分类名称
+            </h2>
+            <p
+              th:if="${not #strings.isEmpty(cat.spec.description)}"
+              th:text="${cat.spec.description}"
+              class="text-ink-500 mt-1.5 line-clamp-2 text-sm leading-relaxed"
+            >
+              分类描述
+            </p>
+          </div>
+        </a>
+      </li>
+    </ul>
+
+    <!-- 空状态 -->
+    <div
+      th:if="${#lists.isEmpty(categories.items)}"
+      class="text-ink-500 rounded-[var(--radius-card)] border border-dashed border-slate-300 py-20 text-center text-sm"
+    >
+      暂无分类，请在后台创建文章分类
+    </div>
+
+    <!-- 分页 -->
+    <nav
+      class="mt-12 flex items-center justify-center gap-3"
+      th:if="${categories.hasPrevious() || categories.hasNext()}"
+      aria-label="分类分页"
+    >
+      <a
+        th:if="${categories.hasPrevious()}"
+        th:href="@{${categories.prevUrl}}"
+        class="text-ink-700 hover:border-primary hover:text-primary inline-flex h-10 items-center rounded-lg border border-slate-200 bg-white px-4 text-sm font-medium transition-colors"
+        >上一页</a
+      >
+      <span
+        class="text-ink-500 text-sm"
+        th:text="|第 ${categories.page} / ${categories.totalPages} 页|"
+        >第 1 / 1 页</span
+      >
+      <a
+        th:if="${categories.hasNext()}"
+        th:href="@{${categories.nextUrl}}"
+        class="text-ink-700 hover:border-primary hover:text-primary inline-flex h-10 items-center rounded-lg border border-slate-200 bg-white px-4 text-sm font-medium transition-colors"
+        >下一页</a
+      >
+    </nav>
+  </div>
 </include>

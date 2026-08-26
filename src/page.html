@@ -1,20 +1,39 @@
 <include src="layout.html">
   <template name="head">
-    <title th:text="|${singlePage.spec.title} - ${site.title}|">Page Title</title>
+    <title th:text="|${singlePage.spec.title} - ${site.title}|">页面标题</title>
   </template>
 
-  <article>
-    <header class="article-header">
-      <h1 class="article-title" th:text="${singlePage.spec.title}"></h1>
-    </header>
-    <div class="article-content" th:utext="${singlePage.content.content}"></div>
-  </article>
+  <!-- 页面页头 -->
+  <header class="border-b border-slate-200 bg-slate-50">
+    <div class="mx-auto max-w-4xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
+      <!-- 面包屑：首页 / 页面标题 -->
+      <nav aria-label="面包屑" class="text-ink-500 mb-6 flex items-center gap-1.5 text-sm">
+        <a th:href="@{/}" class="hover:text-primary transition-colors">首页</a>
+        <span class="text-slate-300">/</span>
+        <span th:text="${singlePage.spec.title}">页面标题</span>
+      </nav>
 
-  <div th:if="${haloCommentEnabled}">
-    <halo:comment
-      group="content.halo.run"
-      kind="SinglePage"
-      th:attr="name=${singlePage.metadata.name}"
-    />
-  </div>
+      <h1
+        class="text-ink-900 text-3xl leading-tight font-bold tracking-tight sm:text-4xl"
+        th:text="${singlePage.spec.title}"
+      >
+        页面标题
+      </h1>
+    </div>
+  </header>
+
+  <article class="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8">
+    <!-- 正文排版（与文章详情一致的 .rich-content） -->
+    <div class="rich-content" th:utext="${singlePage.content.content}"></div>
+
+    <!-- 评论区挂载点 -->
+    <section class="mt-14 border-t border-slate-200 pt-10" th:if="${haloCommentEnabled}">
+      <h2 class="text-ink-900 mb-6 text-xl font-bold">评论</h2>
+      <halo:comment
+        group="content.halo.run"
+        kind="SinglePage"
+        th:attr="name=${singlePage.metadata.name}"
+      />
+    </section>
+  </article>
 </include>
