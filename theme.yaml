@@ -3,11 +3,11 @@ kind: Theme
 metadata:
   name: theme-vite-starter
 spec:
-  displayName: Vite Starter
+  displayName: Vivid 企业官网主题
   author:
     name: Halo
     website: https://github.com/halo-dev
-  description: A development starter theme with Vite Ecosystem for Halo
+  description: 现代企业官网风格主题，首页区块全部后台配置驱动，支持品牌定制与响应式布局
   logo: https://www.halo.run/logo
   homepage: https://github.com/halo-dev/theme-vite-starter#readme
   repo: https://github.com/halo-dev/theme-vite-starter
