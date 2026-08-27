@@ -1,79 +1,99 @@
-<!-- 全局顶部导航：桌面端水平菜单 + 移动端汉堡菜单 -->
+<!-- 全局顶部导航：桌面端水平菜单 + 移动端汉堡菜单 — 青绿精致通透版 -->
 <header
   id="site-header"
   th:with="menu = ${menuFinder.getPrimary()}"
-  class="border-line/80 sticky top-0 z-50 border-b bg-white/90 backdrop-blur transition-shadow duration-300"
+  class="border-line/60 sticky top-0 z-50 border-b bg-white/80 shadow-[0_1px_0_rgba(36,109,116,0.06)] backdrop-blur-xl transition-all duration-300"
 >
-  <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+  <div
+    class="relative mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"
+  >
     <!-- Logo / 品牌 -->
-    <a th:href="@{/}" class="flex items-center gap-3 text-lg font-extrabold tracking-tight">
+    <a th:href="@{/}" class="flex items-center gap-3">
       <img
         th:src="@{/assets/images/wanchun-logo.png}"
         src="/themes/theme-vite-starter/assets/images/wanchun-logo.png"
         alt="万椿"
-        class="h-9 w-9 shrink-0 object-contain"
+        class="h-10 w-10 shrink-0 object-contain"
         onerror="this.style.display = 'none'"
       />
-      <span class="text-ink-900 flex items-center gap-1">
-        <span>万椿智能</span><span class="font-light">·</span
-        ><span class="text-primary-dark">智慧养老</span>
+      <span class="flex flex-col leading-none">
+        <span class="text-ink-900 flex items-center gap-1 text-lg font-extrabold tracking-tight">
+          <span>万椿智能</span><span class="font-light">·</span
+          ><span class="text-primary-dark">智慧养老</span>
+        </span>
+        <span class="text-ink-500/70 hidden text-[10px] tracking-widest lg:block"
+          >www.wanchunsmart.com</span
+        >
       </span>
     </a>
 
-    <!-- 桌面端导航：由 Halo 菜单驱动 -->
-    <nav class="hidden items-center gap-8 md:flex" aria-label="主导航">
+    <!-- 桌面端导航：绝对居中 + 胶囊悬浮样式，由 Halo 菜单驱动 -->
+    <nav
+      class="absolute left-1/2 hidden -translate-x-1/2 items-center gap-2 md:flex"
+      aria-label="主导航"
+    >
       <a
         th:each="item : ${menu?.menuItems}"
         th:href="@{${item.status.href}}"
         th:text="${item.status.displayName}"
         th:target="${item.spec.target?.value}"
-        class="text-ink-700 hover:text-primary text-sm font-medium transition-colors duration-200"
+        class="text-ink-700 hover:bg-mist hover:text-primary-dark rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200"
         >菜单项</a
       >
     </nav>
 
-    <!-- 移动端汉堡按钮 -->
-    <button
-      id="menu-toggle"
-      type="button"
-      aria-expanded="false"
-      aria-controls="mobile-menu"
-      class="text-ink-700 hover:bg-mist inline-flex h-10 w-10 items-center justify-center rounded-full transition-colors duration-200 md:hidden"
-    >
-      <span class="sr-only">打开菜单</span>
-      <!-- 汉堡图标 -->
-      <svg
-        id="icon-open"
-        class="h-6 w-6"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
+    <!-- 右侧操作区：桌面 CTA + 移动端汉堡 -->
+    <div class="flex items-center gap-3">
+      <a
+        th:href="@{/page/cooperation}"
+        href="/page/cooperation"
+        class="bg-primary shadow-soft hover:bg-primary-dark hidden items-center justify-center rounded-full px-5 py-2 text-sm font-bold text-white transition-all duration-200 hover:shadow-md md:inline-flex"
+        style="min-height: 36px"
+        >合作咨询</a
       >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-        />
-      </svg>
-      <!-- 关闭图标（默认隐藏） -->
-      <svg
-        id="icon-close"
-        class="hidden h-6 w-6"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
+      <!-- 移动端汉堡按钮 -->
+      <button
+        id="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        class="text-ink-700 hover:bg-mist inline-flex h-10 w-10 items-center justify-center rounded-full transition-colors duration-200 md:hidden"
       >
-        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    </button>
+        <span class="sr-only">打开菜单</span>
+        <!-- 汉堡图标 -->
+        <svg
+          id="icon-open"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+          />
+        </svg>
+        <!-- 关闭图标（默认隐藏） -->
+        <svg
+          id="icon-close"
+          class="hidden h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
   </div>
 
   <!-- 移动端下拉菜单 -->
   <nav
     id="mobile-menu"
-    class="border-line/80 hidden border-t bg-white/95 md:hidden"
+    class="border-line/80 shadow-soft hidden rounded-b-[var(--radius-card)] border-t bg-white md:hidden"
     aria-label="移动端导航"
   >
     <ul class="space-y-1 px-4 py-3">
@@ -82,10 +102,18 @@
           th:href="@{${item.status.href}}"
           th:text="${item.status.displayName}"
           th:target="${item.spec.target?.value}"
-          class="text-ink-700 hover:bg-mist hover:text-primary block rounded-full px-4 py-2.5 text-base font-medium transition-colors duration-200"
+          class="group text-ink-700 hover:border-primary hover:bg-mist hover:text-primary-dark block rounded-xl border-l-4 border-transparent px-4 py-3 text-base font-medium transition-all duration-200 hover:pl-5"
           >菜单项</a
         >
       </li>
     </ul>
+    <div class="border-line mx-4 border-t pt-3 pb-4">
+      <a
+        th:href="@{/page/cooperation}"
+        href="/page/cooperation"
+        class="btn-primary flex w-full justify-center rounded-full py-3 text-sm font-bold"
+        >合作咨询</a
+      >
+    </div>
   </nav>
 </header>
