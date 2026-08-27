@@ -1,0 +1,652 @@
+<include src="layout.html">
+  <template name="head">
+    <title th:text="|${singlePage.spec.title} - ${site.title}|">关于万椿</title>
+  </template>
+
+  <!-- 首屏：标题+简介+4统计卡 -->
+  <section
+    class="relative overflow-hidden"
+    style="
+      background-image:
+        linear-gradient(
+          135deg,
+          rgba(79, 199, 183, 0.13),
+          rgba(255, 255, 255, 0.92) 48%,
+          rgba(247, 184, 200, 0.12)
+        ),
+        linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(255, 216, 107, 0.08));
+    "
+  >
+    <div
+      class="bg-primary/15 pointer-events-none absolute -top-32 -right-24 h-96 w-96 rounded-full blur-3xl"
+    ></div>
+    <div
+      class="bg-secondary/20 pointer-events-none absolute -bottom-24 -left-16 h-72 w-72 rounded-full blur-3xl"
+    ></div>
+
+    <div class="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+      <!-- 面包屑 -->
+      <nav aria-label="面包屑" class="reveal text-ink-500 mb-6 flex items-center gap-1.5 text-sm">
+        <a th:href="@{/}" class="hover:text-primary transition-colors">首页</a>
+        <span class="text-line">/</span>
+        <span th:text="${singlePage.spec.title}">关于万椿</span>
+      </nav>
+
+      <div class="reveal mx-auto max-w-3xl text-center">
+        <span
+          class="border-primary/20 bg-mist text-primary-dark inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-semibold"
+        >
+          关于万椿 · 2018 始于济南大明湖畔
+        </span>
+        <h1 class="text-ink-900 mt-6 text-4xl leading-tight font-black tracking-tight sm:text-5xl">
+          用科技守护银发<br />
+          <span class="text-primary-dark">让每一位长者享有有品质的智慧晚年</span>
+        </h1>
+        <p class="text-ink-500 mx-auto mt-6 max-w-2xl text-base leading-relaxed sm:text-lg">
+          山东万椿智能科技有限公司，2018年创立于济南大明湖畔，10年+深耕银发经济，融合 AI / 物联网 /
+          大数据 /
+          云计算，自研生理监测仪、毫米波跌倒雷达、睡眠监测等全系列产品；国家高新技术企业、科技型中小企业、创新型中小企业，核心消防产品由中国太平洋保险承保（500万/人身
+          200万/财产），以“设备+平台+服务”3+X 与“健康监测-安全预警-生活辅助-社交陪伴”4+N
+          体系，服务居家·社区·机构全场景。
+        </p>
+        <p
+          class="text-primary-dark mt-3 text-xs font-semibold tracking-widest uppercase sm:text-sm"
+        >
+          椿萱并茂 棠棣同馨 · www.wanchunsmart.com
+        </p>
+      </div>
+
+      <!-- 4统计卡：青绿主色大字+小字，参考 mk-stats--cards -->
+      <div class="reveal mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div
+          class="border-line shadow-soft flex flex-col items-center gap-1 rounded-[var(--radius-card)] border bg-white px-6 py-8 text-center"
+        >
+          <span
+            class="text-primary-dark text-4xl font-black tracking-tight tabular-nums sm:text-5xl"
+            >2018年</span
+          >
+          <span class="bg-mist text-ink-500 inline-flex rounded-full px-3 py-1 text-sm font-medium"
+            >创立于济南</span
+          >
+          <span class="text-ink-500 mt-1 text-xs">大明湖畔 · 起步区科创园</span>
+        </div>
+        <div
+          class="border-line shadow-soft flex flex-col items-center gap-1 rounded-[var(--radius-card)] border bg-white px-6 py-8 text-center"
+        >
+          <span
+            class="text-primary-dark text-4xl font-black tracking-tight tabular-nums sm:text-5xl"
+            >200+</span
+          >
+          <span class="bg-mist text-ink-500 inline-flex rounded-full px-3 py-1 text-sm font-medium"
+            >核心专利</span
+          >
+          <span class="text-ink-500 mt-1 text-xs">10+ 商标 · 20+ 科研项目</span>
+        </div>
+        <div
+          class="border-line shadow-soft flex flex-col items-center gap-1 rounded-[var(--radius-card)] border bg-white px-6 py-8 text-center"
+        >
+          <span
+            class="text-primary-dark text-4xl font-black tracking-tight tabular-nums sm:text-5xl"
+            >2,000,000+</span
+          >
+          <span class="bg-mist text-ink-500 inline-flex rounded-full px-3 py-1 text-sm font-medium"
+            >连接设备</span
+          >
+          <span class="text-ink-500 mt-1 text-xs">150+ 国家和地区</span>
+        </div>
+        <div
+          class="border-line shadow-soft flex flex-col items-center gap-1 rounded-[var(--radius-card)] border bg-white px-6 py-8 text-center"
+        >
+          <span
+            class="text-primary-dark text-4xl font-black tracking-tight tabular-nums sm:text-5xl"
+            >100+</span
+          >
+          <span class="bg-mist text-ink-500 inline-flex rounded-full px-3 py-1 text-sm font-medium"
+            >产品矩阵</span
+          >
+          <span class="text-ink-500 mt-1 text-xs">覆盖消防·安全·求助·健康</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 硬实力板块：左侧文案+右侧徽章组 -->
+  <section class="bg-white py-16 sm:py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+        <!-- 左侧 -->
+        <div class="reveal flex flex-col gap-6">
+          <p class="text-primary text-sm font-semibold tracking-widest uppercase">
+            硬实力 · 研发与智造
+          </p>
+          <h2 class="text-ink-900 text-3xl font-extrabold tracking-tight sm:text-4xl">
+            自研自产自销全链路<br />
+            <span class="text-primary-dark">3大研发中心协同创新</span>
+          </h2>
+          <p class="text-ink-500 text-base leading-relaxed">
+            自研自产自销全链路，济南 / 杭州 / 深圳 3大研发中心协同，700+ 测试项目构筑品质，10+
+            科技成果鉴定达国际领先水平，2亿+ 生产智造积累，持续引领智慧养老技术创新。
+          </p>
+          <ul class="flex flex-col gap-3 text-sm">
+            <li class="flex items-center gap-2">
+              <span
+                class="bg-primary flex h-6 w-6 items-center justify-center rounded-full text-white"
+              >
+                <svg
+                  class="h-3.5 w-3.5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="2.5"
+                  stroke="currentColor"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+              </span>
+              <span class="text-ink-700">3+X 方案：设备 + 平台 + 服务，一体化交付</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span
+                class="bg-primary flex h-6 w-6 items-center justify-center rounded-full text-white"
+              >
+                <svg
+                  class="h-3.5 w-3.5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="2.5"
+                  stroke="currentColor"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+              </span>
+              <span class="text-ink-700">4+N 场景：健康监测-安全预警-生活辅助-社交陪伴</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span
+                class="bg-primary flex h-6 w-6 items-center justify-center rounded-full text-white"
+              >
+                <svg
+                  class="h-3.5 w-3.5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="2.5"
+                  stroke="currentColor"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+              </span>
+              <span class="text-ink-700">居家 / 社区 / 机构 全场景覆盖，开放 API 生态</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 右侧 4徽章胶囊 -->
+        <div class="reveal-right grid grid-cols-2 gap-4">
+          <div
+            class="border-primary/15 bg-mist flex flex-col items-center gap-2 rounded-[var(--radius-card)] border px-6 py-8 text-center"
+          >
+            <span
+              class="bg-primary flex h-10 w-10 items-center justify-center rounded-full text-white"
+            >
+              <svg
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.8"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+              </svg>
+            </span>
+            <span class="text-primary-dark text-2xl font-black tabular-nums">100+</span>
+            <span class="text-ink-700 text-sm font-semibold">研发工程师</span>
+            <span class="text-ink-500 text-xs">3大研发中心协同</span>
+          </div>
+          <div
+            class="border-primary/15 bg-mist flex flex-col items-center gap-2 rounded-[var(--radius-card)] border px-6 py-8 text-center"
+          >
+            <span
+              class="bg-primary flex h-10 w-10 items-center justify-center rounded-full text-white"
+            >
+              <svg
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.8"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.05 14.5M14.25 3.104c.251.023.501.05.75.082M19.05 14.5l-4.356 4.356a2.25 2.25 0 01-1.591.659H6.897a2.25 2.25 0 01-1.591-.659L.95 14.5"
+                />
+              </svg>
+            </span>
+            <span class="text-primary-dark text-2xl font-black tabular-nums">20+</span>
+            <span class="text-ink-700 text-sm font-semibold">科研项目</span>
+            <span class="text-ink-500 text-xs">10+ 成果国际领先</span>
+          </div>
+          <div
+            class="border-primary/15 bg-mist flex flex-col items-center gap-2 rounded-[var(--radius-card)] border px-6 py-8 text-center"
+          >
+            <span
+              class="bg-primary flex h-10 w-10 items-center justify-center rounded-full text-white"
+            >
+              <svg
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.8"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            </span>
+            <span class="text-primary-dark text-2xl font-black tabular-nums">700+</span>
+            <span class="text-ink-700 text-sm font-semibold">测试项目</span>
+            <span class="text-ink-500 text-xs">17类产品严苛验证</span>
+          </div>
+          <div
+            class="border-primary/15 bg-mist flex flex-col items-center gap-2 rounded-[var(--radius-card)] border px-6 py-8 text-center"
+          >
+            <span
+              class="bg-primary flex h-10 w-10 items-center justify-center rounded-full text-white"
+            >
+              <svg
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.8"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m-16.5 0h1.5m-1.5 0v11.25A2.25 2.25 0 006 16.5h2.25m0 0V18m0-1.5h13.5m-13.5 0A2.25 2.25 0 016 18.75M18 16.5V18m0-1.5a2.25 2.25 0 012.25 2.25M18 16.5a2.25 2.25 0 00-2.25 2.25M6 16.5a2.25 2.25 0 012.25 2.25"
+                />
+              </svg>
+            </span>
+            <span class="text-primary-dark text-2xl font-black tabular-nums">2亿+</span>
+            <span class="text-ink-700 text-sm font-semibold">智造积累</span>
+            <span class="text-ink-500 text-xs">自研自产自销全链路</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 认证资质：6徽章卡 -->
+  <section class="section-tinted border-line/70 border-y py-16 sm:py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="reveal mx-auto max-w-2xl text-center">
+        <p class="text-primary text-sm font-semibold tracking-widest uppercase">认证资质</p>
+        <h2 class="text-ink-900 mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">
+          权威认证 值得信赖
+        </h2>
+        <p class="text-ink-500 mt-3 text-sm sm:text-base">
+          多项国家级与国际认证加持，品质与安全双重保障
+        </p>
+      </div>
+
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- 应急管理部消防认证 -->
+        <div
+          class="card-hover reveal border-line shadow-soft flex flex-col items-center gap-3 rounded-[var(--radius-card)] border bg-white p-6 text-center"
+        >
+          <span
+            class="bg-mist text-primary border-primary/15 flex h-12 w-12 items-center justify-center rounded-full border"
+          >
+            <svg
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.8"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"
+              />
+            </svg>
+          </span>
+          <h3 class="text-ink-900 text-sm font-extrabold tracking-tight">应急管理部消防认证</h3>
+          <p class="text-ink-500 text-xs leading-relaxed">消防产品权威认证，符合国家消防安全标准</p>
+        </div>
+
+        <!-- SRRC -->
+        <div
+          class="card-hover reveal border-line shadow-soft flex flex-col items-center gap-3 rounded-[var(--radius-card)] border bg-white p-6 text-center"
+        >
+          <span
+            class="bg-mist text-primary border-primary/15 flex h-12 w-12 items-center justify-center rounded-full border"
+          >
+            <svg
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.8"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z"
+              />
+            </svg>
+          </span>
+          <h3 class="text-ink-900 text-sm font-extrabold tracking-tight">SRRC 无线电认证</h3>
+          <p class="text-ink-500 text-xs leading-relaxed">无线电型号核准认证，稳定可靠通信保障</p>
+        </div>
+
+        <!-- 工信部进网许可 -->
+        <div
+          class="card-hover reveal border-line shadow-soft flex flex-col items-center gap-3 rounded-[var(--radius-card)] border bg-white p-6 text-center"
+        >
+          <span
+            class="bg-mist text-primary border-primary/15 flex h-12 w-12 items-center justify-center rounded-full border"
+          >
+            <svg
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.8"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.5 1.5H5.25A2.25 2.25 0 003 3.75v16.5A2.25 2.25 0 005.25 22.5h13.5A2.25 2.25 0 0021 20.25V8.25L16.5 3.75H10.5z"
+              />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M16.5 3.75v4.5A2.25 2.25 0 0018.75 10.5H21"
+              />
+            </svg>
+          </span>
+          <h3 class="text-ink-900 text-sm font-extrabold tracking-tight">工信部进网许可</h3>
+          <p class="text-ink-500 text-xs leading-relaxed">电信设备进网许可，入网合规全国通用</p>
+        </div>
+
+        <!-- EN14604 -->
+        <div
+          class="card-hover reveal border-line shadow-soft flex flex-col items-center gap-3 rounded-[var(--radius-card)] border bg-white p-6 text-center"
+        >
+          <span
+            class="bg-mist text-primary border-primary/15 flex h-12 w-12 items-center justify-center rounded-full border"
+          >
+            <svg
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.8"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 21a9 9 0 100-18 9 9 0 000 18z"
+              />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4" />
+            </svg>
+          </span>
+          <h3 class="text-ink-900 text-sm font-extrabold tracking-tight">EN14604 国际认证</h3>
+          <p class="text-ink-500 text-xs leading-relaxed">欧盟烟雾报警器国际标准，出口品质</p>
+        </div>
+
+        <!-- 德国红点 -->
+        <div
+          class="card-hover reveal border-line shadow-soft flex flex-col items-center gap-3 rounded-[var(--radius-card)] border bg-white p-6 text-center"
+        >
+          <span
+            class="bg-mist text-primary border-primary/15 flex h-12 w-12 items-center justify-center rounded-full border"
+          >
+            <svg
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.8"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.25 12l2.846-.813a1.5 1.5 0 001.03-1.03L22.5 9l-.375 1.157a1.5 1.5 0 00-1.03 1.03L18.25 12z"
+              />
+            </svg>
+          </span>
+          <h3 class="text-ink-900 text-sm font-extrabold tracking-tight">德国红点设计大奖</h3>
+          <p class="text-ink-500 text-xs leading-relaxed">国际顶尖工业设计认可，颜值与实力并存</p>
+        </div>
+
+        <!-- 太平洋保险 -->
+        <div
+          class="card-hover reveal border-line shadow-soft flex flex-col items-center gap-3 rounded-[var(--radius-card)] border bg-white p-6 text-center"
+        >
+          <span
+            class="bg-mist text-primary border-primary/15 flex h-12 w-12 items-center justify-center rounded-full border"
+          >
+            <svg
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.8"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"
+              />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 10.5h.008v.008H12V10.5z"
+              />
+            </svg>
+          </span>
+          <h3 class="text-ink-900 text-sm font-extrabold tracking-tight">太平洋保险承保</h3>
+          <p class="text-ink-500 text-xs leading-relaxed">500万/人身 · 200万/财产，双重安心保障</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 合作案例 / 社会认可 -->
+  <section class="bg-white py-16 sm:py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="reveal mx-auto max-w-2xl text-center">
+        <p class="text-primary text-sm font-semibold tracking-widest uppercase">合作案例</p>
+        <h2 class="text-ink-900 mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">
+          信赖之选 · 遍布全国
+        </h2>
+        <p class="text-ink-500 mt-3 text-sm sm:text-base">
+          与知名康养机构、地方政府及保险巨头深度合作
+        </p>
+      </div>
+
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div
+          class="card-hover reveal border-line shadow-soft flex flex-col gap-3 rounded-[var(--radius-card)] border bg-white p-6"
+        >
+          <span
+            class="bg-mist text-primary-dark inline-flex w-fit rounded-full px-3 py-1 text-xs font-semibold"
+            >标杆案例</span
+          >
+          <h3 class="text-ink-900 text-base font-extrabold tracking-tight">
+            上海 · 智慧养老院标杆
+          </h3>
+          <p class="text-ink-500 text-sm leading-relaxed">
+            全院数字化改造，消防/安防/健康一体化上云，获评上海市智慧养老院标杆，接待全国考察团数十批次。
+          </p>
+        </div>
+        <div
+          class="card-hover reveal border-line shadow-soft flex flex-col gap-3 rounded-[var(--radius-card)] border bg-white p-6"
+        >
+          <span
+            class="bg-mist text-primary-dark inline-flex w-fit rounded-full px-3 py-1 text-xs font-semibold"
+            >机构合作</span
+          >
+          <h3 class="text-ink-900 text-base font-extrabold tracking-tight">福寿康 / 北京康养</h3>
+          <p class="text-ink-500 text-sm leading-relaxed">
+            为头部康养集团提供 3+X 整体解决方案，覆盖数十家连锁机构，实现老人健康与安全集中化管理。
+          </p>
+        </div>
+        <div
+          class="card-hover reveal border-line shadow-soft flex flex-col gap-3 rounded-[var(--radius-card)] border bg-white p-6"
+        >
+          <span
+            class="bg-mist text-primary-dark inline-flex w-fit rounded-full px-3 py-1 text-xs font-semibold"
+            >基层落地</span
+          >
+          <h3 class="text-ink-900 text-base font-extrabold tracking-tight">永德敬老院等</h3>
+          <p class="text-ink-500 text-sm leading-relaxed">
+            深入县域敬老院，毫米波雷达、烟感燃气、水浸门磁等全品类部署，7×24小时守护长者安全。
+          </p>
+        </div>
+        <div
+          class="card-hover reveal border-line shadow-soft flex flex-col gap-3 rounded-[var(--radius-card)] border bg-white p-6"
+        >
+          <span
+            class="bg-mist text-primary-dark inline-flex w-fit rounded-full px-3 py-1 text-xs font-semibold"
+            >保险联动</span
+          >
+          <h3 class="text-ink-900 text-base font-extrabold tracking-tight">中国太平洋保险</h3>
+          <p class="text-ink-500 text-sm leading-relaxed">
+            核心消防产品由太平洋保险承保，500万/人身与200万/财产双保障，探索“保险+科技+养老”新模式。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 可编辑正文区：后台填写的 singlePage.content.content 在此展示 -->
+  <section
+    th:if="${singlePage.content.content != null and !#strings.isEmpty(singlePage.content.content)}"
+    class="section-tinted border-line/70 border-y py-12 sm:py-16"
+  >
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <div
+        class="reveal border-line shadow-soft rounded-[var(--radius-card)] border bg-white p-6 sm:p-10"
+      >
+        <div class="rich-content" th:utext="${singlePage.content.content}"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 底部联系三栏 -->
+  <section class="bg-white py-12 sm:py-16">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="reveal grid gap-6 sm:grid-cols-3">
+        <div
+          class="border-line shadow-soft flex flex-col items-center gap-3 rounded-[var(--radius-card)] border bg-white px-6 py-8 text-center"
+        >
+          <span
+            class="bg-mist text-primary flex h-10 w-10 items-center justify-center rounded-full"
+          >
+            <svg
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.8"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
+              />
+            </svg>
+          </span>
+          <h3 class="text-ink-900 text-sm font-extrabold">公司地址</h3>
+          <p class="text-ink-500 text-sm leading-relaxed">
+            山东省济南市起步区<br />中科新经济科创园 1号楼 3层
+          </p>
+        </div>
+        <div
+          class="border-line shadow-soft flex flex-col items-center gap-3 rounded-[var(--radius-card)] border bg-white px-6 py-8 text-center"
+        >
+          <span
+            class="bg-mist text-primary flex h-10 w-10 items-center justify-center rounded-full"
+          >
+            <svg
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.8"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"
+              />
+            </svg>
+          </span>
+          <h3 class="text-ink-900 text-sm font-extrabold">联系电话</h3>
+          <a
+            href="tel:0531-66670365"
+            class="text-primary-dark hover:text-primary text-sm font-semibold transition-colors"
+            >0531-66670365</a
+          >
+          <p class="text-ink-500 text-xs">周一至周五 9:00-18:00</p>
+        </div>
+        <div
+          class="border-line shadow-soft flex flex-col items-center gap-3 rounded-[var(--radius-card)] border bg-white px-6 py-8 text-center"
+        >
+          <span
+            class="bg-mist text-primary flex h-10 w-10 items-center justify-center rounded-full"
+          >
+            <svg
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.8"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"
+              />
+            </svg>
+          </span>
+          <h3 class="text-ink-900 text-sm font-extrabold">官方网址</h3>
+          <a
+            href="https://www.wanchunsmart.com"
+            target="_blank"
+            rel="noopener"
+            class="text-primary-dark hover:text-primary text-sm font-semibold transition-colors"
+            >www.wanchunsmart.com</a
+          >
+          <p class="text-ink-500 text-xs">椿萱并茂 棠棣同馨</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 评论区挂载点 -->
+  <section class="mx-auto max-w-4xl px-4 pb-16 sm:px-6 lg:px-8" th:if="${haloCommentEnabled}">
+    <div class="border-line border-t pt-10">
+      <h2 class="text-ink-900 mb-6 text-xl font-extrabold tracking-tight">评论</h2>
+      <halo:comment
+        group="content.halo.run"
+        kind="SinglePage"
+        th:attr="name=${singlePage.metadata.name}"
+      />
+    </div>
+  </section>
+</include>

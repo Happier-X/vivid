@@ -14,6 +14,14 @@ spec:
   issues: https://github.com/halo-dev/theme-vite-starter/issues
   settingName: "theme-vite-starter-setting"
   configMapName: "theme-vite-starter-configMap"
+  customTemplates:
+    page:
+      - name: 关于万椿
+        description: 万椿企业介绍页，含数据/实力/认证/案例
+        file: page_about.html
+      - name: 合作咨询
+        description: 万椿合作咨询页，含四类合作模式与表单
+        file: page_cooperation.html
   version: 1.0.0
   requires: ">=2.0.0"
   license:
