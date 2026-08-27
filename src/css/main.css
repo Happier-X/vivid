@@ -169,6 +169,30 @@ body {
   filter: blur(0);
 }
 
+/* ---------- 滚动条美化：青绿主题 · 纤细圆润 ---------- */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) var(--color-mist);
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-track {
+  background: var(--color-mist);
+}
+*::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--color-primary), var(--color-primary-dark));
+  border-radius: 999px;
+  border: 2px solid var(--color-mist);
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-dark);
+}
+*::-webkit-scrollbar-corner {
+  background: var(--color-mist);
+}
+
 /* 尊重系统减少动态效果偏好：禁用入场动画与漂浮动画 */
 @media (prefers-reduced-motion: reduce) {
   .js .reveal,
