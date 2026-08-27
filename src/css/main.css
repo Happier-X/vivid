@@ -57,7 +57,7 @@ body {
 /* ---------- 区块背景：浅青渐变（白 与 渐变交替） ---------- */
 
 .section-tinted {
-  background-image: linear-gradient(140deg, #f6fbfa, #dff3f0);
+  background-image: linear-gradient(180deg, #ffffff, rgba(79, 199, 183, 0.06));
 }
 
 /* ---------- 按钮基础样式（8px 圆角，非胶囊）---------- */
