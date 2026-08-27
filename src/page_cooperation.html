@@ -399,14 +399,19 @@
             id="cooperation-placeholder-form"
             class="border-line shadow-soft mt-6 rounded-[var(--radius-card)] border bg-white p-6 sm:p-8"
           >
-            <p class="text-ink-500 mb-4 text-xs leading-relaxed">
-              免费方案：当前为 mailto 直发至 contact@wanchunsmart.com，无需插件；如需后台统一管理，可用飞书多维表格/金数据/Formspree
-              等免费表单创建后，将下方注释中的 iframe 替换当前表单。
-            </p>
-            <!-- Halo 联系表单插件挂载点占位：如已安装表单插件，可将下方占位表单替换为插件短代码 -->
+            <div class="overflow-hidden rounded-[8px] border border-line bg-white">
+              <iframe
+                src="https://my.feishu.cn/share/base/form/shrcnBUAhTnJfC5G3uwAYtqLPMe"
+                class="h-[700px] w-full border-0"
+                loading="lazy"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <!-- 备用 mailto 表单（无邮箱字段）已由飞书表单替代，如需直发邮件可取消下方注释
             <form
               class="flex flex-col gap-5"
-              onsubmit="event.preventDefault(); const fd = new FormData(this); const company = fd.get('company')||'', contact=fd.get('contact')||'', phone=fd.get('phone')||'', email=fd.get('email')||''; const type = fd.get('type')||'', message=fd.get('message')||''; const subject = encodeURIComponent('【万椿官网】合作咨询 - ' + company + ' - ' + type); const body = encodeURIComponent('公司名称：' + company + '\n联系人：' + contact + '\n电话：' + phone + '\n邮箱：' + email + '\n合作类型：' + type + '\n\n合作意向：\n' + message); window.location.href = 'mailto:contact@wanchunsmart.com?subject=' + subject + '&body=' + body; const tip = document.getElementById('cooperation-mailto-tip'); if(tip) { tip.classList.remove('hidden'); tip.textContent = '已尝试唤起邮件客户端，如未弹出请手动发送至 contact@wanchunsmart.com'; } return false;"
+              onsubmit="event.preventDefault(); const fd = new FormData(this); const company = fd.get('company')||'', contact=fd.get('contact')||'', phone=fd.get('phone')||''; const type = fd.get('type')||'', message=fd.get('message')||''; const subject = encodeURIComponent('【万椿官网】合作咨询 - ' + company + ' - ' + type); const body = encodeURIComponent('公司名称：' + company + '\n联系人：' + contact + '\n电话：' + phone + '\n合作类型：' + type + '\n\n合作意向：\n' + message); window.location.href = 'mailto:contact@wanchunsmart.com?subject=' + subject + '&body=' + body; const tip = document.getElementById('cooperation-mailto-tip'); if(tip) { tip.classList.remove('hidden'); tip.textContent = '已尝试唤起邮件客户端，如未弹出请手动发送至 contact@wanchunsmart.com'; } return false;"
             >
               <div class="grid gap-4 sm:grid-cols-2">
                 <label class="flex flex-col gap-1.5">
@@ -434,29 +439,18 @@
                   />
                 </label>
               </div>
-              <div class="grid gap-4 sm:grid-cols-2">
-                <label class="flex flex-col gap-1.5">
-                  <span class="text-ink-700 text-sm font-medium"
-                    >联系电话 <span class="text-red-500">*</span></span
-                  >
-                  <input
-                    type="tel"
-                    name="phone"
-                    required
-                    placeholder="请输入联系电话"
-                    class="border-line focus:border-primary focus:ring-primary/20 w-full rounded-[8px] border bg-white px-4 py-3 text-sm transition outline-none focus:ring-2"
-                  />
-                </label>
-                <label class="flex flex-col gap-1.5">
-                  <span class="text-ink-700 text-sm font-medium">邮箱</span>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="请输入邮箱"
-                    class="border-line focus:border-primary focus:ring-primary/20 w-full rounded-[8px] border bg-white px-4 py-3 text-sm transition outline-none focus:ring-2"
-                  />
-                </label>
-              </div>
+              <label class="flex flex-col gap-1.5">
+                <span class="text-ink-700 text-sm font-medium"
+                  >联系电话 <span class="text-red-500">*</span></span
+                >
+                <input
+                  type="tel"
+                  name="phone"
+                  required
+                  placeholder="请输入联系电话"
+                  class="border-line focus:border-primary focus:ring-primary/20 w-full rounded-[8px] border bg-white px-4 py-3 text-sm transition outline-none focus:ring-2"
+                />
+              </label>
               <fieldset class="flex flex-col gap-2">
                 <legend class="text-ink-700 text-sm font-medium">
                   合作类型 <span class="text-red-500">*</span>
@@ -521,17 +515,12 @@
               <button type="submit" class="btn btn-primary mt-1 w-full justify-center">
                 提交合作意向
               </button>
-              <!-- 免费外部表单替换占位：创建飞书/金数据/Formspree 等免费表单后，取消注释并填入你的嵌入地址
-   <div class="mt-8 border-t border-line pt-6">
-     <p class="text-ink-500 text-xs mb-3">或使用在线表单（推荐后台统一管理）：</p>
-     <iframe src="https://你的免费表单嵌入地址" class="w-full h-[600px] border-0 rounded-[var(--radius-card)]" loading="lazy"></iframe>
-   </div>
-   -->
               <p id="cooperation-mailto-tip" class="hidden text-center text-sm text-primary-dark mt-3"></p>
               <p class="text-ink-500 text-center text-xs">
                 提交即表示您同意我们与您联系，进一步沟通合作事宜
               </p>
             </form>
+            -->
           </div>
         </div>
 
