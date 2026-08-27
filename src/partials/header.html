@@ -20,7 +20,7 @@
       </span>
     </a>
 
-    <!-- 桌面端导航：动态菜单 + 固定入口 -->
+    <!-- 桌面端导航：由 Halo 菜单驱动 -->
     <nav class="hidden items-center gap-8 md:flex" aria-label="主导航">
       <a
         th:each="item : ${menu?.menuItems}"
@@ -30,8 +30,6 @@
         class="text-ink-700 hover:text-primary text-sm font-medium transition-colors duration-200"
         >菜单项</a
       >
-      <a href="/page/cooperation" class="text-ink-700 hover:text-primary text-sm font-medium transition-colors duration-200">合作咨询</a>
-      <a href="/page/about" class="text-ink-700 hover:text-primary text-sm font-medium transition-colors duration-200">关于我们</a>
     </nav>
 
     <!-- 移动端汉堡按钮 -->
@@ -88,8 +86,6 @@
           >菜单项</a
         >
       </li>
-      <li><a href="/page/cooperation" class="text-ink-700 hover:bg-mist hover:text-primary block rounded-full px-4 py-2.5 text-base font-medium transition-colors duration-200">合作咨询</a></li>
-      <li><a href="/page/about" class="text-ink-700 hover:bg-mist hover:text-primary block rounded-full px-4 py-2.5 text-base font-medium transition-colors duration-200">关于我们</a></li>
     </ul>
   </nav>
 </header>
