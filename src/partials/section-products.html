@@ -1,18 +1,20 @@
-<!-- 精选产品：展示最新文章（无需配置，直接查询最新 4 篇） -->
+<!-- 产品矩阵：静态 6 卡片（不再依赖 postFinder） -->
 <section class="section-tinted py-16 sm:py-24">
-  <div
-    class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
-    th:with="productPosts = ${postFinder.list({ page: 1, size: 4 })}"
-  >
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <!-- 区块标题 + 查看全部 -->
     <header class="reveal mb-12 flex flex-wrap items-end justify-between gap-4">
       <div>
-        <p class="text-primary mb-3 text-sm font-semibold tracking-widest uppercase">精选推荐</p>
-        <h2 class="text-ink-900 text-3xl font-extrabold tracking-tight sm:text-4xl">精选产品</h2>
+        <p class="text-primary mb-3 text-sm font-semibold tracking-widest uppercase">产品矩阵</p>
+        <h2 class="text-ink-900 text-3xl font-extrabold tracking-tight sm:text-4xl">
+          全场景智慧养老产品体系
+        </h2>
+        <p class="text-ink-500 mt-3 text-sm sm:text-base">
+          消防监测 · 居家安全 · 紧急求助 · 生活监护 · 毫米波无感监测
+        </p>
       </div>
-
       <a
         th:href="@{/archives}"
+        href="/archives"
         class="group text-primary hover:text-primary-dark inline-flex items-center gap-1.5 text-sm font-semibold transition-colors"
       >
         查看全部
@@ -32,35 +34,312 @@
       </a>
     </header>
 
-    <!-- 产品卡片网格 -->
-    <div
-      class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
-      th:if="${not #lists.isEmpty(productPosts.items)}"
-    >
-      <th:block th:each="post : ${productPosts.items}">
-        <include src="post-card.html"></include>
-      </th:block>
-    </div>
-
-    <!-- 暂无内容占位 -->
-    <div
-      th:if="${#lists.isEmpty(productPosts.items)}"
-      class="border-line/80 flex flex-col items-center gap-3 rounded-[var(--radius-card)] border border-dashed bg-white/70 py-20"
-    >
-      <svg
-        class="text-line h-10 w-10"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
+    <!-- 6 卡片网格：2 行 3 列，移动端 1-2 列 -->
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <!-- 卡片 1 燃气安全卫士 -->
+      <div
+        class="card-hover reveal group border-line shadow-soft flex flex-col gap-4 rounded-[var(--radius-card)] border bg-white p-6 sm:p-7"
       >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
-        />
-      </svg>
-      <p class="text-ink-500 text-sm">暂无内容，请在后台发布文章</p>
+        <span
+          class="bg-mist text-primary border-primary/15 flex h-10 w-10 items-center justify-center rounded-full border"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.8"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.601a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z"
+            />
+          </svg>
+        </span>
+        <h3 class="text-ink-900 text-lg font-extrabold tracking-tight">燃气安全卫士</h3>
+        <p class="text-ink-500 text-sm leading-relaxed">
+          燃气泄漏报警器 + 智能阀门联动，9%LEL 阈值 ≥72dB 声光报警，自动关阀守护厨房安全。
+        </p>
+        <span
+          class="bg-mist text-primary-dark inline-flex w-fit rounded-full px-3 py-1 text-xs font-medium"
+          >NB-IoT 免网关 · 多维报警 · 自动关阀</span
+        >
+        <a
+          th:href="@{/archives}"
+          href="/archives"
+          class="text-primary hover:text-primary-dark mt-auto inline-flex items-center gap-1 text-sm font-semibold transition-colors"
+          >查看详情
+          <svg
+            class="h-3.5 w-3.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+            />
+          </svg>
+        </a>
+      </div>
+
+      <!-- 卡片 2 一氧化碳全面防范 -->
+      <div
+        class="card-hover reveal group border-line shadow-soft flex flex-col gap-4 rounded-[var(--radius-card)] border bg-white p-6 sm:p-7"
+      >
+        <span
+          class="bg-mist text-primary border-primary/15 flex h-10 w-10 items-center justify-center rounded-full border"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.8"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.05 14.5M14.25 3.104c.251.023.501.05.75.082M19.05 14.5l-4.356 4.356a2.25 2.25 0 01-1.591.659H6.897a2.25 2.25 0 01-1.591-.659L.95 14.5"
+            />
+          </svg>
+        </span>
+        <h3 class="text-ink-900 text-lg font-extrabold tracking-tight">一氧化碳全面防范</h3>
+        <p class="text-ink-500 text-sm leading-relaxed">
+          高精度电化学传感，200ppm 阈值精准告警，五端同步推送，守护冬季采暖安全。
+        </p>
+        <span
+          class="bg-mist text-primary-dark inline-flex w-fit rounded-full px-3 py-1 text-xs font-medium"
+          >电化学传感 · 多端告警 · 太平洋承保</span
+        >
+        <a
+          th:href="@{/archives}"
+          href="/archives"
+          class="text-primary hover:text-primary-dark mt-auto inline-flex items-center gap-1 text-sm font-semibold transition-colors"
+          >查看详情
+          <svg
+            class="h-3.5 w-3.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+            />
+          </svg>
+        </a>
+      </div>
+
+      <!-- 卡片 3 无感跌倒守护 -->
+      <div
+        class="card-hover reveal group border-line shadow-soft flex flex-col gap-4 rounded-[var(--radius-card)] border bg-white p-6 sm:p-7"
+      >
+        <span
+          class="bg-mist text-primary border-primary/15 flex h-10 w-10 items-center justify-center rounded-full border"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.8"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 12.75l3 3m0 0l3-3m-3 3v-7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+        </span>
+        <h3 class="text-ink-900 text-lg font-extrabold tracking-tight">无感跌倒守护</h3>
+        <p class="text-ink-500 text-sm leading-relaxed">
+          毫米波存在 / 跌倒传感器，浴室、卧室小区域精准识别，有人 / 无人 / 跌倒 / 驻留四类报警。
+        </p>
+        <span
+          class="bg-mist text-primary-dark inline-flex w-fit rounded-full px-3 py-1 text-xs font-medium"
+          >60GHz 毫米波 · 小区域精准 · 四类报警</span
+        >
+        <a
+          th:href="@{/archives}"
+          href="/archives"
+          class="text-primary hover:text-primary-dark mt-auto inline-flex items-center gap-1 text-sm font-semibold transition-colors"
+          >查看详情
+          <svg
+            class="h-3.5 w-3.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+            />
+          </svg>
+        </a>
+      </div>
+
+      <!-- 卡片 4 毫米波睡眠监测 -->
+      <div
+        class="card-hover reveal group border-line shadow-soft flex flex-col gap-4 rounded-[var(--radius-card)] border bg-white p-6 sm:p-7"
+      >
+        <span
+          class="bg-mist text-primary border-primary/15 flex h-10 w-10 items-center justify-center rounded-full border"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.8"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 9h.008v.008H9V9zm0 6h.008v.008H9V15zm3-3h.008v.008H12V12zm3 3h.008v.008H15V15zm0-6h.008v.008H15V9z"
+            />
+          </svg>
+        </span>
+        <h3 class="text-ink-900 text-lg font-extrabold tracking-tight">毫米波睡眠监测</h3>
+        <p class="text-ink-500 text-sm leading-relaxed">
+          X1 床头 / X2 床下双形态，无感监测呼吸心率、睡眠分期与离床，识别呼吸暂停与房颤预警。
+        </p>
+        <span
+          class="bg-mist text-primary-dark inline-flex w-fit rounded-full px-3 py-1 text-xs font-medium"
+          >无感监测 · 呼吸心率 · 睡眠分期</span
+        >
+        <a
+          th:href="@{/archives}"
+          href="/archives"
+          class="text-primary hover:text-primary-dark mt-auto inline-flex items-center gap-1 text-sm font-semibold transition-colors"
+          >查看详情
+          <svg
+            class="h-3.5 w-3.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+            />
+          </svg>
+        </a>
+      </div>
+
+      <!-- 卡片 5 紧急一键求助 -->
+      <div
+        class="card-hover reveal group border-line shadow-soft flex flex-col gap-4 rounded-[var(--radius-card)] border bg-white p-6 sm:p-7"
+      >
+        <span
+          class="bg-mist text-primary border-primary/15 flex h-10 w-10 items-center justify-center rounded-full border"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.8"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.313.75 23.935 23.935 0 015.454 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 4.5A8.969 8.969 0 0018 3"
+            />
+          </svg>
+        </span>
+        <h3 class="text-ink-900 text-lg font-extrabold tracking-tight">紧急一键求助</h3>
+        <p class="text-ink-500 text-sm leading-relaxed">
+          拉绳 / 按钮报警器（电池版 / 强电版），一拉一按即触发，五端协同通知家属与机构。
+        </p>
+        <span
+          class="bg-mist text-primary-dark inline-flex w-fit rounded-full px-3 py-1 text-xs font-medium"
+          >一键求助 · 双供电 · 五端协同</span
+        >
+        <a
+          th:href="@{/archives}"
+          href="/archives"
+          class="text-primary hover:text-primary-dark mt-auto inline-flex items-center gap-1 text-sm font-semibold transition-colors"
+          >查看详情
+          <svg
+            class="h-3.5 w-3.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+            />
+          </svg>
+        </a>
+      </div>
+
+      <!-- 卡片 6 智慧健康手表 -->
+      <div
+        class="card-hover reveal group border-line shadow-soft flex flex-col gap-4 rounded-[var(--radius-card)] border bg-white p-6 sm:p-7"
+      >
+        <span
+          class="bg-mist text-primary border-primary/15 flex h-10 w-10 items-center justify-center rounded-full border"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.8"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+        </span>
+        <h3 class="text-ink-900 text-lg font-extrabold tracking-tight">智慧健康手表</h3>
+        <p class="text-ink-500 text-sm leading-relaxed">
+          定位、SOS、健康数据一体化，联动温湿度传感器，全天候守护长者健康与安全。
+        </p>
+        <span
+          class="bg-mist text-primary-dark inline-flex w-fit rounded-full px-3 py-1 text-xs font-medium"
+          >定位 SOS · 健康监测 · 全天候守护</span
+        >
+        <a
+          th:href="@{/archives}"
+          href="/archives"
+          class="text-primary hover:text-primary-dark mt-auto inline-flex items-center gap-1 text-sm font-semibold transition-colors"
+          >查看详情
+          <svg
+            class="h-3.5 w-3.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+            />
+          </svg>
+        </a>
+      </div>
     </div>
   </div>
 </section>

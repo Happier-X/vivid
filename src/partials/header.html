@@ -5,15 +5,18 @@
   class="border-line/80 sticky top-0 z-50 border-b bg-white/90 backdrop-blur transition-shadow duration-300"
 >
   <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-    <!-- Logo / 站点名称 -->
-    <a
-      th:href="@{/}"
-      class="text-ink-900 flex items-center gap-2 text-lg font-extrabold tracking-tight"
-    >
-      <span
-        class="from-primary to-primary-dark inline-block h-2.5 w-2.5 rounded-full bg-gradient-to-br"
-      ></span>
-      <span th:text="${site.title}">企业名称</span>
+    <!-- Logo / 品牌 -->
+    <a th:href="@{/}" class="flex items-center gap-3 text-lg font-extrabold tracking-tight">
+      <img
+        src="/assets/images/wanchun-logo.png"
+        alt="万椿"
+        class="h-9 w-9 shrink-0 object-contain"
+        onerror="this.style.display = 'none'"
+      />
+      <span class="text-ink-900 flex items-center gap-1">
+        <span>万椿智能</span><span class="font-light">·</span
+        ><span class="text-primary-dark">智慧养老</span>
+      </span>
     </a>
 
     <!-- 桌面端导航 -->

@@ -3,13 +3,13 @@ kind: Theme
 metadata:
   name: theme-vite-starter
 spec:
-  displayName: 企业官网主题
+  displayName: 万椿智慧养老
   author:
-    name: Vivid
-    website: https://github.com/halo-dev
-  description: 现代企业官网风格主题，采用固定内容硬编码，适合展示型企业官网
-  logo: https://www.halo.run/logo
-  homepage: https://github.com/halo-dev/theme-vite-starter#readme
+    name: 山东万椿智能科技有限公司
+    website: https://www.wanchun.cn
+  description: 山东万椿智能科技 · 国家高新技术企业 · 太平洋保险承保，以“设备+平台+服务”3+X与“健康监测-安全预警-生活辅助-社交陪伴”4+N智慧养老体系，融合AI/物联网/大数据/云计算，为居家·社区·机构提供全场景智慧守护。
+  logo: /assets/images/wanchun-logo.png
+  homepage: https://www.wanchun.cn
   repo: https://github.com/halo-dev/theme-vite-starter
   issues: https://github.com/halo-dev/theme-vite-starter/issues
   settingName: "theme-vite-starter-setting"

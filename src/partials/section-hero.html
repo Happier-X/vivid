@@ -1,4 +1,4 @@
-<!-- Hero 首屏：顶部标签 + 大标题 + 副标题 + 双 CTA + 特性标签 + 主图 -->
+<!-- Hero 首屏：万椿智慧养老 -->
 <section
   class="relative overflow-hidden"
   style="
@@ -31,21 +31,24 @@
         <span
           class="border-primary/20 bg-mist text-primary-dark inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-semibold"
         >
-          新一代智能科技
+          国家高新技术企业 · 太平洋保险承保 · 椿萱并茂 棠棣同馨
         </span>
 
         <h1 class="text-ink-900 text-4xl leading-tight font-black tracking-tight sm:text-5xl">
-          以科技创新，驱动企业未来
+          让每一位长者享有<br />
+          <span class="text-primary-dark">有品质、有温度</span>的智慧晚年
         </h1>
 
         <p class="text-ink-500 max-w-xl text-lg leading-relaxed">
-          我们专注于为企业提供智能化产品与解决方案，让技术更好地服务于每一个人。
+          山东万椿智能科技，深耕智慧养老 10 年+，以“设备+平台+服务”3+X
+          方案与“健康监测-安全预警-生活辅助-社交陪伴”4+N 体系，融合 AI / 物联网 / 大数据 /
+          云计算，为居家 · 社区 · 机构提供全场景守护。
         </p>
 
         <!-- 双 CTA 按钮 -->
         <div class="flex flex-wrap items-center gap-4">
-          <a th:href="@{/archives}" class="btn btn-primary"> 立即体验 </a>
-          <a th:href="@{/page/about}" class="btn btn-outline"> 了解更多 </a>
+          <a th:href="@{/archives}" href="/archives" class="btn btn-primary"> 探索解决方案 </a>
+          <a th:href="@{/page/contact}" href="/page/contact" class="btn btn-outline"> 联系我们 </a>
         </div>
 
         <!-- 特性标签组 -->
@@ -63,7 +66,7 @@
               >
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
               </svg>
-              智能互联
+              毫米波无感监测
             </span>
           </li>
           <li>
@@ -79,7 +82,7 @@
               >
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
               </svg>
-              极致性能
+              多维安全守护
             </span>
           </li>
           <li>
@@ -95,7 +98,23 @@
               >
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
               </svg>
-              安全可靠
+              智慧养老云平台
+            </span>
+          </li>
+          <li>
+            <span
+              class="bg-mist text-primary-dark inline-flex items-center gap-2 rounded-full px-4 py-1.5 font-medium"
+            >
+              <svg
+                class="text-primary h-3.5 w-3.5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2.5"
+                stroke="currentColor"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              20+ 科研项目支撑
             </span>
           </li>
         </ul>
@@ -107,8 +126,9 @@
           <div
             class="from-primary/15 to-accent-pink/20 absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-to-tr blur-2xl"
           ></div>
+          <!-- 万椿产品主图占位，保留渐变卡片，后续可替换为真实产品图 -->
           <div
-            class="shadow-lift from-primary to-primary-deep flex aspect-video w-full items-center justify-center rounded-[var(--radius-card)] bg-gradient-to-br text-white"
+            class="shadow-lift from-primary to-primary-deep relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-[var(--radius-card)] bg-gradient-to-br text-white"
           >
             <svg
               class="h-20 w-20 opacity-70"
@@ -123,6 +143,10 @@
                 d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M18 6h.008v.008H18V6z"
               />
             </svg>
+            <span
+              class="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-white/15 px-4 py-1 text-xs font-semibold tracking-widest whitespace-nowrap backdrop-blur"
+              >万椿智慧养老 · 感知-网络-平台-应用一体化</span
+            >
           </div>
         </div>
       </div>
