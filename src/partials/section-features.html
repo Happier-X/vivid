@@ -1,69 +1,71 @@
-<!-- 核心特性：小标题 + 大标题 + 编号卡片 + 配图 -->
+<!-- 核心特性：小标题 + 大标题 + 编号卡片 -->
 <section class="bg-white py-16 sm:py-24">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <!-- 区块标题 -->
     <div class="reveal mx-auto mb-12 max-w-2xl text-center">
-      <p
-        th:if="${not #strings.isEmpty(theme.config.features?.eyebrow)}"
-        th:text="${theme.config.features.eyebrow}"
-        class="text-primary mb-3 text-sm font-semibold tracking-widest uppercase"
-      >
-        小标题
-      </p>
-      <h2
-        th:text="${theme.config.features?.title}"
-        class="text-ink-900 text-3xl font-extrabold tracking-tight sm:text-4xl"
-      >
-        大标题
+      <p class="text-primary mb-3 text-sm font-semibold tracking-widest uppercase">核心优势</p>
+      <h2 class="text-ink-900 text-3xl font-extrabold tracking-tight sm:text-4xl">
+        核心科技，重新定义体验
       </h2>
     </div>
 
-    <!-- 卡片与配图：有配图时左右分栏，无配图时卡片铺满四列 -->
-    <div th:with="hasImage = ${not #strings.isEmpty(theme.config.features?.image)}">
-      <div th:classappend="${hasImage} ? 'lg:flex lg:items-center lg:gap-14' : ''">
-        <!-- 编号卡片 -->
-        <div
-          class="grid gap-6 sm:grid-cols-2"
-          th:classappend="${not hasImage} ? 'lg:grid-cols-4' : ''"
-          th:if="${not #lists.isEmpty(theme.config.features?.items)}"
+    <!-- 编号卡片 -->
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div
+        class="card-hover reveal group hover:border-primary/30 border-line shadow-soft relative flex flex-col gap-4 rounded-[var(--radius-card)] border bg-white p-8"
+      >
+        <span
+          class="text-primary/60 group-hover:text-primary text-4xl font-black tabular-nums transition-colors duration-200"
         >
-          <div
-            th:each="item, stat : ${theme.config.features.items}"
-            class="card-hover reveal group hover:border-primary/30 border-line shadow-soft relative flex flex-col gap-4 rounded-[var(--radius-card)] border bg-white p-8"
-          >
-            <!-- 编号 -->
-            <span
-              th:text="${stat.count < 10 ? '0' + stat.count : stat.count}"
-              class="text-primary/60 group-hover:text-primary text-4xl font-black tabular-nums transition-colors duration-200"
-            >
-              01
-            </span>
-            <h3 th:text="${item.title}" class="text-ink-900 text-lg font-extrabold tracking-tight">
-              条目标题
-            </h3>
-            <p th:text="${item.description}" class="text-ink-500 text-sm leading-relaxed">
-              条目描述
-            </p>
-          </div>
-        </div>
-
-        <!-- 配图 -->
-        <img
-          th:if="${hasImage}"
-          th:src="${theme.config.features.image}"
-          th:alt="${theme.config.features?.title ?: '配图'}"
-          loading="lazy"
-          class="shadow-lift reveal-right mt-10 w-full rounded-[var(--radius-card)] object-cover lg:mt-0 lg:w-2/5"
-        />
+          01
+        </span>
+        <h3 class="text-ink-900 text-lg font-extrabold tracking-tight">自主研发</h3>
+        <p class="text-ink-500 text-sm leading-relaxed">
+          核心技术全栈自研，持续迭代升级，保障产品长期竞争力。
+        </p>
       </div>
 
-      <!-- 无条目时的占位 -->
-      <p
-        th:if="${#lists.isEmpty(theme.config.features?.items)}"
-        class="text-ink-500 text-center text-sm"
+      <div
+        class="card-hover reveal group hover:border-primary/30 border-line shadow-soft relative flex flex-col gap-4 rounded-[var(--radius-card)] border bg-white p-8"
       >
-        请在后台「核心特性」设置中添加特性条目
-      </p>
+        <span
+          class="text-primary/60 group-hover:text-primary text-4xl font-black tabular-nums transition-colors duration-200"
+        >
+          02
+        </span>
+        <h3 class="text-ink-900 text-lg font-extrabold tracking-tight">智能算法</h3>
+        <p class="text-ink-500 text-sm leading-relaxed">
+          基于深度学习的智能算法引擎，让设备更懂你的需求。
+        </p>
+      </div>
+
+      <div
+        class="card-hover reveal group hover:border-primary/30 border-line shadow-soft relative flex flex-col gap-4 rounded-[var(--radius-card)] border bg-white p-8"
+      >
+        <span
+          class="text-primary/60 group-hover:text-primary text-4xl font-black tabular-nums transition-colors duration-200"
+        >
+          03
+        </span>
+        <h3 class="text-ink-900 text-lg font-extrabold tracking-tight">极速响应</h3>
+        <p class="text-ink-500 text-sm leading-relaxed">
+          毫秒级响应速度，流畅体验贯穿每一个操作细节。
+        </p>
+      </div>
+
+      <div
+        class="card-hover reveal group hover:border-primary/30 border-line shadow-soft relative flex flex-col gap-4 rounded-[var(--radius-card)] border bg-white p-8"
+      >
+        <span
+          class="text-primary/60 group-hover:text-primary text-4xl font-black tabular-nums transition-colors duration-200"
+        >
+          04
+        </span>
+        <h3 class="text-ink-900 text-lg font-extrabold tracking-tight">安全守护</h3>
+        <p class="text-ink-500 text-sm leading-relaxed">
+          多重加密与隐私保护机制，全方位守护用户数据安全。
+        </p>
+      </div>
     </div>
   </div>
 </section>

@@ -1,36 +1,20 @@
-<!-- 功能介绍：左文右图 + 功能点数组 -->
+<!-- 功能介绍：左文右图 + 功能点 -->
 <section class="bg-white py-16 sm:py-24">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="grid items-center gap-12 lg:grid-cols-2">
       <!-- 左侧文案 -->
       <div class="reveal flex flex-col items-start gap-6">
-        <p
-          th:if="${not #strings.isEmpty(theme.config.intro?.eyebrow)}"
-          th:text="${theme.config.intro.eyebrow}"
-          class="text-primary text-sm font-semibold tracking-widest uppercase"
-        >
-          小标题
-        </p>
-        <h2
-          th:text="${theme.config.intro?.title}"
-          class="text-ink-900 text-3xl font-extrabold tracking-tight sm:text-4xl"
-        >
-          大标题
+        <p class="text-primary text-sm font-semibold tracking-widest uppercase">功能亮点</p>
+        <h2 class="text-ink-900 text-3xl font-extrabold tracking-tight sm:text-4xl">
+          智能互联，一切尽在掌控
         </h2>
-        <p
-          th:if="${not #strings.isEmpty(theme.config.intro?.description)}"
-          th:text="${theme.config.intro.description}"
-          class="text-ink-500 text-lg leading-relaxed"
-        >
-          描述
+        <p class="text-ink-500 text-lg leading-relaxed">
+          通过专属应用，随时掌握设备状态，远程操控触手可及，让智能融入生活的每个角落。
         </p>
 
         <!-- 功能点列表 -->
-        <ul
-          th:if="${not #lists.isEmpty(theme.config.intro?.points)}"
-          class="flex w-full flex-col gap-5"
-        >
-          <li th:each="point : ${theme.config.intro.points}" class="flex items-start gap-4">
+        <ul class="flex w-full flex-col gap-5">
+          <li class="flex items-start gap-4">
             <span
               class="bg-mist text-primary border-primary/15 mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border"
             >
@@ -49,28 +33,69 @@
               </svg>
             </span>
             <div>
-              <h3 th:text="${point.title}" class="text-ink-900 font-extrabold tracking-tight">
-                功能点标题
-              </h3>
-              <p th:text="${point.description}" class="text-ink-500 mt-1 text-sm leading-relaxed">
-                功能点描述
+              <h3 class="text-ink-900 font-extrabold tracking-tight">APP 智能互联</h3>
+              <p class="text-ink-500 mt-1 text-sm leading-relaxed">
+                手机与设备无缝连接，随时随地远程管理。
+              </p>
+            </div>
+          </li>
+
+          <li class="flex items-start gap-4">
+            <span
+              class="bg-mist text-primary border-primary/15 mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border"
+            >
+              <svg
+                class="h-4.5 w-4.5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"
+                />
+              </svg>
+            </span>
+            <div>
+              <h3 class="text-ink-900 font-extrabold tracking-tight">个性化设置</h3>
+              <p class="text-ink-500 mt-1 text-sm leading-relaxed">
+                丰富自定义选项，打造专属于你的使用习惯。
+              </p>
+            </div>
+          </li>
+
+          <li class="flex items-start gap-4">
+            <span
+              class="bg-mist text-primary border-primary/15 mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border"
+            >
+              <svg
+                class="h-4.5 w-4.5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"
+                />
+              </svg>
+            </span>
+            <div>
+              <h3 class="text-ink-900 font-extrabold tracking-tight">数据可视化</h3>
+              <p class="text-ink-500 mt-1 text-sm leading-relaxed">
+                直观的数据面板，关键指标一目了然。
               </p>
             </div>
           </li>
         </ul>
       </div>
 
-      <!-- 右侧配图 -->
-      <img
-        th:if="${not #strings.isEmpty(theme.config.intro?.image)}"
-        th:src="${theme.config.intro.image}"
-        th:alt="${theme.config.intro?.title ?: '功能介绍'}"
-        loading="lazy"
-        class="shadow-lift reveal-right w-full rounded-[var(--radius-card)] object-cover"
-      />
-      <!-- 未配置配图时的占位视觉 -->
+      <!-- 右侧配图（占位视觉） -->
       <div
-        th:unless="${not #strings.isEmpty(theme.config.intro?.image)}"
         class="from-mist to-primary/20 reveal-right text-primary/50 flex aspect-[4/3] w-full items-center justify-center rounded-[var(--radius-card)] bg-gradient-to-br"
       >
         <svg

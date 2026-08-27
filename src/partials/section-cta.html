@@ -1,4 +1,4 @@
-<!-- CTA 横幅 + 数据统计栏（参考站合并区块） -->
+<!-- CTA 横幅 + 数据统计栏 -->
 <section
   class="relative overflow-hidden py-20 sm:py-24"
   style="background: linear-gradient(145deg, #2b8d89, #4fc7b7)"
@@ -8,59 +8,62 @@
     class="pointer-events-none absolute -top-32 -left-32 h-80 w-80 rounded-full bg-white/8 blur-3xl"
   ></div>
   <div
-    class="pointer-events-none absolute -right-32 -bottom-32 h-80 w-80 rounded-full bg-secondary/10 blur-3xl"
+    class="bg-secondary/10 pointer-events-none absolute -right-32 -bottom-32 h-80 w-80 rounded-full blur-3xl"
   ></div>
 
-  <div class="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+  <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
     <div class="reveal flex flex-col items-center gap-8">
-      <h2
-        th:text="${theme.config.cta?.title}"
-        class="text-3xl font-black tracking-tight text-white sm:text-4xl"
-      >
-        标题
+      <h2 class="text-3xl font-black tracking-tight text-white sm:text-4xl">
+        准备好开启智能新生活了吗？
       </h2>
-      <p
-        th:if="${not #strings.isEmpty(theme.config.cta?.description)}"
-        th:text="${theme.config.cta.description}"
-        class="text-base leading-relaxed text-white/85 sm:text-lg"
-      >
-        描述
+      <p class="text-base leading-relaxed text-white/85 sm:text-lg">
+        立即加入我们，探索更多可能，让科技为你的业务赋能。
       </p>
 
       <!-- 双按钮 -->
       <div class="flex flex-wrap items-center justify-center gap-4">
-        <a
-          th:if="${not #strings.isEmpty(theme.config.cta?.primary_button_text)}"
-          th:href="@{${theme.config.cta.primary_button_link ?: '#'}}"
-          th:text="${theme.config.cta.primary_button_text}"
-          class="btn btn-white"
-        >主按钮</a>
-        <a
-          th:if="${not #strings.isEmpty(theme.config.cta?.secondary_button_text)}"
-          th:href="@{${theme.config.cta.secondary_button_link ?: '#'}}"
-          th:text="${theme.config.cta.secondary_button_text}"
-          class="btn btn-ghost"
-        >次按钮</a>
+        <a th:href="@{/page/contact}" class="btn btn-white">联系我们</a>
+        <a th:href="@{/archives}" class="btn btn-ghost">查看方案</a>
       </div>
     </div>
 
-    <!-- 统计数字（按钮下方，同区块内） -->
-    <div
-      th:if="${not #lists.isEmpty(theme.config.stats?.items)}"
-      class="reveal mt-14 grid grid-cols-2 gap-x-6 gap-y-8 sm:mt-16 lg:grid-cols-4"
-    >
-      <div
-        th:each="item : ${theme.config.stats.items}"
-        class="flex flex-col items-center gap-2 text-center"
-      >
+    <!-- 统计数字 -->
+    <div class="reveal mt-14 grid grid-cols-2 gap-x-6 gap-y-8 sm:mt-16 lg:grid-cols-4">
+      <div class="flex flex-col items-center gap-2 text-center">
+        <span class="text-4xl font-black tracking-tight text-white tabular-nums sm:text-5xl"
+          >500万+</span
+        >
         <span
-          th:text="${item.value}"
-          class="text-4xl font-black tracking-tight text-white tabular-nums sm:text-5xl"
-        >500万+</span>
-        <span
-          th:text="${item.label}"
           class="inline-flex items-center rounded-full bg-white/15 px-4 py-1 text-sm font-medium text-white/90"
-        >说明文字</span>
+          >全球用户</span
+        >
+      </div>
+      <div class="flex flex-col items-center gap-2 text-center">
+        <span class="text-4xl font-black tracking-tight text-white tabular-nums sm:text-5xl"
+          >30+</span
+        >
+        <span
+          class="inline-flex items-center rounded-full bg-white/15 px-4 py-1 text-sm font-medium text-white/90"
+          >覆盖国家与地区</span
+        >
+      </div>
+      <div class="flex flex-col items-center gap-2 text-center">
+        <span class="text-4xl font-black tracking-tight text-white tabular-nums sm:text-5xl"
+          >99.9%</span
+        >
+        <span
+          class="inline-flex items-center rounded-full bg-white/15 px-4 py-1 text-sm font-medium text-white/90"
+          >服务可用性</span
+        >
+      </div>
+      <div class="flex flex-col items-center gap-2 text-center">
+        <span class="text-4xl font-black tracking-tight text-white tabular-nums sm:text-5xl"
+          >24/7</span
+        >
+        <span
+          class="inline-flex items-center rounded-full bg-white/15 px-4 py-1 text-sm font-medium text-white/90"
+          >全天候支持</span
+        >
       </div>
     </div>
   </div>

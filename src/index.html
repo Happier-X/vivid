@@ -4,24 +4,10 @@
     <script type="module" src="./js/index.ts"></script>
   </template>
 
-  <!-- 首页区块按序组装，各区块可通过后台开关控制显隐 -->
-  <th:block th:if="${theme.config.hero?.enabled}">
-    <include src="section-hero.html"></include>
-  </th:block>
-
-  <th:block th:if="${theme.config.features?.enabled}">
-    <include src="section-features.html"></include>
-  </th:block>
-
-  <th:block th:if="${theme.config.products?.enabled}">
-    <include src="section-products.html"></include>
-  </th:block>
-
-  <th:block th:if="${theme.config.intro?.enabled}">
-    <include src="section-intro.html"></include>
-  </th:block>
-
-  <th:block th:if="${theme.config.cta?.enabled}">
-    <include src="section-cta.html"></include>
-  </th:block>
+  <!-- 首页区块直接组装 -->
+  <include src="section-hero.html"></include>
+  <include src="section-features.html"></include>
+  <include src="section-products.html"></include>
+  <include src="section-intro.html"></include>
+  <include src="section-cta.html"></include>
 </include>

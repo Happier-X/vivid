@@ -2,35 +2,32 @@
 <footer class="section-tinted border-line border-t">
   <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
     <div class="text-ink-500 flex flex-col items-center gap-4 text-sm">
-      <!-- 附加链接（后台配置，格式：链接地址|显示文字） -->
-      <ul
-        class="flex flex-wrap justify-center gap-x-6 gap-y-2"
-        th:if="${not #lists.isEmpty(theme.config.footer?.links)}"
-      >
-        <li th:each="link : ${theme.config.footer.links}" th:if="${not #strings.isEmpty(link)}">
-          <a
-            th:with="parts = ${#strings.split(link, '|')}"
-            th:href="@{${parts[0]}}"
-            th:text="${#arrays.length(parts) > 1 ? parts[1] : link}"
-            class="hover:text-primary transition-colors duration-200"
-            >链接</a
+      <!-- 附加链接 -->
+      <ul class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+        <li>
+          <a th:href="@{/page/about}" class="hover:text-primary transition-colors duration-200"
+            >关于我们</a
+          >
+        </li>
+        <li>
+          <a th:href="@{/page/contact}" class="hover:text-primary transition-colors duration-200"
+            >联系我们</a
+          >
+        </li>
+        <li>
+          <a th:href="@{/archives}" class="hover:text-primary transition-colors duration-200"
+            >产品中心</a
+          >
+        </li>
+        <li>
+          <a th:href="@{/archives}" class="hover:text-primary transition-colors duration-200"
+            >新闻资讯</a
           >
         </li>
       </ul>
 
       <!-- 版权信息 -->
-      <p th:text="${theme.config.footer?.copyright ?: site.title}">版权信息</p>
-
-      <!-- 备案号 -->
-      <a
-        href="https://beian.miit.gov.cn/"
-        target="_blank"
-        rel="noopener noreferrer"
-        th:if="${not #strings.isEmpty(theme.config.footer?.icp)}"
-        th:text="${theme.config.footer.icp}"
-        class="hover:text-primary transition-colors duration-200"
-        >备案号</a
-      >
+      <p>© 2025 企业官网. 保留所有权利.</p>
 
       <!-- Halo 统计代码等页脚扩展挂载点 -->
       <halo:footer />
