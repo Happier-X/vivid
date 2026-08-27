@@ -76,9 +76,9 @@
           th:if="${not #lists.isEmpty(theme.config.hero?.highlights)}"
           class="mt-2 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm"
         >
-          <li th:each="tag : ${theme.config.hero.highlights}">
+          <li th:each="tag : ${theme.config.hero.highlights}" th:with="tagText = ${tag instanceof T(String) ? tag : tag.text}">
             <span
-              th:text="${tag.text}"
+              th:text="${tagText}"
               class="bg-mist text-primary-dark inline-flex items-center gap-2 rounded-full px-4 py-1.5 font-medium"
             >
               <svg
