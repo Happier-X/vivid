@@ -64,14 +64,17 @@ spec:
           name: secondary_button_link
           label: 次按钮链接
           value: "/about"
-        - $formkit: list
+        - $formkit: array
           name: highlights
           label: 特性标签
+          help: 添加特性标签，页面上以胶囊样式展示
           value:
-            - "智能互联"
-            - "极致性能"
-            - "安全可靠"
-          help: 显示在首屏下方的特性标签组
+            - text: "智能互联"
+            - text: "极致性能"
+          children:
+            - $formkit: text
+              name: text
+              label: 标签文字
         - $formkit: attachment
           name: image
           label: 主图

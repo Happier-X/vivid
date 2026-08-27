@@ -78,7 +78,7 @@
         >
           <li th:each="tag : ${theme.config.hero.highlights}">
             <span
-              th:text="${tag}"
+              th:text="${tag.text}"
               class="bg-mist text-primary-dark inline-flex items-center gap-2 rounded-full px-4 py-1.5 font-medium"
             >
               <svg
