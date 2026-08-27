@@ -3,9 +3,9 @@
     <title th:text="|${singlePage.spec.title} - ${site.title}|">页面标题</title>
   </template>
 
-  <!-- 页面页头 -->
+  <!-- 页面页头 — 高级感 -->
   <header class="section-tinted border-line/70 border-b">
-    <div class="mx-auto max-w-4xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
+    <div class="mx-auto max-w-4xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
       <!-- 面包屑：首页 / 页面标题 -->
       <nav aria-label="面包屑" class="text-ink-500 mb-6 flex items-center gap-1.5 text-sm">
         <a th:href="@{/}" class="hover:text-primary transition-colors">首页</a>
@@ -14,7 +14,7 @@
       </nav>
 
       <h1
-        class="text-ink-900 text-3xl leading-tight font-extrabold tracking-tight sm:text-4xl"
+        class="text-ink-900 text-3xl leading-[1.1] font-black tracking-tighter sm:text-4xl lg:text-5xl"
         th:text="${singlePage.spec.title}"
       >
         页面标题
@@ -22,13 +22,14 @@
     </div>
   </header>
 
-  <article class="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8">
+  <article class="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
     <!-- 正文排版（与文章详情一致的 .rich-content） -->
     <div class="rich-content" th:utext="${singlePage.content.content}"></div>
 
+    <div class="via-line mt-14 h-px bg-gradient-to-r from-transparent to-transparent"></div>
     <!-- 评论区挂载点 -->
-    <section class="border-line mt-14 border-t pt-10" th:if="${haloCommentEnabled}">
-      <h2 class="text-ink-900 mb-6 text-xl font-extrabold tracking-tight">评论</h2>
+    <section class="mt-10" th:if="${haloCommentEnabled}">
+      <h2 class="text-ink-900 mb-6 text-xl font-black tracking-tighter">评论</h2>
       <halo:comment
         group="content.halo.run"
         kind="SinglePage"

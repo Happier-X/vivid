@@ -1,7 +1,7 @@
 <!-- 文章卡片（企业风格）：封面 + 分类徽标 + 标题 + 摘要 -->
 <!-- 使用方式：外层自行包裹 th:each="post : ${...}" 循环 -->
 <article
-  class="card-hover reveal group border-line shadow-soft flex flex-col overflow-hidden rounded-[var(--radius-card)] border bg-white"
+  class="card-hover reveal group flex flex-col overflow-hidden rounded-[var(--radius-card)] border border-white/60 bg-white shadow-[0_8px_40px_rgba(36,109,116,0.06)] backdrop-blur-sm hover:shadow-[0_20px_60px_rgba(36,109,116,0.12)]"
 >
   <!-- 封面图：无封面时显示品牌渐变占位 -->
   <a th:href="@{${post.status.permalink}}" class="bg-mist block aspect-video overflow-hidden">
@@ -32,12 +32,12 @@
     </div>
   </a>
 
-  <div class="flex flex-1 flex-col gap-3 p-6">
+  <div class="flex flex-1 flex-col gap-3 p-8">
     <!-- 分类徽标 + 发布时间 -->
     <div class="text-ink-500 flex items-center gap-3 text-xs">
       <th:block th:if="${not #lists.isEmpty(post.categories)}">
         <span
-          class="bg-mist text-primary-dark rounded-full px-3 py-1 font-semibold"
+          class="bg-mist text-primary-dark rounded-full px-3 py-1 font-semibold backdrop-blur-sm"
           th:text="${post.categories[0].spec.displayName}"
         ></span>
       </th:block>
@@ -49,7 +49,7 @@
 
     <!-- 标题 -->
     <h3
-      class="text-ink-900 group-hover:text-primary leading-snug font-extrabold tracking-tight transition-colors duration-200"
+      class="text-ink-900 group-hover:text-primary leading-snug font-black tracking-tighter transition-colors duration-300"
     >
       <a th:href="@{${post.status.permalink}}" th:text="${post.spec.title}" class="line-clamp-2"
         >文章标题</a
@@ -57,7 +57,10 @@
     </h3>
 
     <!-- 摘要 -->
-    <p th:text="${post.status.excerpt}" class="text-ink-500 line-clamp-3 text-sm leading-relaxed">
+    <p
+      th:text="${post.status.excerpt}"
+      class="text-ink-500 line-clamp-3 text-sm leading-7 font-light"
+    >
       文章摘要
     </p>
   </div>

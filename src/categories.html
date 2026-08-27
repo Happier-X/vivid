@@ -5,23 +5,26 @@
 
   <!-- 页头横幅 -->
   <header class="section-tinted border-line/70 border-b">
-    <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-      <p class="text-primary mb-3 text-sm font-semibold tracking-widest uppercase">内容导航</p>
-      <h1 class="text-ink-900 text-3xl font-extrabold tracking-tight sm:text-4xl">全部分类</h1>
-      <p class="text-ink-500 mt-3 text-base">按分类浏览站点内容</p>
+    <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+      <p class="text-primary text-sm font-semibold tracking-[0.2em] uppercase">内容导航</p>
+      <span class="bg-primary mt-3 block h-0.5 w-6 rounded-full"></span>
+      <h1 class="text-ink-900 text-3xl leading-tight font-black tracking-tighter sm:text-4xl">
+        全部分类
+      </h1>
+      <p class="text-ink-500/90 mt-3 text-base leading-7 font-light">按分类浏览站点内容</p>
     </div>
   </header>
 
   <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
     <!-- 分类卡片网格 -->
     <ul
-      class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+      class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
       th:if="${not #lists.isEmpty(categories.items)}"
     >
       <li th:each="cat : ${categories.items}">
         <a
           th:href="@{${cat.status.permalink}}"
-          class="card-hover group hover:border-primary/40 border-line shadow-soft flex h-full flex-col gap-4 rounded-[var(--radius-card)] border bg-white p-6"
+          class="card-hover group flex h-full flex-col gap-4 rounded-[var(--radius-card)] border border-white/60 bg-white p-8 shadow-[0_8px_40px_rgba(36,109,116,0.06)] backdrop-blur-sm hover:shadow-[0_20px_60px_rgba(36,109,116,0.12)]"
         >
           <div class="flex items-start justify-between">
             <!-- 分类图标 -->
@@ -60,7 +63,7 @@
             <p
               th:if="${not #strings.isEmpty(cat.spec.description)}"
               th:text="${cat.spec.description}"
-              class="text-ink-500 mt-1.5 line-clamp-2 text-sm leading-relaxed"
+              class="text-ink-500 mt-1.5 line-clamp-2 text-sm leading-7 font-light"
             >
               分类描述
             </p>

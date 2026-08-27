@@ -22,11 +22,11 @@
             >
           </span>
         </a>
-        <p class="text-ink-500 max-w-md text-sm leading-relaxed">
+        <p class="text-ink-500/90 max-w-md text-sm leading-7 font-light">
           国家高新技术企业，专注 AI
           与物联网融合的智慧养老解决方案，以“设备+平台+服务”守护每一位长者的晚年生活。
         </p>
-        <p class="text-ink-500 text-xs">
+        <p class="text-ink-500 text-xs font-light tracking-wide">
           中国太平洋保险承保单位 · 应急管理部消防产品认证 · 德国红点设计大奖
         </p>
       </div>
@@ -76,7 +76,7 @@
       <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-10">
         <div class="flex items-center gap-3">
           <span
-            class="bg-mist text-primary shadow-soft flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
+            class="bg-mist text-primary ring-primary/10 shadow-soft flex h-10 w-10 shrink-0 items-center justify-center rounded-full ring-1 backdrop-blur-sm"
           >
             <svg
               class="h-5 w-5"
@@ -97,13 +97,13 @@
               />
             </svg>
           </span>
-          <span class="text-ink-600 max-w-[18rem] text-sm leading-relaxed sm:max-w-none"
+          <span class="text-ink-600 max-w-[18rem] text-sm leading-7 font-light sm:max-w-none"
             >山东省济南市起步区中科新经济科创园 1号楼3层</span
           >
         </div>
         <div class="flex items-center gap-3">
           <span
-            class="bg-mist text-primary shadow-soft flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
+            class="bg-mist text-primary ring-primary/10 shadow-soft flex h-10 w-10 shrink-0 items-center justify-center rounded-full ring-1 backdrop-blur-sm"
           >
             <svg
               class="h-5 w-5"
@@ -121,13 +121,13 @@
           </span>
           <a
             href="tel:0531-66670365"
-            class="text-ink-700 hover:text-primary text-sm font-semibold transition-colors"
+            class="text-ink-700 hover:text-primary text-sm font-light tracking-wide transition-colors"
             >0531-66670365</a
           >
         </div>
         <div class="flex items-center gap-3">
           <span
-            class="bg-mist text-primary shadow-soft flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
+            class="bg-mist text-primary ring-primary/10 shadow-soft flex h-10 w-10 shrink-0 items-center justify-center rounded-full ring-1 backdrop-blur-sm"
           >
             <svg
               class="h-5 w-5"
@@ -147,23 +147,26 @@
             href="https://www.wanchunsmart.com"
             target="_blank"
             rel="noopener"
-            class="text-ink-600 hover:text-primary text-sm font-medium transition-colors"
+            class="text-ink-600 hover:text-primary text-sm font-light tracking-wide transition-colors"
             >www.wanchunsmart.com</a
           >
         </div>
       </div>
     </div>
 
-    <!-- 底部版权 -->
+    <!-- 底部版权 — 渐隐分隔线 + 更细字重 -->
+    <div class="via-line mt-10 h-px bg-gradient-to-r from-transparent to-transparent"></div>
     <div
-      class="border-line mt-10 flex flex-col items-center gap-3 border-t pt-6 text-center text-xs sm:flex-row sm:justify-between sm:text-left"
+      class="mt-6 flex flex-col items-center gap-3 text-center text-xs sm:flex-row sm:justify-between sm:text-left"
     >
-      <p class="text-ink-500">
+      <p class="text-ink-500 font-light tracking-wide">
         ©
         <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}">2025</span>
         山东万椿智能科技有限公司 · 保留所有权利
       </p>
-      <p class="text-ink-500">核心消防产品由中国太平洋保险承保 · 500万/人身 200万/财产</p>
+      <p class="text-ink-500 font-light tracking-wide">
+        核心消防产品由中国太平洋保险承保 · 500万/人身 200万/财产
+      </p>
     </div>
 
     <!-- Halo 统计代码等页脚扩展挂载点 -->

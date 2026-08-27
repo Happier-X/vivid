@@ -19,7 +19,7 @@
     <header
       id="site-header"
       th:with="menu = ${menuFinder.getPrimary()}"
-      class="border-line/60 sticky top-0 z-50 border-b bg-white/80 shadow-[0_1px_0_rgba(36,109,116,0.06)] backdrop-blur-xl transition-all duration-300"
+      class="border-line/60 after:via-primary/10 sticky top-0 z-50 border-b bg-white/80 shadow-[0_1px_0_rgba(36,109,116,0.06)] backdrop-blur-xl transition-all duration-300 after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:bg-gradient-to-r after:from-transparent after:to-transparent"
     >
       <div
         class="relative mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"
@@ -143,7 +143,7 @@
                 ></span
               >
             </a>
-            <p class="text-ink-500 max-w-md text-sm leading-relaxed">
+            <p class="text-ink-500/90 max-w-md text-sm leading-7 font-light">
               国家高新技术企业，专注 AI
               与物联网融合的智慧养老解决方案，以“设备+平台+服务”守护每一位长者的晚年生活。
             </p>
@@ -181,7 +181,7 @@
             <h4 class="text-ink-900 mb-4 text-sm font-extrabold tracking-widest uppercase">
               联系我们
             </h4>
-            <ul class="text-ink-500 flex flex-col gap-3 text-sm">
+            <ul class="text-ink-500 flex flex-col gap-3 text-sm font-light">
               <li>山东省济南市起步区中科新经济科创园 1号楼 3层</li>
               <li><a href="tel:0531-66670365" class="hover:text-primary">0531-66670365</a></li>
               <li>
@@ -196,15 +196,14 @@
             </ul>
           </div>
         </div>
-        <div
-          class="border-line mt-10 flex flex-col items-center justify-between gap-3 border-t pt-6 text-xs sm:flex-row"
-        >
-          <span class="text-ink-500"
+        <div class="via-line mt-10 h-px bg-gradient-to-r from-transparent to-transparent"></div>
+        <div class="mt-6 flex flex-col items-center justify-between gap-3 text-xs sm:flex-row">
+          <span class="text-ink-500 font-light tracking-wide"
             >©
             <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}">2026</span>
             山东万椿智能科技有限公司 · 太平洋保险承保</span
           >
-          <span class="text-ink-500">椿萱并茂 棠棣同馨</span>
+          <span class="text-ink-500 font-light tracking-wide">椿萱并茂 棠棣同馨</span>
         </div>
       </div>
       <halo:footer />

@@ -24,18 +24,32 @@
       class="bg-secondary/20 pointer-events-none absolute -bottom-24 -left-16 h-72 w-72 rounded-full blur-3xl"
     ></div>
 
-    <div class="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+    <div
+      class="pointer-events-none absolute inset-0 opacity-[0.32]"
+      style="
+        background-image: radial-gradient(rgba(79, 199, 183, 0.06) 1px, transparent 1px);
+        background-size: 16px 16px;
+      "
+      aria-hidden="true"
+    ></div>
+    <div class="relative mx-auto max-w-7xl px-4 py-28 sm:px-6 lg:px-8 lg:py-32">
       <div class="reveal mx-auto max-w-3xl text-center">
         <span
           class="border-primary/20 bg-mist text-primary-dark inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-semibold"
         >
           合作咨询 · Partnership
         </span>
-        <h1 class="text-ink-900 mt-6 text-4xl leading-tight font-black tracking-tight sm:text-5xl">
+        <h1
+          class="text-ink-900 mt-6 text-4xl leading-[1.1] font-black tracking-tighter sm:text-5xl lg:text-[3.4rem]"
+        >
           携手万椿<br />
-          <span class="text-primary-dark">共筑智慧养老生态</span>
+          <span class="text-primary-dark bg-primary/8 rounded-full px-2.5 py-0.5"
+            >共筑智慧养老生态</span
+          >
         </h1>
-        <p class="text-ink-500 mx-auto mt-6 max-w-2xl text-base leading-relaxed sm:text-lg">
+        <p
+          class="text-ink-500/90 mx-auto mt-6 max-w-2xl text-base leading-7 font-light sm:text-lg sm:leading-7"
+        >
           面向养老机构 / 社区 / 政府 / 渠道伙伴，开放 3+X 全场景解决方案与 OEM/ODM
           能力，共享银发经济红利。我们提供从设备到平台、从部署到运营的全链路支持，让合作更轻松、让服务更到位。
         </p>
@@ -48,11 +62,14 @@
   </section>
 
   <!-- 4合作卡网格 -->
-  <section class="bg-white py-16 sm:py-20">
+  <section class="bg-white py-24 sm:py-32">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="reveal mx-auto max-w-2xl text-center">
-        <p class="text-primary text-sm font-semibold tracking-widest uppercase">合作模式</p>
-        <h2 class="text-ink-900 mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">
+        <p class="text-primary text-sm font-semibold tracking-[0.2em] uppercase">合作模式</p>
+        <span class="bg-primary mx-auto mt-3 block h-0.5 w-6 rounded-full"></span>
+        <h2
+          class="text-ink-900 mt-5 text-3xl leading-tight font-black tracking-tighter sm:text-4xl"
+        >
           四大合作方向 按需对接
         </h2>
         <p class="text-ink-500 mt-3 text-sm sm:text-base">
@@ -60,10 +77,10 @@
         </p>
       </div>
 
-      <div class="mt-10 grid gap-6 sm:grid-cols-2">
+      <div class="mt-10 grid gap-8 sm:grid-cols-2">
         <!-- 卡片 A 养老机构合作 -->
         <div
-          class="card-hover reveal border-line shadow-soft flex flex-col gap-5 rounded-[var(--radius-card)] border bg-white p-6 sm:p-7"
+          class="card-hover reveal flex flex-col gap-5 rounded-[var(--radius-card)] border border-white/60 bg-white p-8 shadow-[0_8px_40px_rgba(36,109,116,0.06)] backdrop-blur-sm hover:shadow-[0_20px_60px_rgba(36,109,116,0.12)] sm:p-10"
         >
           <span
             class="bg-mist text-primary border-primary/15 flex h-12 w-12 items-center justify-center rounded-full border"
@@ -83,8 +100,8 @@
             </svg>
           </span>
           <div>
-            <h3 class="text-ink-900 text-lg font-extrabold tracking-tight">养老机构合作</h3>
-            <p class="text-ink-500 mt-2 text-sm leading-relaxed">
+            <h3 class="text-ink-900 text-lg font-black tracking-tighter">养老机构合作</h3>
+            <p class="text-ink-500/90 mt-2 text-sm leading-7 font-light">
               智慧养老院整体解决方案，全院消防、安防、求助、健康一体化数字化改造，已获评上海智慧养老院标杆案例。
             </p>
           </div>
@@ -142,7 +159,7 @@
 
         <!-- 卡片 B 社区智慧养老 -->
         <div
-          class="card-hover reveal border-line shadow-soft flex flex-col gap-5 rounded-[var(--radius-card)] border bg-white p-6 sm:p-7"
+          class="card-hover reveal flex flex-col gap-5 rounded-[var(--radius-card)] border border-white/60 bg-white p-8 shadow-[0_8px_40px_rgba(36,109,116,0.06)] backdrop-blur-sm hover:shadow-[0_20px_60px_rgba(36,109,116,0.12)] sm:p-10"
         >
           <span
             class="bg-mist text-primary border-primary/15 flex h-12 w-12 items-center justify-center rounded-full border"
@@ -162,8 +179,8 @@
             </svg>
           </span>
           <div>
-            <h3 class="text-ink-900 text-lg font-extrabold tracking-tight">社区智慧养老</h3>
-            <p class="text-ink-500 mt-2 text-sm leading-relaxed">
+            <h3 class="text-ink-900 text-lg font-black tracking-tighter">社区智慧养老</h3>
+            <p class="text-ink-500/90 mt-2 text-sm leading-7 font-light">
               全场景社区解决方案，政府监管版与运营版双形态，覆盖日间照料、助餐助浴、助洁助医等服务。
             </p>
           </div>
@@ -221,7 +238,7 @@
 
         <!-- 卡片 C 居家与政务合作 -->
         <div
-          class="card-hover reveal border-line shadow-soft flex flex-col gap-5 rounded-[var(--radius-card)] border bg-white p-6 sm:p-7"
+          class="card-hover reveal flex flex-col gap-5 rounded-[var(--radius-card)] border border-white/60 bg-white p-8 shadow-[0_8px_40px_rgba(36,109,116,0.06)] backdrop-blur-sm hover:shadow-[0_20px_60px_rgba(36,109,116,0.12)] sm:p-10"
         >
           <span
             class="bg-mist text-primary border-primary/15 flex h-12 w-12 items-center justify-center rounded-full border"
@@ -241,8 +258,8 @@
             </svg>
           </span>
           <div>
-            <h3 class="text-ink-900 text-lg font-extrabold tracking-tight">居家与政务合作</h3>
-            <p class="text-ink-500 mt-2 text-sm leading-relaxed">
+            <h3 class="text-ink-900 text-lg font-black tracking-tighter">居家与政务合作</h3>
+            <p class="text-ink-500/90 mt-2 text-sm leading-7 font-light">
               居家智慧养老 +
               民政评分体系对接，支持山东省民政厅智慧养老院评分体系，助力政策落地与监管。
             </p>
@@ -301,7 +318,7 @@
 
         <!-- 卡片 D 渠道代理 & OEM/ODM -->
         <div
-          class="card-hover reveal border-line shadow-soft flex flex-col gap-5 rounded-[var(--radius-card)] border bg-white p-6 sm:p-7"
+          class="card-hover reveal flex flex-col gap-5 rounded-[var(--radius-card)] border border-white/60 bg-white p-8 shadow-[0_8px_40px_rgba(36,109,116,0.06)] backdrop-blur-sm hover:shadow-[0_20px_60px_rgba(36,109,116,0.12)] sm:p-10"
         >
           <span
             class="bg-mist text-primary border-primary/15 flex h-12 w-12 items-center justify-center rounded-full border"
@@ -321,8 +338,8 @@
             </svg>
           </span>
           <div>
-            <h3 class="text-ink-900 text-lg font-extrabold tracking-tight">渠道代理 & OEM/ODM</h3>
-            <p class="text-ink-500 mt-2 text-sm leading-relaxed">
+            <h3 class="text-ink-900 text-lg font-black tracking-tighter">渠道代理 & OEM/ODM</h3>
+            <p class="text-ink-500/90 mt-2 text-sm leading-7 font-light">
               智慧养老 / 消防产品 OEM/ODM
               定制，提供区域保护、培训支持、物料支持与联合营销，共享市场红利。
             </p>
@@ -383,21 +400,24 @@
   </section>
 
   <!-- 表单区：左表单右信息（对标 mikapu.cn/partnership 镜像布局） -->
-  <section id="cooperation-form" class="section-tinted border-line/70 border-y py-16 sm:py-20">
+  <section id="cooperation-form" class="section-tinted border-line/70 border-y py-24 sm:py-32">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="grid gap-10 lg:grid-cols-[1.35fr_0.85fr] lg:gap-8">
         <!-- 左侧：表单 -->
         <div class="reveal">
-          <p class="text-primary text-sm font-semibold tracking-widest uppercase">提交合作意向</p>
-          <h2 class="text-ink-900 mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">
+          <p class="text-primary text-sm font-semibold tracking-[0.2em] uppercase">提交合作意向</p>
+          <span class="bg-primary mt-3 block h-0.5 w-6 rounded-full"></span>
+          <h2
+            class="text-ink-900 mt-5 text-3xl leading-tight font-black tracking-tighter sm:text-4xl"
+          >
             填写信息，专人对接
           </h2>
-          <p class="text-ink-500 mt-3 text-sm leading-relaxed sm:text-base">
+          <p class="text-ink-500/90 mt-3 text-sm leading-7 font-light sm:text-base">
             填写以下信息，我们的商务团队将在24小时内与您联系
           </p>
           <div
             id="cooperation-placeholder-form"
-            class="border-line shadow-soft mt-6 rounded-[var(--radius-card)] border bg-white p-6 sm:p-8"
+            class="mt-6 rounded-[var(--radius-card)] border border-white/60 bg-white p-6 shadow-[0_8px_40px_rgba(36,109,116,0.06)] backdrop-blur-sm sm:p-8"
           >
             <div class="border-line overflow-hidden rounded-[8px] border bg-white">
               <iframe
@@ -413,7 +433,7 @@
               class="flex flex-col gap-5"
               onsubmit="event.preventDefault(); const fd = new FormData(this); const company = fd.get('company')||'', contact=fd.get('contact')||'', phone=fd.get('phone')||''; const type = fd.get('type')||'', message=fd.get('message')||''; const subject = encodeURIComponent('【万椿官网】合作咨询 - ' + company + ' - ' + type); const body = encodeURIComponent('公司名称：' + company + '\n联系人：' + contact + '\n电话：' + phone + '\n合作类型：' + type + '\n\n合作意向：\n' + message); window.location.href = 'mailto:contact@wanchunsmart.com?subject=' + subject + '&body=' + body; const tip = document.getElementById('cooperation-mailto-tip'); if(tip) { tip.classList.remove('hidden'); tip.textContent = '已尝试唤起邮件客户端，如未弹出请手动发送至 contact@wanchunsmart.com'; } return false;"
             >
-              <div class="grid gap-4 sm:grid-cols-2">
+              <div class="grid gap-6 sm:grid-cols-2">
                 <label class="flex flex-col gap-1.5">
                   <span class="text-ink-700 text-sm font-medium"
                     >公司名称 <span class="text-red-500">*</span></span
@@ -528,16 +548,16 @@
         <div class="flex flex-col gap-6">
           <!-- 上卡：更多联系方式 -->
           <div
-            class="reveal border-line shadow-soft rounded-[var(--radius-card)] border bg-white p-6 sm:p-7"
+            class="reveal rounded-[var(--radius-card)] border border-white/60 bg-white p-6 shadow-[0_8px_40px_rgba(36,109,116,0.06)] backdrop-blur-sm sm:p-8"
           >
-            <h3 class="text-ink-900 text-lg font-extrabold tracking-tight">更多联系方式</h3>
-            <p class="text-ink-500 mt-1.5 text-sm leading-relaxed">
+            <h3 class="text-ink-900 text-lg font-black tracking-tighter">更多联系方式</h3>
+            <p class="text-ink-500 mt-1.5 text-sm leading-7 font-light">
               如有任何问题，欢迎通过以下方式联系我们
             </p>
             <div class="mt-6 flex flex-col gap-6">
               <div class="flex items-start gap-4">
                 <span
-                  class="bg-mist text-primary flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
+                  class="bg-mist text-primary ring-primary/10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full ring-1 backdrop-blur-sm"
                 >
                   <svg
                     class="h-5 w-5"
@@ -557,14 +577,14 @@
                   <p class="text-ink-500 text-xs font-medium">商务热线</p>
                   <a
                     href="tel:0531-66670365"
-                    class="text-primary-dark mt-1 block text-xl font-extrabold tracking-tight hover:underline"
+                    class="text-primary-dark mt-1 block text-xl font-black tracking-tighter hover:underline"
                     >0531-66670365</a
                   >
                 </div>
               </div>
               <div class="flex items-start gap-4">
                 <span
-                  class="bg-mist text-primary flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
+                  class="bg-mist text-primary ring-primary/10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full ring-1 backdrop-blur-sm"
                 >
                   <svg
                     class="h-5 w-5"
@@ -592,7 +612,7 @@
               </div>
               <div class="flex items-start gap-4">
                 <span
-                  class="bg-mist text-primary flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
+                  class="bg-mist text-primary ring-primary/10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full ring-1 backdrop-blur-sm"
                 >
                   <svg
                     class="h-5 w-5"
@@ -615,7 +635,7 @@
                 </span>
                 <div>
                   <p class="text-ink-500 text-xs font-medium">公司地址</p>
-                  <p class="text-ink-900 mt-1 text-sm leading-relaxed font-semibold">
+                  <p class="text-ink-900 mt-1 text-sm leading-7 font-semibold">
                     山东省济南市起步区中科新经济科创园1号楼3层
                   </p>
                 </div>
@@ -624,13 +644,13 @@
           </div>
           <!-- 下卡：为什么选择万椿 -->
           <div
-            class="reveal border-line shadow-soft rounded-[var(--radius-card)] border bg-white p-6 sm:p-7"
+            class="reveal rounded-[var(--radius-card)] border border-white/60 bg-white p-6 shadow-[0_8px_40px_rgba(36,109,116,0.06)] backdrop-blur-sm sm:p-8"
           >
-            <h3 class="text-ink-900 text-lg font-extrabold tracking-tight">为什么选择万椿？</h3>
+            <h3 class="text-ink-900 text-lg font-black tracking-tighter">为什么选择万椿？</h3>
             <ul class="mt-5 flex flex-col gap-3.5">
               <li class="flex items-start gap-3">
                 <span
-                  class="bg-mist text-primary mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full"
+                  class="bg-mist text-primary ring-primary/10 mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full ring-1 backdrop-blur-sm"
                 >
                   <svg
                     class="h-3.5 w-3.5"
@@ -646,13 +666,13 @@
                     />
                   </svg>
                 </span>
-                <span class="text-ink-700 text-sm leading-relaxed"
+                <span class="text-ink-700 text-sm leading-7 font-light"
                   >10年+深耕，200+专利，2亿+智造积累</span
                 >
               </li>
               <li class="flex items-start gap-3">
                 <span
-                  class="bg-mist text-primary mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full"
+                  class="bg-mist text-primary ring-primary/10 mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full ring-1 backdrop-blur-sm"
                 >
                   <svg
                     class="h-3.5 w-3.5"
@@ -668,13 +688,13 @@
                     />
                   </svg>
                 </span>
-                <span class="text-ink-700 text-sm leading-relaxed"
+                <span class="text-ink-700 text-sm leading-7 font-light"
                   >3大研发中心，100+研发工程师</span
                 >
               </li>
               <li class="flex items-start gap-3">
                 <span
-                  class="bg-mist text-primary mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full"
+                  class="bg-mist text-primary ring-primary/10 mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full ring-1 backdrop-blur-sm"
                 >
                   <svg
                     class="h-3.5 w-3.5"
@@ -690,13 +710,13 @@
                     />
                   </svg>
                 </span>
-                <span class="text-ink-700 text-sm leading-relaxed"
+                <span class="text-ink-700 text-sm leading-7 font-light"
                   >150+国家和地区，2,000,000+设备在线</span
                 >
               </li>
               <li class="flex items-start gap-3">
                 <span
-                  class="bg-mist text-primary mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full"
+                  class="bg-mist text-primary ring-primary/10 mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full ring-1 backdrop-blur-sm"
                 >
                   <svg
                     class="h-3.5 w-3.5"
@@ -712,7 +732,7 @@
                     />
                   </svg>
                 </span>
-                <span class="text-ink-700 text-sm leading-relaxed"
+                <span class="text-ink-700 text-sm leading-7 font-light"
                   >太平洋保险承保，权威认证齐全</span
                 >
               </li>
@@ -726,11 +746,11 @@
   <!-- 可编辑正文区：仅当后台填写了有效内容时展示（剥离 HTML 标签后仍有文字才显示） -->
   <section
     th:if="${singlePage.content.content != null and !#strings.isEmpty(singlePage.content.content.replaceAll('<[^>]*>', '').replace('&nbsp;', '').trim())}"
-    class="bg-white py-12 sm:py-16"
+    class="bg-white py-16 sm:py-20"
   >
     <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
       <div
-        class="reveal border-line shadow-soft rounded-[var(--radius-card)] border bg-white p-6 sm:p-10"
+        class="reveal rounded-[var(--radius-card)] border border-white/60 bg-white p-6 shadow-[0_8px_40px_rgba(36,109,116,0.06)] backdrop-blur-sm sm:p-10"
       >
         <div class="rich-content" th:utext="${singlePage.content.content}"></div>
       </div>
@@ -740,7 +760,7 @@
   <!-- 评论区 -->
   <section class="mx-auto max-w-4xl px-4 pb-16 sm:px-6 lg:px-8" th:if="${haloCommentEnabled}">
     <div class="border-line border-t pt-10">
-      <h2 class="text-ink-900 mb-6 text-xl font-extrabold tracking-tight">评论</h2>
+      <h2 class="text-ink-900 mb-6 text-xl font-black tracking-tighter">评论</h2>
       <halo:comment
         group="content.halo.run"
         kind="SinglePage"

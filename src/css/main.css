@@ -31,9 +31,9 @@
   --color-secondary: #ffd86b;
   --color-accent-pink: #f7b8c8;
 
-  /* 阴影：大而柔的青色调 */
-  --shadow-soft: 0 8px 30px rgba(36, 109, 116, 0.07);
-  --shadow-lift: 0 18px 45px rgba(36, 109, 116, 0.12);
+  /* 阴影：更柔更大、更高级的青色调 */
+  --shadow-soft: 0 8px 40px rgba(36, 109, 116, 0.06);
+  --shadow-lift: 0 20px 60px rgba(36, 109, 116, 0.12);
 
   /* 圆角风格：基准 8px，按钮 / 标签大量使用胶囊形 */
   --radius-card: 0.5rem;
@@ -60,6 +60,20 @@ body {
   background-image: linear-gradient(180deg, #ffffff, rgba(79, 199, 183, 0.06));
 }
 
+/* ---------- 高级感纹理：仅 Hero 与 CTA 叠加的极淡网格 ---------- */
+.texture-grid {
+  background-image: radial-gradient(rgba(79, 199, 183, 0.06) 1px, transparent 1px);
+  background-size: 16px 16px;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* 渐隐分隔线：替代生硬的 1px border */
+.hairline-fade {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-line), transparent);
+}
+
 /* ---------- 按钮基础样式（8px 圆角，非胶囊）---------- */
 
 .btn {
@@ -72,23 +86,29 @@ body {
   font-size: 1rem;
   font-weight: 800;
   line-height: 1.5rem;
+  will-change: transform;
   transition:
-    background-color 0.22s ease,
-    border-color 0.22s ease,
-    color 0.22s ease,
-    box-shadow 0.22s ease,
-    transform 0.22s ease;
+    background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* 主按钮：纯色青绿底白字 + 彩色投影（非渐变） */
+/* 主按钮：纯色青绿底白字 + 内高光 + 柔投影 */
 .btn-primary {
   color: #ffffff;
   background-color: #4fc7b7;
-  box-shadow: 0 16px 30px rgba(79, 199, 183, 0.22);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 12px 32px rgba(79, 199, 183, 0.28);
 }
 .btn-primary:hover {
   background-color: #2b8d89;
-  transform: translateY(-3px);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    0 16px 40px rgba(79, 199, 183, 0.32);
 }
 
 /* 次按钮：ghost——白底 + 青绿半透明描边 + 深青字 */
@@ -99,7 +119,7 @@ body {
 }
 .btn-outline:hover {
   border-color: rgba(79, 199, 183, 0.7);
-  transform: translateY(-3px);
+  transform: translateY(-3px) scale(1.02);
   box-shadow: var(--shadow-soft);
 }
 
@@ -107,11 +127,15 @@ body {
 .btn-white {
   color: #2b8d89;
   background-color: #ffffff;
-  box-shadow: 0 8px 24px rgba(31, 45, 56, 0.18);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 8px 24px rgba(31, 45, 56, 0.18);
 }
 .btn-white:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-lift);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    var(--shadow-lift);
 }
 
 /* CTA 横幅内使用：outline-light——白色半透明描边白字 */
@@ -122,7 +146,7 @@ body {
 .btn-ghost:hover {
   background-color: rgba(255, 255, 255, 0.12);
   border-color: #ffffff;
-  transform: translateY(-3px);
+  transform: translateY(-3px) scale(1.02);
 }
 
 /* ---------- 动效：hero 产品图轻微上下漂浮（6s 循环） ---------- */
@@ -143,7 +167,8 @@ body {
 /* ---------- 滚动入场动画（mk-reveal 对齐） ----------
  * 仅在 html.js 前缀下隐藏元素，保证无 JS 时内容直接可见。
  * main.ts 首行给 documentElement 加 .js，IntersectionObserver
- * 给进入视口的元素加 .is-visible。 */
+ * 给进入视口的元素加 .is-visible。
+ * 高级感：更利落的缓动与更短时长 0.6s */
 .js .reveal,
 .js .reveal-left,
 .js .reveal-right {
@@ -151,9 +176,9 @@ body {
   transform: translateY(36px);
   filter: blur(4px);
   transition:
-    opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.72s cubic-bezier(0.22, 1, 0.36, 1),
-    filter 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .js .reveal-left {
   transform: translateX(-48px);
@@ -208,16 +233,17 @@ body {
   }
 }
 
-/* 卡片悬浮上浮通用过渡 */
+/* 卡片悬浮上浮通用过渡 — 高级感：更慢更柔 + 上浮 -6px + will-change */
 .card-hover {
+  will-change: transform;
   transition:
-    transform 0.24s ease,
-    box-shadow 0.24s ease,
-    border-color 0.24s ease,
-    background-color 0.24s ease;
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease,
+    background-color 0.3s ease;
 }
 .card-hover:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
   box-shadow: var(--shadow-lift);
 }
 
