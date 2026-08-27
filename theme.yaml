@@ -6,10 +6,10 @@ spec:
   displayName: 万椿智慧养老
   author:
     name: 山东万椿智能科技有限公司
-    website: https://www.wanchun.cn
+    website: https://www.wanchunsmart.com
   description: 山东万椿智能科技 · 国家高新技术企业 · 太平洋保险承保，以“设备+平台+服务”3+X与“健康监测-安全预警-生活辅助-社交陪伴”4+N智慧养老体系，融合AI/物联网/大数据/云计算，为居家·社区·机构提供全场景智慧守护。
   logo: /assets/images/wanchun-logo.png
-  homepage: https://www.wanchun.cn
+  homepage: https://www.wanchunsmart.com
   repo: https://github.com/halo-dev/theme-vite-starter
   issues: https://github.com/halo-dev/theme-vite-starter/issues
   settingName: "theme-vite-starter-setting"
