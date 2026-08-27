@@ -1,9 +1,5 @@
 <!doctype html>
-<html
-  lang="zh-CN"
-  xmlns:th="https://www.thymeleaf.org"
-  th:fragment="layout (content)"
->
+<html lang="zh-CN" xmlns:th="https://www.thymeleaf.org" th:fragment="layout (content)">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -32,7 +28,7 @@
             src="/themes/theme-vite-starter/assets/images/wanchun-logo.png"
             alt="万椿"
             class="h-9 w-9 shrink-0 object-contain"
-            onerror="this.style.display='none'"
+            onerror="this.style.display = 'none'"
           />
           <span class="text-ink-900 flex items-center gap-1"
             ><span>万椿智能</span><span class="font-light">·</span
@@ -57,15 +53,37 @@
           class="text-ink-700 hover:bg-mist inline-flex h-10 w-10 items-center justify-center rounded-full transition-colors duration-200 md:hidden"
         >
           <span class="sr-only">打开菜单</span>
-          <svg id="icon-open" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          <svg
+            id="icon-open"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+            />
           </svg>
-          <svg id="icon-close" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <svg
+            id="icon-close"
+            class="hidden h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+          >
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
       </div>
-      <nav id="mobile-menu" class="border-line/80 hidden border-t bg-white/95 md:hidden" aria-label="移动端导航">
+      <nav
+        id="mobile-menu"
+        class="border-line/80 hidden border-t bg-white/95 md:hidden"
+        aria-label="移动端导航"
+      >
         <ul class="space-y-1 px-4 py-3">
           <li th:each="item : ${menu?.menuItems}">
             <a
@@ -93,42 +111,76 @@
                 src="/themes/theme-vite-starter/assets/images/wanchun-logo.png"
                 alt="万椿"
                 class="h-10 w-10 shrink-0 object-contain"
-                onerror="this.style.display='none'"
+                onerror="this.style.display = 'none'"
               />
               <span class="flex flex-col leading-none"
-                ><span class="text-ink-900 text-base font-extrabold tracking-tight">山东万椿智能科技有限公司</span
-                ><span class="text-primary-dark text-xs font-semibold tracking-widest">椿萱并茂 棠棣同馨</span></span
+                ><span class="text-ink-900 text-base font-extrabold tracking-tight"
+                  >山东万椿智能科技有限公司</span
+                ><span class="text-primary-dark text-xs font-semibold tracking-widest"
+                  >椿萱并茂 棠棣同馨</span
+                ></span
               >
             </a>
             <p class="text-ink-500 max-w-md text-sm leading-relaxed">
-              国家高新技术企业，专注 AI 与物联网融合的智慧养老解决方案，以“设备+平台+服务”守护每一位长者的晚年生活。
+              国家高新技术企业，专注 AI
+              与物联网融合的智慧养老解决方案，以“设备+平台+服务”守护每一位长者的晚年生活。
             </p>
           </div>
           <div>
-            <h4 class="text-ink-900 mb-4 text-sm font-extrabold tracking-widest uppercase">快速链接</h4>
+            <h4 class="text-ink-900 mb-4 text-sm font-extrabold tracking-widest uppercase">
+              快速链接
+            </h4>
             <ul class="flex flex-col gap-3 text-sm">
-              <li><a th:href="@{/}" class="text-ink-500 hover:text-primary transition-colors">首页</a></li>
-              <li><a th:href="@{/archives}" class="text-ink-500 hover:text-primary transition-colors">解决方案</a></li>
-              <li><a th:href="@{/page/about}" class="text-ink-500 hover:text-primary transition-colors">关于万椿</a></li>
-              <li><a th:href="@{/page/cooperation}" class="text-ink-500 hover:text-primary transition-colors">合作咨询</a></li>
+              <li>
+                <a th:href="@{/}" class="text-ink-500 hover:text-primary transition-colors">首页</a>
+              </li>
+              <li>
+                <a th:href="@{/archives}" class="text-ink-500 hover:text-primary transition-colors"
+                  >解决方案</a
+                >
+              </li>
+              <li>
+                <a
+                  th:href="@{/page/about}"
+                  class="text-ink-500 hover:text-primary transition-colors"
+                  >关于万椿</a
+                >
+              </li>
+              <li>
+                <a
+                  th:href="@{/page/cooperation}"
+                  class="text-ink-500 hover:text-primary transition-colors"
+                  >合作咨询</a
+                >
+              </li>
             </ul>
           </div>
           <div>
-            <h4 class="text-ink-900 mb-4 text-sm font-extrabold tracking-widest uppercase">联系我们</h4>
+            <h4 class="text-ink-900 mb-4 text-sm font-extrabold tracking-widest uppercase">
+              联系我们
+            </h4>
             <ul class="text-ink-500 flex flex-col gap-3 text-sm">
               <li>山东省济南市起步区中科新经济科创园 1号楼 3层</li>
               <li><a href="tel:0531-66670365" class="hover:text-primary">0531-66670365</a></li>
               <li>
-                <a href="https://www.wanchunsmart.com" target="_blank" rel="noopener" class="hover:text-primary"
+                <a
+                  href="https://www.wanchunsmart.com"
+                  target="_blank"
+                  rel="noopener"
+                  class="hover:text-primary"
                   >www.wanchunsmart.com</a
                 >
               </li>
             </ul>
           </div>
         </div>
-        <div class="border-line mt-10 flex flex-col items-center justify-between gap-3 border-t pt-6 text-xs sm:flex-row">
+        <div
+          class="border-line mt-10 flex flex-col items-center justify-between gap-3 border-t pt-6 text-xs sm:flex-row"
+        >
           <span class="text-ink-500"
-            >© <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}">2026</span> 山东万椿智能科技有限公司 · 太平洋保险承保</span
+            >©
+            <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}">2026</span>
+            山东万椿智能科技有限公司 · 太平洋保险承保</span
           >
           <span class="text-ink-500">椿萱并茂 棠棣同馨</span>
         </div>
