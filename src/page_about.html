@@ -528,9 +528,9 @@
     </div>
   </section>
 
-  <!-- 可编辑正文区：后台填写的 singlePage.content.content 在此展示 -->
+  <!-- 可编辑正文区：仅当后台填写了有效内容时展示 -->
   <section
-    th:if="${singlePage.content.content != null and !#strings.isEmpty(singlePage.content.content)}"
+    th:if="${singlePage.content.content != null and !#strings.isEmpty(#strings.trim(singlePage.content.content)) and !#strings.equals(#strings.trim(singlePage.content.content), '<p></p>') and !#strings.equals(#strings.trim(singlePage.content.content), '<p><br></p>')}"
     class="section-tinted border-line/70 border-y py-12 sm:py-16"
   >
     <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
