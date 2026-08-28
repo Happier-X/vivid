@@ -46,16 +46,40 @@
           </span>
         </a>
 
-        <!-- 桌面端导航：居中胶囊悬浮，hover 时 #e0f7f4 -->
+        <!-- 桌面端导航：居中胶囊悬浮，hover 时 #e0f7f4；未配置菜单时兜底 4 项 -->
         <nav id="mk-main-nav" class="hidden items-center gap-1 md:flex" aria-label="主导航">
-          <a
-            th:each="item : ${menu?.menuItems}"
-            th:href="@{${item.status.href}}"
-            th:text="${item.status.displayName}"
-            th:target="${item.spec.target?.value}"
-            class="rounded-[8px] px-[14px] py-[10px] text-[14px] leading-none font-bold text-[rgba(31,45,56,0.8)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#e0f7f4] hover:text-[#2b8d89]"
-            >菜单项</a
-          >
+          <th:block th:if="${menu != null and !#lists.isEmpty(menu.menuItems)}">
+            <a
+              th:each="item : ${menu.menuItems}"
+              th:href="@{${item.status.href}}"
+              th:text="${item.status.displayName}"
+              th:target="${item.spec.target?.value}"
+              class="rounded-[8px] px-[14px] py-[10px] text-[14px] leading-none font-bold text-[rgba(31,45,56,0.8)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#e0f7f4] hover:text-[#2b8d89]"
+              >菜单项</a
+            >
+          </th:block>
+          <th:block th:if="${menu == null or #lists.isEmpty(menu.menuItems)}">
+            <a
+              href="/"
+              class="rounded-[8px] px-[14px] py-[10px] text-[14px] leading-none font-bold text-[rgba(31,45,56,0.8)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#e0f7f4] hover:text-[#2b8d89]"
+              >首页</a
+            >
+            <a
+              href="/solutions"
+              class="rounded-[8px] px-[14px] py-[10px] text-[14px] leading-none font-bold text-[rgba(31,45,56,0.8)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#e0f7f4] hover:text-[#2b8d89]"
+              >解决方案</a
+            >
+            <a
+              href="/cooperation"
+              class="rounded-[8px] px-[14px] py-[10px] text-[14px] leading-none font-bold text-[rgba(31,45,56,0.8)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#e0f7f4] hover:text-[#2b8d89]"
+              >合作咨询</a
+            >
+            <a
+              href="/about"
+              class="rounded-[8px] px-[14px] py-[10px] text-[14px] leading-none font-bold text-[rgba(31,45,56,0.8)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#e0f7f4] hover:text-[#2b8d89]"
+              >关于我们</a
+            >
+          </th:block>
         </nav>
 
         <!-- 右侧操作区：万椿为企业官网，仅保留汉堡（样式复刻 mikapu） -->
@@ -82,24 +106,77 @@
         aria-label="移动端导航"
       >
         <ul class="space-y-1 px-4 py-3">
-          <li th:each="item : ${menu?.menuItems}">
-            <a
-              th:href="@{${item.status.href}}"
-              th:text="${item.status.displayName}"
-              th:target="${item.spec.target?.value}"
-              class="block rounded-[8px] px-4 py-3 text-base font-bold text-[rgba(31,45,56,0.82)] transition-colors hover:bg-[#e0f7f4] hover:text-[#2b8d89]"
-              >菜单项</a
-            >
-          </li>
+          <th:block th:if="${menu != null and !#lists.isEmpty(menu.menuItems)}">
+            <li th:each="item : ${menu.menuItems}">
+              <a
+                th:href="@{${item.status.href}}"
+                th:text="${item.status.displayName}"
+                th:target="${item.spec.target?.value}"
+                class="block rounded-[8px] px-4 py-3 text-base font-bold text-[rgba(31,45,56,0.82)] transition-colors hover:bg-[#e0f7f4] hover:text-[#2b8d89]"
+                >菜单项</a
+              >
+            </li>
+          </th:block>
+          <th:block th:if="${menu == null or #lists.isEmpty(menu.menuItems)}">
+            <li>
+              <a
+                href="/"
+                class="block rounded-[8px] px-4 py-3 text-base font-bold text-[rgba(31,45,56,0.82)] transition-colors hover:bg-[#e0f7f4] hover:text-[#2b8d89]"
+                >首页</a
+              >
+            </li>
+            <li>
+              <a
+                href="/solutions"
+                class="block rounded-[8px] px-4 py-3 text-base font-bold text-[rgba(31,45,56,0.82)] transition-colors hover:bg-[#e0f7f4] hover:text-[#2b8d89]"
+                >解决方案</a
+              >
+            </li>
+            <li>
+              <a
+                href="/cooperation"
+                class="block rounded-[8px] px-4 py-3 text-base font-bold text-[rgba(31,45,56,0.82)] transition-colors hover:bg-[#e0f7f4] hover:text-[#2b8d89]"
+                >合作咨询</a
+              >
+            </li>
+            <li>
+              <a
+                href="/about"
+                class="block rounded-[8px] px-4 py-3 text-base font-bold text-[rgba(31,45,56,0.82)] transition-colors hover:bg-[#e0f7f4] hover:text-[#2b8d89]"
+                >关于我们</a
+              >
+            </li>
+          </th:block>
         </ul>
       </nav>
+      <script th:inline="javascript">
+        /* 兜底：已配置菜单但未含解决方案时，JS 注入该项，保证 4 项完整 */
+        (function () {
+          var d = document,
+            s = d.getElementById("mk-main-nav"),
+            m = d.querySelector("#mobile-menu ul");
+          if (!s || !m) return;
+          var has = [].some.call(s.querySelectorAll("a"), function (a) {
+            return /解决方案/.test(a.textContent);
+          });
+          if (!has) {
+            var a = d.createElement("a");
+            a.href = "/solutions";
+            a.textContent = "解决方案";
+            a.className =
+              "rounded-[8px] px-[14px] py-[10px] text-[14px] leading-none font-bold text-[rgba(31,45,56,0.8)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#e0f7f4] hover:text-[#2b8d89]";
+            s.insertBefore(a, s.children[1] || null);
+            var li = d.createElement("li");
+            li.innerHTML =
+              '<a href="/solutions" class="block rounded-[8px] px-4 py-3 text-base font-bold text-[rgba(31,45,56,0.82)] transition-colors hover:bg-[#e0f7f4] hover:text-[#2b8d89]">解决方案</a>';
+            m.insertBefore(li, m.children[1] || null);
+          }
+        })();
+      </script>
     </header>
 
     <main th:replace="${content}"></main>
 
-    <!-- 复用与主题一致的页脚 -->
-    <!-- 深色页脚：1:1 复刻 mikapu 底部 4 栏，内容保留万椿 -->
-    <!-- 深色页脚：1:1 复刻 mikapu 底部 4 栏，内容保留万椿 -->
     <!-- 深色页脚：1:1 复刻 mikapu — bg #17262c / 文字 rgba(234,248,246,0.7)，内容保留万椿 -->
     <footer class="bg-[#17262c] text-[#eaf8f6]" style="background: #17262c; color: #eaf8f6">
       <div class="mx-auto w-[calc(100%-32px)] max-w-[1180px] py-14">
@@ -189,8 +266,8 @@
               </li>
               <li>
                 <a
-                  th:href="@{/archives}"
-                  href="/archives"
+                  th:href="@{/solutions}"
+                  href="/solutions"
                   class="transition-colors hover:text-[#4fc7b7]"
                   style="color: rgba(234, 248, 246, 0.7)"
                   >解决方案</a

@@ -1,0 +1,254 @@
+<include src="layout.html">
+  <template name="head">
+    <title th:text="|${singlePage.spec.title} - ${site.title}|">解决方案</title>
+  </template>
+
+  <!-- 首屏：与关于我们同款 -mt 融合 + #eef7f7 浅青底 -->
+  <section class="relative -mt-[76px] overflow-hidden pt-[76px]" style="background: #eef7f7">
+    <div class="relative mx-auto w-[calc(100%-32px)] max-w-[1180px] px-0 py-14 sm:py-16 lg:py-20">
+      <div class="reveal mx-auto max-w-3xl text-center">
+        <h1
+          class="text-ink-900 text-[clamp(32px,4.5vw,52px)] leading-[1.12] font-black tracking-tight"
+          style="font-weight: 900"
+        >
+          全场景智慧养老解决方案
+        </h1>
+        <p
+          class="mx-auto mt-4 max-w-[720px] text-[14px] leading-7"
+          style="color: rgba(104, 119, 131, 0.9)"
+        >
+          以“设备+平台+服务”3+X 与“健康监测-安全预警-生活辅助-社交陪伴”4+N 体系，融合 AI / 物联网 /
+          大数据 / 云计算，覆盖居家·社区·机构全场景，让每一位长者享有有品质、有温度的晚年。
+        </p>
+      </div>
+      <div class="reveal mt-8 grid gap-4 sm:grid-cols-3">
+        <div
+          class="flex flex-col items-center gap-2 rounded-[12px] border border-[rgba(217,236,233,0.9)] bg-white px-6 py-7 text-center shadow-[0_8px_30px_rgba(36,109,116,0.05)]"
+        >
+          <span
+            class="flex h-10 w-10 items-center justify-center rounded-[8px] bg-[#eef6f5] text-[#4fc7b7]"
+            ><svg
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.7"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3 9.75L12 3l9 6.75V20a1 1 0 01-1 1h-5v-5H9v5H4a1 1 0 01-1-1V9.75z"
+              /></svg
+          ></span>
+          <p class="text-ink-900 text-sm font-black">居家养老</p>
+          <p class="text-xs leading-5" style="color: #6b7c83">
+            毫米波无感监测+智能设备，守护居家安全与健康
+          </p>
+        </div>
+        <div
+          class="flex flex-col items-center gap-2 rounded-[12px] border border-[rgba(217,236,233,0.9)] bg-white px-6 py-7 text-center shadow-[0_8px_30px_rgba(36,109,116,0.05)]"
+        >
+          <span
+            class="flex h-10 w-10 items-center justify-center rounded-[8px] bg-[#eef6f5] text-[#4fc7b7]"
+            ><svg
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.7"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 21v-8.25M12 21c-1.5-1.2-3-2.5-3-4.5a3 3 0 116 0c0 2-1.5 3.3-3 4.5z"
+              />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M18 9a6 6 0 11-12 0 6 6 0 0112 0z"
+              /></svg
+          ></span>
+          <p class="text-ink-900 text-sm font-black">社区养老</p>
+          <p class="text-xs leading-5" style="color: #6b7c83">
+            社区平台联动，健康档案与预警服务下沉
+          </p>
+        </div>
+        <div
+          class="flex flex-col items-center gap-2 rounded-[12px] border border-[rgba(217,236,233,0.9)] bg-white px-6 py-7 text-center shadow-[0_8px_30px_rgba(36,109,116,0.05)]"
+        >
+          <span
+            class="flex h-10 w-10 items-center justify-center rounded-[8px] bg-[#eef6f5] text-[#4fc7b7]"
+            ><svg
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.7"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21"
+              /></svg
+          ></span>
+          <p class="text-ink-900 text-sm font-black">机构养老</p>
+          <p class="text-xs leading-5" style="color: #6b7c83">机构一体化平台，人房联动与运营提效</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3+X 体系 -->
+  <section class="py-12 sm:py-16" style="background: #eef7f7">
+    <div class="mx-auto w-[calc(100%-32px)] max-w-[1180px]">
+      <div class="reveal flex gap-3">
+        <span
+          class="flex h-10 w-10 shrink-0 items-center justify-center rounded-[8px] bg-white text-[#4fc7b7] shadow-sm"
+          ><svg
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.7"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 12l2 2 4-4m5.586-4.586a2 2 0 112.828 2.828L11 22H7v-4l12.414-12.414z"
+            /></svg
+        ></span>
+        <div>
+          <p class="text-[11px] font-bold tracking-[0.16em] text-[#4fc7b7]">SYSTEM</p>
+          <h2
+            class="text-ink-900 text-[26px] leading-none font-black tracking-tight"
+            style="font-weight: 900"
+          >
+            3+X 设备+平台+服务
+          </h2>
+          <p class="mt-2 text-[13px] leading-6" style="color: rgba(104, 119, 131, 0.9)">
+            一套体系打通感知-网络-平台-应用，叠加 X 类可扩展服务。
+          </p>
+        </div>
+      </div>
+      <div class="mt-8 grid gap-5 sm:grid-cols-3">
+        <div
+          class="reveal rounded-[16px] border border-[rgba(217,236,233,0.6)] bg-white p-6 shadow-[0_8px_30px_rgba(36,109,116,0.06)]"
+        >
+          <p class="text-ink-900 text-sm font-black">设备层</p>
+          <p class="mt-2 text-xs leading-5" style="color: #6b7c83">
+            燃气卫士、跌倒守护、睡眠监测、手表等全系列自研硬件，太平洋保险承保。
+          </p>
+        </div>
+        <div
+          class="reveal rounded-[16px] border border-[rgba(217,236,233,0.6)] bg-white p-6 shadow-[0_8px_30px_rgba(36,109,116,0.06)]"
+        >
+          <p class="text-ink-900 text-sm font-black">平台层</p>
+          <p class="mt-2 text-xs leading-5" style="color: #6b7c83">
+            智慧养老云平台，健康档案、告警分发、工单流转与运营大屏。
+          </p>
+        </div>
+        <div
+          class="reveal rounded-[16px] border border-[rgba(217,236,233,0.6)] bg-white p-6 shadow-[0_8px_30px_rgba(36,109,116,0.06)]"
+        >
+          <p class="text-ink-900 text-sm font-black">服务层+X</p>
+          <p class="mt-2 text-xs leading-5" style="color: #6b7c83">
+            7×24 响应、维保与运营陪跑，可叠加家政、医疗等 X 扩展。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4+N 体系 -->
+  <section class="py-12 sm:py-16" style="background: #eef7f7">
+    <div class="mx-auto w-[calc(100%-32px)] max-w-[1180px]">
+      <div class="reveal flex gap-3">
+        <span
+          class="flex h-10 w-10 shrink-0 items-center justify-center rounded-[8px] bg-white text-[#4fc7b7] shadow-sm"
+          ><svg
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.7"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 3c-1.2 0-2.3.4-3.2 1.1A4 4 0 008 7.5c0 2.5 2.2 4.5 4 6 1.8-1.5 4-3.5 4-6a4 4 0 00-.8-3.4A4.6 4.6 0 0012 3z"
+            /></svg
+        ></span>
+        <div>
+          <p class="text-[11px] font-bold tracking-[0.16em] text-[#4fc7b7]">CARE</p>
+          <h2
+            class="text-ink-900 text-[26px] leading-none font-black tracking-tight"
+            style="font-weight: 900"
+          >
+            4+N 全维守护
+          </h2>
+          <p class="mt-2 text-[13px] leading-6" style="color: rgba(104, 119, 131, 0.9)">
+            健康监测-安全预警-生活辅助-社交陪伴，叠加 N 类场景化能力。
+          </p>
+        </div>
+      </div>
+      <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div
+          class="reveal rounded-[16px] border border-[rgba(217,236,233,0.6)] bg-white p-6 shadow-[0_8px_30px_rgba(36,109,116,0.06)]"
+        >
+          <p class="text-ink-900 text-sm font-black">健康监测</p>
+          <p class="mt-2 text-xs leading-5" style="color: #6b7c83">
+            睡眠、心率、活动轨迹无感采集，生成健康趋势。
+          </p>
+        </div>
+        <div
+          class="reveal rounded-[16px] border border-[rgba(217,236,233,0.6)] bg-white p-6 shadow-[0_8px_30px_rgba(36,109,116,0.06)]"
+        >
+          <p class="text-ink-900 text-sm font-black">安全预警</p>
+          <p class="mt-2 text-xs leading-5" style="color: #6b7c83">
+            燃气、跌倒、离床等多维告警，秒级触达家人与平台。
+          </p>
+        </div>
+        <div
+          class="reveal rounded-[16px] border border-[rgba(217,236,233,0.6)] bg-white p-6 shadow-[0_8px_30px_rgba(36,109,116,0.06)]"
+        >
+          <p class="text-ink-900 text-sm font-black">生活辅助</p>
+          <p class="mt-2 text-xs leading-5" style="color: #6b7c83">
+            用药提醒、智能提醒与适老化交互，减轻日常负担。
+          </p>
+        </div>
+        <div
+          class="reveal rounded-[16px] border border-[rgba(217,236,233,0.6)] bg-white p-6 shadow-[0_8px_30px_rgba(36,109,116,0.06)]"
+        >
+          <p class="text-ink-900 text-sm font-black">社交陪伴</p>
+          <p class="mt-2 text-xs leading-5" style="color: #6b7c83">
+            亲情通话与社区活动联动，缓解孤独感。
+          </p>
+        </div>
+      </div>
+      <div class="reveal mt-6 text-center">
+        <a
+          th:href="@{/cooperation}"
+          href="/cooperation"
+          class="inline-flex min-h-[44px] items-center justify-center rounded-[8px] bg-[#4fc7b7] px-6 py-2.5 text-sm font-extrabold text-white shadow-[0_8px_24px_rgba(79,199,183,0.28)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#2b8d89]"
+          >获取专属方案 →</a
+        >
+      </div>
+    </div>
+  </section>
+
+  <!-- 可编辑正文 -->
+  <section
+    th:if="${singlePage.content.content != null and !#strings.isEmpty(singlePage.content.content.replaceAll('<[^>]*>', '').replace('&nbsp;', '').trim())}"
+    class="py-10"
+    style="background: #eef7f7"
+  >
+    <div class="mx-auto w-[calc(100%-32px)] max-w-[780px]">
+      <div
+        class="rounded-[12px] border border-[rgba(217,236,233,0.9)] bg-white p-6 sm:p-8"
+        style="box-shadow: 0 8px 30px rgba(36, 109, 116, 0.05)"
+      >
+        <div class="rich-content" th:utext="${singlePage.content.content}"></div>
+      </div>
+    </div>
+  </section>
+</include>

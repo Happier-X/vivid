@@ -22,6 +22,9 @@ spec:
       - name: 合作咨询
         description: 万椿合作咨询页，含四类合作模式与表单
         file: page_cooperation.html
+      - name: 解决方案
+        description: 万椿全场景解决方案，3+X 与 4+N 体系
+        file: page_solutions.html
   version: 1.0.0
   requires: ">=2.0.0"
   license:
