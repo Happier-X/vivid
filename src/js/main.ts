@@ -23,36 +23,34 @@ if (!prefersReducedMotion) {
   });
 }
 
-// 移动端菜单开合
-const menuToggle = document.getElementById("menu-toggle");
+// 移动端菜单开合 — 同步切换 header 的 is-menu-open（与 mikapu 行为一致）
+const menuToggle = document.getElementById("menu-toggle") as HTMLButtonElement | null;
 const mobileMenu = document.getElementById("mobile-menu");
+const header = document.getElementById("site-header");
 
 if (menuToggle && mobileMenu) {
-  const iconOpen = document.getElementById("icon-open");
-  const iconClose = document.getElementById("icon-close");
   let open = false;
-
+  const syncMenu = () => {
+    mobileMenu.classList.toggle("hidden", !open);
+    menuToggle.setAttribute("aria-expanded", String(open));
+    header?.classList.toggle("is-menu-open", open);
+  };
   menuToggle.addEventListener("click", () => {
     open = !open;
-    mobileMenu.classList.toggle("hidden", !open);
-    iconOpen?.classList.toggle("hidden", open);
-    iconClose?.classList.toggle("hidden", !open);
-    menuToggle.setAttribute("aria-expanded", String(open));
+    syncMenu();
   });
-
-  // 跳转后自动收起移动端菜单
   mobileMenu.addEventListener("click", (event) => {
     if ((event.target as HTMLElement).closest("a") && open) {
-      menuToggle.click();
+      open = false;
+      syncMenu();
     }
   });
 }
 
-// 导航吸顶阴影：页面滚动后为顶栏添加投影
-const header = document.getElementById("site-header");
+// 固定头滚动态：滚动 >8px 时加 is-scrolled（复刻 mikapu 的透明->毛玻璃切换）
 if (header) {
   const onScroll = () => {
-    header.classList.toggle("shadow-md", window.scrollY > 8);
+    header.classList.toggle("is-scrolled", window.scrollY > 8);
   };
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();

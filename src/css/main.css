@@ -149,6 +149,59 @@ body {
   transform: translateY(-3px) scale(1.02);
 }
 
+/* ---------- 固定头：1:1 复刻 mikapu 的毛玻璃 — 透明 -> 滚动后乳白玻璃 ---------- */
+#site-header {
+  /* 让 backdrop-filter 的出现有过渡，避免滚动时突然弹跳 */
+  -webkit-backdrop-filter: blur(0px);
+  backdrop-filter: blur(0px);
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    backdrop-filter 0.3s ease,
+    -webkit-backdrop-filter 0.3s ease;
+}
+#site-header.is-scrolled,
+#site-header.is-menu-open {
+  border-color: rgba(217, 236, 233, 0.8);
+  background: rgba(251, 254, 254, 0.88);
+  box-shadow: 0 8px 28px rgba(31, 45, 56, 0.07);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  backdrop-filter: blur(18px) saturate(160%);
+}
+@supports not (backdrop-filter: blur(18px)) {
+  #site-header.is-scrolled,
+  #site-header.is-menu-open {
+    /* 降级：不支持毛玻璃的浏览器用更实白底 */
+    background: rgba(251, 254, 254, 0.96);
+  }
+}
+
+/* ---------- mikapu 1:1 eyebrow 水印：data-index 巨大半透明数字 ---------- */
+.mk-eyebrow[data-index]::before {
+  content: attr(data-index);
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  z-index: -1;
+  color: rgba(79, 199, 183, 0.1);
+  font-size: 96px;
+  font-weight: 900;
+  line-height: 1;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+/* Hero 容器：保证与 mikapu 一致的视口高度与上下内边距 */
+.mk-hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
 /* ---------- 动效：hero 产品图轻微上下漂浮（6s 循环） ---------- */
 
 @keyframes mk-float {

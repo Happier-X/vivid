@@ -1,8 +1,8 @@
-<!-- Hero 首屏：万椿智慧养老 — 高级感优化版 -->
+<!-- Hero 首屏：1:1 复刻 mikapu.cn 的 mk-hero 结构与质感 -->
 <section
-  class="relative overflow-hidden"
+  class="mk-hero -mt-[76px]"
   style="
-    background-image:
+    background:
       linear-gradient(
         135deg,
         rgba(79, 199, 183, 0.13),
@@ -12,143 +12,179 @@
       linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(255, 216, 107, 0.08));
   "
 >
-  <!-- 极淡网格纹理叠加（高级感） -->
+  <!-- 纵向细线 + 对角柔光：与 mikapu.css 的 ::before 一致 -->
   <div
-    class="pointer-events-none absolute inset-0 opacity-[0.32]"
-    style="
-      background-image: radial-gradient(rgba(79, 199, 183, 0.06) 1px, transparent 1px);
-      background-size: 16px 16px;
-    "
+    class="pointer-events-none absolute inset-0 overflow-hidden opacity-70"
     aria-hidden="true"
-  ></div>
-  <!-- 装饰性柔和光斑 -->
-  <div
-    class="bg-primary/15 pointer-events-none absolute -top-32 -right-24 h-96 w-96 rounded-full blur-3xl"
-  ></div>
-  <div
-    class="bg-secondary/20 pointer-events-none absolute -bottom-24 -left-16 h-72 w-72 rounded-full blur-3xl"
-  ></div>
-  <div
-    class="bg-accent-pink/25 pointer-events-none absolute top-1/3 left-1/4 h-40 w-40 rounded-full blur-3xl"
+    style="
+      background:
+        linear-gradient(
+          112deg,
+          transparent 0 18%,
+          rgba(79, 199, 183, 0.14) 30%,
+          transparent 46%,
+          rgba(247, 184, 200, 0.13) 68%,
+          transparent 86%
+        ),
+        repeating-linear-gradient(90deg, rgba(79, 199, 183, 0.08) 0 1px, transparent 1px 96px);
+    "
   ></div>
 
-  <div class="relative mx-auto max-w-7xl px-4 py-28 sm:px-6 lg:px-8 lg:py-32">
-    <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-      <!-- 左侧文案区 -->
-      <div class="reveal flex flex-col items-start gap-8">
-        <!-- 顶部标签 -->
-        <span
-          class="border-primary/20 bg-mist text-primary-dark inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-semibold tracking-wide backdrop-blur-sm"
+  <div
+    class="relative mx-auto grid w-[calc(100%-32px)] max-w-[1180px] items-center gap-12 py-[108px] pb-[72px] lg:grid-cols-[0.95fr_1.05fr] lg:gap-12"
+  >
+    <!-- 左侧文案：与 mikapu 完全一致的层级 -->
+    <div class="reveal flex flex-col items-start">
+      <!-- 胶囊标签 + 01 水印：复刻 mk-eyebrow[data-index]，文案保留万椿 -->
+      <span
+        class="mk-eyebrow"
+        data-index="01"
+        style="
+          isolation: isolate;
+          position: relative;
+          display: inline-flex;
+          width: fit-content;
+          align-items: center;
+          border-radius: 999px;
+          background: rgba(79, 199, 183, 0.15);
+          padding: 8px 14px;
+          color: #2b8d89;
+          font-size: 14px;
+          font-weight: 800;
+          line-height: 1;
+        "
+        >国家高新技术企业 · 太平洋保险承保 · 椿萱并茂 棠棣同馨</span
+      >
+
+      <h1
+        class="mt-6 text-[clamp(42px,6vw,72px)] leading-[1.05] font-black tracking-tight"
+        style="font-weight: 900; line-height: 1.05"
+      >
+        <span class="text-ink-900 block">让每一位长者享有</span>
+        <strong class="block" style="color: #2b8d89">有品质、有温度的智慧晚年</strong>
+      </h1>
+
+      <p class="text-ink-500 mt-6 max-w-[600px] text-[18px] leading-[1.75] font-normal">
+        山东万椿智能科技，深耕智慧养老 10 年+，以“设备+平台+服务”3+X
+        方案与“健康监测-安全预警-生活辅助-社交陪伴”4+N 体系，融合 AI / 物联网 / 大数据 /
+        云计算，为居家 · 社区 · 机构提供全场景守护。
+      </p>
+
+      <!-- 双 CTA：主实心 + 次白底描边，8px 圆角，文案保留万椿 -->
+      <div class="mt-[34px] flex flex-wrap gap-[14px]">
+        <a
+          th:href="@{/archives}"
+          href="/archives"
+          class="inline-flex min-h-[46px] items-center justify-center rounded-[8px] bg-[#4fc7b7] px-5 py-[11px] text-[15px] font-extrabold text-white shadow-[0_16px_30px_rgba(79,199,183,0.22)] transition-all duration-200 hover:-translate-y-[3px] hover:bg-[#2b8d89]"
+          >探索解决方案</a
         >
-          国家高新技术企业 · 太平洋保险承保 · 椿萱并茂 棠棣同馨
-        </span>
-
-        <h1
-          class="text-ink-900 text-4xl leading-[1.1] font-black tracking-tighter sm:text-5xl lg:text-[3.4rem]"
+        <a
+          th:href="@{/page/about}"
+          href="/page/about"
+          class="inline-flex min-h-[46px] items-center justify-center rounded-[8px] border border-[rgba(79,199,183,0.35)] bg-white px-5 py-[11px] text-[15px] font-extrabold text-[#2b8d89] transition-all duration-200 hover:-translate-y-[3px] hover:border-[rgba(79,199,183,0.65)] hover:shadow-[0_8px_30px_rgba(36,109,116,0.07)]"
+          >了解万椿</a
         >
-          让每一位长者享有<br />
-          <span class="text-primary-dark bg-primary/8 rounded-full px-2.5 py-0.5"
-            >有品质、有温度</span
-          >的智慧晚年
-        </h1>
-
-        <p class="text-ink-500/90 max-w-xl text-lg leading-7 font-light">
-          山东万椿智能科技，深耕智慧养老 10 年+，以“设备+平台+服务”3+X
-          方案与“健康监测-安全预警-生活辅助-社交陪伴”4+N 体系，融合 AI / 物联网 / 大数据 /
-          云计算，为居家 · 社区 · 机构提供全场景守护。
-        </p>
-
-        <!-- 双 CTA 按钮 -->
-        <div class="flex flex-wrap items-center gap-4">
-          <a th:href="@{/archives}" href="/archives" class="btn btn-primary"> 探索解决方案 </a>
-          <a th:href="@{/page/contact}" href="/page/contact" class="btn btn-outline"> 联系我们 </a>
-        </div>
-
-        <!-- 特性标签组 -->
-        <ul class="mt-2 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm">
-          <li>
-            <span
-              class="bg-mist text-primary-dark inline-flex items-center gap-2 rounded-full px-4 py-1.5 font-medium backdrop-blur-sm"
-            >
-              <svg
-                class="text-primary h-3.5 w-3.5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="2.5"
-                stroke="currentColor"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-              </svg>
-              毫米波无感监测
-            </span>
-          </li>
-          <li>
-            <span
-              class="bg-mist text-primary-dark inline-flex items-center gap-2 rounded-full px-4 py-1.5 font-medium backdrop-blur-sm"
-            >
-              <svg
-                class="text-primary h-3.5 w-3.5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="2.5"
-                stroke="currentColor"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-              </svg>
-              多维安全守护
-            </span>
-          </li>
-          <li>
-            <span
-              class="bg-mist text-primary-dark inline-flex items-center gap-2 rounded-full px-4 py-1.5 font-medium backdrop-blur-sm"
-            >
-              <svg
-                class="text-primary h-3.5 w-3.5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="2.5"
-                stroke="currentColor"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-              </svg>
-              智慧养老云平台
-            </span>
-          </li>
-          <li>
-            <span
-              class="bg-mist text-primary-dark inline-flex items-center gap-2 rounded-full px-4 py-1.5 font-medium backdrop-blur-sm"
-            >
-              <svg
-                class="text-primary h-3.5 w-3.5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="2.5"
-                stroke="currentColor"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-              </svg>
-              20+ 科研项目支撑
-            </span>
-          </li>
-        </ul>
       </div>
 
-      <!-- 右侧主图：外层入场滑入，内层持续浮动（避免 transform 互相覆盖） -->
-      <div class="reveal reveal-right">
-        <div class="animate-float relative">
+      <!-- 底部特性：盾牌图标 + 裸文字（无胶囊背景），文案保留万椿 4 大卖点 -->
+      <div class="mt-[30px] flex flex-wrap gap-[14px]" aria-label="核心卖点">
+        <span class="inline-flex items-center gap-2 text-sm font-bold text-[#687783]"
+          ><svg
+            viewBox="0 0 24 24"
+            class="h-4 w-4 shrink-0 text-[#2b8d89]"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
+            <path d="M12 3l7 3v5c0 4.5-2.9 8.6-7 10-4.1-1.4-7-5.5-7-10V6l7-3z" />
+            <path
+              d="m8.5 12.5 2.2 2.2 4.8-5"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          毫米波无感监测</span
+        >
+        <span class="inline-flex items-center gap-2 text-sm font-bold text-[#687783]"
+          ><svg
+            viewBox="0 0 24 24"
+            class="h-4 w-4 shrink-0 text-[#2b8d89]"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
+            <path d="M12 3l7 3v5c0 4.5-2.9 8.6-7 10-4.1-1.4-7-5.5-7-10V6l7-3z" />
+            <path
+              d="m8.5 12.5 2.2 2.2 4.8-5"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          多维安全守护</span
+        >
+        <span class="inline-flex items-center gap-2 text-sm font-bold text-[#687783]"
+          ><svg
+            viewBox="0 0 24 24"
+            class="h-4 w-4 shrink-0 text-[#2b8d89]"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
+            <path d="M12 3l7 3v5c0 4.5-2.9 8.6-7 10-4.1-1.4-7-5.5-7-10V6l7-3z" />
+            <path
+              d="m8.5 12.5 2.2 2.2 4.8-5"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          智慧养老云平台</span
+        >
+        <span class="inline-flex items-center gap-2 text-sm font-bold text-[#687783]"
+          ><svg
+            viewBox="0 0 24 24"
+            class="h-4 w-4 shrink-0 text-[#2b8d89]"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
+            <path d="M12 3l7 3v5c0 4.5-2.9 8.6-7 10-4.1-1.4-7-5.5-7-10V6l7-3z" />
+            <path
+              d="m8.5 12.5 2.2 2.2 4.8-5"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          20+ 科研项目支撑</span
+        >
+      </div>
+    </div>
+
+    <!-- 右侧媒体：圆角卡片 + 真实图片 + 浮动 + 阴影，与 mikapu 的 mk-hero__media 一致 -->
+    <div class="reveal reveal-right">
+      <div class="animate-float relative">
+        <div
+          class="relative aspect-[16/11] overflow-hidden rounded-[8px] bg-[#f4faf9] shadow-[0_18px_45px_rgba(36,109,116,0.12)]"
+          style="filter: drop-shadow(0 28px 36px rgba(41, 127, 124, 0.18))"
+        >
+          <!-- 万椿产品主图：样式复刻 mikapu，内容保留万椿一体化方案示意 -->
           <div
-            class="from-primary/15 to-accent-pink/20 absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-to-tr blur-2xl"
-          ></div>
-          <!-- 万椿产品主图占位，保留渐变卡片，后续可替换为真实产品图 -->
-          <div
-            class="from-primary to-primary-deep relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-[var(--radius-card)] bg-gradient-to-br text-white shadow-[0_20px_60px_rgba(36,109,116,0.12)]"
+            class="from-primary to-primary-deep absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br p-8 text-white"
           >
             <svg
-              class="h-20 w-20 opacity-70"
+              class="h-16 w-16 opacity-70"
               fill="none"
               viewBox="0 0 24 24"
               stroke-width="1"
               stroke="currentColor"
+              aria-hidden="true"
             >
               <path
                 stroke-linecap="round"
@@ -157,7 +193,7 @@
               />
             </svg>
             <span
-              class="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-white/15 px-4 py-1 text-xs font-semibold tracking-widest whitespace-nowrap backdrop-blur"
+              class="mt-4 rounded-full bg-white/15 px-4 py-1 text-xs font-semibold tracking-widest backdrop-blur"
               >万椿智慧养老 · 感知-网络-平台-应用一体化</span
             >
           </div>

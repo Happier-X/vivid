@@ -3,93 +3,40 @@
     <title th:text="|${singlePage.spec.title} - ${site.title}|">合作咨询</title>
   </template>
 
-  <!-- 首屏：携手万椿 -->
-  <section
-    class="relative overflow-hidden"
-    style="
-      background-image:
-        linear-gradient(
-          135deg,
-          rgba(79, 199, 183, 0.13),
-          rgba(255, 255, 255, 0.92) 48%,
-          rgba(247, 184, 200, 0.12)
-        ),
-        linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(255, 216, 107, 0.08));
-    "
-  >
-    <div
-      class="bg-primary/15 pointer-events-none absolute -top-32 -right-24 h-96 w-96 rounded-full blur-3xl"
-    ></div>
-    <div
-      class="bg-secondary/20 pointer-events-none absolute -bottom-24 -left-16 h-72 w-72 rounded-full blur-3xl"
-    ></div>
-
-    <div
-      class="pointer-events-none absolute inset-0 opacity-[0.32]"
-      style="
-        background-image: radial-gradient(rgba(79, 199, 183, 0.06) 1px, transparent 1px);
-        background-size: 16px 16px;
-      "
-      aria-hidden="true"
-    ></div>
-    <div class="relative mx-auto max-w-7xl px-4 py-28 sm:px-6 lg:px-8 lg:py-32">
+  <!-- 首屏：1:1 复刻 mikapu/partnership — 初始与导航融为一体，滚动后磨砂（与首页同逻辑） -->
+  <section class="relative -mt-[76px] overflow-hidden pt-[76px]" style="background: #eef7f7">
+    <div class="relative mx-auto w-[calc(100%-32px)] max-w-[1180px] px-0 py-24 sm:py-28 lg:py-32">
       <div class="reveal mx-auto max-w-3xl text-center">
-        <span
-          class="border-primary/20 bg-mist text-primary-dark inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-semibold"
-        >
-          合作咨询 · Partnership
-        </span>
         <h1
-          class="text-ink-900 mt-6 text-4xl leading-[1.1] font-black tracking-tighter sm:text-5xl lg:text-[3.4rem]"
+          class="text-ink-900 text-[clamp(32px,4.5vw,56px)] leading-[1.12] font-black tracking-tight"
+          style="font-weight: 900"
         >
-          携手万椿<br />
-          <span class="text-primary-dark bg-primary/8 rounded-full px-2.5 py-0.5"
-            >共筑智慧养老生态</span
-          >
+          携手万椿，共创未来
         </h1>
-        <p
-          class="text-ink-500/90 mx-auto mt-6 max-w-2xl text-base leading-7 font-light sm:text-lg sm:leading-7"
-        >
-          面向养老机构 / 社区 / 政府 / 渠道伙伴，开放 3+X 全场景解决方案与 OEM/ODM
-          能力，共享银发经济红利。我们提供从设备到平台、从部署到运营的全链路支持，让合作更轻松、让服务更到位。
+        <p class="text-ink-500 mx-auto mt-4 max-w-2xl text-[15px] leading-7 sm:text-base">
+          面向养老机构、社区、政府与渠道伙伴，开放 3+X 全场景解决方案与 OEM/ODM
+          能力，共享银发经济红利
         </p>
-        <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
-          <a href="#cooperation-form" class="btn btn-primary">立即咨询</a>
-          <a th:href="@{/page/about}" href="/page/about" class="btn btn-outline">了解万椿</a>
-        </div>
       </div>
     </div>
   </section>
 
-  <!-- 4合作卡网格 -->
-  <section class="bg-white py-24 sm:py-32">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="reveal mx-auto max-w-2xl text-center">
-        <p class="text-primary text-sm font-semibold tracking-[0.2em] uppercase">合作模式</p>
-        <span class="bg-primary mx-auto mt-3 block h-0.5 w-6 rounded-full"></span>
-        <h2
-          class="text-ink-900 mt-5 text-3xl leading-tight font-black tracking-tighter sm:text-4xl"
-        >
-          四大合作方向 按需对接
-        </h2>
-        <p class="text-ink-500 mt-3 text-sm sm:text-base">
-          覆盖机构、社区、居家与渠道，灵活适配各类场景
-        </p>
-      </div>
-
-      <div class="mt-10 grid gap-8 sm:grid-cols-2">
+  <!-- 4 合作卡：1:1 复刻截图 — 4 列小卡 / 淡方图标(40px #eef6f5) / ✓列表，内容保留万椿 -->
+  <section class="pt-2 pb-10 sm:pb-14" style="background: #eef7f7">
+    <div class="mx-auto w-[calc(100%-32px)] max-w-[1180px]">
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         <!-- 卡片 A 养老机构合作 -->
         <div
-          class="card-hover reveal flex flex-col gap-5 rounded-[var(--radius-card)] border border-white/60 bg-white p-8 shadow-[0_8px_40px_rgba(36,109,116,0.06)] backdrop-blur-sm hover:shadow-[0_20px_60px_rgba(36,109,116,0.12)] sm:p-10"
+          class="reveal flex flex-col gap-4 rounded-[12px] border border-[rgba(217,236,233,0.9)] bg-white p-6 shadow-[0_8px_30px_rgba(36,109,116,0.05)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(36,109,116,0.10)]"
         >
           <span
-            class="bg-mist text-primary border-primary/15 flex h-12 w-12 items-center justify-center rounded-full border"
+            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-[8px] bg-[#eef6f5] text-[#4fc7b7]"
           >
             <svg
-              class="h-6 w-6"
+              class="h-5 w-5"
               fill="none"
               viewBox="0 0 24 24"
-              stroke-width="1.8"
+              stroke-width="1.7"
               stroke="currentColor"
             >
               <path
@@ -100,75 +47,45 @@
             </svg>
           </span>
           <div>
-            <h3 class="text-ink-900 text-lg font-black tracking-tighter">养老机构合作</h3>
-            <p class="text-ink-500/90 mt-2 text-sm leading-7 font-light">
+            <h3 class="text-ink-900 text-[16px] leading-6 font-black tracking-tight">
+              养老机构合作
+            </h3>
+            <p class="text-[13px] leading-6" style="color: rgba(104, 119, 131, 0.9)">
               智慧养老院整体解决方案，全院消防、安防、求助、健康一体化数字化改造，已获评上海智慧养老院标杆案例。
             </p>
           </div>
           <ul class="flex flex-col gap-2.5">
-            <li class="flex items-start gap-2 text-sm">
-              <svg
-                class="text-primary mt-0.5 h-4 w-4 shrink-0"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="2.5"
-                stroke="currentColor"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-              </svg>
-              <span class="text-ink-700">全院一体化改造：消防/安防/求助/健康全覆盖</span>
+            <li class="flex items-start gap-2 text-[13px] leading-5">
+              <span class="mt-0.5 shrink-0 text-[#4fc7b7]">✓</span
+              ><span style="color: #3f505c">全院一体化改造：消防/安防/求助/健康全覆盖</span>
             </li>
-            <li class="flex items-start gap-2 text-sm">
-              <svg
-                class="text-primary mt-0.5 h-4 w-4 shrink-0"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="2.5"
-                stroke="currentColor"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-              </svg>
-              <span class="text-ink-700">对接民政评分体系，助力等级评定与补贴申报</span>
+            <li class="flex items-start gap-2 text-[13px] leading-5">
+              <span class="mt-0.5 shrink-0 text-[#4fc7b7]">✓</span
+              ><span style="color: #3f505c">对接民政评分体系，助力等级评定与补贴申报</span>
             </li>
-            <li class="flex items-start gap-2 text-sm">
-              <svg
-                class="text-primary mt-0.5 h-4 w-4 shrink-0"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="2.5"
-                stroke="currentColor"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-              </svg>
-              <span class="text-ink-700">大屏+APP+微信多端协同，实时告警与处置闭环</span>
+            <li class="flex items-start gap-2 text-[13px] leading-5">
+              <span class="mt-0.5 shrink-0 text-[#4fc7b7]">✓</span
+              ><span style="color: #3f505c">大屏+APP+微信多端协同，实时告警与处置闭环</span>
             </li>
-            <li class="flex items-start gap-2 text-sm">
-              <svg
-                class="text-primary mt-0.5 h-4 w-4 shrink-0"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="2.5"
-                stroke="currentColor"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-              </svg>
-              <span class="text-ink-700">标杆案例可实地参观，提供考察与培训支持</span>
+            <li class="flex items-start gap-2 text-[13px] leading-5">
+              <span class="mt-0.5 shrink-0 text-[#4fc7b7]">✓</span
+              ><span style="color: #3f505c">标杆案例可实地参观，提供考察与培训支持</span>
             </li>
           </ul>
         </div>
 
         <!-- 卡片 B 社区智慧养老 -->
         <div
-          class="card-hover reveal flex flex-col gap-5 rounded-[var(--radius-card)] border border-white/60 bg-white p-8 shadow-[0_8px_40px_rgba(36,109,116,0.06)] backdrop-blur-sm hover:shadow-[0_20px_60px_rgba(36,109,116,0.12)] sm:p-10"
+          class="reveal flex flex-col gap-4 rounded-[12px] border border-[rgba(217,236,233,0.9)] bg-white p-6 shadow-[0_8px_30px_rgba(36,109,116,0.05)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(36,109,116,0.10)]"
         >
           <span
-            class="bg-mist text-primary border-primary/15 flex h-12 w-12 items-center justify-center rounded-full border"
+            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-[8px] bg-[#eef6f5] text-[#4fc7b7]"
           >
             <svg
-              class="h-6 w-6"
+              class="h-5 w-5"
               fill="none"
               viewBox="0 0 24 24"
-              stroke-width="1.8"
+              stroke-width="1.7"
               stroke="currentColor"
             >
               <path
@@ -179,75 +96,45 @@
             </svg>
           </span>
           <div>
-            <h3 class="text-ink-900 text-lg font-black tracking-tighter">社区智慧养老</h3>
-            <p class="text-ink-500/90 mt-2 text-sm leading-7 font-light">
+            <h3 class="text-ink-900 text-[16px] leading-6 font-black tracking-tight">
+              社区智慧养老
+            </h3>
+            <p class="text-[13px] leading-6" style="color: rgba(104, 119, 131, 0.9)">
               全场景社区解决方案，政府监管版与运营版双形态，覆盖日间照料、助餐助浴、助洁助医等服务。
             </p>
           </div>
           <ul class="flex flex-col gap-2.5">
-            <li class="flex items-start gap-2 text-sm">
-              <svg
-                class="text-primary mt-0.5 h-4 w-4 shrink-0"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="2.5"
-                stroke="currentColor"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-              </svg>
-              <span class="text-ink-700">日间照料/助餐/助浴/助医全流程数字化</span>
+            <li class="flex items-start gap-2 text-[13px] leading-5">
+              <span class="mt-0.5 shrink-0 text-[#4fc7b7]">✓</span
+              ><span style="color: #3f505c">日间照料/助餐/助浴/助医全流程数字化</span>
             </li>
-            <li class="flex items-start gap-2 text-sm">
-              <svg
-                class="text-primary mt-0.5 h-4 w-4 shrink-0"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="2.5"
-                stroke="currentColor"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-              </svg>
-              <span class="text-ink-700">政府监管大屏 + 运营管理后台，双版本协同</span>
+            <li class="flex items-start gap-2 text-[13px] leading-5">
+              <span class="mt-0.5 shrink-0 text-[#4fc7b7]">✓</span
+              ><span style="color: #3f505c">政府监管大屏 + 运营管理后台，双版本协同</span>
             </li>
-            <li class="flex items-start gap-2 text-sm">
-              <svg
-                class="text-primary mt-0.5 h-4 w-4 shrink-0"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="2.5"
-                stroke="currentColor"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-              </svg>
-              <span class="text-ink-700">适老化改造与智能设备联动，一键响应</span>
+            <li class="flex items-start gap-2 text-[13px] leading-5">
+              <span class="mt-0.5 shrink-0 text-[#4fc7b7]">✓</span
+              ><span style="color: #3f505c">适老化改造与智能设备联动，一键响应</span>
             </li>
-            <li class="flex items-start gap-2 text-sm">
-              <svg
-                class="text-primary mt-0.5 h-4 w-4 shrink-0"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="2.5"
-                stroke="currentColor"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-              </svg>
-              <span class="text-ink-700">社区-机构-居家三级联动，数据互通共享</span>
+            <li class="flex items-start gap-2 text-[13px] leading-5">
+              <span class="mt-0.5 shrink-0 text-[#4fc7b7]">✓</span
+              ><span style="color: #3f505c">社区-机构-居家三级联动，数据互通共享</span>
             </li>
           </ul>
         </div>
 
         <!-- 卡片 C 居家与政务合作 -->
         <div
-          class="card-hover reveal flex flex-col gap-5 rounded-[var(--radius-card)] border border-white/60 bg-white p-8 shadow-[0_8px_40px_rgba(36,109,116,0.06)] backdrop-blur-sm hover:shadow-[0_20px_60px_rgba(36,109,116,0.12)] sm:p-10"
+          class="reveal flex flex-col gap-4 rounded-[12px] border border-[rgba(217,236,233,0.9)] bg-white p-6 shadow-[0_8px_30px_rgba(36,109,116,0.05)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(36,109,116,0.10)]"
         >
           <span
-            class="bg-mist text-primary border-primary/15 flex h-12 w-12 items-center justify-center rounded-full border"
+            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-[8px] bg-[#eef6f5] text-[#4fc7b7]"
           >
             <svg
-              class="h-6 w-6"
+              class="h-5 w-5"
               fill="none"
               viewBox="0 0 24 24"
-              stroke-width="1.8"
+              stroke-width="1.7"
               stroke="currentColor"
             >
               <path
@@ -258,76 +145,46 @@
             </svg>
           </span>
           <div>
-            <h3 class="text-ink-900 text-lg font-black tracking-tighter">居家与政务合作</h3>
-            <p class="text-ink-500/90 mt-2 text-sm leading-7 font-light">
+            <h3 class="text-ink-900 text-[16px] leading-6 font-black tracking-tight">
+              居家与政务合作
+            </h3>
+            <p class="text-[13px] leading-6" style="color: rgba(104, 119, 131, 0.9)">
               居家智慧养老 +
               民政评分体系对接，支持山东省民政厅智慧养老院评分体系，助力政策落地与监管。
             </p>
           </div>
           <ul class="flex flex-col gap-2.5">
-            <li class="flex items-start gap-2 text-sm">
-              <svg
-                class="text-primary mt-0.5 h-4 w-4 shrink-0"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="2.5"
-                stroke="currentColor"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-              </svg>
-              <span class="text-ink-700">居家安全/健康监测全品类，适老化无感守护</span>
+            <li class="flex items-start gap-2 text-[13px] leading-5">
+              <span class="mt-0.5 shrink-0 text-[#4fc7b7]">✓</span
+              ><span style="color: #3f505c">居家安全/健康监测全品类，适老化无感守护</span>
             </li>
-            <li class="flex items-start gap-2 text-sm">
-              <svg
-                class="text-primary mt-0.5 h-4 w-4 shrink-0"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="2.5"
-                stroke="currentColor"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-              </svg>
-              <span class="text-ink-700">对接民政/卫健平台，数据共享与协同监管</span>
+            <li class="flex items-start gap-2 text-[13px] leading-5">
+              <span class="mt-0.5 shrink-0 text-[#4fc7b7]">✓</span
+              ><span style="color: #3f505c">对接民政/卫健平台，数据共享与协同监管</span>
             </li>
-            <li class="flex items-start gap-2 text-sm">
-              <svg
-                class="text-primary mt-0.5 h-4 w-4 shrink-0"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="2.5"
-                stroke="currentColor"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-              </svg>
-              <span class="text-ink-700">支持山东省民政厅智慧养老院评分体系</span>
+            <li class="flex items-start gap-2 text-[13px] leading-5">
+              <span class="mt-0.5 shrink-0 text-[#4fc7b7]">✓</span
+              ><span style="color: #3f505c">支持山东省民政厅智慧养老院评分体系</span>
             </li>
-            <li class="flex items-start gap-2 text-sm">
-              <svg
-                class="text-primary mt-0.5 h-4 w-4 shrink-0"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="2.5"
-                stroke="currentColor"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-              </svg>
-              <span class="text-ink-700">政府补贴项目申报支持，B/S 架构私有化部署</span>
+            <li class="flex items-start gap-2 text-[13px] leading-5">
+              <span class="mt-0.5 shrink-0 text-[#4fc7b7]">✓</span
+              ><span style="color: #3f505c">政府补贴项目申报支持，B/S 架构私有化部署</span>
             </li>
           </ul>
         </div>
 
         <!-- 卡片 D 渠道代理 & OEM/ODM -->
         <div
-          class="card-hover reveal flex flex-col gap-5 rounded-[var(--radius-card)] border border-white/60 bg-white p-8 shadow-[0_8px_40px_rgba(36,109,116,0.06)] backdrop-blur-sm hover:shadow-[0_20px_60px_rgba(36,109,116,0.12)] sm:p-10"
+          class="reveal flex flex-col gap-4 rounded-[12px] border border-[rgba(217,236,233,0.9)] bg-white p-6 shadow-[0_8px_30px_rgba(36,109,116,0.05)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(36,109,116,0.10)]"
         >
           <span
-            class="bg-mist text-primary border-primary/15 flex h-12 w-12 items-center justify-center rounded-full border"
+            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-[8px] bg-[#eef6f5] text-[#4fc7b7]"
           >
             <svg
-              class="h-6 w-6"
+              class="h-5 w-5"
               fill="none"
               viewBox="0 0 24 24"
-              stroke-width="1.8"
+              stroke-width="1.7"
               stroke="currentColor"
             >
               <path
@@ -338,60 +195,30 @@
             </svg>
           </span>
           <div>
-            <h3 class="text-ink-900 text-lg font-black tracking-tighter">渠道代理 & OEM/ODM</h3>
-            <p class="text-ink-500/90 mt-2 text-sm leading-7 font-light">
+            <h3 class="text-ink-900 text-[16px] leading-6 font-black tracking-tight">
+              渠道代理 & OEM/ODM
+            </h3>
+            <p class="text-[13px] leading-6" style="color: rgba(104, 119, 131, 0.9)">
               智慧养老 / 消防产品 OEM/ODM
               定制，提供区域保护、培训支持、物料支持与联合营销，共享市场红利。
             </p>
           </div>
           <ul class="flex flex-col gap-2.5">
-            <li class="flex items-start gap-2 text-sm">
-              <svg
-                class="text-primary mt-0.5 h-4 w-4 shrink-0"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="2.5"
-                stroke="currentColor"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-              </svg>
-              <span class="text-ink-700">全品类 OEM/ODM：消防/安防/健康/毫米波雷达</span>
+            <li class="flex items-start gap-2 text-[13px] leading-5">
+              <span class="mt-0.5 shrink-0 text-[#4fc7b7]">✓</span
+              ><span style="color: #3f505c">全品类 OEM/ODM：消防/安防/健康/毫米波雷达</span>
             </li>
-            <li class="flex items-start gap-2 text-sm">
-              <svg
-                class="text-primary mt-0.5 h-4 w-4 shrink-0"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="2.5"
-                stroke="currentColor"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-              </svg>
-              <span class="text-ink-700">区域保护政策，价格体系与渠道保障</span>
+            <li class="flex items-start gap-2 text-[13px] leading-5">
+              <span class="mt-0.5 shrink-0 text-[#4fc7b7]">✓</span
+              ><span style="color: #3f505c">区域保护政策，价格体系与渠道保障</span>
             </li>
-            <li class="flex items-start gap-2 text-sm">
-              <svg
-                class="text-primary mt-0.5 h-4 w-4 shrink-0"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="2.5"
-                stroke="currentColor"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-              </svg>
-              <span class="text-ink-700">技术培训 + 物料支持 + 联合营销赋能</span>
+            <li class="flex items-start gap-2 text-[13px] leading-5">
+              <span class="mt-0.5 shrink-0 text-[#4fc7b7]">✓</span
+              ><span style="color: #3f505c">技术培训 + 物料支持 + 联合营销赋能</span>
             </li>
-            <li class="flex items-start gap-2 text-sm">
-              <svg
-                class="text-primary mt-0.5 h-4 w-4 shrink-0"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="2.5"
-                stroke="currentColor"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-              </svg>
-              <span class="text-ink-700">太平洋保险承保背书，提升客户信任度</span>
+            <li class="flex items-start gap-2 text-[13px] leading-5">
+              <span class="mt-0.5 shrink-0 text-[#4fc7b7]">✓</span
+              ><span style="color: #3f505c">太平洋保险承保背书，提升客户信任度</span>
             </li>
           </ul>
         </div>
@@ -399,25 +226,40 @@
     </div>
   </section>
 
-  <!-- 表单区：左表单右信息（对标 mikapu.cn/partnership 镜像布局） -->
-  <section id="cooperation-form" class="section-tinted border-line/70 border-y py-24 sm:py-32">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="grid gap-10 lg:grid-cols-[1.35fr_0.85fr] lg:gap-8">
-        <!-- 左侧：表单 -->
+  <!-- 表单区：1:1 复刻截图 — 浅青底 + 胶囊标题 + 左右双栏，左侧保留飞书嵌入 -->
+  <section id="cooperation-form" class="py-12 sm:py-16" style="background: #eef7f7">
+    <div class="mx-auto w-[calc(100%-32px)] max-w-[1180px]">
+      <div class="grid gap-8 lg:grid-cols-2 lg:gap-10">
+        <!-- 左侧：填写信息 -->
         <div class="reveal">
-          <p class="text-primary text-sm font-semibold tracking-[0.2em] uppercase">提交合作意向</p>
-          <span class="bg-primary mt-3 block h-0.5 w-6 rounded-full"></span>
+          <span
+            class="inline-flex items-center gap-1.5 rounded-full bg-[#e0f7f4] px-3.5 py-1.5 text-xs font-bold tracking-wide text-[#2b8d89]"
+            ><svg
+              class="h-3.5 w-3.5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.8"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 12L3.269 3.125A59.769 59.769 0 0121.485 12 59.768 59.768 0 013.27 20.875L5.999 12zm0 0h7.5"
+              /></svg
+            >提交合作意向</span
+          >
           <h2
-            class="text-ink-900 mt-5 text-3xl leading-tight font-black tracking-tighter sm:text-4xl"
+            class="text-ink-900 mt-4 text-[clamp(28px,3.5vw,36px)] leading-tight font-black tracking-tight"
+            style="font-weight: 900"
           >
             填写信息，专人对接
           </h2>
-          <p class="text-ink-500/90 mt-3 text-sm leading-7 font-light sm:text-base">
-            填写以下信息，我们的商务团队将在24小时内与您联系
+          <p class="mt-2 text-[14px] leading-6" style="color: rgba(104, 119, 131, 0.9)">
+            填写以下信息，我们的商务团队将在 24 小时内与您联系
           </p>
           <div
             id="cooperation-placeholder-form"
-            class="mt-6 rounded-[var(--radius-card)] border border-white/60 bg-white p-6 shadow-[0_8px_40px_rgba(36,109,116,0.06)] backdrop-blur-sm sm:p-8"
+            class="mt-6 rounded-[12px] border border-[rgba(217,236,233,0.9)] bg-white p-2 shadow-[0_8px_30px_rgba(36,109,116,0.06)]"
           >
             <div class="border-line overflow-hidden rounded-[8px] border bg-white">
               <iframe
@@ -544,197 +386,128 @@
           </div>
         </div>
 
-        <!-- 右侧：信息双卡 -->
-        <div class="flex flex-col gap-6">
-          <!-- 上卡：更多联系方式 -->
-          <div
-            class="reveal rounded-[var(--radius-card)] border border-white/60 bg-white p-6 shadow-[0_8px_40px_rgba(36,109,116,0.06)] backdrop-blur-sm sm:p-8"
-          >
-            <h3 class="text-ink-900 text-lg font-black tracking-tighter">更多联系方式</h3>
-            <p class="text-ink-500 mt-1.5 text-sm leading-7 font-light">
+        <!-- 右侧：更多联系方式 — 标题胶囊 + 3 横卡 + 浅青 Why 卡，对齐截图 -->
+        <div class="flex flex-col gap-5">
+          <div class="reveal">
+            <span
+              class="inline-flex items-center rounded-full bg-[#e0f7f4] px-3.5 py-1.5 text-xs font-bold tracking-wide text-[#2b8d89]"
+              >联系我们</span
+            >
+            <h2
+              class="text-ink-900 mt-4 text-[clamp(28px,3.5vw,36px)] leading-tight font-black tracking-tight"
+              style="font-weight: 900"
+            >
+              更多联系方式
+            </h2>
+            <p class="mt-2 text-[14px] leading-6" style="color: rgba(104, 119, 131, 0.9)">
               如有任何问题，欢迎通过以下方式联系我们
             </p>
-            <div class="mt-6 flex flex-col gap-6">
-              <div class="flex items-start gap-4">
-                <span
-                  class="bg-mist text-primary ring-primary/10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full ring-1 backdrop-blur-sm"
+          </div>
+          <!-- 3 横卡：商务热线 / 邮箱 / 地址 — 图标方块在左 -->
+          <div class="flex flex-col gap-4">
+            <div
+              class="flex items-center gap-4 rounded-[12px] border border-[rgba(217,236,233,0.9)] bg-white p-5 shadow-[0_8px_30px_rgba(36,109,116,0.04)]"
+            >
+              <span
+                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-[8px] bg-[#eef6f5] text-[#4fc7b7]"
+                ><svg
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.7"
+                  stroke="currentColor"
                 >
-                  <svg
-                    class="h-5 w-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.8"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"
-                    />
-                  </svg>
-                </span>
-                <div>
-                  <p class="text-ink-500 text-xs font-medium">商务热线</p>
-                  <a
-                    href="tel:0531-66670365"
-                    class="text-primary-dark mt-1 block text-xl font-black tracking-tighter hover:underline"
-                    >0531-66670365</a
-                  >
-                </div>
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"
+                  /></svg
+              ></span>
+              <div class="min-w-0 flex-1">
+                <p class="text-ink-900 text-[13px] font-bold">商务热线</p>
+                <p class="mt-0.5 text-[13px]" style="color: rgba(104, 119, 131, 0.9)">
+                  0531-66670365
+                </p>
               </div>
-              <div class="flex items-start gap-4">
-                <span
-                  class="bg-mist text-primary ring-primary/10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full ring-1 backdrop-blur-sm"
+            </div>
+            <div
+              class="flex items-center gap-4 rounded-[12px] border border-[rgba(217,236,233,0.9)] bg-white p-5 shadow-[0_8px_30px_rgba(36,109,116,0.04)]"
+            >
+              <span
+                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-[8px] bg-[#eef6f5] text-[#4fc7b7]"
+                ><svg
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.7"
+                  stroke="currentColor"
                 >
-                  <svg
-                    class="h-5 w-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.8"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
-                    />
-                  </svg>
-                </span>
-                <div class="min-w-0 flex-1">
-                  <p class="text-ink-500 text-xs font-medium">商务邮箱</p>
-                  <a
-                    href="mailto:contact@wanchunsmart.com"
-                    class="text-ink-900 mt-1 block text-sm font-semibold break-all hover:underline"
-                    >contact@wanchunsmart.com</a
-                  >
-                  <span class="text-ink-400 text-xs">www.wanchunsmart.com</span>
-                </div>
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
+                  /></svg
+              ></span>
+              <div class="min-w-0 flex-1">
+                <p class="text-ink-900 text-[13px] font-bold">商务邮箱</p>
+                <p class="mt-0.5 text-[13px] break-all" style="color: rgba(104, 119, 131, 0.9)">
+                  contact@wanchunsmart.com
+                </p>
               </div>
-              <div class="flex items-start gap-4">
-                <span
-                  class="bg-mist text-primary ring-primary/10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full ring-1 backdrop-blur-sm"
+            </div>
+            <div
+              class="flex items-center gap-4 rounded-[12px] border border-[rgba(217,236,233,0.9)] bg-white p-5 shadow-[0_8px_30px_rgba(36,109,116,0.04)]"
+            >
+              <span
+                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-[8px] bg-[#eef6f5] text-[#4fc7b7]"
+                ><svg
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.7"
+                  stroke="currentColor"
                 >
-                  <svg
-                    class="h-5 w-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.8"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
-                    />
-                  </svg>
-                </span>
-                <div>
-                  <p class="text-ink-500 text-xs font-medium">公司地址</p>
-                  <p class="text-ink-900 mt-1 text-sm leading-7 font-semibold">
-                    山东省济南市起步区中科新经济科创园1号楼3层
-                  </p>
-                </div>
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
+                  /></svg
+              ></span>
+              <div class="min-w-0 flex-1">
+                <p class="text-ink-900 text-[13px] font-bold">公司地址</p>
+                <p class="mt-0.5 text-[13px] leading-6" style="color: rgba(104, 119, 131, 0.9)">
+                  山东省济南市起步区中科新经济科创园1号楼3层
+                </p>
               </div>
             </div>
           </div>
-          <!-- 下卡：为什么选择万椿 -->
+          <!-- 为什么选择万椿 — 浅青卡 -->
           <div
-            class="reveal rounded-[var(--radius-card)] border border-white/60 bg-white p-6 shadow-[0_8px_40px_rgba(36,109,116,0.06)] backdrop-blur-sm sm:p-8"
+            class="rounded-[12px] border border-[rgba(79,199,183,0.18)] p-6"
+            style="background: rgba(238, 249, 247, 0.9)"
           >
-            <h3 class="text-ink-900 text-lg font-black tracking-tighter">为什么选择万椿？</h3>
-            <ul class="mt-5 flex flex-col gap-3.5">
-              <li class="flex items-start gap-3">
-                <span
-                  class="bg-mist text-primary ring-primary/10 mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full ring-1 backdrop-blur-sm"
-                >
-                  <svg
-                    class="h-3.5 w-3.5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="2.5"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M4.5 12.75l6 6 9-13.5"
-                    />
-                  </svg>
-                </span>
-                <span class="text-ink-700 text-sm leading-7 font-light"
-                  >10年+深耕，200+专利，2亿+智造积累</span
-                >
+            <h3 class="text-ink-900 text-[15px] font-black tracking-tight">为什么选择万椿？</h3>
+            <ul class="mt-4 flex flex-col gap-2.5">
+              <li class="flex items-start gap-2 text-[13px] leading-5">
+                <span class="mt-0.5 shrink-0 text-[#4fc7b7]">✓</span
+                ><span style="color: #3f505c">10年+深耕，200+专利，2亿+智造积累</span>
               </li>
-              <li class="flex items-start gap-3">
-                <span
-                  class="bg-mist text-primary ring-primary/10 mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full ring-1 backdrop-blur-sm"
-                >
-                  <svg
-                    class="h-3.5 w-3.5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="2.5"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M4.5 12.75l6 6 9-13.5"
-                    />
-                  </svg>
-                </span>
-                <span class="text-ink-700 text-sm leading-7 font-light"
-                  >3大研发中心，100+研发工程师</span
-                >
+              <li class="flex items-start gap-2 text-[13px] leading-5">
+                <span class="mt-0.5 shrink-0 text-[#4fc7b7]">✓</span
+                ><span style="color: #3f505c">3大研发中心，100+研发工程师</span>
               </li>
-              <li class="flex items-start gap-3">
-                <span
-                  class="bg-mist text-primary ring-primary/10 mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full ring-1 backdrop-blur-sm"
-                >
-                  <svg
-                    class="h-3.5 w-3.5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="2.5"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M4.5 12.75l6 6 9-13.5"
-                    />
-                  </svg>
-                </span>
-                <span class="text-ink-700 text-sm leading-7 font-light"
-                  >150+国家和地区，2,000,000+设备在线</span
-                >
+              <li class="flex items-start gap-2 text-[13px] leading-5">
+                <span class="mt-0.5 shrink-0 text-[#4fc7b7]">✓</span
+                ><span style="color: #3f505c">150+国家和地区，2,000,000+设备在线</span>
               </li>
-              <li class="flex items-start gap-3">
-                <span
-                  class="bg-mist text-primary ring-primary/10 mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full ring-1 backdrop-blur-sm"
-                >
-                  <svg
-                    class="h-3.5 w-3.5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="2.5"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M4.5 12.75l6 6 9-13.5"
-                    />
-                  </svg>
-                </span>
-                <span class="text-ink-700 text-sm leading-7 font-light"
-                  >太平洋保险承保，权威认证齐全</span
-                >
+              <li class="flex items-start gap-2 text-[13px] leading-5">
+                <span class="mt-0.5 shrink-0 text-[#4fc7b7]">✓</span
+                ><span style="color: #3f505c">太平洋保险承保，权威认证齐全</span>
               </li>
             </ul>
           </div>

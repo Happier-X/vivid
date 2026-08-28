@@ -14,17 +14,19 @@
       }
     </style>
   </head>
-  <body class="text-ink-900 bg-surface font-sans antialiased">
-    <!-- 复用与主题一致的页眉（与 partials/header.html 保持一致） -->
+  <body class="text-ink-900 bg-surface pt-[76px] font-sans antialiased">
+    <!-- 复用与主题一致的页眉（与 partials/header.html 保持 1:1 一致） -->
+    <!-- 全局顶部导航：1:1 复刻 mikapu 的 mk-header — fixed 透明 + 滚动毛玻璃 -->
     <header
       id="site-header"
       th:with="menu = ${menuFinder.getPrimary()}"
-      class="border-line/60 after:via-primary/10 sticky top-0 z-50 border-b bg-white/80 shadow-[0_1px_0_rgba(36,109,116,0.06)] backdrop-blur-xl transition-all duration-300 after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:bg-gradient-to-r after:from-transparent after:to-transparent"
+      class="fixed inset-x-0 top-0 z-50 h-[76px] border-b border-transparent bg-transparent transition-[background,box-shadow,border-color] duration-300"
     >
       <div
-        class="relative mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"
+        class="mx-auto flex h-[76px] w-[calc(100%-32px)] max-w-[1180px] items-center justify-between gap-6"
       >
-        <a th:href="@{/}" class="flex items-center gap-3">
+        <!-- Logo：万椿品牌，样式复刻 mikapu 的排版质感 -->
+        <a th:href="@{/}" href="/" class="flex items-center gap-3 no-underline" aria-label="首页">
           <img
             th:src="@{/assets/images/wanchun-logo.png}"
             src="/themes/theme-vite-starter/assets/images/wanchun-logo.png"
@@ -33,69 +35,50 @@
             onerror="this.style.display = 'none'"
           />
           <span class="flex flex-col leading-none">
-            <span
-              class="text-ink-900 flex items-center gap-1 text-lg font-extrabold tracking-tight"
-            >
-              <span>万椿智能</span><span class="font-light">·</span
-              ><span class="text-primary-dark">智慧养老</span>
+            <span class="flex items-center gap-1 text-lg font-black tracking-tight">
+              <span class="text-ink-900">万椿智能</span
+              ><span class="text-ink-900 font-light">·</span
+              ><span style="color: #2b8d89">智慧养老</span>
             </span>
             <span class="text-ink-500/70 hidden text-[10px] tracking-widest lg:block"
               >www.wanchunsmart.com</span
             >
           </span>
         </a>
-        <nav
-          class="absolute left-1/2 hidden -translate-x-1/2 items-center gap-2 md:flex"
-          aria-label="主导航"
-        >
+
+        <!-- 桌面端导航：居中胶囊悬浮，hover 时 #e0f7f4 -->
+        <nav id="mk-main-nav" class="hidden items-center gap-1 md:flex" aria-label="主导航">
           <a
             th:each="item : ${menu?.menuItems}"
             th:href="@{${item.status.href}}"
             th:text="${item.status.displayName}"
             th:target="${item.spec.target?.value}"
-            class="text-ink-700 hover:bg-mist hover:text-primary-dark rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200"
+            class="rounded-[8px] px-[14px] py-[10px] text-[14px] leading-none font-bold text-[rgba(31,45,56,0.8)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#e0f7f4] hover:text-[#2b8d89]"
             >菜单项</a
           >
         </nav>
-        <div class="flex items-center gap-3">
+
+        <!-- 右侧操作区：万椿为企业官网，仅保留汉堡（样式复刻 mikapu） -->
+        <div class="flex items-center gap-2.5">
           <button
             id="menu-toggle"
             type="button"
             aria-expanded="false"
             aria-controls="mobile-menu"
-            class="text-ink-700 hover:bg-mist inline-flex h-10 w-10 items-center justify-center rounded-full transition-colors duration-200 md:hidden"
+            class="inline-flex h-9 w-9 flex-col items-center justify-center gap-1 rounded-[8px] border border-[rgba(79,199,183,0.32)] bg-white text-[#2b8d89] md:hidden"
+            aria-label="打开菜单"
           >
-            <span class="sr-only">打开菜单</span>
-            <svg
-              id="icon-open"
-              class="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-              />
-            </svg>
-            <svg
-              id="icon-close"
-              class="hidden h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-            >
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
+            <span class="block h-0.5 w-[18px] rounded-full bg-current"></span>
+            <span class="block h-0.5 w-[18px] rounded-full bg-current"></span>
+            <span class="block h-0.5 w-[18px] rounded-full bg-current"></span>
           </button>
         </div>
       </div>
+
+      <!-- 移动端下拉菜单 -->
       <nav
         id="mobile-menu"
-        class="border-line/80 shadow-soft hidden rounded-b-[var(--radius-card)] border-t bg-white md:hidden"
+        class="hidden border-t border-[rgba(217,236,233,0.8)] bg-[rgba(251,254,254,0.96)] shadow-[0_8px_28px_rgba(31,45,56,0.07)] backdrop-blur-[18px] md:hidden"
         aria-label="移动端导航"
       >
         <ul class="space-y-1 px-4 py-3">
@@ -104,109 +87,164 @@
               th:href="@{${item.status.href}}"
               th:text="${item.status.displayName}"
               th:target="${item.spec.target?.value}"
-              class="group text-ink-700 hover:border-primary hover:bg-mist hover:text-primary-dark block rounded-xl border-l-4 border-transparent px-4 py-3 text-base font-medium transition-all duration-200 hover:pl-5"
+              class="block rounded-[8px] px-4 py-3 text-base font-bold text-[rgba(31,45,56,0.82)] transition-colors hover:bg-[#e0f7f4] hover:text-[#2b8d89]"
               >菜单项</a
             >
           </li>
         </ul>
-        <div class="border-line mx-4 border-t pt-3 pb-4">
-          <a
-            th:href="@{/page/cooperation}"
-            href="/page/cooperation"
-            class="btn-primary flex w-full justify-center rounded-full py-3 text-sm font-bold"
-            >合作咨询</a
-          >
-        </div>
       </nav>
     </header>
 
     <main th:replace="${content}"></main>
 
     <!-- 复用与主题一致的页脚 -->
-    <footer class="section-tinted border-line border-t">
-      <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div class="grid gap-10 md:grid-cols-[1.4fr_0.8fr_1fr] lg:gap-12">
+    <!-- 深色页脚：1:1 复刻 mikapu 底部 4 栏，内容保留万椿 -->
+    <!-- 深色页脚：1:1 复刻 mikapu 底部 4 栏，内容保留万椿 -->
+    <!-- 深色页脚：1:1 复刻 mikapu — bg #17262c / 文字 rgba(234,248,246,0.7)，内容保留万椿 -->
+    <footer class="bg-[#17262c] text-[#eaf8f6]" style="background: #17262c; color: #eaf8f6">
+      <div class="mx-auto w-[calc(100%-32px)] max-w-[1180px] py-14">
+        <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.6fr_0.9fr_0.9fr_1.2fr]">
+          <!-- 品牌 -->
           <div class="flex flex-col gap-4">
-            <a th:href="@{/}" class="flex items-center gap-3">
+            <a th:href="@{/}" href="/" class="flex items-center gap-3">
               <img
                 th:src="@{/assets/images/wanchun-logo.png}"
                 src="/themes/theme-vite-starter/assets/images/wanchun-logo.png"
                 alt="万椿"
-                class="h-10 w-10 shrink-0 object-contain"
+                class="h-8 w-8 shrink-0 object-contain brightness-0 invert"
                 onerror="this.style.display = 'none'"
               />
-              <span class="flex flex-col leading-none"
-                ><span class="text-ink-900 text-base font-extrabold tracking-tight"
-                  >山东万椿智能科技有限公司</span
-                ><span class="text-primary-dark text-xs font-semibold tracking-widest"
-                  >椿萱并茂 棠棣同馨</span
-                ></span
+              <span class="text-base font-black tracking-tight" style="color: #eaf8f6"
+                >万椿智能</span
               >
             </a>
-            <p class="text-ink-500/90 max-w-md text-sm leading-7 font-light">
+            <p class="max-w-[360px] text-sm leading-7" style="color: rgba(234, 248, 246, 0.7)">
               国家高新技术企业，专注 AI
               与物联网融合的智慧养老解决方案，以“设备+平台+服务”守护每一位长者的晚年生活。
             </p>
           </div>
+          <!-- 产品系列 -->
           <div>
-            <h4 class="text-ink-900 mb-4 text-sm font-extrabold tracking-widest uppercase">
-              快速链接
-            </h4>
-            <ul class="flex flex-col gap-3 text-sm">
+            <h4 class="mb-4 text-sm font-black tracking-wide" style="color: #eaf8f6">产品系列</h4>
+            <ul class="flex flex-col gap-2.5 text-sm" style="color: rgba(234, 248, 246, 0.7)">
               <li>
-                <a th:href="@{/}" class="text-ink-500 hover:text-primary transition-colors">首页</a>
-              </li>
-              <li>
-                <a th:href="@{/archives}" class="text-ink-500 hover:text-primary transition-colors"
-                  >解决方案</a
+                <a
+                  th:href="@{/archives}"
+                  href="/archives"
+                  class="transition-colors hover:text-[#4fc7b7]"
+                  style="color: rgba(234, 248, 246, 0.7)"
+                  >燃气安全卫士</a
                 >
               </li>
               <li>
                 <a
+                  th:href="@{/archives}"
+                  href="/archives"
+                  class="transition-colors hover:text-[#4fc7b7]"
+                  style="color: rgba(234, 248, 246, 0.7)"
+                  >无感跌倒守护</a
+                >
+              </li>
+              <li>
+                <a
+                  th:href="@{/archives}"
+                  href="/archives"
+                  class="transition-colors hover:text-[#4fc7b7]"
+                  style="color: rgba(234, 248, 246, 0.7)"
+                  >毫米波睡眠监测</a
+                >
+              </li>
+              <li>
+                <a
+                  th:href="@{/archives}"
+                  href="/archives"
+                  class="transition-colors hover:text-[#4fc7b7]"
+                  style="color: rgba(234, 248, 246, 0.7)"
+                  >智慧健康手表</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- 服务支持 -->
+          <div>
+            <h4 class="mb-4 text-sm font-black tracking-wide" style="color: #eaf8f6">服务支持</h4>
+            <ul class="flex flex-col gap-2.5 text-sm" style="color: rgba(234, 248, 246, 0.7)">
+              <li>
+                <a
                   th:href="@{/page/about}"
-                  class="text-ink-500 hover:text-primary transition-colors"
+                  href="/page/about"
+                  class="transition-colors hover:text-[#4fc7b7]"
+                  style="color: rgba(234, 248, 246, 0.7)"
                   >关于万椿</a
                 >
               </li>
               <li>
                 <a
                   th:href="@{/page/cooperation}"
-                  class="text-ink-500 hover:text-primary transition-colors"
-                  >合作咨询</a
+                  href="/page/cooperation"
+                  class="transition-colors hover:text-[#4fc7b7]"
+                  style="color: rgba(234, 248, 246, 0.7)"
+                  >商务合作</a
+                >
+              </li>
+              <li>
+                <a
+                  th:href="@{/archives}"
+                  href="/archives"
+                  class="transition-colors hover:text-[#4fc7b7]"
+                  style="color: rgba(234, 248, 246, 0.7)"
+                  >解决方案</a
                 >
               </li>
             </ul>
           </div>
+          <!-- 联系我们 -->
           <div>
-            <h4 class="text-ink-900 mb-4 text-sm font-extrabold tracking-widest uppercase">
-              联系我们
-            </h4>
-            <ul class="text-ink-500 flex flex-col gap-3 text-sm font-light">
-              <li>山东省济南市起步区中科新经济科创园 1号楼 3层</li>
-              <li><a href="tel:0531-66670365" class="hover:text-primary">0531-66670365</a></li>
+            <h4 class="mb-4 text-sm font-black tracking-wide" style="color: #eaf8f6">联系我们</h4>
+            <ul class="flex flex-col gap-2.5 text-sm" style="color: rgba(234, 248, 246, 0.7)">
+              <li style="color: rgba(234, 248, 246, 0.7)">0531-66670365</li>
               <li>
                 <a
                   href="https://www.wanchunsmart.com"
                   target="_blank"
                   rel="noopener"
-                  class="hover:text-primary"
+                  class="transition-colors hover:text-[#4fc7b7]"
+                  style="color: rgba(234, 248, 246, 0.7)"
                   >www.wanchunsmart.com</a
                 >
+              </li>
+              <li class="leading-6" style="color: rgba(234, 248, 246, 0.7)">
+                山东省济南市起步区中科新经济科创园 1号楼 3层
               </li>
             </ul>
           </div>
         </div>
-        <div class="via-line mt-10 h-px bg-gradient-to-r from-transparent to-transparent"></div>
-        <div class="mt-6 flex flex-col items-center justify-between gap-3 text-xs sm:flex-row">
-          <span class="text-ink-500 font-light tracking-wide"
-            >©
-            <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}">2026</span>
-            山东万椿智能科技有限公司 · 太平洋保险承保</span
+        <div
+          class="mt-10 flex flex-col items-center justify-between gap-3 pt-6 text-xs sm:flex-row"
+          style="border-top: 1px solid rgba(234, 248, 246, 0.1)"
+        >
+          <div
+            class="flex flex-wrap items-center gap-x-3 gap-y-1"
+            style="color: rgba(234, 248, 246, 0.7)"
           >
-          <span class="text-ink-500 font-light tracking-wide">椿萱并茂 棠棣同馨</span>
+            <span
+              >©
+              <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}">2026</span>
+              山东万椿智能科技有限公司. 保留所有权利.</span
+            >
+            <a
+              href="https://beian.miit.gov.cn"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="transition-colors hover:text-[#4fc7b7]"
+              style="color: rgba(234, 248, 246, 0.7)"
+              >鲁ICP备2026022779号</a
+            >
+          </div>
+          <span style="color: rgba(234, 248, 246, 0.56)">山东万椿智能科技有限公司</span>
         </div>
+        <halo:footer />
       </div>
-      <halo:footer />
     </footer>
   </body>
 </html>

@@ -1,175 +1,144 @@
-<!-- 全局页脚：万椿信息 + halo:footer 扩展挂载点 -->
-<footer class="section-tinted border-line border-t">
-  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-    <!-- 上层：两栏布局（左品牌 + 右快速链接），避免右侧拥挤 -->
-    <div class="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
-      <!-- 左侧品牌 -->
-      <div class="flex max-w-xl flex-col gap-4">
+<!-- 深色页脚：1:1 复刻 mikapu — bg #17262c / 文字 rgba(234,248,246,0.7)，内容保留万椿 -->
+<footer class="bg-[#17262c] text-[#eaf8f6]" style="background: #17262c; color: #eaf8f6">
+  <div class="mx-auto w-[calc(100%-32px)] max-w-[1180px] py-14">
+    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.6fr_0.9fr_0.9fr_1.2fr]">
+      <!-- 品牌 -->
+      <div class="flex flex-col gap-4">
         <a th:href="@{/}" href="/" class="flex items-center gap-3">
           <img
             th:src="@{/assets/images/wanchun-logo.png}"
             src="/themes/theme-vite-starter/assets/images/wanchun-logo.png"
             alt="万椿"
-            class="h-10 w-10 shrink-0 object-contain"
+            class="h-8 w-8 shrink-0 object-contain brightness-0 invert"
             onerror="this.style.display = 'none'"
           />
-          <span class="flex flex-col leading-none">
-            <span class="text-ink-900 text-base font-extrabold tracking-tight"
-              >山东万椿智能科技有限公司</span
-            >
-            <span class="text-primary-dark text-xs font-semibold tracking-widest"
-              >椿萱并茂 棠棣同馨</span
-            >
-          </span>
+          <span class="text-base font-black tracking-tight" style="color: #eaf8f6">万椿智能</span>
         </a>
-        <p class="text-ink-500/90 max-w-md text-sm leading-7 font-light">
+        <p class="max-w-[360px] text-sm leading-7" style="color: rgba(234, 248, 246, 0.7)">
           国家高新技术企业，专注 AI
           与物联网融合的智慧养老解决方案，以“设备+平台+服务”守护每一位长者的晚年生活。
         </p>
-        <p class="text-ink-500 text-xs font-light tracking-wide">
-          中国太平洋保险承保单位 · 应急管理部消防产品认证 · 德国红点设计大奖
-        </p>
       </div>
-
-      <!-- 右侧快速链接：横向胶囊式，更透气居中感 -->
-      <div class="shrink-0 lg:min-w-[320px]">
-        <h4 class="text-ink-900 mb-4 text-sm font-extrabold tracking-widest uppercase">快速链接</h4>
-        <ul class="flex flex-wrap gap-2">
+      <!-- 产品系列 -->
+      <div>
+        <h4 class="mb-4 text-sm font-black tracking-wide" style="color: #eaf8f6">产品系列</h4>
+        <ul class="flex flex-col gap-2.5 text-sm" style="color: rgba(234, 248, 246, 0.7)">
           <li>
             <a
               th:href="@{/archives}"
               href="/archives"
-              class="border-line text-ink-500 hover:border-primary/20 hover:bg-mist hover:text-primary inline-flex items-center rounded-full border bg-white px-4 py-2 text-sm font-medium transition-colors duration-200"
-              >解决方案</a
+              class="transition-colors hover:text-[#4fc7b7]"
+              style="color: rgba(234, 248, 246, 0.7)"
+              >燃气安全卫士</a
             >
           </li>
           <li>
             <a
               th:href="@{/archives}"
               href="/archives"
-              class="border-line text-ink-500 hover:border-primary/20 hover:bg-mist hover:text-primary inline-flex items-center rounded-full border bg-white px-4 py-2 text-sm font-medium transition-colors duration-200"
-              >核心产品</a
+              class="transition-colors hover:text-[#4fc7b7]"
+              style="color: rgba(234, 248, 246, 0.7)"
+              >无感跌倒守护</a
             >
           </li>
           <li>
             <a
               th:href="@{/archives}"
               href="/archives"
-              class="border-line text-ink-500 hover:border-primary/20 hover:bg-mist hover:text-primary inline-flex items-center rounded-full border bg-white px-4 py-2 text-sm font-medium transition-colors duration-200"
-              >智养通平台</a
+              class="transition-colors hover:text-[#4fc7b7]"
+              style="color: rgba(234, 248, 246, 0.7)"
+              >毫米波睡眠监测</a
             >
           </li>
           <li>
             <a
-              th:href="@{/page/about}"
-              href="/page/about"
-              class="border-line text-ink-500 hover:border-primary/20 hover:bg-mist hover:text-primary inline-flex items-center rounded-full border bg-white px-4 py-2 text-sm font-medium transition-colors duration-200"
-              >关于万椿</a
+              th:href="@{/archives}"
+              href="/archives"
+              class="transition-colors hover:text-[#4fc7b7]"
+              style="color: rgba(234, 248, 246, 0.7)"
+              >智慧健康手表</a
             >
           </li>
         </ul>
       </div>
-    </div>
-
-    <!-- 居中联系栏：顶部分隔，三项水平居中排列，避免右偏 -->
-    <div class="border-line mt-10 border-t pt-8">
-      <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-10">
-        <div class="flex items-center gap-3">
-          <span
-            class="bg-mist text-primary ring-primary/10 shadow-soft flex h-10 w-10 shrink-0 items-center justify-center rounded-full ring-1 backdrop-blur-sm"
-          >
-            <svg
-              class="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.8"
-              stroke="currentColor"
+      <!-- 服务支持 -->
+      <div>
+        <h4 class="mb-4 text-sm font-black tracking-wide" style="color: #eaf8f6">服务支持</h4>
+        <ul class="flex flex-col gap-2.5 text-sm" style="color: rgba(234, 248, 246, 0.7)">
+          <li>
+            <a
+              th:href="@{/page/about}"
+              href="/page/about"
+              class="transition-colors hover:text-[#4fc7b7]"
+              style="color: rgba(234, 248, 246, 0.7)"
+              >关于万椿</a
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
-              />
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
-              />
-            </svg>
-          </span>
-          <span class="text-ink-600 max-w-[18rem] text-sm leading-7 font-light sm:max-w-none"
-            >山东省济南市起步区中科新经济科创园 1号楼3层</span
-          >
-        </div>
-        <div class="flex items-center gap-3">
-          <span
-            class="bg-mist text-primary ring-primary/10 shadow-soft flex h-10 w-10 shrink-0 items-center justify-center rounded-full ring-1 backdrop-blur-sm"
-          >
-            <svg
-              class="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.8"
-              stroke="currentColor"
+          </li>
+          <li>
+            <a
+              th:href="@{/page/cooperation}"
+              href="/page/cooperation"
+              class="transition-colors hover:text-[#4fc7b7]"
+              style="color: rgba(234, 248, 246, 0.7)"
+              >商务合作</a
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"
-              />
-            </svg>
-          </span>
-          <a
-            href="tel:0531-66670365"
-            class="text-ink-700 hover:text-primary text-sm font-light tracking-wide transition-colors"
-            >0531-66670365</a
-          >
-        </div>
-        <div class="flex items-center gap-3">
-          <span
-            class="bg-mist text-primary ring-primary/10 shadow-soft flex h-10 w-10 shrink-0 items-center justify-center rounded-full ring-1 backdrop-blur-sm"
-          >
-            <svg
-              class="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.8"
-              stroke="currentColor"
+          </li>
+          <li>
+            <a
+              th:href="@{/archives}"
+              href="/archives"
+              class="transition-colors hover:text-[#4fc7b7]"
+              style="color: rgba(234, 248, 246, 0.7)"
+              >解决方案</a
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"
-              />
-            </svg>
-          </span>
-          <a
-            href="https://www.wanchunsmart.com"
-            target="_blank"
-            rel="noopener"
-            class="text-ink-600 hover:text-primary text-sm font-light tracking-wide transition-colors"
-            >www.wanchunsmart.com</a
-          >
-        </div>
+          </li>
+        </ul>
+      </div>
+      <!-- 联系我们 -->
+      <div>
+        <h4 class="mb-4 text-sm font-black tracking-wide" style="color: #eaf8f6">联系我们</h4>
+        <ul class="flex flex-col gap-2.5 text-sm" style="color: rgba(234, 248, 246, 0.7)">
+          <li style="color: rgba(234, 248, 246, 0.7)">0531-66670365</li>
+          <li>
+            <a
+              href="https://www.wanchunsmart.com"
+              target="_blank"
+              rel="noopener"
+              class="transition-colors hover:text-[#4fc7b7]"
+              style="color: rgba(234, 248, 246, 0.7)"
+              >www.wanchunsmart.com</a
+            >
+          </li>
+          <li class="leading-6" style="color: rgba(234, 248, 246, 0.7)">
+            山东省济南市起步区中科新经济科创园 1号楼 3层
+          </li>
+        </ul>
       </div>
     </div>
-
-    <!-- 底部版权 — 渐隐分隔线 + 更细字重 -->
-    <div class="via-line mt-10 h-px bg-gradient-to-r from-transparent to-transparent"></div>
     <div
-      class="mt-6 flex flex-col items-center gap-3 text-center text-xs sm:flex-row sm:justify-between sm:text-left"
+      class="mt-10 flex flex-col items-center justify-between gap-3 pt-6 text-xs sm:flex-row"
+      style="border-top: 1px solid rgba(234, 248, 246, 0.1)"
     >
-      <p class="text-ink-500 font-light tracking-wide">
-        ©
-        <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}">2025</span>
-        山东万椿智能科技有限公司 · 保留所有权利
-      </p>
-      <p class="text-ink-500 font-light tracking-wide">
-        核心消防产品由中国太平洋保险承保 · 500万/人身 200万/财产
-      </p>
+      <div
+        class="flex flex-wrap items-center gap-x-3 gap-y-1"
+        style="color: rgba(234, 248, 246, 0.7)"
+      >
+        <span
+          >©
+          <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}">2026</span>
+          山东万椿智能科技有限公司. 保留所有权利.</span
+        >
+        <a
+          href="https://beian.miit.gov.cn"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="transition-colors hover:text-[#4fc7b7]"
+          style="color: rgba(234, 248, 246, 0.7)"
+          >鲁ICP备2026022779号</a
+        >
+      </div>
+      <span style="color: rgba(234, 248, 246, 0.56)">山东万椿智能科技有限公司</span>
     </div>
-
-    <!-- Halo 统计代码等页脚扩展挂载点 -->
     <halo:footer />
   </div>
 </footer>
