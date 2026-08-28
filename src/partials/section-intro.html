@@ -128,48 +128,23 @@
           </div>
         </div>
       </div>
-      <!-- 右侧媒体：16/9 圆角图片卡片 -->
+      <!-- 右侧媒体：16/9 圆角图片卡片，已替换渐变占位为云平台实拍 -->
       <div class="reveal reveal-right">
         <div
           class="relative aspect-[16/9] overflow-hidden rounded-[8px] border border-[rgba(217,236,233,1)] bg-white shadow-[0_18px_45px_rgba(36,109,116,0.12)]"
         >
-          <div
-            class="from-mist to-primary/20 absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br p-6 text-center"
+          <img
+            th:src="@{/assets/images/wanchun/intro-platform.jpg}"
+            src="/assets/images/wanchun/intro-platform.jpg"
+            alt="万椿智慧养老云平台 感知网络平台应用展示五层架构 五端协同"
+            class="absolute inset-0 h-full w-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+          <span
+            class="pointer-events-none absolute bottom-3 left-3 rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-[#2b8d89] shadow-sm backdrop-blur"
+            >万椿智慧养老云平台 · 五端协同</span
           >
-            <span
-              class="from-primary to-primary-deep flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br text-white shadow-inner"
-            >
-              <svg
-                class="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.8"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-            </span>
-            <p class="text-ink-900 mt-3 text-sm font-black tracking-tight">万椿智慧养老云平台</p>
-            <p class="text-ink-500 mt-1 text-xs">感知 · 网络 · 平台 · 应用 · 展示 五层架构</p>
-            <div class="mt-4 grid w-full max-w-[280px] grid-cols-3 gap-2">
-              <span
-                class="bg-mist text-primary-dark rounded-lg px-2 py-2 text-center text-[10px] font-bold"
-                >大屏</span
-              >
-              <span
-                class="bg-mist text-primary-dark rounded-lg px-2 py-2 text-center text-[10px] font-bold"
-                >APP</span
-              >
-              <span
-                class="bg-mist text-primary-dark rounded-lg px-2 py-2 text-center text-[10px] font-bold"
-                >微信</span
-              >
-            </div>
-          </div>
         </div>
       </div>
     </div>

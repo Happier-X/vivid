@@ -43,34 +43,19 @@
         <div
           class="relative aspect-[16/9] overflow-hidden rounded-[8px] border border-[rgba(217,236,233,1)] bg-white shadow-[0_18px_45px_rgba(36,109,116,0.12)]"
         >
-          <!-- 万椿设备/平台示意，保留白底渐变占位，样式复刻 mikapu 的图片卡片质感 -->
-          <div
-            class="from-mist to-primary/15 absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br p-8 text-center"
+          <!-- 万椿实拍：核心科技区主图 feature-tech，已替换渐变占位；保留 mikapu 圆角与边框质感 -->
+          <img
+            th:src="@{/assets/images/wanchun/feature-tech.jpg}"
+            src="/assets/images/wanchun/feature-tech.jpg"
+            alt="万椿核心科技 多维感知 传感与报警设备联动平台实拍"
+            class="absolute inset-0 h-full w-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+          <span
+            class="pointer-events-none absolute bottom-3 left-3 rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-[#2b8d89] shadow-sm backdrop-blur"
+            >4 大核心优势 · 传感 · 报警 · 互联 · 云端</span
           >
-            <div class="flex items-center gap-3">
-              <span
-                class="from-primary to-primary-deep flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br text-white shadow-inner"
-              >
-                <svg
-                  class="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.8"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.05 14.5M14.25 3.104c.251.023.501.05.75.082M19.05 14.5l-4.124 4.124a2.25 2.25 0 01-3.182 0L5 14.5m4.5 0V21"
-                  />
-                </svg>
-              </span>
-              <span class="text-ink-900 text-sm font-black tracking-tight">万椿 4 大核心优势</span>
-            </div>
-            <p class="text-ink-500 mt-3 max-w-[320px] text-xs leading-6">
-              传感 · 报警 · 互联 · 云端 — 多维感知 多级守护
-            </p>
-          </div>
         </div>
       </div>
 

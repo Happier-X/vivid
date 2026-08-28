@@ -22,77 +22,118 @@
         </p>
       </div>
       <div class="reveal mt-8 grid gap-4 sm:grid-cols-3">
+        <!-- 居家 - 已替换图标占位为实拍图 solution-home；保留 mikapu 卡片 12px 圆角与阴影 -->
         <div
-          class="flex flex-col items-center gap-2 rounded-[12px] border border-[rgba(217,236,233,0.9)] bg-white px-6 py-7 text-center shadow-[0_8px_30px_rgba(36,109,116,0.05)]"
+          class="flex flex-col overflow-hidden rounded-[12px] border border-[rgba(217,236,233,0.9)] bg-white shadow-[0_8px_30px_rgba(36,109,116,0.05)]"
         >
-          <span
-            class="flex h-10 w-10 items-center justify-center rounded-[8px] bg-[#eef6f5] text-[#4fc7b7]"
-            ><svg
-              class="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.7"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M3 9.75L12 3l9 6.75V20a1 1 0 01-1 1h-5v-5H9v5H4a1 1 0 01-1-1V9.75z"
-              /></svg
-          ></span>
-          <p class="text-ink-900 text-sm font-black">居家养老</p>
-          <p class="text-xs leading-5" style="color: #6b7c83">
-            毫米波无感监测+智能设备，守护居家安全与健康
-          </p>
+          <div class="relative aspect-[16/10] overflow-hidden">
+            <img
+              th:src="@{/assets/images/wanchun/solution-home.jpg}"
+              src="/assets/images/wanchun/solution-home.jpg"
+              alt="居家智慧养老场景 毫米波无感监测 老人在家中卧室享受安全守护"
+              class="h-full w-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="flex flex-col items-center gap-2 px-6 py-5 text-center">
+            <span
+              class="flex h-8 w-8 items-center justify-center rounded-[8px] bg-[#eef6f5] text-[#4fc7b7]"
+              ><svg
+                class="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.7"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3 9.75L12 3l9 6.75V20a1 1 0 01-1 1h-5v-5H9v5H4a1 1 0 01-1-1V9.75z"
+                /></svg
+            ></span>
+            <p class="text-ink-900 text-sm font-black">居家养老</p>
+            <p class="text-xs leading-5" style="color: #6b7c83">
+              毫米波无感监测+智能设备，守护居家安全与健康
+            </p>
+          </div>
         </div>
+        <!-- 社区 - 已替换为实拍图 solution-community -->
         <div
-          class="flex flex-col items-center gap-2 rounded-[12px] border border-[rgba(217,236,233,0.9)] bg-white px-6 py-7 text-center shadow-[0_8px_30px_rgba(36,109,116,0.05)]"
+          class="flex flex-col overflow-hidden rounded-[12px] border border-[rgba(217,236,233,0.9)] bg-white shadow-[0_8px_30px_rgba(36,109,116,0.05)]"
         >
-          <span
-            class="flex h-10 w-10 items-center justify-center rounded-[8px] bg-[#eef6f5] text-[#4fc7b7]"
-            ><svg
-              class="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.7"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M12 21v-8.25M12 21c-1.5-1.2-3-2.5-3-4.5a3 3 0 116 0c0 2-1.5 3.3-3 4.5z"
-              />
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M18 9a6 6 0 11-12 0 6 6 0 0112 0z"
-              /></svg
-          ></span>
-          <p class="text-ink-900 text-sm font-black">社区养老</p>
-          <p class="text-xs leading-5" style="color: #6b7c83">
-            社区平台联动，健康档案与预警服务下沉
-          </p>
+          <div class="relative aspect-[16/10] overflow-hidden">
+            <img
+              th:src="@{/assets/images/wanchun/solution-community.jpg}"
+              src="/assets/images/wanchun/solution-community.jpg"
+              alt="社区智慧养老场景 社区服务中心 老人健康档案与预警服务"
+              class="h-full w-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="flex flex-col items-center gap-2 px-6 py-5 text-center">
+            <span
+              class="flex h-8 w-8 items-center justify-center rounded-[8px] bg-[#eef6f5] text-[#4fc7b7]"
+              ><svg
+                class="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.7"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 21v-8.25M12 21c-1.5-1.2-3-2.5-3-4.5a3 3 0 116 0c0 2-1.5 3.3-3 4.5z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M18 9a6 6 0 11-12 0 6 6 0 0112 0z"
+                /></svg
+            ></span>
+            <p class="text-ink-900 text-sm font-black">社区养老</p>
+            <p class="text-xs leading-5" style="color: #6b7c83">
+              社区平台联动，健康档案与预警服务下沉
+            </p>
+          </div>
         </div>
+        <!-- 机构 - 已替换为实拍图 solution-institution -->
         <div
-          class="flex flex-col items-center gap-2 rounded-[12px] border border-[rgba(217,236,233,0.9)] bg-white px-6 py-7 text-center shadow-[0_8px_30px_rgba(36,109,116,0.05)]"
+          class="flex flex-col overflow-hidden rounded-[12px] border border-[rgba(217,236,233,0.9)] bg-white shadow-[0_8px_30px_rgba(36,109,116,0.05)]"
         >
-          <span
-            class="flex h-10 w-10 items-center justify-center rounded-[8px] bg-[#eef6f5] text-[#4fc7b7]"
-            ><svg
-              class="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.7"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21"
-              /></svg
-          ></span>
-          <p class="text-ink-900 text-sm font-black">机构养老</p>
-          <p class="text-xs leading-5" style="color: #6b7c83">机构一体化平台，人房联动与运营提效</p>
+          <div class="relative aspect-[16/10] overflow-hidden">
+            <img
+              th:src="@{/assets/images/wanchun/solution-institution.jpg}"
+              src="/assets/images/wanchun/solution-institution.jpg"
+              alt="机构智慧养老场景 养老院护理中心 医护人员陪伴长者"
+              class="h-full w-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="flex flex-col items-center gap-2 px-6 py-5 text-center">
+            <span
+              class="flex h-8 w-8 items-center justify-center rounded-[8px] bg-[#eef6f5] text-[#4fc7b7]"
+              ><svg
+                class="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.7"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21"
+                /></svg
+            ></span>
+            <p class="text-ink-900 text-sm font-black">机构养老</p>
+            <p class="text-xs leading-5" style="color: #6b7c83">
+              机构一体化平台，人房联动与运营提效
+            </p>
+          </div>
         </div>
       </div>
     </div>

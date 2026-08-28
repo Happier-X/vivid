@@ -174,29 +174,19 @@
           class="relative aspect-[16/11] overflow-hidden rounded-[8px] bg-[#f4faf9] shadow-[0_18px_45px_rgba(36,109,116,0.12)]"
           style="filter: drop-shadow(0 28px 36px rgba(41, 127, 124, 0.18))"
         >
-          <!-- 万椿产品主图：样式复刻 mikapu，内容保留万椿一体化方案示意 -->
-          <div
-            class="from-primary to-primary-deep absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br p-8 text-white"
+          <!-- 万椿实拍：首屏主图 hero-main，已替换渐变占位为真实场景；保留 mikapu 圆角与阴影质感 -->
+          <img
+            th:src="@{/assets/images/wanchun/hero-main.jpg}"
+            src="/assets/images/wanchun/hero-main.jpg"
+            alt="万椿智慧养老一体化场景实拍 长者在家中享受智能守护"
+            class="absolute inset-0 h-full w-full object-cover"
+            loading="eager"
+            decoding="async"
+          />
+          <span
+            class="pointer-events-none absolute bottom-3 left-3 rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-[#2b8d89] shadow-sm backdrop-blur"
+            >万椿智慧养老 · 感知-网络-平台-应用一体化</span
           >
-            <svg
-              class="h-16 w-16 opacity-70"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1"
-              stroke="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M18 6h.008v.008H18V6z"
-              />
-            </svg>
-            <span
-              class="mt-4 rounded-full bg-white/15 px-4 py-1 text-xs font-semibold tracking-widest backdrop-blur"
-              >万椿智慧养老 · 感知-网络-平台-应用一体化</span
-            >
-          </div>
         </div>
       </div>
     </div>
