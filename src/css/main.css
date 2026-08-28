@@ -247,28 +247,37 @@ body {
   filter: blur(0);
 }
 
-/* ---------- 滚动条美化：青绿主题 · 纤细圆润 ---------- */
+/* ---------- 滚动条美化：品牌绿 · 更醒目 ---------- */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #4fc7b7 #eef7f7;
+}
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--color-primary) var(--color-mist);
+  scrollbar-color: #4fc7b7 #eef7f7;
 }
-*::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+*::-webkit-scrollbar,
+html::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
 }
-*::-webkit-scrollbar-track {
-  background: var(--color-mist);
+*::-webkit-scrollbar-track,
+html::-webkit-scrollbar-track {
+  background: #eef7f7;
 }
-*::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--color-primary), var(--color-primary-dark));
+*::-webkit-scrollbar-thumb,
+html::-webkit-scrollbar-thumb {
+  background: #4fc7b7;
   border-radius: 999px;
-  border: 2px solid var(--color-mist);
+  border: 2px solid #eef7f7;
 }
-*::-webkit-scrollbar-thumb:hover {
-  background: var(--color-primary-dark);
+*::-webkit-scrollbar-thumb:hover,
+html::-webkit-scrollbar-thumb:hover {
+  background: #2b8d89;
 }
-*::-webkit-scrollbar-corner {
-  background: var(--color-mist);
+*::-webkit-scrollbar-corner,
+html::-webkit-scrollbar-corner {
+  background: #eef7f7;
 }
 
 /* 尊重系统减少动态效果偏好：禁用入场动画与漂浮动画 */
