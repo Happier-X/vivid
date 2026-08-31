@@ -10,8 +10,6 @@ type Env = {
   RESEND_FROM?: string;
   ALLOWED_ORIGINS?: string;
   RATE_LIMIT_SECONDS?: string;
-  // 可选扩展：FEISHU_WEBHOOK_URL
-  FEISHU_WEBHOOK_URL?: string;
 };
 
 type CooperationPayload = {
@@ -254,15 +252,6 @@ export default {
       console.log("Cooperation payload (no email configured):", JSON.stringify(payload));
       // 若要求严格，可返回 500： return jsonResponse({ success: false, message: "邮件服务未配置" }, 500, origin, allowed);
     }
-
-    // 可选：飞书 webhook 扩展（默认注释）
-    // if (env.FEISHU_WEBHOOK_URL) {
-    //   await fetch(env.FEISHU_WEBHOOK_URL, {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify({ msg_type: "text", content: { text: `新合作咨询：${payload.company} - ${payload.contact} ${payload.phone}` } }),
-    //   }).catch(() => {});
-    // }
 
     return jsonResponse({ success: true, message: "提交成功" }, 200, origin, allowed);
   },

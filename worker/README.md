@@ -19,7 +19,6 @@
 | `RESEND_FROM`        | 否     | 发件人，默认 `万椿官网 <noreply@wanchunsmart.com>`                                                    |
 | `ALLOWED_ORIGINS`    | 否     | 逗号分隔的白名单 Origin，留空则允许所有；例如 `https://www.wanchunsmart.com,https://wanchunsmart.com` |
 | `RATE_LIMIT_SECONDS` | 否     | 限流窗口秒数，默认 `60`                                                                               |
-| `FEISHU_WEBHOOK_URL` | 否     | 可选飞书群机器人 webhook（预留扩展，默认注释）                                                        |
 | `SMTP_*`             | 否     | 如需 SMTP 请改用自建 Node 服务，Worker 示例默认 Resend                                                |
 
 > 二选一说明：本示例优先 Resend（`fetch https://api.resend.com/emails`）。如需 SMTP，因 Worker 无原生 SMTP，可部署为 Node 服务并使用 `nodemailer`，或在 Worker 中通过第三方邮件 API 中转。
@@ -71,23 +70,6 @@ wrangler deploy
 
 - `endpoint` 留空：表单显示“表单提交功能未配置，请通过右侧电话/邮箱联系”，并提供 `mailto:receiver_email`
 - 已配置：`fetch POST application/json`，10 秒超时，成功切成功态、失败保留数据
-
-## 扩展：飞书 webhook
-
-`worker/cooperation.ts` 底部已预留注释示例，取消注释并配置 `FEISHU_WEBHOOK_URL` 即可在发邮件后同步推送到飞书群。
-
-```ts
-if (env.FEISHU_WEBHOOK_URL) {
-  await fetch(env.FEISHU_WEBHOOK_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      msg_type: "text",
-      content: { text: `新合作咨询：${payload.company} - ${payload.contact} ${payload.phone}` },
-    }),
-  });
-}
-```
 
 ## CORS 常见问题
 
