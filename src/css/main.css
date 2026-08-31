@@ -391,6 +391,10 @@ html::-webkit-scrollbar-corner {
   border-color: #4fc7b7 !important;
   background-color: #4fc7b7 !important;
 }
+#cooperation-form label:has(input:checked) {
+  border-color: #4fc7b7 !important;
+  background-color: #eef9f7 !important;
+}
 #cooperation-form input:-webkit-autofill,
 #cooperation-form textarea:-webkit-autofill,
 #cooperation-form input:-webkit-autofill:hover,
