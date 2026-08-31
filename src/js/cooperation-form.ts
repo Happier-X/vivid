@@ -194,10 +194,12 @@ export function initCooperationForm(): void {
     if (loading) {
       textEl?.classList.add("hidden");
       loadingEl?.classList.remove("hidden");
+      loadingEl?.classList.add("inline-flex");
       submitBtnEl.setAttribute("aria-busy", "true");
     } else {
       textEl?.classList.remove("hidden");
       loadingEl?.classList.add("hidden");
+      loadingEl?.classList.remove("inline-flex");
       submitBtnEl.removeAttribute("aria-busy");
     }
   }
