@@ -1,0 +1,52 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.5' apply false
+    id 'io.spring.dependency-management' version '1.1.4'
+    id 'io.freefair.lombok' version '8.6'
+    id 'run.halo.plugin.devtools' version '0.6.2'
+}
+
+group = 'run.wanchun.cooperation'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation platform('run.halo.tools.platform:application:2.20.11')
+    compileOnly 'run.halo.app:api:2.20.11'
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+    compileOnly 'org.springframework.boot:spring-boot-starter-webflux'
+    compileOnly 'org.springframework.boot:spring-boot-starter-security'
+    compileOnly 'org.springframework.boot:spring-boot-starter-validation'
+
+    testImplementation 'run.halo.app:api:2.20.11'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 17
+}
+
+halo {
+    version = '2.20.11'
+}
+
+// 确保构建产物名称与 PRD/文档一致：cooperation-plugin-1.0.0.jar
+jar {
+    archiveBaseName = 'cooperation-plugin'
+}

@@ -1,0 +1,50 @@
+apiVersion: v1alpha1
+kind: Setting
+metadata:
+  name: cooperation-setting
+spec:
+  forms:
+    - group: mail
+      label: 邮件配置
+      formSchema:
+        - $formkit: text
+          name: smtpHost
+          label: SMTP Host
+          value: ""
+          help: "例如 smtp.qiye.163.com 或 smtp.exmail.qq.com"
+        - $formkit: text
+          name: smtpPort
+          label: SMTP Port
+          value: "465"
+          help: "465(SSL) 或 587(TLS)"
+        - $formkit: text
+          name: smtpUsername
+          label: SMTP 用户名
+          value: ""
+          help: "完整邮箱地址"
+        - $formkit: password
+          name: smtpPassword
+          label: SMTP 密码/授权码
+          value: ""
+        - $formkit: text
+          name: fromEmail
+          label: 发件人邮箱
+          value: "noreply@wanchunsmart.com"
+        - $formkit: text
+          name: receiverEmail
+          label: 收件人邮箱
+          value: "contact@wanchunsmart.com"
+          help: "合作咨询接收邮箱"
+        - $formkit: text
+          name: smtpSsl
+          label: 启用 SSL
+          value: "true"
+          help: "465 端口请填 true，587 请填 false"
+    - group: security
+      label: 安全与限流
+      formSchema:
+        - $formkit: number
+          name: rateLimitSeconds
+          label: 限流秒数（IP 维度）
+          value: 60
+          help: "同一 IP 多少秒内仅允许提交一次，默认 60"

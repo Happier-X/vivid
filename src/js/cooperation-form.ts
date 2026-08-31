@@ -13,8 +13,12 @@ const DEFAULT_RECEIVER = "contact@wanchunsmart.com";
 const DEFAULT_SUCCESS_TITLE = "提交成功";
 const DEFAULT_SUCCESS_DESC = "我们已收到您的合作意向，商务团队将在 24 小时内与您联系。";
 
-function isHttpUrl(value: string): boolean {
-  return /^https?:\/\//.test(value);
+function isValidEndpoint(value: string): boolean {
+  const trimmed = value.trim();
+  if (!trimmed) return false;
+  if (/^https?:\/\//.test(trimmed)) return true;
+  if (trimmed.startsWith("/")) return true;
+  return false;
 }
 
 export function initCooperationForm(): void {
@@ -49,7 +53,7 @@ export function initCooperationForm(): void {
   const successTitle = (root.dataset["successTitle"] || "").trim() || DEFAULT_SUCCESS_TITLE;
   const successDesc = (root.dataset["successDesc"] || "").trim() || DEFAULT_SUCCESS_DESC;
 
-  const hasEndpoint = endpoint.length > 0 && isHttpUrl(endpoint);
+  const hasEndpoint = endpoint.length > 0 && isValidEndpoint(endpoint);
 
   // 同步 mailto 链接
   if (mailtoLink) {

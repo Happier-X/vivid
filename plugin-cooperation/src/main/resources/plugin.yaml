@@ -1,0 +1,21 @@
+apiVersion: plugin.halo.run/v1alpha1
+kind: Plugin
+metadata:
+  name: cooperation-plugin
+spec:
+  displayName: 合作咨询插件
+  version: 1.0.0
+  author:
+    name: 山东万椿
+    website: https://www.wanchunsmart.com
+  description: 合作咨询表单后端，提供同源提交、校验、限流、邮件与 Extension 留存
+  homepage: https://www.wanchunsmart.com
+  repo: https://github.com/wanchun/cooperation-plugin
+  issues: https://github.com/wanchun/cooperation-plugin/issues
+  requires: ">=2.20.0"
+  enabled: true
+  settingName: cooperation-setting
+  configMapName: cooperation-config
+  license:
+    - name: "GPL-3.0"
+      url: "https://www.gnu.org/licenses/gpl-3.0.en.html"

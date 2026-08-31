@@ -26,5 +26,7 @@ dist-ssr
 
 .gradle
 build
+plugin-cooperation/build/
+plugin-cooperation/.gradle/
 templates
 山东万椿智能科技有限公司资料/
