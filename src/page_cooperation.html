@@ -226,12 +226,16 @@
     </div>
   </section>
 
-  <!-- 表单区：1:1 复刻截图 — 浅青底 + 胶囊标题 + 左右双栏，左侧保留飞书嵌入 -->
-  <section id="cooperation-form" class="py-12 sm:py-16" style="background: #eef7f7">
+  <!-- 表单区：1:1 复刻截图 — 浅青底 + 胶囊标题 + 左右双栏，左侧原生表单 -->
+  <section id="cooperation-section" class="py-12 sm:py-16" style="background: #eef7f7">
     <div class="mx-auto w-[calc(100%-32px)] max-w-[1180px]">
       <div class="grid gap-8 lg:grid-cols-2 lg:gap-10">
-        <!-- 左侧：填写信息 -->
-        <div class="reveal">
+        <!-- 左侧：填写信息（原生表单） -->
+        <div
+          class="reveal"
+          id="cooperation-form-root"
+          th:attr="data-endpoint=${theme.config.cooperation.endpoint},data-receiver-email=${theme.config.cooperation.receiver_email},data-success-title=${theme.config.cooperation.success_title},data-success-desc=${theme.config.cooperation.success_desc}"
+        >
           <span
             class="inline-flex items-center gap-1.5 rounded-full bg-[#e0f7f4] px-3.5 py-1.5 text-xs font-bold tracking-wide text-[#2b8d89]"
             ><svg
@@ -258,62 +262,93 @@
             填写以下信息，我们的商务团队将在 24 小时内与您联系
           </p>
           <div
-            id="cooperation-placeholder-form"
-            class="mt-6 rounded-[12px] border border-[rgba(217,236,233,0.9)] bg-white p-2 shadow-[0_8px_30px_rgba(36,109,116,0.06)]"
+            class="mt-6 rounded-[12px] border border-[rgba(217,236,233,0.9)] bg-white p-6 shadow-[0_8px_30px_rgba(36,109,116,0.06)] sm:p-7"
           >
-            <div class="border-line overflow-hidden rounded-[8px] border bg-white">
-              <iframe
-                src="https://my.feishu.cn/share/base/form/shrcnBUAhTnJfC5G3uwAYtqLPMe"
-                class="h-[700px] w-full border-0"
-                loading="lazy"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen
-              ></iframe>
-            </div>
-            <!-- 备用 mailto 表单（无邮箱字段）已由飞书表单替代，如需直发邮件可取消下方注释
-            <form
-              class="flex flex-col gap-5"
-              onsubmit="event.preventDefault(); const fd = new FormData(this); const company = fd.get('company')||'', contact=fd.get('contact')||'', phone=fd.get('phone')||''; const type = fd.get('type')||'', message=fd.get('message')||''; const subject = encodeURIComponent('【万椿官网】合作咨询 - ' + company + ' - ' + type); const body = encodeURIComponent('公司名称：' + company + '\n联系人：' + contact + '\n电话：' + phone + '\n合作类型：' + type + '\n\n合作意向：\n' + message); window.location.href = 'mailto:contact@wanchunsmart.com?subject=' + subject + '&body=' + body; const tip = document.getElementById('cooperation-mailto-tip'); if(tip) { tip.classList.remove('hidden'); tip.textContent = '已尝试唤起邮件客户端，如未弹出请手动发送至 contact@wanchunsmart.com'; } return false;"
+            <!-- 顶部错误条 -->
+            <div
+              id="cooperation-error"
+              class="hidden rounded-[8px] border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600"
+              role="alert"
+              aria-live="polite"
+            ></div>
+            <!-- 未配置提示 -->
+            <div
+              id="cooperation-no-endpoint"
+              class="hidden rounded-[8px] border border-amber-200 bg-amber-50 px-4 py-3 text-sm leading-6 text-amber-800"
+              role="alert"
             >
-              <div class="grid gap-6 sm:grid-cols-2">
-                <label class="flex flex-col gap-1.5">
+              <p>表单提交功能未配置，请通过右侧电话/邮箱联系。</p>
+              <p class="mt-1">
+                <a
+                  id="cooperation-mailto-link"
+                  href="mailto:contact@wanchunsmart.com"
+                  class="font-medium text-[#2b8d89] underline underline-offset-2"
+                  >发送邮件至 contact@wanchunsmart.com</a
+                >
+              </p>
+            </div>
+            <!-- 原生表单 -->
+            <form id="cooperation-form" class="flex flex-col gap-5" novalidate>
+              <div class="grid gap-5 sm:grid-cols-2">
+                <label class="flex flex-col gap-1.5" for="cooperation-company">
                   <span class="text-ink-700 text-sm font-medium"
                     >公司名称 <span class="text-red-500">*</span></span
                   >
                   <input
+                    id="cooperation-company"
                     type="text"
                     name="company"
-                    required
+                    autocomplete="organization"
                     placeholder="请输入公司/机构名称"
+                    aria-describedby="cooperation-company-error"
                     class="border-line focus:border-primary focus:ring-primary/20 w-full rounded-[8px] border bg-white px-4 py-3 text-sm transition outline-none focus:ring-2"
                   />
+                  <p
+                    id="cooperation-company-error"
+                    data-error-for="company"
+                    class="hidden text-xs text-red-500"
+                  ></p>
                 </label>
-                <label class="flex flex-col gap-1.5">
+                <label class="flex flex-col gap-1.5" for="cooperation-contact">
                   <span class="text-ink-700 text-sm font-medium"
                     >联系人 <span class="text-red-500">*</span></span
                   >
                   <input
+                    id="cooperation-contact"
                     type="text"
                     name="contact"
-                    required
+                    autocomplete="name"
                     placeholder="请输入联系人姓名"
+                    aria-describedby="cooperation-contact-error"
                     class="border-line focus:border-primary focus:ring-primary/20 w-full rounded-[8px] border bg-white px-4 py-3 text-sm transition outline-none focus:ring-2"
                   />
+                  <p
+                    id="cooperation-contact-error"
+                    data-error-for="contact"
+                    class="hidden text-xs text-red-500"
+                  ></p>
                 </label>
               </div>
-              <label class="flex flex-col gap-1.5">
+              <label class="flex flex-col gap-1.5" for="cooperation-phone">
                 <span class="text-ink-700 text-sm font-medium"
                   >联系电话 <span class="text-red-500">*</span></span
                 >
                 <input
+                  id="cooperation-phone"
                   type="tel"
                   name="phone"
-                  required
-                  placeholder="请输入联系电话"
+                  autocomplete="tel"
+                  placeholder="请输入手机号或座机（如 13812345678 或 0531-66670365）"
+                  aria-describedby="cooperation-phone-error"
                   class="border-line focus:border-primary focus:ring-primary/20 w-full rounded-[8px] border bg-white px-4 py-3 text-sm transition outline-none focus:ring-2"
                 />
+                <p
+                  id="cooperation-phone-error"
+                  data-error-for="phone"
+                  class="hidden text-xs text-red-500"
+                ></p>
               </label>
-              <fieldset class="flex flex-col gap-2">
+              <fieldset class="flex flex-col gap-2" aria-describedby="cooperation-type-error">
                 <legend class="text-ink-700 text-sm font-medium">
                   合作类型 <span class="text-red-500">*</span>
                 </legend>
@@ -364,25 +399,107 @@
                     <span class="text-ink-700 text-sm">渠道代理 &amp; OEM/ODM</span>
                   </label>
                 </div>
+                <p
+                  id="cooperation-type-error"
+                  data-error-for="type"
+                  class="hidden text-xs text-red-500"
+                ></p>
               </fieldset>
-              <label class="flex flex-col gap-1.5">
+              <label class="flex flex-col gap-1.5" for="cooperation-message">
                 <span class="text-ink-700 text-sm font-medium">合作意向说明</span>
                 <textarea
+                  id="cooperation-message"
                   name="message"
                   rows="4"
                   placeholder="请简要描述您的合作意向..."
+                  aria-describedby="cooperation-message-error"
                   class="border-line focus:border-primary focus:ring-primary/20 w-full resize-none rounded-[8px] border bg-white px-4 py-3 text-sm transition outline-none focus:ring-2"
                 ></textarea>
+                <p
+                  id="cooperation-message-error"
+                  data-error-for="message"
+                  class="hidden text-xs text-red-500"
+                ></p>
               </label>
-              <button type="submit" class="btn btn-primary mt-1 w-full justify-center">
-                提交合作意向
+              <!-- 蜜罐字段 -->
+              <input
+                type="text"
+                name="website"
+                tabindex="-1"
+                autocomplete="off"
+                aria-hidden="true"
+                class="hidden"
+                style="display: none !important"
+              />
+              <button
+                id="cooperation-submit"
+                type="submit"
+                class="btn btn-primary mt-1 w-full justify-center disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                <span data-role="btn-text">提交合作意向</span>
+                <span data-role="btn-loading" class="hidden inline-flex items-center gap-2">
+                  <svg class="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
+                    <circle
+                      class="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      stroke-width="4"
+                    ></circle>
+                    <path
+                      class="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                    ></path>
+                  </svg>
+                  提交中...
+                </span>
               </button>
-              <p id="cooperation-mailto-tip" class="hidden text-center text-sm text-primary-dark mt-3"></p>
               <p class="text-ink-500 text-center text-xs">
                 提交即表示您同意我们与您联系，进一步沟通合作事宜
               </p>
             </form>
-            -->
+            <!-- 成功态 -->
+            <div
+              id="cooperation-success"
+              class="flex hidden flex-col items-center gap-4 py-8 text-center"
+            >
+              <span
+                class="flex h-14 w-14 items-center justify-center rounded-full bg-[#e0f7f4] text-[#4fc7b7]"
+              >
+                <svg
+                  class="h-7 w-7"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </span>
+              <h3 id="cooperation-success-title" class="text-ink-900 text-lg font-black">
+                提交成功
+              </h3>
+              <p id="cooperation-success-desc" class="text-ink-500 max-w-sm text-sm leading-6">
+                我们已收到您的合作意向，商务团队将在 24 小时内与您联系。
+              </p>
+              <button id="cooperation-reset" type="button" class="btn btn-outline mt-2">
+                再次提交
+              </button>
+            </div>
+            <noscript>
+              <p
+                class="mt-4 rounded-[8px] border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800"
+              >
+                请启用 JavaScript 后提交，或通过电话 0531-66670365 / 邮箱 contact@wanchunsmart.com
+                联系我们。
+              </p>
+            </noscript>
           </div>
         </div>
 

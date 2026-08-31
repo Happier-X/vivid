@@ -27,3 +27,27 @@ spec:
               value: rounded
             - label: 硬朗（直角）
               value: sharp
+    # ---------- 合作咨询表单 ----------
+    - group: cooperation
+      label: 合作咨询表单
+      formSchema:
+        - $formkit: text
+          name: endpoint
+          label: 表单提交接口
+          value: ""
+          help: "合作表单提交接口地址，例如 https://xxx.workers.dev/api/cooperation，留空则表单仅展示联系方式提示"
+        - $formkit: text
+          name: receiver_email
+          label: 接收邮箱（备用 mailto）
+          value: "contact@wanchunsmart.com"
+          help: "未配置接口时的备用联系邮箱，用于 mailto 链接"
+        - $formkit: text
+          name: success_title
+          label: 提交成功标题
+          value: "提交成功"
+          help: "表单提交成功后展示的标题"
+        - $formkit: textarea
+          name: success_desc
+          label: 提交成功描述
+          value: "我们已收到您的合作意向，商务团队将在 24 小时内与您联系。"
+          help: "表单提交成功后展示的描述文案"

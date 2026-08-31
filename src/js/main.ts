@@ -1,4 +1,5 @@
 import "../css/main.css";
+import { initCooperationForm } from "./cooperation-form";
 
 // 标记 JS 已启用：滚动入场动画仅在 .js 前缀下隐藏元素（无 JS 降级可见）
 document.documentElement.classList.add("js");
@@ -54,4 +55,11 @@ if (header) {
   };
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
+}
+
+// 合作咨询表单（幂等，无 DOM 时直接 return）
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", () => initCooperationForm());
+} else {
+  initCooperationForm();
 }

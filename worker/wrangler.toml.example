@@ -1,0 +1,16 @@
+name = "vivid-cooperation"
+main = "worker/cooperation.ts"
+compatibility_date = "2024-01-01"
+
+[vars]
+RECEIVER_EMAIL = "contact@wanchunsmart.com"
+RESEND_FROM = "万椿官网 <noreply@wanchunsmart.com>"
+# ALLOWED_ORIGINS 留空则允许所有，生产建议填白名单
+ALLOWED_ORIGINS = ""
+RATE_LIMIT_SECONDS = "60"
+# 可选：飞书群机器人 webhook（预留扩展）
+# FEISHU_WEBHOOK_URL = "https://open.feishu.cn/open-apis/bot/v2/hook/xxx"
+
+# 敏感变量请用 wrangler secret 管理：
+# wrangler secret put RESEND_API_KEY
+# wrangler secret put FEISHU_WEBHOOK_URL
