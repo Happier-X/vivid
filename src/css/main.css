@@ -372,3 +372,25 @@ html::-webkit-scrollbar-corner {
 .rich-content ol {
   list-style: decimal;
 }
+
+/* ---------- 合作表单：强制青绿焦点与覆盖自动填充蓝底 ---------- */
+#cooperation-form input:focus,
+#cooperation-form textarea:focus {
+  border-color: var(--color-primary) !important;
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--color-primary) 30%, transparent) !important;
+  outline: none !important;
+}
+#cooperation-form input[type="radio"]:focus {
+  --tw-ring-color: var(--color-primary) !important;
+}
+#cooperation-form input:-webkit-autofill,
+#cooperation-form textarea:-webkit-autofill,
+#cooperation-form input:-webkit-autofill:hover,
+#cooperation-form textarea:-webkit-autofill:hover,
+#cooperation-form input:-webkit-autofill:focus,
+#cooperation-form textarea:-webkit-autofill:focus {
+  box-shadow: 0 0 0 1000px #fff inset !important;
+  -webkit-text-fill-color: var(--color-ink-900) !important;
+  -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+}
