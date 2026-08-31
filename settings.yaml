@@ -34,8 +34,8 @@ spec:
         - $formkit: text
           name: endpoint
           label: 表单提交接口
-          value: "/apis/api.cooperation.vivid.run/v1alpha1/cooperations"
-          help: "合作表单提交接口地址，同源插件路径为 /apis/api.cooperation.vivid.run/v1alpha1/cooperations，留空则表单仅展示联系方式提示"
+          value: "/api/cooperation"
+          help: "合作表单提交接口地址，FastAPI 同源路径为 /api/cooperation，留空则表单仅展示联系方式提示"
         - $formkit: text
           name: receiver_email
           label: 接收邮箱（备用 mailto）

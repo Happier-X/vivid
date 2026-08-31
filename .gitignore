@@ -30,3 +30,10 @@ plugin-cooperation/build/
 plugin-cooperation/.gradle/
 templates
 山东万椿智能科技有限公司资料/
+# cooperation backend
+server/cooperation/.env
+server/cooperation/.venv/
+server/cooperation/cooperations.db
+server/cooperation/cooperations.log
+server/cooperation/__pycache__/
+server/cooperation/app/__pycache__/

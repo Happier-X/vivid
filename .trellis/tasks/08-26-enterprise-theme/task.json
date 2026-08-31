@@ -22,7 +22,8 @@
     "08-28-solutions",
     "08-28-image-realization",
     "08-31-cooperation-form-native",
-    "08-31-cooperation-plugin-backend"
+    "08-31-cooperation-plugin-backend",
+    "08-31-cooperation-fastapi-backend"
   ],
   "parent": null,
   "relatedFiles": [],

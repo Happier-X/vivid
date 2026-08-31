@@ -1,0 +1,29 @@
+[project]
+name = "cooperation-server"
+version = "1.0.0"
+description = "万椿官网合作表单独立后端"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.110",
+  "uvicorn[standard]>=0.30",
+  "pydantic>=2.7",
+  "pydantic-settings>=2.3",
+  "aiosqlite>=0.20",
+  "aiosmtplib>=3.0",
+  "email-validator>=2.1",
+  "python-multipart>=0.0.9",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
+
+[tool.uv]
+managed = true
+
+[dependency-groups]
+dev = ["httpx>=0.27", "pytest>=8.0", "anyio>=4.0"]
