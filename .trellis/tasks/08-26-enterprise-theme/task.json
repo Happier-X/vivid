@@ -25,7 +25,8 @@
     "08-31-cooperation-plugin-backend",
     "08-31-cooperation-fastapi-backend",
     "08-31-cooperation-input-focus-theme",
-    "08-31-cooperation-focus-hard-override"
+    "08-31-cooperation-focus-hard-override",
+    "08-31-cooperation-focus-hardcode-102"
   ],
   "parent": null,
   "relatedFiles": [],

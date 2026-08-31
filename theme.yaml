@@ -25,7 +25,7 @@ spec:
       - name: 解决方案
         description: 万椿全场景解决方案，3+X 与 4+N 体系
         file: page_solutions.html
-  version: 1.0.1
+  version: 1.0.2
   requires: ">=2.0.0"
   license:
     - name: "GPL-3.0"

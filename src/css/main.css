@@ -373,15 +373,15 @@ html::-webkit-scrollbar-corner {
   list-style: decimal;
 }
 
-/* ---------- 合作表单：强制青绿焦点与覆盖自动填充蓝底 ---------- */
+/* ---------- 合作表单：强制青绿焦点与覆盖自动填充蓝底（硬编码 #4fc7b7，确保变量未注入也生效） ---------- */
 #cooperation-form input:focus,
 #cooperation-form textarea:focus {
-  border-color: var(--color-primary) !important;
-  box-shadow: 0 0 0 2px color-mix(in oklab, var(--color-primary) 30%, transparent) !important;
+  border-color: #4fc7b7 !important;
+  box-shadow: 0 0 0 2px rgba(79, 199, 183, 0.3) !important;
   outline: none !important;
 }
 #cooperation-form input[type="radio"]:focus {
-  --tw-ring-color: var(--color-primary) !important;
+  --tw-ring-color: #4fc7b7 !important;
 }
 #cooperation-form input:-webkit-autofill,
 #cooperation-form textarea:-webkit-autofill,
