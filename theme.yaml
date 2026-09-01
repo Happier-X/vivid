@@ -25,6 +25,9 @@ spec:
       - name: 解决方案
         description: 万椿全场景解决方案，3+X 与 4+N 体系
         file: page_solutions.html
+      - name: 产品详情
+        description: 精选产品硬编码详情页，按 slug 分支展示
+        file: page_product.html
   version: 1.0.2
   requires: ">=2.0.0"
   license:

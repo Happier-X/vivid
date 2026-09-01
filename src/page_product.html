@@ -1,0 +1,782 @@
+<include src="layout.html">
+  <template name="head">
+    <title th:text="|${singlePage.spec.title} - ${site.title}|">产品详情</title>
+  </template>
+
+  <!-- 单页硬编码产品详情：按 slug 分支，无需维护富文本 -->
+  <div th:with="slug=${singlePage.spec.slug ?: ''}">
+    <!-- 面包屑通用条（所有分支共用，标题按 slug 映射） -->
+    <div class="section-tinted border-line/70 border-b">
+      <div class="mx-auto max-w-4xl px-4 py-6 sm:px-6 lg:px-8">
+        <nav aria-label="面包屑" class="text-ink-500 flex flex-wrap items-center gap-1.5 text-sm">
+          <a th:href="@{/}" class="hover:text-primary transition-colors">首页</a>
+          <span class="text-line">/</span>
+          <a th:href="@{/product-vital}" class="hover:text-primary transition-colors">产品详情</a>
+          <span class="text-line">/</span>
+          <span
+            th:text="${slug == 'product-vital' ? '体征监测仪 · 无感毫米波款' : (slug == 'product-diedao' ? '跌倒监测仪 · 毫米波款' : (slug == 'product-sos' ? '紧急按钮 · 一键 SOS 款' : singlePage.spec.title))}"
+            class="text-ink-900 font-medium"
+            >当前产品</span
+          >
+          <a
+            href="javascript:history.back()"
+            class="text-ink-500 hover:text-primary ml-auto inline-flex items-center gap-1 transition-colors"
+          >
+            <svg
+              class="h-3.5 w-3.5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.5 19.5L3 12l7.5-7.5M3 12h18"
+              />
+            </svg>
+            返回
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- 分支：体征监测仪 -->
+    <section th:if="${slug == 'product-vital'}">
+      <!-- 首图大图 + 标题卖点 -->
+      <div class="mx-auto max-w-4xl px-4 pt-8 sm:px-6 lg:px-8">
+        <div
+          class="overflow-hidden rounded-[12px] border border-[rgba(217,236,233,0.9)] bg-white shadow-[0_8px_30px_rgba(36,109,116,0.06)]"
+        >
+          <div class="bg-mist relative aspect-[4/3] overflow-hidden p-3 sm:aspect-[16/10]">
+            <img
+              th:src="@{/assets/images/wanchun/product-vital.png}"
+              src="/assets/images/wanchun/product-vital.png"
+              alt="体征监测仪 无感毫米波款 实拍图"
+              class="h-full w-full rounded-[8px] bg-white object-contain"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+        </div>
+        <div class="mt-8 text-center">
+          <span
+            class="inline-flex items-center rounded-full bg-[#e0f7f4] px-3.5 py-1.5 text-xs font-bold tracking-wide text-[#2b8d89]"
+            >无感守护 · 24小时在线</span
+          >
+          <h1
+            class="text-ink-900 mt-4 text-[clamp(28px,4vw,44px)] leading-[1.12] font-black tracking-tight"
+            style="font-weight: 900"
+          >
+            体征监测仪 · 无感毫米波款
+          </h1>
+          <p class="text-ink-500 mx-auto mt-3 max-w-2xl text-[15px] leading-7">
+            24 小时无感监测心率 / 呼吸 / 体动 /
+            在离床，异常自动预警，守护夜间安全，助力机构与居家健康管理闭环。
+          </p>
+        </div>
+      </div>
+
+      <!-- 产品介绍 4 卡片 -->
+      <div class="mx-auto max-w-4xl px-4 pt-10 sm:px-6 lg:px-8">
+        <h2 class="text-ink-900 text-xl font-black tracking-tight">产品介绍</h2>
+        <p class="mt-2 text-sm leading-6" style="color: rgba(104, 119, 131, 0.9)">
+          毫米波无感监测，无需佩戴，不打扰睡眠，数据持续在线。
+        </p>
+        <div class="mt-6 grid gap-4 sm:grid-cols-2">
+          <div class="product-highlight-card">
+            <div>
+              <p class="text-ink-900 text-[14px] font-black">毫米波无感监测</p>
+              <p class="mt-1 text-[13px] leading-5" style="color: #5a6b74">
+                60GHz 毫米波雷达，床底 / 壁挂 / 吊顶安装，无需佩戴，无摄像头隐私顾虑。
+              </p>
+            </div>
+          </div>
+          <div class="product-highlight-card">
+            <div>
+              <p class="text-ink-900 text-[14px] font-black">多维异常预警</p>
+              <p class="mt-1 text-[13px] leading-5" style="color: #5a6b74">
+                心率过高过低、呼吸暂停、离床超时自动推送至平台大屏 / APP / 微信。
+              </p>
+            </div>
+          </div>
+          <div class="product-highlight-card">
+            <div>
+              <p class="text-ink-900 text-[14px] font-black">睡眠健康报告</p>
+              <p class="mt-1 text-[13px] leading-5" style="color: #5a6b74">
+                日 / 周 / 月度睡眠质量、在床时长、体动翻身分析，辅助健康管理与照护决策。
+              </p>
+            </div>
+          </div>
+          <div class="product-highlight-card">
+            <div>
+              <p class="text-ink-900 text-[14px] font-black">平台联动闭环</p>
+              <p class="mt-1 text-[13px] leading-5" style="color: #5a6b74">
+                联动万椿云平台，声光 / 短信 / 微信多通道告警，工单流转与处置留痕。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 规格参数表 -->
+      <div class="mx-auto max-w-4xl px-4 pt-10 sm:px-6 lg:px-8">
+        <div
+          class="product-specs overflow-hidden rounded-[12px] border border-[rgba(217,236,233,0.9)] bg-white shadow-[0_8px_30px_rgba(36,109,116,0.06)]"
+        >
+          <div class="border-line bg-mist border-b px-5 py-3">
+            <h2 class="text-ink-900 text-base font-black tracking-tight">规格参数</h2>
+          </div>
+          <div class="p-0">
+            <table>
+              <tbody>
+                <tr>
+                  <td>监测方式</td>
+                  <td>60GHz 毫米波雷达，无感非接触</td>
+                </tr>
+                <tr>
+                  <td>监测距离</td>
+                  <td>0.4 – 2.5 m（自适应）</td>
+                </tr>
+                <tr>
+                  <td>监测项</td>
+                  <td>心率 / 呼吸率 / 体动 / 在离床状态</td>
+                </tr>
+                <tr>
+                  <td>联网</td>
+                  <td>Wi-Fi 2.4GHz / 有线（选配）</td>
+                </tr>
+                <tr>
+                  <td>供电</td>
+                  <td>DC 5V / 1A 适配器</td>
+                </tr>
+                <tr>
+                  <td>安装</td>
+                  <td>壁挂 / 床底 / 吊顶</td>
+                </tr>
+                <tr>
+                  <td>尺寸</td>
+                  <td>约 85 × 85 × 22 mm</td>
+                </tr>
+                <tr>
+                  <td>工作温度</td>
+                  <td>-10℃ ~ 55℃ / 湿度 ≤ 85% RH</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- 相关产品 3 卡 -->
+      <div class="mx-auto max-w-4xl px-4 pt-10 sm:px-6 lg:px-8">
+        <div class="mb-6 flex items-center justify-between">
+          <h2 class="text-ink-900 text-xl font-black tracking-tighter">相关产品</h2>
+          <a
+            th:href="@{/cooperation}"
+            href="/cooperation"
+            class="text-primary-dark hover:text-primary text-sm font-semibold transition-colors"
+            >合作咨询 →</a
+          >
+        </div>
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <a
+            th:href="@{/product-diedao}"
+            href="/product-diedao"
+            class="group flex flex-col overflow-hidden rounded-[8px] border border-[rgba(217,236,233,1)] bg-white shadow-[0_8px_30px_rgba(36,109,116,0.07)] transition-all duration-200 hover:-translate-y-1.5 hover:shadow-[0_18px_45px_rgba(36,109,116,0.12)]"
+          >
+            <div class="relative aspect-square overflow-hidden bg-white p-3">
+              <img
+                th:src="@{/assets/images/wanchun/product-diedao.png}"
+                src="/assets/images/wanchun/product-diedao.png"
+                alt="跌倒监测仪"
+                class="h-full w-full rounded-[8px] object-contain"
+                loading="lazy"
+              />
+            </div>
+            <div class="flex flex-1 flex-col gap-1.5 bg-white p-5">
+              <h3 class="text-ink-900 text-[15px] leading-6 font-black tracking-tight">
+                跌倒监测仪 · 毫米波款
+              </h3>
+              <p class="text-ink-500 line-clamp-2 text-sm leading-6">
+                毫米波无感监测，跌倒即时告警守护
+              </p>
+            </div>
+          </a>
+          <a
+            th:href="@{/product-sos}"
+            href="/product-sos"
+            class="group flex flex-col overflow-hidden rounded-[8px] border border-[rgba(217,236,233,1)] bg-white shadow-[0_8px_30px_rgba(36,109,116,0.07)] transition-all duration-200 hover:-translate-y-1.5 hover:shadow-[0_18px_45px_rgba(36,109,116,0.12)]"
+          >
+            <div class="relative aspect-square overflow-hidden bg-white p-3">
+              <img
+                th:src="@{/assets/images/wanchun/product-sos.jpg}"
+                src="/assets/images/wanchun/product-sos.jpg"
+                alt="紧急按钮"
+                class="h-full w-full rounded-[8px] object-contain"
+                loading="lazy"
+              />
+            </div>
+            <div class="flex flex-1 flex-col gap-1.5 bg-white p-5">
+              <h3 class="text-ink-900 text-[15px] leading-6 font-black tracking-tight">
+                紧急按钮 · 一键 SOS 款
+              </h3>
+              <p class="text-ink-500 line-clamp-2 text-sm leading-6">
+                一键 SOS 求助，快速响应守护安全
+              </p>
+            </div>
+          </a>
+          <a
+            th:href="@{/solutions}"
+            href="/solutions"
+            class="group flex flex-col overflow-hidden rounded-[8px] border border-[rgba(217,236,233,1)] bg-white shadow-[0_8px_30px_rgba(36,109,116,0.07)] transition-all duration-200 hover:-translate-y-1.5 hover:shadow-[0_18px_45px_rgba(36,109,116,0.12)]"
+          >
+            <div class="relative aspect-square overflow-hidden bg-[#eef7f7] p-3">
+              <div
+                class="flex h-full w-full items-center justify-center rounded-[8px] bg-white text-xs font-bold"
+                style="color: #2b8d89"
+              >
+                全场景解决方案
+              </div>
+            </div>
+            <div class="flex flex-1 flex-col gap-1.5 bg-white p-5">
+              <h3 class="text-ink-900 text-[15px] leading-6 font-black tracking-tight">
+                全场景解决方案
+              </h3>
+              <p class="text-ink-500 line-clamp-2 text-sm leading-6">
+                3+X 与 4+N 体系，覆盖居家·社区·机构
+              </p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- 合作 CTA -->
+      <div class="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8">
+        <div
+          class="from-primary to-primary-deep overflow-hidden rounded-[12px] bg-gradient-to-br p-[1px]"
+        >
+          <div class="rounded-[11px] bg-white px-6 py-8 text-center sm:px-10 sm:py-10">
+            <h3 class="text-ink-900 text-xl font-black tracking-tight sm:text-2xl">
+              对该产品感兴趣？
+            </h3>
+            <p class="text-ink-500 mt-2 text-sm leading-6">
+              获取详细方案与报价，与万椿商务团队一对一沟通
+            </p>
+            <a
+              th:href="@{/cooperation}"
+              href="/cooperation"
+              class="btn btn-primary mt-6 min-w-[160px]"
+              >立即咨询合作</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 分支：跌倒监测仪 -->
+    <section th:if="${slug == 'product-diedao'}">
+      <div class="mx-auto max-w-4xl px-4 pt-8 sm:px-6 lg:px-8">
+        <div
+          class="overflow-hidden rounded-[12px] border border-[rgba(217,236,233,0.9)] bg-white shadow-[0_8px_30px_rgba(36,109,116,0.06)]"
+        >
+          <div class="bg-mist relative aspect-[4/3] overflow-hidden p-3 sm:aspect-[16/10]">
+            <img
+              th:src="@{/assets/images/wanchun/product-diedao.png}"
+              src="/assets/images/wanchun/product-diedao.png"
+              alt="跌倒监测仪 毫米波款 实拍图"
+              class="h-full w-full rounded-[8px] bg-white object-contain"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+        </div>
+        <div class="mt-8 text-center">
+          <span
+            class="inline-flex items-center rounded-full bg-[#e0f7f4] px-3.5 py-1.5 text-xs font-bold tracking-wide text-[#2b8d89]"
+            >无感守护 · 卫生间也安全</span
+          >
+          <h1
+            class="text-ink-900 mt-4 text-[clamp(28px,4vw,44px)] leading-[1.12] font-black tracking-tight"
+            style="font-weight: 900"
+          >
+            跌倒监测仪 · 毫米波款
+          </h1>
+          <p class="text-ink-500 mx-auto mt-3 max-w-2xl text-[15px] leading-7">
+            毫米波无感监测，覆盖卫生间 / 卧室 / 客厅，跌倒 20 秒内自动告警，无需佩戴，无隐私摄像头。
+          </p>
+        </div>
+      </div>
+
+      <div class="mx-auto max-w-4xl px-4 pt-10 sm:px-6 lg:px-8">
+        <h2 class="text-ink-900 text-xl font-black tracking-tight">产品介绍</h2>
+        <p class="mt-2 text-sm leading-6" style="color: rgba(104, 119, 131, 0.9)">
+          AI 区分日常坐卧与真实跌倒，准确率 ≥95%，误报少，守护更可靠。
+        </p>
+        <div class="mt-6 grid gap-4 sm:grid-cols-2">
+          <div class="product-highlight-card">
+            <div>
+              <p class="text-ink-900 text-[14px] font-black">无感跌倒识别</p>
+              <p class="mt-1 text-[13px] leading-5" style="color: #5a6b74">
+                60GHz 毫米波全覆盖，无需佩戴，无摄像头，隐私友好。
+              </p>
+            </div>
+          </div>
+          <div class="product-highlight-card">
+            <div>
+              <p class="text-ink-900 text-[14px] font-black">秒级告警推送</p>
+              <p class="mt-1 text-[13px] leading-5" style="color: #5a6b74">
+                跌倒发生 20 秒内推送至家属 / 机构大屏 / APP，多通道可配置。
+              </p>
+            </div>
+          </div>
+          <div class="product-highlight-card">
+            <div>
+              <p class="text-ink-900 text-[14px] font-black">误报智能过滤</p>
+              <p class="mt-1 text-[13px] leading-5" style="color: #5a6b74">
+                AI 算法区分坐靠、弯腰与真实跌倒，准确率 ≥95%，减少打扰。
+              </p>
+            </div>
+          </div>
+          <div class="product-highlight-card">
+            <div>
+              <p class="text-ink-900 text-[14px] font-black">联动一键处置</p>
+              <p class="mt-1 text-[13px] leading-5" style="color: #5a6b74">
+                对接万椿云平台，自动弹屏 + 语音播报 + 工单流转，处置留痕。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mx-auto max-w-4xl px-4 pt-10 sm:px-6 lg:px-8">
+        <div
+          class="product-specs overflow-hidden rounded-[12px] border border-[rgba(217,236,233,0.9)] bg-white shadow-[0_8px_30px_rgba(36,109,116,0.06)]"
+        >
+          <div class="border-line bg-mist border-b px-5 py-3">
+            <h2 class="text-ink-900 text-base font-black tracking-tight">规格参数</h2>
+          </div>
+          <div class="p-0">
+            <table>
+              <tbody>
+                <tr>
+                  <td>监测方式</td>
+                  <td>60GHz 毫米波雷达，无隐私摄像头</td>
+                </tr>
+                <tr>
+                  <td>监测范围</td>
+                  <td>约 3m × 3m × 3m（可调）</td>
+                </tr>
+                <tr>
+                  <td>告警时延</td>
+                  <td>≤ 20 秒</td>
+                </tr>
+                <tr>
+                  <td>联网</td>
+                  <td>Wi-Fi 2.4GHz / 有线（选配）</td>
+                </tr>
+                <tr>
+                  <td>供电</td>
+                  <td>DC 5V / 1A 适配器</td>
+                </tr>
+                <tr>
+                  <td>安装</td>
+                  <td>壁挂 / 吊顶（卫生间 / 卧室）</td>
+                </tr>
+                <tr>
+                  <td>防护</td>
+                  <td>IPX4 防溅</td>
+                </tr>
+                <tr>
+                  <td>准确率</td>
+                  <td>≥ 95%（实验室环境）</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="mx-auto max-w-4xl px-4 pt-10 sm:px-6 lg:px-8">
+        <div class="mb-6 flex items-center justify-between">
+          <h2 class="text-ink-900 text-xl font-black tracking-tighter">相关产品</h2>
+          <a
+            th:href="@{/cooperation}"
+            href="/cooperation"
+            class="text-primary-dark hover:text-primary text-sm font-semibold transition-colors"
+            >合作咨询 →</a
+          >
+        </div>
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <a
+            th:href="@{/product-vital}"
+            href="/product-vital"
+            class="group flex flex-col overflow-hidden rounded-[8px] border border-[rgba(217,236,233,1)] bg-white shadow-[0_8px_30px_rgba(36,109,116,0.07)] transition-all duration-200 hover:-translate-y-1.5 hover:shadow-[0_18px_45px_rgba(36,109,116,0.12)]"
+          >
+            <div class="relative aspect-square overflow-hidden bg-white p-3">
+              <img
+                th:src="@{/assets/images/wanchun/product-vital.png}"
+                src="/assets/images/wanchun/product-vital.png"
+                alt="体征监测仪"
+                class="h-full w-full rounded-[8px] object-contain"
+                loading="lazy"
+              />
+            </div>
+            <div class="flex flex-1 flex-col gap-1.5 bg-white p-5">
+              <h3 class="text-ink-900 text-[15px] leading-6 font-black tracking-tight">
+                体征监测仪 · 无感毫米波款
+              </h3>
+              <p class="text-ink-500 line-clamp-2 text-sm leading-6">
+                无感监测心率呼吸，多维体征异常自动预警
+              </p>
+            </div>
+          </a>
+          <a
+            th:href="@{/product-sos}"
+            href="/product-sos"
+            class="group flex flex-col overflow-hidden rounded-[8px] border border-[rgba(217,236,233,1)] bg-white shadow-[0_8px_30px_rgba(36,109,116,0.07)] transition-all duration-200 hover:-translate-y-1.5 hover:shadow-[0_18px_45px_rgba(36,109,116,0.12)]"
+          >
+            <div class="relative aspect-square overflow-hidden bg-white p-3">
+              <img
+                th:src="@{/assets/images/wanchun/product-sos.jpg}"
+                src="/assets/images/wanchun/product-sos.jpg"
+                alt="紧急按钮"
+                class="h-full w-full rounded-[8px] object-contain"
+                loading="lazy"
+              />
+            </div>
+            <div class="flex flex-1 flex-col gap-1.5 bg-white p-5">
+              <h3 class="text-ink-900 text-[15px] leading-6 font-black tracking-tight">
+                紧急按钮 · 一键 SOS 款
+              </h3>
+              <p class="text-ink-500 line-clamp-2 text-sm leading-6">
+                一键 SOS 求助，快速响应守护安全
+              </p>
+            </div>
+          </a>
+          <a
+            th:href="@{/solutions}"
+            href="/solutions"
+            class="group flex flex-col overflow-hidden rounded-[8px] border border-[rgba(217,236,233,1)] bg-white shadow-[0_8px_30px_rgba(36,109,116,0.07)] transition-all duration-200 hover:-translate-y-1.5 hover:shadow-[0_18px_45px_rgba(36,109,116,0.12)]"
+          >
+            <div class="relative aspect-square overflow-hidden bg-[#eef7f7] p-3">
+              <div
+                class="flex h-full w-full items-center justify-center rounded-[8px] bg-white text-xs font-bold"
+                style="color: #2b8d89"
+              >
+                全场景解决方案
+              </div>
+            </div>
+            <div class="flex flex-1 flex-col gap-1.5 bg-white p-5">
+              <h3 class="text-ink-900 text-[15px] leading-6 font-black tracking-tight">
+                全场景解决方案
+              </h3>
+              <p class="text-ink-500 line-clamp-2 text-sm leading-6">
+                3+X 与 4+N 体系，覆盖居家·社区·机构
+              </p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8">
+        <div
+          class="from-primary to-primary-deep overflow-hidden rounded-[12px] bg-gradient-to-br p-[1px]"
+        >
+          <div class="rounded-[11px] bg-white px-6 py-8 text-center sm:px-10 sm:py-10">
+            <h3 class="text-ink-900 text-xl font-black tracking-tight sm:text-2xl">
+              对该产品感兴趣？
+            </h3>
+            <p class="text-ink-500 mt-2 text-sm leading-6">
+              获取详细方案与报价，与万椿商务团队一对一沟通
+            </p>
+            <a
+              th:href="@{/cooperation}"
+              href="/cooperation"
+              class="btn btn-primary mt-6 min-w-[160px]"
+              >立即咨询合作</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 分支：紧急按钮 -->
+    <section th:if="${slug == 'product-sos'}">
+      <div class="mx-auto max-w-4xl px-4 pt-8 sm:px-6 lg:px-8">
+        <div
+          class="overflow-hidden rounded-[12px] border border-[rgba(217,236,233,0.9)] bg-white shadow-[0_8px_30px_rgba(36,109,116,0.06)]"
+        >
+          <div class="bg-mist relative aspect-[4/3] overflow-hidden p-3 sm:aspect-[16/10]">
+            <img
+              th:src="@{/assets/images/wanchun/product-sos.jpg}"
+              src="/assets/images/wanchun/product-sos.jpg"
+              alt="紧急按钮 一键 SOS 款 实拍图"
+              class="h-full w-full rounded-[8px] bg-white object-contain"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+        </div>
+        <div class="mt-8 text-center">
+          <span
+            class="inline-flex items-center rounded-full bg-[#e0f7f4] px-3.5 py-1.5 text-xs font-bold tracking-wide text-[#2b8d89]"
+            >一键求助 · 秒级响应</span
+          >
+          <h1
+            class="text-ink-900 mt-4 text-[clamp(28px,4vw,44px)] leading-[1.12] font-black tracking-tight"
+            style="font-weight: 900"
+          >
+            紧急按钮 · 一键 SOS 款
+          </h1>
+          <p class="text-ink-500 mx-auto mt-3 max-w-2xl text-[15px] leading-7">
+            大按键一键 SOS，求助信号穿墙强，床头 / 卫生间随处贴，平台 / APP /
+            短信多端同步告警，响应更快更可靠。
+          </p>
+        </div>
+      </div>
+
+      <div class="mx-auto max-w-4xl px-4 pt-10 sm:px-6 lg:px-8">
+        <h2 class="text-ink-900 text-xl font-black tracking-tight">产品介绍</h2>
+        <p class="mt-2 text-sm leading-6" style="color: rgba(104, 119, 131, 0.9)">
+          老人轻松一键操作，低功耗长续航，防水易安装，适合居家与机构批量部署。
+        </p>
+        <div class="mt-6 grid gap-4 sm:grid-cols-2">
+          <div class="product-highlight-card">
+            <div>
+              <p class="text-ink-900 text-[14px] font-black">一键紧急求助</p>
+              <p class="mt-1 text-[13px] leading-5" style="color: #5a6b74">
+                大按键 + 长按触发，信号穿墙强，老人 / 病患轻松操作。
+              </p>
+            </div>
+          </div>
+          <div class="product-highlight-card">
+            <div>
+              <p class="text-ink-900 text-[14px] font-black">多端同步告警</p>
+              <p class="mt-1 text-[13px] leading-5" style="color: #5a6b74">
+                平台大屏 / APP / 短信 / 微信同步推送，支持自定义多接收人。
+              </p>
+            </div>
+          </div>
+          <div class="product-highlight-card">
+            <div>
+              <p class="text-ink-900 text-[14px] font-black">低功耗长续航</p>
+              <p class="mt-1 text-[13px] leading-5" style="color: #5a6b74">
+                Type-C / 电池款可选，续航约 180 天，低电自动提醒。
+              </p>
+            </div>
+          </div>
+          <div class="product-highlight-card">
+            <div>
+              <p class="text-ink-900 text-[14px] font-black">防水易安装</p>
+              <p class="mt-1 text-[13px] leading-5" style="color: #5a6b74">
+                IPX5 防水，背胶 + 螺钉双安装，床头 / 卫生间 / 客厅随处贴。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mx-auto max-w-4xl px-4 pt-10 sm:px-6 lg:px-8">
+        <div
+          class="product-specs overflow-hidden rounded-[12px] border border-[rgba(217,236,233,0.9)] bg-white shadow-[0_8px_30px_rgba(36,109,116,0.06)]"
+        >
+          <div class="border-line bg-mist border-b px-5 py-3">
+            <h2 class="text-ink-900 text-base font-black tracking-tight">规格参数</h2>
+          </div>
+          <div class="p-0">
+            <table>
+              <tbody>
+                <tr>
+                  <td>触发方式</td>
+                  <td>大按键一键 / 长按 2 秒 SOS</td>
+                </tr>
+                <tr>
+                  <td>通信</td>
+                  <td>LoRa / NB-IoT / Wi-Fi（按型号）</td>
+                </tr>
+                <tr>
+                  <td>供电</td>
+                  <td>锂电池 / Type-C 充电（180 天续航）</td>
+                </tr>
+                <tr>
+                  <td>防护</td>
+                  <td>IPX5 防水防溅</td>
+                </tr>
+                <tr>
+                  <td>安装</td>
+                  <td>背胶粘贴 / 螺钉固定</td>
+                </tr>
+                <tr>
+                  <td>告警</td>
+                  <td>平台弹屏 / APP / 短信 / 微信 / 语音播报</td>
+                </tr>
+                <tr>
+                  <td>尺寸</td>
+                  <td>约 60 × 60 × 18 mm</td>
+                </tr>
+                <tr>
+                  <td>工作温度</td>
+                  <td>-10℃ ~ 55℃</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="mx-auto max-w-4xl px-4 pt-10 sm:px-6 lg:px-8">
+        <div class="mb-6 flex items-center justify-between">
+          <h2 class="text-ink-900 text-xl font-black tracking-tighter">相关产品</h2>
+          <a
+            th:href="@{/cooperation}"
+            href="/cooperation"
+            class="text-primary-dark hover:text-primary text-sm font-semibold transition-colors"
+            >合作咨询 →</a
+          >
+        </div>
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <a
+            th:href="@{/product-vital}"
+            href="/product-vital"
+            class="group flex flex-col overflow-hidden rounded-[8px] border border-[rgba(217,236,233,1)] bg-white shadow-[0_8px_30px_rgba(36,109,116,0.07)] transition-all duration-200 hover:-translate-y-1.5 hover:shadow-[0_18px_45px_rgba(36,109,116,0.12)]"
+          >
+            <div class="relative aspect-square overflow-hidden bg-white p-3">
+              <img
+                th:src="@{/assets/images/wanchun/product-vital.png}"
+                src="/assets/images/wanchun/product-vital.png"
+                alt="体征监测仪"
+                class="h-full w-full rounded-[8px] object-contain"
+                loading="lazy"
+              />
+            </div>
+            <div class="flex flex-1 flex-col gap-1.5 bg-white p-5">
+              <h3 class="text-ink-900 text-[15px] leading-6 font-black tracking-tight">
+                体征监测仪 · 无感毫米波款
+              </h3>
+              <p class="text-ink-500 line-clamp-2 text-sm leading-6">
+                无感监测心率呼吸，多维体征异常自动预警
+              </p>
+            </div>
+          </a>
+          <a
+            th:href="@{/product-diedao}"
+            href="/product-diedao"
+            class="group flex flex-col overflow-hidden rounded-[8px] border border-[rgba(217,236,233,1)] bg-white shadow-[0_8px_30px_rgba(36,109,116,0.07)] transition-all duration-200 hover:-translate-y-1.5 hover:shadow-[0_18px_45px_rgba(36,109,116,0.12)]"
+          >
+            <div class="relative aspect-square overflow-hidden bg-white p-3">
+              <img
+                th:src="@{/assets/images/wanchun/product-diedao.png}"
+                src="/assets/images/wanchun/product-diedao.png"
+                alt="跌倒监测仪"
+                class="h-full w-full rounded-[8px] object-contain"
+                loading="lazy"
+              />
+            </div>
+            <div class="flex flex-1 flex-col gap-1.5 bg-white p-5">
+              <h3 class="text-ink-900 text-[15px] leading-6 font-black tracking-tight">
+                跌倒监测仪 · 毫米波款
+              </h3>
+              <p class="text-ink-500 line-clamp-2 text-sm leading-6">
+                毫米波无感监测，跌倒即时告警守护
+              </p>
+            </div>
+          </a>
+          <a
+            th:href="@{/solutions}"
+            href="/solutions"
+            class="group flex flex-col overflow-hidden rounded-[8px] border border-[rgba(217,236,233,1)] bg-white shadow-[0_8px_30px_rgba(36,109,116,0.07)] transition-all duration-200 hover:-translate-y-1.5 hover:shadow-[0_18px_45px_rgba(36,109,116,0.12)]"
+          >
+            <div class="relative aspect-square overflow-hidden bg-[#eef7f7] p-3">
+              <div
+                class="flex h-full w-full items-center justify-center rounded-[8px] bg-white text-xs font-bold"
+                style="color: #2b8d89"
+              >
+                全场景解决方案
+              </div>
+            </div>
+            <div class="flex flex-1 flex-col gap-1.5 bg-white p-5">
+              <h3 class="text-ink-900 text-[15px] leading-6 font-black tracking-tight">
+                全场景解决方案
+              </h3>
+              <p class="text-ink-500 line-clamp-2 text-sm leading-6">
+                3+X 与 4+N 体系，覆盖居家·社区·机构
+              </p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8">
+        <div
+          class="from-primary to-primary-deep overflow-hidden rounded-[12px] bg-gradient-to-br p-[1px]"
+        >
+          <div class="rounded-[11px] bg-white px-6 py-8 text-center sm:px-10 sm:py-10">
+            <h3 class="text-ink-900 text-xl font-black tracking-tight sm:text-2xl">
+              对该产品感兴趣？
+            </h3>
+            <p class="text-ink-500 mt-2 text-sm leading-6">
+              获取详细方案与报价，与万椿商务团队一对一沟通
+            </p>
+            <a
+              th:href="@{/cooperation}"
+              href="/cooperation"
+              class="btn btn-primary mt-6 min-w-[160px]"
+              >立即咨询合作</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 回退：未匹配三款 slug 的通用占位 -->
+    <section
+      th:if="${slug != 'product-vital' and slug != 'product-diedao' and slug != 'product-sos'}"
+      class="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8"
+    >
+      <div
+        class="rounded-[12px] border border-[rgba(217,236,233,0.9)] bg-white p-8 text-center shadow-[0_8px_30px_rgba(36,109,116,0.06)] sm:p-12"
+      >
+        <p class="text-ink-900 text-lg font-black">请选择正确的产品页面</p>
+        <p class="text-ink-500 mt-2 text-sm leading-6">
+          当前页面未配置产品详情，请通过下方入口访问已发布的三款精选产品。
+        </p>
+        <div class="mt-6 grid gap-4 sm:grid-cols-3">
+          <a
+            th:href="@{/product-vital}"
+            href="/product-vital"
+            class="rounded-[8px] border border-[rgba(217,236,233,1)] bg-[#eef7f7] px-4 py-4 text-sm font-bold text-[#2b8d89] transition hover:bg-[#e0f7f4]"
+            >体征监测仪</a
+          >
+          <a
+            th:href="@{/product-diedao}"
+            href="/product-diedao"
+            class="rounded-[8px] border border-[rgba(217,236,233,1)] bg-[#eef7f7] px-4 py-4 text-sm font-bold text-[#2b8d89] transition hover:bg-[#e0f7f4]"
+            >跌倒监测仪</a
+          >
+          <a
+            th:href="@{/product-sos}"
+            href="/product-sos"
+            class="rounded-[8px] border border-[rgba(217,236,233,1)] bg-[#eef7f7] px-4 py-4 text-sm font-bold text-[#2b8d89] transition hover:bg-[#e0f7f4]"
+            >紧急按钮</a
+          >
+        </div>
+        <a th:href="@{/cooperation}" href="/cooperation" class="btn btn-primary mt-8"
+          >前往合作咨询</a
+        >
+      </div>
+    </section>
+
+    <!-- 评论区（可选，SinglePage） -->
+    <section class="mx-auto max-w-4xl px-4 pb-16 sm:px-6 lg:px-8" th:if="${haloCommentEnabled}">
+      <div class="border-line border-t pt-10">
+        <h2 class="text-ink-900 mb-6 text-xl font-black tracking-tighter">评论</h2>
+        <halo:comment
+          group="content.halo.run"
+          kind="SinglePage"
+          th:attr="name=${singlePage.metadata.name}"
+        />
+      </div>
+    </section>
+  </div>
+</include>
