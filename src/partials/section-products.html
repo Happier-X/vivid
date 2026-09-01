@@ -1,4 +1,4 @@
-<!-- 第三部分：1:1 复刻 mikapu 03 精选产品 — 4 卡图片网格，内容保留万椿 4 大产品 -->
+<!-- 第三部分：精选产品 — 动静态双轨：有“产品中心”分类时动态渲染，无数据回退静态 -->
 <section class="relative overflow-hidden bg-[#fbfefe] py-24 sm:py-28">
   <div class="mx-auto w-[calc(100%-32px)] max-w-[1180px]">
     <!-- 标题：03 水印右置胶囊（reverse）+ 居中大标题 + 底线 -->
@@ -32,88 +32,149 @@
       >
     </div>
 
-    <!-- 3 卡图片网格：按需求暂保留 3 款 -->
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      <!-- 卡 1 体征监测仪 — 复用无感守护配图 product-fall -->
-      <a
-        th:href="@{/archives}"
-        href="/archives"
-        class="reveal group flex flex-col overflow-hidden rounded-[8px] border border-[rgba(217,236,233,1)] bg-white shadow-[0_8px_30px_rgba(36,109,116,0.07)] transition-all duration-200 hover:-translate-y-1.5 hover:shadow-[0_18px_45px_rgba(36,109,116,0.12)]"
+    <!-- 动态 3 卡：查询 product-center 分类 -->
+    <th:block
+      th:with="productPosts=${postFinder.list({page:1,size:3,categoryName:'product-center'})}"
+    >
+      <!-- 有数据：动态渲染 -->
+      <div
+        th:if="${productPosts != null and productPosts.items != null and !#lists.isEmpty(productPosts.items)}"
+        class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
       >
-        <div class="relative aspect-square overflow-hidden bg-white p-3">
-          <img
-            th:src="@{/assets/images/wanchun/product-fall.jpg}"
-            src="/assets/images/wanchun/product-fall.jpg"
-            alt="万椿体征监测仪 无感毫米波款 实时体征监测 实拍图"
-            class="h-full w-full rounded-[8px] object-contain"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-        <div class="flex flex-1 flex-col gap-1.5 bg-white p-5">
-          <h3 class="text-ink-900 text-[15px] leading-6 font-black tracking-tight">
-            体征监测仪 · 无感毫米波款
-          </h3>
-          <p class="text-ink-500 line-clamp-2 text-sm leading-6">
-            无感监测心率呼吸，多维体征异常自动预警
-          </p>
-        </div>
-      </a>
-      <!-- 卡 2 跌倒监测仪 — 资料高清图 product-diedao.png（圆形吸顶款） -->
-      <a
-        th:href="@{/archives}"
-        href="/archives"
-        class="reveal group flex flex-col overflow-hidden rounded-[8px] border border-[rgba(217,236,233,1)] bg-white shadow-[0_8px_30px_rgba(36,109,116,0.07)] transition-all duration-200 hover:-translate-y-1.5 hover:shadow-[0_18px_45px_rgba(36,109,116,0.12)]"
-        style="transition-delay: 80ms"
+        <a
+          th:each="productPost, iterStat : ${productPosts.items}"
+          th:href="@{${productPost.status?.permalink}}"
+          th:attr="style=${iterStat.index > 0 ? 'transition-delay:' + (iterStat.index * 80) + 'ms' : null}"
+          class="reveal group flex flex-col overflow-hidden rounded-[8px] border border-[rgba(217,236,233,1)] bg-white shadow-[0_8px_30px_rgba(36,109,116,0.07)] transition-all duration-200 hover:-translate-y-1.5 hover:shadow-[0_18px_45px_rgba(36,109,116,0.12)]"
+        >
+          <div class="relative aspect-square overflow-hidden bg-white p-3">
+            <img
+              th:if="${not #strings.isEmpty(productPost.spec.cover)}"
+              th:src="${productPost.spec.cover}"
+              th:alt="${productPost.spec.title}"
+              class="h-full w-full rounded-[8px] object-contain"
+              loading="lazy"
+              decoding="async"
+            />
+            <div
+              th:unless="${not #strings.isEmpty(productPost.spec.cover)}"
+              class="bg-mist text-ink-500 flex h-full w-full items-center justify-center rounded-[8px] text-xs"
+            >
+              暂无封面
+            </div>
+          </div>
+          <div class="flex flex-1 flex-col gap-1.5 bg-white p-5">
+            <h3
+              th:text="${productPost.spec.title}"
+              class="text-ink-900 text-[15px] leading-6 font-black tracking-tight"
+            >
+              产品标题
+            </h3>
+            <p
+              th:if="${not #strings.isEmpty(productPost.status.excerpt)}"
+              th:text="${productPost.status.excerpt}"
+              class="text-ink-500 line-clamp-2 text-sm leading-6"
+            >
+              摘要
+            </p>
+            <p
+              th:unless="${not #strings.isEmpty(productPost.status.excerpt)}"
+              class="text-ink-500 line-clamp-2 text-sm leading-6"
+            >
+              查看产品详情
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <!-- 无数据：回退静态占位 3 卡 -->
+      <div
+        th:if="${productPosts == null or productPosts.items == null or #lists.isEmpty(productPosts.items)}"
+        class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
       >
-        <div class="relative aspect-square overflow-hidden bg-white p-3">
-          <img
-            th:src="@{/assets/images/wanchun/product-diedao.png}"
-            src="/assets/images/wanchun/product-diedao.png"
-            alt="万椿跌倒监测仪 毫米波款 跌倒自动告警 实拍图"
-            class="h-full w-full rounded-[8px] object-contain"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-        <div class="flex flex-1 flex-col gap-1.5 bg-white p-5">
-          <h3 class="text-ink-900 text-[15px] leading-6 font-black tracking-tight">
-            跌倒监测仪 · 毫米波款
-          </h3>
-          <p class="text-ink-500 line-clamp-2 text-sm leading-6">
-            毫米波无感监测，跌倒即时告警守护
-          </p>
-        </div>
-      </a>
-      <!-- 卡 3 紧急按钮 — 复用 product-sos 白底实拍 -->
-      <a
-        th:href="@{/archives}"
-        href="/archives"
-        class="reveal group flex flex-col overflow-hidden rounded-[8px] border border-[rgba(217,236,233,1)] bg-white shadow-[0_8px_30px_rgba(36,109,116,0.07)] transition-all duration-200 hover:-translate-y-1.5 hover:shadow-[0_18px_45px_rgba(36,109,116,0.12)]"
-        style="transition-delay: 160ms"
-      >
-        <div class="relative aspect-square overflow-hidden bg-white p-3">
-          <img
-            th:src="@{/assets/images/wanchun/product-sos.jpg}"
-            src="/assets/images/wanchun/product-sos.jpg"
-            alt="万椿紧急按钮 一键 SOS 款 一键求助 实拍图"
-            class="h-full w-full rounded-[8px] object-contain"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-        <div class="flex flex-1 flex-col gap-1.5 bg-white p-5">
-          <h3 class="text-ink-900 text-[15px] leading-6 font-black tracking-tight">
-            紧急按钮 · 一键 SOS 款
-          </h3>
-          <p class="text-ink-500 line-clamp-2 text-sm leading-6">一键 SOS 求助，快速响应守护安全</p>
-        </div>
-      </a>
-    </div>
+        <!-- 卡 1 体征监测仪 -->
+        <a
+          th:href="@{/archives}"
+          href="/archives"
+          class="reveal group flex flex-col overflow-hidden rounded-[8px] border border-[rgba(217,236,233,1)] bg-white shadow-[0_8px_30px_rgba(36,109,116,0.07)] transition-all duration-200 hover:-translate-y-1.5 hover:shadow-[0_18px_45px_rgba(36,109,116,0.12)]"
+        >
+          <div class="relative aspect-square overflow-hidden bg-white p-3">
+            <img
+              th:src="@{/assets/images/wanchun/product-fall.jpg}"
+              src="/assets/images/wanchun/product-fall.jpg"
+              alt="万椿体征监测仪 无感毫米波款 实时体征监测 实拍图"
+              class="h-full w-full rounded-[8px] object-contain"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="flex flex-1 flex-col gap-1.5 bg-white p-5">
+            <h3 class="text-ink-900 text-[15px] leading-6 font-black tracking-tight">
+              体征监测仪 · 无感毫米波款
+            </h3>
+            <p class="text-ink-500 line-clamp-2 text-sm leading-6">
+              无感监测心率呼吸，多维体征异常自动预警
+            </p>
+          </div>
+        </a>
+        <!-- 卡 2 跌倒监测仪 -->
+        <a
+          th:href="@{/archives}"
+          href="/archives"
+          class="reveal group flex flex-col overflow-hidden rounded-[8px] border border-[rgba(217,236,233,1)] bg-white shadow-[0_8px_30px_rgba(36,109,116,0.07)] transition-all duration-200 hover:-translate-y-1.5 hover:shadow-[0_18px_45px_rgba(36,109,116,0.12)]"
+          style="transition-delay: 80ms"
+        >
+          <div class="relative aspect-square overflow-hidden bg-white p-3">
+            <img
+              th:src="@{/assets/images/wanchun/product-diedao.png}"
+              src="/assets/images/wanchun/product-diedao.png"
+              alt="万椿跌倒监测仪 毫米波款 跌倒自动告警 实拍图"
+              class="h-full w-full rounded-[8px] object-contain"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="flex flex-1 flex-col gap-1.5 bg-white p-5">
+            <h3 class="text-ink-900 text-[15px] leading-6 font-black tracking-tight">
+              跌倒监测仪 · 毫米波款
+            </h3>
+            <p class="text-ink-500 line-clamp-2 text-sm leading-6">
+              毫米波无感监测，跌倒即时告警守护
+            </p>
+          </div>
+        </a>
+        <!-- 卡 3 紧急按钮 -->
+        <a
+          th:href="@{/archives}"
+          href="/archives"
+          class="reveal group flex flex-col overflow-hidden rounded-[8px] border border-[rgba(217,236,233,1)] bg-white shadow-[0_8px_30px_rgba(36,109,116,0.07)] transition-all duration-200 hover:-translate-y-1.5 hover:shadow-[0_18px_45px_rgba(36,109,116,0.12)]"
+          style="transition-delay: 160ms"
+        >
+          <div class="relative aspect-square overflow-hidden bg-white p-3">
+            <img
+              th:src="@{/assets/images/wanchun/product-sos.jpg}"
+              src="/assets/images/wanchun/product-sos.jpg"
+              alt="万椿紧急按钮 一键 SOS 款 一键求助 实拍图"
+              class="h-full w-full rounded-[8px] object-contain"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="flex flex-1 flex-col gap-1.5 bg-white p-5">
+            <h3 class="text-ink-900 text-[15px] leading-6 font-black tracking-tight">
+              紧急按钮 · 一键 SOS 款
+            </h3>
+            <p class="text-ink-500 line-clamp-2 text-sm leading-6">
+              一键 SOS 求助，快速响应守护安全
+            </p>
+          </div>
+        </a>
+      </div>
+    </th:block>
     <!-- 底部 ghost 按钮：查看全部产品 -->
     <div class="mt-10 flex justify-center">
       <a
-        th:href="@{/archives}"
+        th:href="@{/categories/product-center}"
         href="/archives"
         class="inline-flex min-h-[44px] items-center justify-center rounded-[8px] border border-[rgba(79,199,183,0.32)] bg-white px-6 py-2.5 text-sm font-extrabold text-[#2b8d89] shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#e0f7f4]"
         >查看全部产品</a

@@ -3,49 +3,31 @@
     <title th:text="|${post.spec.title} - ${site.title}|">文章标题</title>
   </template>
 
-  <!-- 文章页头：面包屑 + 大标题 + 元信息 — 高级感 -->
-  <header class="section-tinted border-line/70 border-b">
-    <div class="mx-auto max-w-4xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
-      <!-- 面包屑：首页 / 分类 -->
-      <nav
-        aria-label="面包屑"
-        class="text-ink-500 mb-6 flex flex-wrap items-center gap-1.5 text-sm"
-        th:if="${not #lists.isEmpty(post.categories)}"
-      >
-        <a th:href="@{/}" class="hover:text-primary transition-colors">首页</a>
-        <span class="text-line">/</span>
-        <a
-          th:href="@{${post.categories[0].status.permalink}}"
-          th:text="${post.categories[0].spec.displayName}"
-          class="hover:text-primary transition-colors"
-          >分类</a
+  <!-- 产品详情分支：isProduct 判断基于分类 displayName=产品中心 或 metadata.name=product-center -->
+  <div
+    th:with="catDisplayNames=${post.categories != null ? post.categories.![spec.displayName] : null},
+             catMetaNames=${post.categories != null ? post.categories.![metadata.name] : null},
+             isProduct=${ (catDisplayNames != null and #lists.contains(catDisplayNames, '产品中心')) or (catMetaNames != null and #lists.contains(catMetaNames, 'product-center')) }"
+  >
+    <!-- 文章页头：面包屑 + 大标题 + 元信息 — 高级感，产品分支扩展 -->
+    <header class="section-tinted border-line/70 border-b">
+      <div class="mx-auto max-w-4xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
+        <!-- 产品面包屑：首页 / 产品中心 / 当前产品 + 返回 -->
+        <nav
+          th:if="${isProduct}"
+          aria-label="面包屑"
+          class="text-ink-500 mb-6 flex flex-wrap items-center gap-1.5 text-sm"
         >
-      </nav>
-
-      <!-- 大标题 -->
-      <h1
-        class="text-ink-900 text-3xl leading-[1.1] font-black tracking-tighter sm:text-4xl lg:text-5xl"
-        th:text="${post.spec.title}"
-      >
-        文章标题
-      </h1>
-
-      <!-- 元信息：作者 / 发布时间 / 访问量 -->
-      <div
-        class="text-ink-500/90 mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-light tracking-wide"
-      >
-        <!-- 作者 -->
-        <span class="inline-flex items-center gap-2">
-          <img
-            th:if="${not #strings.isEmpty(post.owner?.avatar)}"
-            th:src="${post.owner.avatar}"
-            th:alt="${post.owner?.displayName}"
-            loading="lazy"
-            class="border-line h-6 w-6 rounded-full border object-cover"
-          />
-          <span
-            th:unless="${not #strings.isEmpty(post.owner?.avatar)}"
-            class="bg-mist text-primary-dark inline-flex h-6 w-6 items-center justify-center rounded-full"
+          <a th:href="@{/}" class="hover:text-primary transition-colors">首页</a>
+          <span class="text-line">/</span>
+          <a th:href="@{/categories/product-center}" class="hover:text-primary transition-colors"
+            >产品中心</a
+          >
+          <span class="text-line">/</span>
+          <span th:text="${post.spec.title}" class="text-ink-900 font-medium">当前产品</span>
+          <a
+            href="javascript:history.back()"
+            class="text-ink-500 hover:text-primary ml-auto inline-flex items-center gap-1 transition-colors"
           >
             <svg
               class="h-3.5 w-3.5"
@@ -57,125 +39,394 @@
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25a8.25 8.25 0 0115 0"
+                d="M10.5 19.5L3 12l7.5-7.5M3 12h18"
+              />
+            </svg>
+            返回
+          </a>
+        </nav>
+        <!-- 通用面包屑：首页 / 分类 -->
+        <nav
+          th:if="${!isProduct and not #lists.isEmpty(post.categories)}"
+          aria-label="面包屑"
+          class="text-ink-500 mb-6 flex flex-wrap items-center gap-1.5 text-sm"
+        >
+          <a th:href="@{/}" class="hover:text-primary transition-colors">首页</a>
+          <span class="text-line">/</span>
+          <a
+            th:href="@{${post.categories[0].status.permalink}}"
+            th:text="${post.categories[0].spec.displayName}"
+            class="hover:text-primary transition-colors"
+            >分类</a
+          >
+        </nav>
+
+        <!-- 大标题 -->
+        <h1
+          class="text-ink-900 text-3xl leading-[1.1] font-black tracking-tighter sm:text-4xl lg:text-5xl"
+          th:text="${post.spec.title}"
+        >
+          文章标题
+        </h1>
+
+        <!-- 元信息：作者 / 发布时间 / 访问量 -->
+        <div
+          class="text-ink-500/90 mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-light tracking-wide"
+        >
+          <!-- 作者 -->
+          <span class="inline-flex items-center gap-2">
+            <img
+              th:if="${not #strings.isEmpty(post.owner?.avatar)}"
+              th:src="${post.owner.avatar}"
+              th:alt="${post.owner?.displayName}"
+              loading="lazy"
+              class="border-line h-6 w-6 rounded-full border object-cover"
+            />
+            <span
+              th:unless="${not #strings.isEmpty(post.owner?.avatar)}"
+              class="bg-mist text-primary-dark inline-flex h-6 w-6 items-center justify-center rounded-full"
+            >
+              <svg
+                class="h-3.5 w-3.5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25a8.25 8.25 0 0115 0"
+                />
+              </svg>
+            </span>
+            <span th:text="${post.owner?.displayName ?: '佚名'}">作者</span>
+          </span>
+
+          <!-- 发布时间 -->
+          <time
+            th:if="${post.spec.publishTime != null}"
+            th:text="${#temporals.format(post.spec.publishTime, 'yyyy-MM-dd HH:mm')}"
+            >发布时间</time
+          >
+
+          <!-- 访问量 -->
+          <span th:if="${post.stats != null}" th:text="|${post.stats.visit} 次阅读|">阅读量</span>
+        </div>
+
+        <!-- 产品标签（仅产品分支在首屏展示） -->
+        <div
+          th:if="${isProduct and not #lists.isEmpty(post.tags)}"
+          class="mt-6 flex flex-wrap gap-2"
+        >
+          <a
+            th:each="tag : ${post.tags}"
+            th:href="@{${tag.status.permalink}}"
+            th:text="|# ${tag.spec.displayName}|"
+            class="text-primary-dark hover:border-primary hover:bg-mist border-line inline-flex items-center rounded-full border bg-white px-4 py-1.5 text-sm transition-colors duration-200"
+            >标签</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <!-- 产品图库轮播：spec.cover 主图 + 图库缩略图横滑（无第三方库） -->
+    <section
+      th:if="${isProduct}"
+      id="product-gallery-block"
+      class="mx-auto mt-8 max-w-4xl px-4 sm:px-6 lg:px-8"
+    >
+      <div
+        class="overflow-hidden rounded-[var(--radius-card)] border border-white/60 bg-white shadow-[0_8px_40px_rgba(36,109,116,0.06)] backdrop-blur-sm"
+      >
+        <!-- 主图 -->
+        <div class="bg-mist relative aspect-[4/3] overflow-hidden">
+          <img
+            id="product-gallery-main"
+            th:src="${post.spec.cover}"
+            th:alt="${post.spec.title}"
+            th:style="${#strings.isEmpty(post.spec.cover) ? 'display:none' : ''}"
+            class="h-full w-full object-cover"
+          />
+          <div
+            id="product-gallery-placeholder"
+            th:style="${not #strings.isEmpty(post.spec.cover) ? 'display:none' : ''}"
+            class="text-ink-500 flex h-full w-full items-center justify-center text-sm"
+          >
+            暂无图片
+          </div>
+          <button
+            id="product-gallery-prev"
+            type="button"
+            aria-label="上一张"
+            class="absolute top-1/2 left-3 hidden -translate-y-1/2 rounded-full bg-white/90 p-2 shadow transition hover:bg-white"
+          >
+            <svg
+              class="text-ink-700 h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15.75 19.5L8.25 12l7.5-7.5"
+              />
+            </svg>
+          </button>
+          <button
+            id="product-gallery-next"
+            type="button"
+            aria-label="下一张"
+            class="absolute top-1/2 right-3 hidden -translate-y-1/2 rounded-full bg-white/90 p-2 shadow transition hover:bg-white"
+          >
+            <svg
+              class="text-ink-700 h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
+          </button>
+        </div>
+        <!-- 缩略图横滑 -->
+        <div
+          id="product-gallery-thumbs"
+          class="flex scrollbar-thin gap-2 overflow-x-auto bg-white p-3"
+        >
+          <button
+            th:if="${not #strings.isEmpty(post.spec.cover)}"
+            type="button"
+            class="product-thumb is-active border-primary h-16 w-16 shrink-0 overflow-hidden rounded-[8px] border-2"
+            th:attr="data-src=${post.spec.cover}"
+          >
+            <img
+              th:src="${post.spec.cover}"
+              th:alt="${post.spec.title}"
+              class="h-full w-full object-cover"
+            />
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <article class="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+      <!-- 封面图：非产品时才显示（产品已在图库展示） -->
+      <figure
+        th:if="${!isProduct and not #strings.isEmpty(post.spec.cover)}"
+        class="mb-10 overflow-hidden rounded-[var(--radius-card)] border border-white/60 shadow-[0_8px_40px_rgba(36,109,116,0.06)] backdrop-blur-sm"
+      >
+        <img th:src="${post.spec.cover}" th:alt="${post.spec.title}" class="w-full object-cover" />
+      </figure>
+
+      <!-- 核心卖点：卡片化容器，JS 从 rich-content 提取 ## 核心卖点 ul 填充；空时隐藏 -->
+      <section
+        th:if="${isProduct and post.content?.content != null and #strings.contains(post.content.content, '核心卖点')}"
+        id="product-highlights"
+        class="mb-10"
+      >
+        <h2 class="text-ink-900 mb-4 text-xl font-black tracking-tighter">核心卖点</h2>
+        <div id="product-highlights-grid" class="grid gap-3 sm:grid-cols-2">
+          <!-- JS 填充：每个卖点为卡片 -->
+        </div>
+      </section>
+
+      <!-- 规格参数：主题统一样式表格，JS 从 rich-content 提取 ## 规格参数 table 填充；空时 Thymeleaf 已隐藏 -->
+      <section
+        th:if="${isProduct and post.content?.content != null and #strings.contains(post.content.content, '规格参数')}"
+        id="product-specs"
+        class="product-specs border-line mb-10 overflow-hidden rounded-[var(--radius-card)] border bg-white shadow-[0_8px_40px_rgba(36,109,116,0.06)]"
+      >
+        <div class="border-line bg-mist border-b px-5 py-3">
+          <h2 class="text-ink-900 text-base font-black tracking-tight">规格参数</h2>
+        </div>
+        <div id="product-specs-table" class="p-0">
+          <!-- JS 填充 table -->
+        </div>
+      </section>
+
+      <!-- 正文其余富文本 -->
+      <div class="rich-content" th:utext="${post.content?.content}"></div>
+
+      <!-- 标签列表：非产品或已在首屏展示过的产品标签在此兜底 -->
+      <div
+        class="mt-10 flex flex-wrap gap-2"
+        th:if="${not #lists.isEmpty(post.tags) and !isProduct}"
+      >
+        <a
+          th:each="tag : ${post.tags}"
+          th:href="@{${tag.status.permalink}}"
+          th:text="|# ${tag.spec.displayName}|"
+          class="text-primary-dark hover:border-primary hover:bg-mist border-line inline-flex items-center rounded-full border bg-white px-4 py-1.5 text-sm transition-colors duration-200"
+          >标签</a
+        >
+      </div>
+
+      <!-- 上一篇 / 下一篇 — 渐隐分隔线 -->
+      <div class="via-line mt-14 h-px bg-gradient-to-r from-transparent to-transparent"></div>
+      <nav
+        class="mt-10 grid gap-4 sm:grid-cols-2"
+        th:with="cursor = ${postFinder.cursor(post.metadata.name)}"
+        aria-label="上下篇导航"
+      >
+        <!-- 上一篇 -->
+        <a
+          th:if="${cursor?.hasPrevious()}"
+          th:href="@{${cursor.previous.status.permalink}}"
+          class="card-hover group flex flex-col gap-2 rounded-[var(--radius-card)] border border-white/60 bg-white p-5 shadow-[0_8px_40px_rgba(36,109,116,0.06)] backdrop-blur-sm hover:shadow-[0_20px_60px_rgba(36,109,116,0.12)]"
+        >
+          <span
+            class="text-primary-dark inline-flex items-center gap-1.5 text-xs font-semibold tracking-widest uppercase"
+          >
+            <svg
+              class="h-3.5 w-3.5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.5 19.5L3 12l7.5-7.5M3 12h18"
+              />
+            </svg>
+            上一篇
+          </span>
+          <span
+            class="text-ink-900 group-hover:text-primary line-clamp-2 font-medium transition-colors"
+            th:text="${cursor.previous.spec.title}"
+            >上篇标题</span
+          >
+        </a>
+        <span th:unless="${cursor?.hasPrevious()}" aria-hidden="true"></span>
+
+        <!-- 下一篇（桌面端靠右对齐） -->
+        <a
+          th:if="${cursor?.hasNext()}"
+          th:href="@{${cursor.next.status.permalink}}"
+          class="card-hover group flex flex-col items-start gap-2 rounded-[var(--radius-card)] border border-white/60 bg-white p-5 text-left shadow-[0_8px_40px_rgba(36,109,116,0.06)] backdrop-blur-sm hover:shadow-[0_20px_60px_rgba(36,109,116,0.12)] sm:items-end sm:text-right"
+        >
+          <span
+            class="text-primary-dark inline-flex items-center gap-1.5 text-xs font-semibold tracking-widest uppercase"
+          >
+            下一篇
+            <svg
+              class="h-3.5 w-3.5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.5 4.5L21 12l-7.5 7.5M21 12H3"
               />
             </svg>
           </span>
-          <span th:text="${post.owner?.displayName ?: '佚名'}">作者</span>
-        </span>
-
-        <!-- 发布时间 -->
-        <time
-          th:if="${post.spec.publishTime != null}"
-          th:text="${#temporals.format(post.spec.publishTime, 'yyyy-MM-dd HH:mm')}"
-          >发布时间</time
-        >
-
-        <!-- 访问量 -->
-        <span th:if="${post.stats != null}" th:text="|${post.stats.visit} 次阅读|">阅读量</span>
-      </div>
-    </div>
-  </header>
-
-  <article class="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-    <!-- 封面图：有封面时才显示 -->
-    <figure
-      th:if="${not #strings.isEmpty(post.spec.cover)}"
-      class="mb-10 overflow-hidden rounded-[var(--radius-card)] border border-white/60 shadow-[0_8px_40px_rgba(36,109,116,0.06)] backdrop-blur-sm"
-    >
-      <img th:src="${post.spec.cover}" th:alt="${post.spec.title}" class="w-full object-cover" />
-    </figure>
-
-    <!-- 正文排版（使用 main.css 中的 .rich-content） -->
-    <div class="rich-content" th:utext="${post.content.content}"></div>
-
-    <!-- 标签列表 -->
-    <div class="mt-10 flex flex-wrap gap-2" th:if="${not #lists.isEmpty(post.tags)}">
-      <a
-        th:each="tag : ${post.tags}"
-        th:href="@{${tag.status.permalink}}"
-        th:text="|# ${tag.spec.displayName}|"
-        class="text-primary-dark hover:border-primary hover:bg-mist border-line inline-flex items-center rounded-full border bg-white px-4 py-1.5 text-sm transition-colors duration-200"
-        >标签</a
-      >
-    </div>
-
-    <!-- 上一篇 / 下一篇 — 渐隐分隔线 -->
-    <div class="via-line mt-14 h-px bg-gradient-to-r from-transparent to-transparent"></div>
-    <nav
-      class="mt-10 grid gap-4 sm:grid-cols-2"
-      th:with="cursor = ${postFinder.cursor(post.metadata.name)}"
-      aria-label="上下篇导航"
-    >
-      <!-- 上一篇 -->
-      <a
-        th:if="${cursor.hasPrevious()}"
-        th:href="@{${cursor.previous.status.permalink}}"
-        class="card-hover group flex flex-col gap-2 rounded-[var(--radius-card)] border border-white/60 bg-white p-5 shadow-[0_8px_40px_rgba(36,109,116,0.06)] backdrop-blur-sm hover:shadow-[0_20px_60px_rgba(36,109,116,0.12)]"
-      >
-        <span
-          class="text-primary-dark inline-flex items-center gap-1.5 text-xs font-semibold tracking-widest uppercase"
-        >
-          <svg
-            class="h-3.5 w-3.5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="2"
-            stroke="currentColor"
+          <span
+            class="text-ink-900 group-hover:text-primary line-clamp-2 font-medium transition-colors"
+            th:text="${cursor.next.spec.title}"
+            >下篇标题</span
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M10.5 19.5L3 12l7.5-7.5M3 12h18"
-            />
-          </svg>
-          上一篇
-        </span>
-        <span
-          class="text-ink-900 group-hover:text-primary line-clamp-2 font-medium transition-colors"
-          th:text="${cursor.previous.spec.title}"
-          >上篇标题</span
-        >
-      </a>
-      <span th:unless="${cursor.hasPrevious()}" aria-hidden="true"></span>
+        </a>
+      </nav>
 
-      <!-- 下一篇（桌面端靠右对齐） -->
-      <a
-        th:if="${cursor.hasNext()}"
-        th:href="@{${cursor.next.status.permalink}}"
-        class="card-hover group flex flex-col items-start gap-2 rounded-[var(--radius-card)] border border-white/60 bg-white p-5 text-left shadow-[0_8px_40px_rgba(36,109,116,0.06)] backdrop-blur-sm hover:shadow-[0_20px_60px_rgba(36,109,116,0.12)] sm:items-end sm:text-right"
+      <!-- 相关产品推荐：同分类 product-center 排除当前篇，空时整块隐藏 -->
+      <section
+        th:if="${isProduct}"
+        th:with="relatedResult=${postFinder.list({page:1,size:4,categoryName:'product-center'})}"
+        id="related-products"
+        class="mt-14"
       >
-        <span
-          class="text-primary-dark inline-flex items-center gap-1.5 text-xs font-semibold tracking-widest uppercase"
+        <th:block
+          th:if="${relatedResult != null and relatedResult.items != null and !#lists.isEmpty(relatedResult.items)}"
         >
-          下一篇
-          <svg
-            class="h-3.5 w-3.5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="2"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M13.5 4.5L21 12l-7.5 7.5M21 12H3"
-            />
-          </svg>
-        </span>
-        <span
-          class="text-ink-900 group-hover:text-primary line-clamp-2 font-medium transition-colors"
-          th:text="${cursor.next.spec.title}"
-          >下篇标题</span
-        >
-      </a>
-    </nav>
+          <div class="mb-6 flex items-center justify-between">
+            <h2 class="text-ink-900 text-xl font-black tracking-tighter">相关产品</h2>
+            <a
+              th:href="@{/categories/product-center}"
+              class="text-primary-dark hover:text-primary text-sm font-semibold transition-colors"
+              >查看全部</a
+            >
+          </div>
+          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <th:block th:each="rel : ${relatedResult.items}">
+              <a
+                th:if="${rel.metadata?.name != post.metadata?.name}"
+                th:href="@{${rel.status?.permalink}}"
+                class="group flex flex-col overflow-hidden rounded-[8px] border border-[rgba(217,236,233,1)] bg-white shadow-[0_8px_30px_rgba(36,109,116,0.07)] transition-all duration-200 hover:-translate-y-1.5 hover:shadow-[0_18px_45px_rgba(36,109,116,0.12)]"
+              >
+                <div class="relative aspect-square overflow-hidden bg-white p-3">
+                  <img
+                    th:if="${not #strings.isEmpty(rel.spec.cover)}"
+                    th:src="${rel.spec.cover}"
+                    th:alt="${rel.spec.title}"
+                    class="h-full w-full rounded-[8px] object-contain"
+                    loading="lazy"
+                  />
+                  <div
+                    th:unless="${not #strings.isEmpty(rel.spec.cover)}"
+                    class="bg-mist text-ink-500 flex h-full w-full items-center justify-center rounded-[8px] text-xs"
+                  >
+                    暂无封面
+                  </div>
+                </div>
+                <div class="flex flex-1 flex-col gap-1.5 bg-white p-5">
+                  <h3
+                    th:text="${rel.spec.title}"
+                    class="text-ink-900 line-clamp-2 text-[15px] leading-6 font-black tracking-tight"
+                  >
+                    产品标题
+                  </h3>
+                  <p
+                    th:if="${not #strings.isEmpty(rel.status.excerpt)}"
+                    th:text="${rel.status.excerpt}"
+                    class="text-ink-500 line-clamp-2 text-sm leading-6"
+                  >
+                    摘要
+                  </p>
+                </div>
+              </a>
+            </th:block>
+          </div>
+        </th:block>
+      </section>
 
-    <div class="via-line mt-14 h-px bg-gradient-to-r from-transparent to-transparent"></div>
-    <!-- 评论区挂载点 -->
-    <section class="mt-10" th:if="${haloCommentEnabled}">
-      <h2 class="text-ink-900 mb-6 text-xl font-black tracking-tighter">评论</h2>
-      <halo:comment group="content.halo.run" kind="Post" th:attr="name=${post.metadata.name}" />
-    </section>
-  </article>
+      <!-- 合作 CTA：跳转 /cooperation -->
+      <section
+        th:if="${isProduct}"
+        id="product-cta"
+        class="from-primary to-primary-deep mt-14 overflow-hidden rounded-[var(--radius-card)] bg-gradient-to-br p-[1px]"
+      >
+        <div
+          class="rounded-[calc(var(--radius-card)-1px)] bg-white px-6 py-8 text-center sm:px-10 sm:py-10"
+        >
+          <h3 class="text-ink-900 text-xl font-black tracking-tight sm:text-2xl">
+            对该产品感兴趣？
+          </h3>
+          <p class="text-ink-500 mt-2 text-sm leading-6">
+            获取详细方案与报价，与万椿商务团队一对一沟通
+          </p>
+          <a
+            th:href="@{/cooperation}"
+            href="/cooperation"
+            class="btn btn-primary mt-6 min-w-[160px]"
+            >立即咨询合作</a
+          >
+        </div>
+      </section>
+
+      <div class="via-line mt-14 h-px bg-gradient-to-r from-transparent to-transparent"></div>
+      <!-- 评论区挂载点 -->
+      <section class="mt-10" th:if="${haloCommentEnabled}">
+        <h2 class="text-ink-900 mb-6 text-xl font-black tracking-tighter">评论</h2>
+        <halo:comment group="content.halo.run" kind="Post" th:attr="name=${post.metadata.name}" />
+      </section>
+    </article>
+  </div>
 </include>

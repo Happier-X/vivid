@@ -373,6 +373,109 @@ html::-webkit-scrollbar-corner {
   list-style: decimal;
 }
 
+/* ---------- 产品详情：规格表 / 卖点 / 图库 ---------- */
+.product-specs table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+.product-specs th,
+.product-specs td {
+  border: 1px solid var(--color-line);
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+.product-specs th {
+  background-color: var(--color-ink-900);
+  color: #fff;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.product-specs td:first-child {
+  background-color: var(--color-mist);
+  font-weight: 700;
+  color: var(--color-ink-900);
+  width: 36%;
+  white-space: nowrap;
+}
+.product-specs tr:nth-child(even) td {
+  background-color: rgba(238, 249, 247, 0.5);
+}
+.product-specs tr:nth-child(even) td:first-child {
+  background-color: #e6f5f3;
+}
+/* 富文本内的表格同样统一样式（非产品文章也生效） */
+.rich-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.875rem;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+.rich-content th,
+.rich-content td {
+  border: 1px solid var(--color-line);
+  padding: 0.625rem 0.875rem;
+  text-align: left;
+}
+.rich-content th {
+  background: var(--color-ink-900);
+  color: #fff;
+  font-weight: 800;
+}
+.rich-content td:first-child {
+  background: var(--color-mist);
+  font-weight: 600;
+}
+/* 产品卖点卡片 */
+.product-highlight-card {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  border: 1px solid rgba(217, 236, 233, 1);
+  background: #fff;
+  border-radius: 8px;
+  padding: 1rem 1.1rem;
+  box-shadow: 0 8px 30px rgba(36, 109, 116, 0.06);
+}
+.product-highlight-card::before {
+  content: "✓";
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: #eef9f7;
+  color: #2b8d89;
+  font-weight: 900;
+  font-size: 14px;
+}
+/* 图库缩略图 */
+.product-thumb {
+  border: 2px solid transparent;
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+.product-thumb.is-active {
+  border-color: var(--color-primary);
+}
+.product-thumb:hover {
+  transform: translateY(-1px);
+}
+#product-gallery-thumbs::-webkit-scrollbar {
+  height: 6px;
+}
+#product-gallery-thumbs::-webkit-scrollbar-thumb {
+  background: var(--color-line);
+  border-radius: 999px;
+}
+
 /* ---------- 合作表单：强制青绿焦点与覆盖自动填充蓝底（硬编码 #4fc7b7，确保变量未注入也生效） ---------- */
 #cooperation-form input:focus,
 #cooperation-form textarea:focus {
