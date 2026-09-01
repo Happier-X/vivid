@@ -229,10 +229,10 @@
   <!-- 表单区：1:1 复刻截图 — 浅青底 + 胶囊标题 + 左右双栏，左侧原生表单 -->
   <section id="cooperation-section" class="py-12 sm:py-16" style="background: #eef7f7">
     <div class="mx-auto w-[calc(100%-32px)] max-w-[1180px]">
-      <div class="grid gap-8 lg:grid-cols-2 lg:gap-10">
+      <div class="grid gap-8 lg:grid-cols-2 lg:items-stretch lg:gap-10">
         <!-- 左侧：填写信息（原生表单） -->
         <div
-          class="reveal"
+          class="reveal flex flex-col"
           id="cooperation-form-root"
           th:attr="data-endpoint=${theme.config.cooperation.endpoint},data-receiver-email=${theme.config.cooperation.receiver_email},data-success-title=${theme.config.cooperation.success_title},data-success-desc=${theme.config.cooperation.success_desc}"
         >
@@ -262,7 +262,7 @@
             填写以下信息，我们的商务团队将在 24 小时内与您联系
           </p>
           <div
-            class="mt-6 rounded-[12px] border border-[rgba(217,236,233,0.9)] bg-white p-6 shadow-[0_8px_30px_rgba(36,109,116,0.06)] sm:p-7"
+            class="mt-6 flex flex-1 flex-col rounded-[12px] border border-[rgba(217,236,233,0.9)] bg-white p-6 shadow-[0_8px_30px_rgba(36,109,116,0.06)] sm:p-7"
           >
             <!-- 顶部错误条 -->
             <div
@@ -483,7 +483,7 @@
         </div>
 
         <!-- 右侧：更多联系方式 — 标题胶囊 + 3 横卡 + 浅青 Why 卡，对齐截图 -->
-        <div class="flex flex-col gap-5">
+        <div class="flex h-full flex-col gap-5">
           <div class="reveal">
             <span
               class="inline-flex items-center rounded-full bg-[#e0f7f4] px-3.5 py-1.5 text-xs font-bold tracking-wide text-[#2b8d89]"
@@ -584,7 +584,7 @@
           </div>
           <!-- 为什么选择万椿 — 浅青卡 -->
           <div
-            class="rounded-[12px] border border-[rgba(79,199,183,0.18)] p-6"
+            class="flex flex-1 flex-col rounded-[12px] border border-[rgba(79,199,183,0.18)] p-6"
             style="background: rgba(238, 249, 247, 0.9)"
           >
             <h3 class="text-ink-900 text-[15px] font-black tracking-tight">为什么选择万椿？</h3>
