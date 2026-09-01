@@ -34,7 +34,7 @@
 
     <!-- 4 卡图片网格：1:1 复刻 mikapu 的图片卡片结构 -->
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-      <!-- 卡 1 燃气安全 — 已替换 SVG 占位为实拍图 product-gas；保留 mikapu 8px 圆角与阴影 -->
+      <!-- 卡 1 体征监测仪 — 复用无感守护配图 product-fall，文案改为体征监测仪 -->
       <a
         th:href="@{/archives}"
         href="/archives"
@@ -42,9 +42,9 @@
       >
         <div class="relative aspect-square overflow-hidden bg-white p-3">
           <img
-            th:src="@{/assets/images/wanchun/product-gas.jpg}"
-            src="/assets/images/wanchun/product-gas.jpg"
-            alt="万椿燃气安全卫士 联动关阀款 9%LEL阈值声光告警 实拍图"
+            th:src="@{/assets/images/wanchun/product-fall.jpg}"
+            src="/assets/images/wanchun/product-fall.jpg"
+            alt="万椿体征监测仪 无感毫米波款 实时体征监测 实拍图"
             class="h-full w-full rounded-[8px] object-contain"
             loading="lazy"
             decoding="async"
@@ -52,10 +52,10 @@
         </div>
         <div class="flex flex-1 flex-col gap-1.5 bg-white p-5">
           <h3 class="text-ink-900 text-[15px] leading-6 font-black tracking-tight">
-            燃气安全卫士 · 联动关阀款
+            体征监测仪 · 无感毫米波款
           </h3>
           <p class="text-ink-500 line-clamp-2 text-sm leading-6">
-            9%LEL 阈值声光告警，联动智能阀门自动关阀
+            无感监测心率呼吸，多维体征异常自动预警
           </p>
         </div>
       </a>
