@@ -381,7 +381,9 @@ html::-webkit-scrollbar-corner {
   outline: none !important;
 }
 #cooperation-form input[type="radio"]:focus {
-  --tw-ring-color: #4fc7b7 !important;
+  box-shadow: none !important;
+  --tw-ring-shadow: none !important;
+  outline: none !important;
 }
 #cooperation-form input[type="radio"] {
   accent-color: #4fc7b7 !important;
@@ -389,6 +391,7 @@ html::-webkit-scrollbar-corner {
 #cooperation-form input[type="radio"]:checked {
   accent-color: #4fc7b7 !important;
 }
+/* 合作类型药丸按钮：选中态已由 has-[:checked] 处理，此处无需额外 radio 背景 */
 #cooperation-form label:has(input:checked) {
   border-color: #4fc7b7 !important;
   background-color: #eef9f7 !important;
