@@ -32,8 +32,8 @@
       >
     </div>
 
-    <!-- 4 卡图片网格：1:1 复刻 mikapu 的图片卡片结构 -->
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    <!-- 3 卡图片网格：按需求暂保留 3 款 -->
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       <!-- 卡 1 体征监测仪 — 复用无感守护配图 product-fall -->
       <a
         th:href="@{/archives}"
@@ -107,30 +107,6 @@
             紧急按钮 · 一键 SOS 款
           </h3>
           <p class="text-ink-500 line-clamp-2 text-sm leading-6">一键 SOS 求助，快速响应守护安全</p>
-        </div>
-      </a>
-      <!-- 卡 4 毫米波跌倒守护 — 已替换为实拍图 product-fall；保留 mikapu 版式 -->
-      <a
-        th:href="@{/archives}"
-        href="/archives"
-        class="reveal group flex flex-col overflow-hidden rounded-[8px] border border-[rgba(217,236,233,1)] bg-white shadow-[0_8px_30px_rgba(36,109,116,0.07)] transition-all duration-200 hover:-translate-y-1.5 hover:shadow-[0_18px_45px_rgba(36,109,116,0.12)]"
-        style="transition-delay: 240ms"
-      >
-        <div class="relative aspect-square overflow-hidden bg-white p-3">
-          <img
-            th:src="@{/assets/images/wanchun/product-fall.jpg}"
-            src="/assets/images/wanchun/product-fall.jpg"
-            alt="万椿无感跌倒守护 毫米波款 非接触式起居监测 实拍图"
-            class="h-full w-full rounded-[8px] object-contain"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-        <div class="flex flex-1 flex-col gap-1.5 bg-white p-5">
-          <h3 class="text-ink-900 text-[15px] leading-6 font-black tracking-tight">
-            无感跌倒守护 · 毫米波款
-          </h3>
-          <p class="text-ink-500 line-clamp-2 text-sm leading-6">无感识别开启，守护起居每个瞬间</p>
         </div>
       </a>
     </div>
