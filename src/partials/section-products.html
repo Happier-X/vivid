@@ -1,4 +1,4 @@
-<!-- 第三部分：精选产品 — 硬编码 3 款 SinglePage，链至 /product-vital 等固定 slug -->
+<!-- 第三部分：精选产品 — 硬编码 3 款 SinglePage，链至 /vital-monitor 等固定 slug -->
 <section class="relative overflow-hidden bg-[#fbfefe] py-24 sm:py-28">
   <div class="mx-auto w-[calc(100%-32px)] max-w-[1180px]">
     <!-- 标题：03 水印右置胶囊（reverse）+ 居中大标题 + 底线 -->
@@ -34,10 +34,10 @@
 
     <!-- 硬编码 3 卡：固定 SinglePage slug -->
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      <!-- 卡 1 体征监测仪 -> /product-vital -->
+      <!-- 卡 1 体征监测仪 -> /vital-monitor -->
       <a
-        th:href="@{/product-vital}"
-        href="/product-vital"
+        th:href="@{/vital-monitor}"
+        href="/vital-monitor"
         class="reveal group flex flex-col overflow-hidden rounded-[8px] border border-[rgba(217,236,233,1)] bg-white shadow-[0_8px_30px_rgba(36,109,116,0.07)] transition-all duration-200 hover:-translate-y-1.5 hover:shadow-[0_18px_45px_rgba(36,109,116,0.12)]"
       >
         <div class="relative aspect-square overflow-hidden bg-white p-3">
@@ -59,10 +59,10 @@
           </p>
         </div>
       </a>
-      <!-- 卡 2 跌倒监测仪 -> /product-diedao -->
+      <!-- 卡 2 跌倒监测仪 -> /fall-monitor -->
       <a
-        th:href="@{/product-diedao}"
-        href="/product-diedao"
+        th:href="@{/fall-monitor}"
+        href="/fall-monitor"
         class="reveal group flex flex-col overflow-hidden rounded-[8px] border border-[rgba(217,236,233,1)] bg-white shadow-[0_8px_30px_rgba(36,109,116,0.07)] transition-all duration-200 hover:-translate-y-1.5 hover:shadow-[0_18px_45px_rgba(36,109,116,0.12)]"
         style="transition-delay: 80ms"
       >
@@ -85,10 +85,10 @@
           </p>
         </div>
       </a>
-      <!-- 卡 3 紧急按钮 -> /product-sos -->
+      <!-- 卡 3 紧急按钮 -> /emergency-button -->
       <a
-        th:href="@{/product-sos}"
-        href="/product-sos"
+        th:href="@{/emergency-button}"
+        href="/emergency-button"
         class="reveal group flex flex-col overflow-hidden rounded-[8px] border border-[rgba(217,236,233,1)] bg-white shadow-[0_8px_30px_rgba(36,109,116,0.07)] transition-all duration-200 hover:-translate-y-1.5 hover:shadow-[0_18px_45px_rgba(36,109,116,0.12)]"
         style="transition-delay: 160ms"
       >
