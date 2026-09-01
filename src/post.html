@@ -222,13 +222,13 @@
         <img th:src="${post.spec.cover}" th:alt="${post.spec.title}" class="w-full object-cover" />
       </figure>
 
-      <!-- 核心卖点：卡片化容器，JS 从 rich-content 提取 ## 核心卖点 ul 填充；空时隐藏 -->
+      <!-- 产品介绍：卡片化容器，JS 从 rich-content 提取 ## 产品介绍 ul 填充；空时隐藏 -->
       <section
-        th:if="${isProduct and post.content?.content != null and #strings.contains(post.content.content, '核心卖点')}"
+        th:if="${isProduct and post.content?.content != null and #strings.contains(post.content.content, '产品介绍')}"
         id="product-highlights"
         class="mb-10"
       >
-        <h2 class="text-ink-900 mb-4 text-xl font-black tracking-tighter">核心卖点</h2>
+        <h2 class="text-ink-900 mb-4 text-xl font-black tracking-tighter">产品介绍</h2>
         <div id="product-highlights-grid" class="grid gap-3 sm:grid-cols-2">
           <!-- JS 填充：每个卖点为卡片 -->
         </div>

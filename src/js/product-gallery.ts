@@ -1,6 +1,6 @@
 /**
- * 产品详情轻量交互：图库轮播 + 核心卖点卡片化 + 规格表搬运
- * 约定式内容：正文中的 ## 核心卖点 / ## 规格参数 / ## 图库 为结构化数据源
+ * 产品详情轻量交互：图库轮播 + 产品介绍卡片化 + 规格表搬运
+ * 约定式内容：正文中的 ## 产品介绍 / ## 规格参数 / ## 图库 为结构化数据源
  * 若未按约定书写，对应区块由 Thymeleaf th:if 已隐藏，此脚本再做二次隐藏兜底
  */
 export function initProductGallery(): void {
@@ -10,11 +10,11 @@ export function initProductGallery(): void {
   const isProduct = document.getElementById("product-gallery-block") !== null;
   if (!isProduct) return;
 
-  // --- 1. 核心卖点：提取 ul -> 卡片 ---
+  // --- 1. 产品介绍：提取 ul -> 卡片 ---
   const highlightsSection = document.getElementById("product-highlights");
   const highlightsGrid = document.getElementById("product-highlights-grid");
   if (highlightsSection && highlightsGrid) {
-    const h = findHeading(rich, "核心卖点");
+    const h = findHeading(rich, "产品介绍");
     if (h) {
       const ul = findNextSiblingByTag(h, "UL");
       if (ul) {
