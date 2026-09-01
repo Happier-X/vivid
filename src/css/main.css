@@ -388,8 +388,6 @@ html::-webkit-scrollbar-corner {
 }
 #cooperation-form input[type="radio"]:checked {
   accent-color: #4fc7b7 !important;
-  border-color: #4fc7b7 !important;
-  background-color: #4fc7b7 !important;
 }
 #cooperation-form label:has(input:checked) {
   border-color: #4fc7b7 !important;
