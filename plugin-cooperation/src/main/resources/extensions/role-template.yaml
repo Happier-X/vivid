@@ -1,0 +1,15 @@
+apiVersion: v1alpha1
+kind: Role
+metadata:
+  name: cooperation-public-apis
+  labels:
+    halo.run/role-template: "true"
+    halo.run/hidden: "true"
+    rbac.authorization.halo.run/aggregate-to-anonymous: "true"
+  annotations:
+    rbac.authorization.halo.run/module: "合作咨询"
+    rbac.authorization.halo.run/display-name: "合作咨询公开提交"
+rules:
+  - apiGroups: ["api.cooperation.vivid.run"]
+    resources: ["cooperations"]
+    verbs: ["create"]

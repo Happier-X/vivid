@@ -304,10 +304,16 @@ export function initCooperationForm(): void {
     try {
       const res = await fetch(endpoint, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "X-Requested-With": "XMLHttpRequest" },
         body: JSON.stringify(payload),
+        redirect: "manual",
         signal: AbortSignal.timeout(10000),
       });
+      // 302/登录跳转不算成功：此时多为匿名权限未放行，直接提示失败
+      if (res.type === "opaqueredirect" || res.status === 302 || res.status === 0) {
+        showTopError("提交失败：表单接口被拦截，请确认插件已更新到最新版并已启用");
+        return;
+      }
       let data: { success?: boolean; message?: string } = {};
       try {
         data = (await res.json()) as typeof data;
