@@ -27,16 +27,41 @@
       </span>
     </a>
 
-    <!-- 桌面端导航：居中胶囊悬浮，hover 时 #e0f7f4 -->
+    <!-- 桌面端导航：居中胶囊悬浮，hover 时 #e0f7f4；后台未配置主菜单时兜底展示四项入口 -->
     <nav id="mk-main-nav" class="hidden items-center gap-1 md:flex" aria-label="主导航">
-      <a
-        th:each="item : ${menu?.menuItems}"
-        th:href="@{${item.status.href}}"
-        th:text="${item.status.displayName}"
-        th:target="${item.spec.target?.value}"
-        class="rounded-[8px] px-[14px] py-[10px] text-[14px] leading-none font-bold text-[rgba(31,45,56,0.8)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#e0f7f4] hover:text-[#2b8d89]"
-        >菜单项</a
-      >
+      <th:block th:if="${menu?.menuItems != null and !#lists.isEmpty(menu.menuItems)}">
+        <a
+          th:each="item : ${menu.menuItems}"
+          th:href="@{${item.status.href}}"
+          th:text="${item.status.displayName}"
+          th:target="${item.spec.target?.value}"
+          class="rounded-[8px] px-[14px] py-[10px] text-[14px] leading-none font-bold text-[rgba(31,45,56,0.8)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#e0f7f4] hover:text-[#2b8d89]"
+          >菜单项</a
+        >
+      </th:block>
+      <th:block th:if="${menu?.menuItems == null or #lists.isEmpty(menu.menuItems)}">
+        <a
+          th:href="@{/}"
+          href="/"
+          class="rounded-[8px] px-[14px] py-[10px] text-[14px] leading-none font-bold text-[rgba(31,45,56,0.8)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#e0f7f4] hover:text-[#2b8d89]"
+          >首页</a
+        ><a
+          th:href="@{/solutions}"
+          href="/solutions"
+          class="rounded-[8px] px-[14px] py-[10px] text-[14px] leading-none font-bold text-[rgba(31,45,56,0.8)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#e0f7f4] hover:text-[#2b8d89]"
+          >解决方案</a
+        ><a
+          th:href="@{/cooperation}"
+          href="/cooperation"
+          class="rounded-[8px] px-[14px] py-[10px] text-[14px] leading-none font-bold text-[rgba(31,45,56,0.8)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#e0f7f4] hover:text-[#2b8d89]"
+          >合作咨询</a
+        ><a
+          th:href="@{/about}"
+          href="/about"
+          class="rounded-[8px] px-[14px] py-[10px] text-[14px] leading-none font-bold text-[rgba(31,45,56,0.8)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#e0f7f4] hover:text-[#2b8d89]"
+          >关于我们</a
+        >
+      </th:block>
     </nav>
 
     <!-- 右侧操作区：万椿为企业官网，仅保留汉堡（样式复刻 mikapu） -->
@@ -63,15 +88,51 @@
     aria-label="移动端导航"
   >
     <ul class="space-y-1 px-4 py-3">
-      <li th:each="item : ${menu?.menuItems}">
-        <a
-          th:href="@{${item.status.href}}"
-          th:text="${item.status.displayName}"
-          th:target="${item.spec.target?.value}"
-          class="block rounded-[8px] px-4 py-3 text-base font-bold text-[rgba(31,45,56,0.82)] transition-colors hover:bg-[#e0f7f4] hover:text-[#2b8d89]"
-          >菜单项</a
-        >
-      </li>
+      <th:block th:if="${menu?.menuItems != null and !#lists.isEmpty(menu.menuItems)}">
+        <li th:each="item : ${menu.menuItems}">
+          <a
+            th:href="@{${item.status.href}}"
+            th:text="${item.status.displayName}"
+            th:target="${item.spec.target?.value}"
+            class="block rounded-[8px] px-4 py-3 text-base font-bold text-[rgba(31,45,56,0.82)] transition-colors hover:bg-[#e0f7f4] hover:text-[#2b8d89]"
+            >菜单项</a
+          >
+        </li>
+      </th:block>
+      <th:block th:if="${menu?.menuItems == null or #lists.isEmpty(menu.menuItems)}">
+        <li>
+          <a
+            th:href="@{/}"
+            href="/"
+            class="block rounded-[8px] px-4 py-3 text-base font-bold text-[rgba(31,45,56,0.82)] transition-colors hover:bg-[#e0f7f4] hover:text-[#2b8d89]"
+            >首页</a
+          >
+        </li>
+        <li>
+          <a
+            th:href="@{/solutions}"
+            href="/solutions"
+            class="block rounded-[8px] px-4 py-3 text-base font-bold text-[rgba(31,45,56,0.82)] transition-colors hover:bg-[#e0f7f4] hover:text-[#2b8d89]"
+            >解决方案</a
+          >
+        </li>
+        <li>
+          <a
+            th:href="@{/cooperation}"
+            href="/cooperation"
+            class="block rounded-[8px] px-4 py-3 text-base font-bold text-[rgba(31,45,56,0.82)] transition-colors hover:bg-[#e0f7f4] hover:text-[#2b8d89]"
+            >合作咨询</a
+          >
+        </li>
+        <li>
+          <a
+            th:href="@{/about}"
+            href="/about"
+            class="block rounded-[8px] px-4 py-3 text-base font-bold text-[rgba(31,45,56,0.82)] transition-colors hover:bg-[#e0f7f4] hover:text-[#2b8d89]"
+            >关于我们</a
+          >
+        </li>
+      </th:block>
     </ul>
   </nav>
 </header>

@@ -38,3 +38,5 @@ server/cooperation/cooperations.db
 server/cooperation/cooperations.log
 server/cooperation/__pycache__/
 server/cooperation/app/__pycache__/
+# local release artifacts (hand-built jars/zips, not versioned)
+release/
