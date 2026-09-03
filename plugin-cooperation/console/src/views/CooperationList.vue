@@ -262,33 +262,20 @@
 
       <!-- 分页 -->
       <div
-        class="flex flex-col gap-3 border-t border-[rgba(217,236,233,0.6)] bg-white px-4 py-3 sm:flex-row sm:items-center sm:justify-between"
+        class="pagination-bar flex flex-col gap-3 border-t border-[rgba(217,236,233,0.6)] bg-white px-4 py-3 sm:flex-row sm:items-center sm:justify-between"
       >
         <div class="flex items-center gap-2 text-sm text-[#687783]">
           <span>
             共 <span class="font-semibold text-[#1f2d38]">{{ total }}</span> 条
           </span>
-          <span class="hidden h-3 w-px bg-[rgba(217,236,233,0.9)] sm:inline-block"></span>
-          <span class="inline-flex items-center gap-1">
-            每页
-            <select
-              v-model.number="pageSize"
-              class="rounded-lg border border-[rgba(217,236,233,0.9)] bg-white px-2 py-1 text-sm text-[#1f2d38] focus:border-[#4fc7b7] focus:outline-none"
-              @change="handleSizeChange"
-            >
-              <option :value="10">10</option>
-              <option :value="20">20</option>
-              <option :value="50">50</option>
-            </select>
-            条
-          </span>
         </div>
-        <div class="flex justify-center sm:justify-end">
+        <div class="pagination-wrap flex justify-center sm:justify-end">
           <VPagination
             :page="page + 1"
             :size="pageSize"
             :total="total"
             :size-options="[10, 20, 50]"
+            :show-total="false"
             @change="handlePaginationChange"
           />
         </div>
@@ -492,7 +479,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, onMounted, watch } from "vue";
+import { ref, reactive, onMounted, watch } from "vue";
 import {
   VCard,
   VButton,
@@ -537,8 +524,6 @@ const list = ref<Cooperation[]>([]);
 const total = ref(0);
 const page = ref(0);
 const pageSize = ref(20);
-
-const totalPages = computed(() => Math.ceil(total.value / pageSize.value));
 
 const detailVisible = ref(false);
 const current = ref<Cooperation | null>(null);
@@ -617,16 +602,6 @@ function handleReset() {
   page.value = 0;
   fetchList();
 }
-function handleSizeChange() {
-  page.value = 0;
-  fetchList();
-}
-function goPage(p: number) {
-  if (p < 0 || p >= totalPages.value) return;
-  page.value = p;
-  fetchList();
-}
-
 function handlePaginationChange(val: { page: number; size: number }) {
   const nextPage = val.page - 1;
   const nextSize = val.size;
@@ -721,6 +696,27 @@ watch([() => filters.type, () => filters.handled], () => {
 <style scoped>
 .cooperation-admin :deep(.card-wrapper) {
   border-radius: 12px;
+}
+
+/* 分页条：组件自带每页选择器，与左侧总数左右对齐，窄屏自动换行不挤压 */
+.pagination-bar .pagination-wrap {
+  min-width: 0;
+}
+.pagination-bar :deep(.pagination) {
+  flex-wrap: wrap;
+  row-gap: 0.5rem;
+  justify-content: flex-end;
+  min-width: 0;
+}
+.pagination-bar :deep(.pagination__controller) {
+  flex-wrap: wrap;
+  row-gap: 0.5rem;
+}
+@media (max-width: 639px) {
+  .pagination-bar :deep(.pagination),
+  .pagination-bar :deep(.pagination__controller) {
+    justify-content: center;
+  }
 }
 
 /* 日期输入统一样式 */
