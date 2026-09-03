@@ -32,6 +32,7 @@
 - **禁止凭记忆写参数名**：postFinder/menuFinder 等方法签名随版本演进，写代码前必须核对在线文档（见技能 references/finder-apis.md 链接）
 - 已核实：`postFinder.list({ page, size, categoryName })` 返回 `ListResult<ListedPostVo>`；卡片字段：`spec.cover/title`、`status.excerpt/permalink`、`categories[0].spec.displayName`
 - 可空数据源必须安全导航：如主菜单未配置时 `${menu.menuItems}` 会 NPE，须写 `menu?.menuItems`
+- 主菜单必须有兜底：后台未配置主菜单时桌面端与移动端导航同时回退到固定入口（首页/解决方案/合作咨询/关于我们），用 `th:block th:if` 按 `#lists.isEmpty(menu.menuItems)` 分支，空状态不得留空导航栏
 - 区块/列表必须有空状态处理（空列表提示或整块隐藏，避免残留空色带）
 
 ## 5. 构建与验证

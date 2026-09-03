@@ -1,1 +1,2 @@
-{"_example": "Fill with {\"file\": \"<path>\", \"reason\": \"<why>\"}. Put spec/research files only — no code paths. Run `python .trellis/scripts/get_context.py --mode packages` to list available specs. Delete this line once real entries are added."}
+{"file": ".trellis/spec/frontend/halo-theme.md", "reason": "图片替换遵循静态资源路径与构建验证约定"}
+{"file": ".trellis/spec/guides/index.md", "reason": "图片压缩取舍与双目录同步依据"}
