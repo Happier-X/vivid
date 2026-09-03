@@ -162,11 +162,14 @@ public class CooperationController {
                     .reversed();
                 final int finalPage = pageVal;
                 final int finalSize = sizeVal;
-                return extensionClient.list(Cooperation.class, null, comparator)
+                log.debug("handleList all before filter: fetching with keyword={}, type={}, handled={}", keyword, type, handled);
+                return extensionClient.list(Cooperation.class, null, null)
                     .collectList()
                     .flatMap(all -> {
+                        log.debug("handleList fetched total={}, filtered before={}", all.size(), all.size());
                         List<Cooperation> filtered = applyFilters(all, keyword, type, handled, startTime, endTime);
-                        // 按创建时间倒序已在 comparator 完成，若未排序则再次排序确保
+                        log.debug("handleList filtered total={}, page={}, size={}", filtered.size(), finalPage, finalSize);
+                        // 按创建时间倒序
                         filtered.sort(comparator);
                         int total = filtered.size();
                         int from = Math.min(finalPage * finalSize, total);
@@ -273,7 +276,7 @@ public class CooperationController {
                     }, Comparator.nullsLast(Comparator.naturalOrder()))
                     .reversed();
 
-                return extensionClient.list(Cooperation.class, null, comparator)
+                return extensionClient.list(Cooperation.class, null, null)
                     .collectList()
                     .flatMap(all -> {
                         List<Cooperation> filtered = applyFilters(all, keyword, type, handled, startTime, endTime);
