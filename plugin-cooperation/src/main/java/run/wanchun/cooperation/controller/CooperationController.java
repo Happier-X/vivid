@@ -36,7 +36,6 @@ import run.wanchun.cooperation.config.CooperationProperties;
 import run.wanchun.cooperation.dto.CooperationRequest;
 import run.wanchun.cooperation.dto.CooperationResponse;
 import run.wanchun.cooperation.extension.Cooperation;
-import run.wanchun.cooperation.service.EmailService;
 import run.wanchun.cooperation.service.RateLimiter;
 
 /**
@@ -53,7 +52,6 @@ public class CooperationController {
     private static final String PHONE_RE = "^(1[3-9]\\d{9}|0\\d{2,3}-?\\d{7,8})$";
 
     private final ReactiveExtensionClient extensionClient;
-    private final EmailService emailService;
     private final RateLimiter rateLimiter;
     private final CooperationProperties properties;
 
@@ -121,22 +119,11 @@ public class CooperationController {
                 spec.setHandled(false);
                 cooperation.setSpec(spec);
 
-                // 落库 -> 发邮件
+                // 落库（已移除邮件发送）
                 return extensionClient.create(cooperation)
-                    .flatMap(created -> emailService.sendCooperationEmail(created)
-                        .thenReturn(created)
-                        .onErrorResume(e -> {
-                            log.error("邮件发送失败，但记录已落库", e);
-                            return Mono.error(new RuntimeException("邮件发送失败，请稍后重试"));
-                        }))
                     .flatMap(created -> ok().contentType(MediaType.APPLICATION_JSON)
                         .bodyValue(CooperationResponse.ok("提交成功")))
                     .onErrorResume(e -> {
-                        if (e.getMessage() != null && e.getMessage().contains("邮件发送失败")) {
-                            return ServerResponse.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .bodyValue(CooperationResponse.fail("邮件发送失败，请稍后重试"));
-                        }
                         log.error("创建合作记录失败", e);
                         return ServerResponse.status(HttpStatus.INTERNAL_SERVER_ERROR)
                             .contentType(MediaType.APPLICATION_JSON)
