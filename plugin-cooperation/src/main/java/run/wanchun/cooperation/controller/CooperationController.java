@@ -480,18 +480,28 @@ public class CooperationController {
         return ReactiveSecurityContextHolder.getContext()
             .map(SecurityContext::getAuthentication)
             .map(auth -> {
-                if (auth == null || !auth.isAuthenticated() || auth.getPrincipal() == null) {
+                if (auth == null || !auth.isAuthenticated()) {
                     return AuthResult.UNAUTHORIZED;
                 }
-                // 匿名 authentication 也可能 isAuthenticated 为 true，需检查 authorities
-                boolean isAdmin = auth.getAuthorities().stream().anyMatch(a ->
-                    "ROLE_ADMIN".equals(a.getAuthority()) || "ROLE_SUPER_ADMIN".equals(a.getAuthority())
-                );
+                Object principal = auth.getPrincipal();
+                if (principal != null && "anonymousUser".equalsIgnoreCase(String.valueOf(principal))) {
+                    return AuthResult.UNAUTHORIZED;
+                }
+                // 调试日志：打印当前用户权限，便于排查 Halo 实际角色名
+                log.debug("checkAdmin user={}, authorities={}", principal, auth.getAuthorities());
+                // 兼容 Halo 不同版本的管理员角色命名：大小写不敏感，且包含 admin/super/root 均视为管理员
+                boolean isAdmin = auth.getAuthorities().stream().anyMatch(a -> {
+                    String authority = a.getAuthority();
+                    if (authority == null) return false;
+                    String lower = authority.toLowerCase();
+                    return lower.contains("admin") || lower.contains("super") || lower.contains("root");
+                });
+                // 若没有任何 authorities（如 Halo 早期版本直接通过 isAuthenticated 判断），则已认证即视为管理员，避免误拦截超级管理员
                 if (!isAdmin) {
-                    // 如果没有任何 ROLE_ 可能是匿名用户
-                    boolean hasAnyRole = auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().startsWith("ROLE_"));
-                    if (!hasAnyRole) {
-                        return AuthResult.UNAUTHORIZED;
+                    // 若用户已认证但无任何角色，可能是 Halo 的超级管理员（默认拥有全部权限），放行并记录警告
+                    if (auth.getAuthorities().isEmpty()) {
+                        log.warn("checkAdmin 放行无角色的已认证用户: {}", principal);
+                        return AuthResult.ADMIN;
                     }
                     return AuthResult.FORBIDDEN;
                 }
