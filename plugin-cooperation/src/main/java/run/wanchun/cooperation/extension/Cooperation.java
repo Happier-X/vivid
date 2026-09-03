@@ -34,5 +34,7 @@ public class Cooperation extends AbstractExtension {
         private String userAgent;
         private String timestamp;
         private String ip;
+        @Schema(description = "是否已处理", defaultValue = "false")
+        private Boolean handled = false;
     }
 }

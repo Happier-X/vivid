@@ -1,3 +1,5 @@
+> ⚠️ **已废弃 Deprecated**：自 `cooperation-plugin 1.1.0` 起，合作咨询已由 Halo 插件同源接口 `/apis/api.cooperation.vivid.run/v1alpha1/cooperations` 统一承载，并提供 Console 后台管理（列表/筛选/详情/删除/导出）。本 FastAPI 目录仅保留作历史参考，不再推荐部署，主题 `settings.yaml` 的 `endpoint` 已固定为插件路径。
+
 # 合作表单独立后端（FastAPI）
 
 独立于 Halo 插件的合作表单后端，提供同源 `POST /api/cooperation` 接口，实现校验、蜜罐、限流、邮件通知与 SQLite/JSONL 落库，通过 Nginx 同源反代与主题联动，无需重启 Halo。

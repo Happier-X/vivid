@@ -4,7 +4,10 @@ import { defineConfig } from "vite-plus";
 
 export default defineConfig({
   plugins: [tailwindcss(), haloThemePlugin()],
-  lint: { options: { typeAware: true, typeCheck: true }, ignorePatterns: [".agents", ".pi"] },
+  lint: {
+    options: { typeAware: true, typeCheck: true },
+    ignorePatterns: [".agents", ".pi", "plugin-cooperation"],
+  },
   fmt: {
     printWidth: 100,
     tabWidth: 2,
@@ -14,7 +17,7 @@ export default defineConfig({
     insertFinalNewline: true,
     sortImports: {},
     sortTailwindcss: {},
-    ignorePatterns: [".agents", ".pi"],
+    ignorePatterns: [".agents", ".pi", "plugin-cooperation"],
   },
   staged: {
     "*": ["vp check"],

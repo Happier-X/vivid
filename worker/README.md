@@ -1,3 +1,5 @@
+> ⚠️ **已废弃 Deprecated**：自 `cooperation-plugin 1.1.0` 起，合作咨询已由 Halo 插件同源接口统一承载，主题 `endpoint` 固定为 `/apis/api.cooperation.vivid.run/v1alpha1/cooperations`，本 Worker 仅保留作历史参考，不再推荐部署。
+
 # 合作咨询表单 Worker 部署说明
 
 参考实现：`worker/cooperation.ts`（Cloudflare Workers / Workerd）

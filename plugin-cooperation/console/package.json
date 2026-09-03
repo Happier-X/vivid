@@ -1,0 +1,25 @@
+{
+  "name": "cooperation-console",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite build --watch",
+    "build": "vite build",
+    "type-check": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "@halo-dev/api-client": "^2.20.11",
+    "@halo-dev/components": "^2.20.11",
+    "@halo-dev/console-shared": "^2.20.11",
+    "@halo-dev/ui-plugin-bundler-kit": "^1.0.0",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.0",
+    "vue-tsc": "^2.0.11"
+  }
+}
