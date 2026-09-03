@@ -19,7 +19,7 @@
       class="!rounded-[12px] !border-[rgba(217,236,233,0.9)] !shadow-[0_8px_30px_rgba(36,109,116,0.06)] transition-shadow hover:!shadow-[0_18px_45px_rgba(36,109,116,0.10)]"
       :body-class="['!p-5']"
     >
-      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
         <!-- 关键词 -->
         <div class="flex flex-col gap-1.5">
           <label class="text-xs font-medium text-[#1f2d38]">关键词</label>
@@ -70,29 +70,7 @@
           </div>
         </div>
 
-        <!-- 开始时间 -->
-        <div class="flex flex-col gap-1.5">
-          <label class="text-xs font-medium text-[#1f2d38]">开始时间</label>
-          <div class="relative">
-            <input
-              v-model="filters.startTime"
-              type="date"
-              class="h-9 w-full rounded-lg border border-[rgba(217,236,233,0.9)] bg-white px-3 py-2 text-sm text-[#1f2d38] focus:border-[#4fc7b7] focus:outline-none focus:ring-2 focus:ring-[#4fc7b7]/20"
-            />
-          </div>
-        </div>
 
-        <!-- 结束时间 -->
-        <div class="flex flex-col gap-1.5">
-          <label class="text-xs font-medium text-[#1f2d38]">结束时间</label>
-          <div class="relative">
-            <input
-              v-model="filters.endTime"
-              type="date"
-              class="h-9 w-full rounded-lg border border-[rgba(217,236,233,0.9)] bg-white px-3 py-2 text-sm text-[#1f2d38] focus:border-[#4fc7b7] focus:outline-none focus:ring-2 focus:ring-[#4fc7b7]/20"
-            />
-          </div>
-        </div>
       </div>
 
       <!-- 按钮组 -->
@@ -551,8 +529,6 @@ const filters = reactive({
   keyword: "",
   type: "all",
   handled: "all" as string,
-  startTime: "",
-  endTime: "",
 });
 
 const loading = ref(false);
@@ -611,8 +587,6 @@ async function fetchList() {
       keyword: filters.keyword || undefined,
       type: filters.type !== "all" ? filters.type : undefined,
       handled: filters.handled !== "all" ? filters.handled : undefined,
-      startTime: filters.startTime || undefined,
-      endTime: filters.endTime || undefined,
     });
     list.value = res.items || [];
     total.value = res.total || 0;
@@ -640,8 +614,6 @@ function handleReset() {
   filters.keyword = "";
   filters.type = "all";
   filters.handled = "all";
-  filters.startTime = "";
-  filters.endTime = "";
   page.value = 0;
   fetchList();
 }
@@ -718,8 +690,6 @@ async function handleExport() {
       keyword: filters.keyword || undefined,
       type: filters.type !== "all" ? filters.type : undefined,
       handled: filters.handled !== "all" ? filters.handled : undefined,
-      startTime: filters.startTime || undefined,
-      endTime: filters.endTime || undefined,
     });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
