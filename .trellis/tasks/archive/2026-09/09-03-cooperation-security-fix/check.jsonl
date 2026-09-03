@@ -1,0 +1,1 @@
+{"file": "plugin-cooperation/src/main/java/run/wanchun/cooperation/controller/CooperationController.java", "reason": "验证删除SecurityConfig后POST匿名与GET鉴权仍符合checkAdmin逻辑"}
