@@ -1,0 +1,1 @@
+{"file": ".trellis/spec/frontend/quality-guidelines.md", "reason": "视觉回归与功能回归：筛选/分页/详情等不因样式改动而失效"}
