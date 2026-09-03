@@ -7,7 +7,7 @@ plugins {
 }
 
 group = 'run.wanchun.cooperation'
-version = '1.1.1'
+version = '1.1.2'
 
 repositories {
     mavenCentral()
@@ -46,7 +46,7 @@ halo {
     version = '2.20.11'
 }
 
-// 确保构建产物名称与 PRD/文档一致：cooperation-plugin-1.1.1.jar
+// 确保构建产物名称与 PRD/文档一致：cooperation-plugin-1.1.2.jar
 jar {
     archiveBaseName = 'cooperation-plugin'
 }
