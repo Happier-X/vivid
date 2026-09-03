@@ -1,0 +1,2 @@
+{"file": ".trellis/spec/frontend/halo-theme.md", "reason": "主题与插件联动：settings.yaml 的 cooperation.endpoint 契约与模板 th:attrdata-endpoint 的运行时联动，插件路径固定为同源接口"}
+{"file": "plugin-cooperation/src/main/java/run/wanchun/cooperation/extension/Cooperation.java", "reason": "Extension 模型：Cooperation 的 @GVK 定义与新增 handled 字段的兼容设计"}

@@ -1,0 +1,2 @@
+{"file": ".trellis/spec/frontend/quality-guidelines.md", "reason": "质量门：构建、接口鉴权、空状态、导出 UTF-8 BOM 的验收"}
+{"file": "plugin-cooperation/src/main/java/run/wanchun/cooperation/controller/CooperationController.java", "reason": "校验边界：匿名 POST 与 ROLE_ADMIN 的 GET/DELETE/PATCH 权限与限流/蜜罐逻辑"}
