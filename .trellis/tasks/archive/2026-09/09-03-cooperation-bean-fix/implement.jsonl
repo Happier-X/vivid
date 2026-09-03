@@ -1,0 +1,1 @@
+{"file": "plugin-cooperation/build.gradle", "reason": "构建依赖作用域错误：starter-mail 以 implementation 打包导致 Bean 重复加载"}

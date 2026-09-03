@@ -1,0 +1,1 @@
+{"file": "plugin-cooperation/src/main/java/run/wanchun/cooperation/controller/CooperationController.java", "reason": "验证 @Bean RouterFunction 在修正后是否可被宿主 ClassLoader 正确解析"}
