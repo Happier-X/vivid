@@ -1,8 +1,11 @@
 package run.wanchun.cooperation;
 
 import org.springframework.stereotype.Component;
+import run.halo.app.extension.Scheme;
+import run.halo.app.extension.SchemeManager;
 import run.halo.app.plugin.BasePlugin;
 import run.halo.app.plugin.PluginContext;
+import run.wanchun.cooperation.extension.Cooperation;
 
 /**
  * 合作咨询插件主类。
@@ -10,17 +13,22 @@ import run.halo.app.plugin.PluginContext;
 @Component
 public class CooperationPlugin extends BasePlugin {
 
-    public CooperationPlugin(PluginContext pluginContext) {
+    private final SchemeManager schemeManager;
+
+    public CooperationPlugin(PluginContext pluginContext, SchemeManager schemeManager) {
         super(pluginContext);
+        this.schemeManager = schemeManager;
     }
 
     @Override
     public void start() {
-        System.out.println("合作咨询插件启动成功！");
+        schemeManager.register(Cooperation.class);
+        System.out.println("合作咨询插件启动成功！ Scheme 已注册: " + Cooperation.class.getName());
     }
 
     @Override
     public void stop() {
-        System.out.println("合作咨询插件停止！");
+        schemeManager.unregister(Scheme.buildFromType(Cooperation.class));
+        System.out.println("合作咨询插件停止！ Scheme 已注销");
     }
 }
