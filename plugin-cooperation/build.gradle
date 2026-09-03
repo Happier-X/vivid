@@ -7,7 +7,7 @@ plugins {
 }
 
 group = 'run.wanchun.cooperation'
-version = '1.1.0'
+version = '1.1.1'
 
 repositories {
     mavenCentral()
@@ -16,7 +16,7 @@ repositories {
 dependencies {
     implementation platform('run.halo.tools.platform:application:2.20.11')
     compileOnly 'run.halo.app:api:2.20.11'
-    implementation 'org.springframework.boot:spring-boot-starter-mail'
+    compileOnly 'org.springframework.boot:spring-boot-starter-mail'
     compileOnly 'org.springframework.boot:spring-boot-starter-webflux'
     compileOnly 'org.springframework.boot:spring-boot-starter-security'
     compileOnly 'org.springframework.boot:spring-boot-starter-validation'
@@ -46,7 +46,7 @@ halo {
     version = '2.20.11'
 }
 
-// 确保构建产物名称与 PRD/文档一致：cooperation-plugin-1.1.0.jar
+// 确保构建产物名称与 PRD/文档一致：cooperation-plugin-1.1.1.jar
 jar {
     archiveBaseName = 'cooperation-plugin'
 }
