@@ -31,6 +31,7 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 import run.halo.app.extension.ListResult;
+import run.halo.app.extension.Metadata;
 import run.halo.app.extension.ReactiveExtensionClient;
 import run.wanchun.cooperation.config.CooperationProperties;
 import run.wanchun.cooperation.dto.CooperationRequest;
@@ -102,8 +103,11 @@ public class CooperationController {
                         .bodyValue(CooperationResponse.fail(msg));
                 }
 
-                // 构建 Extension
+                // 构建 Extension（metadata 必须初始化，否则 create 时 NPE 且无法落库）
                 Cooperation cooperation = new Cooperation();
+                Metadata metadata = new Metadata();
+                metadata.setGenerateName("cooperation-");
+                cooperation.setMetadata(metadata);
                 Cooperation.CooperationSpec spec = new Cooperation.CooperationSpec();
                 spec.setCompany(req.getCompany().trim());
                 spec.setContact(req.getContact().trim());
