@@ -1,171 +1,281 @@
 <template>
-  <div class="cooperation-list p-4">
-    <!-- 顶部筛选栏 -->
-    <div class="mb-4 flex flex-wrap items-end gap-3 rounded border bg-white p-4">
-      <div class="flex flex-col gap-1">
-        <label class="text-sm text-gray-600">关键词</label>
-        <input
-          v-model="filters.keyword"
-          placeholder="搜索 公司/联系人/电话"
-          class="input input-sm w-52 rounded border px-3 py-1.5"
-          @keyup.enter="handleSearch"
-        />
+  <div class="cooperation-admin min-h-[calc(100vh-64px)] bg-[#eef7f7] p-4 sm:p-6">
+    <!-- 页头 -->
+    <div class="mb-4 flex items-start justify-between sm:mb-5 sm:items-center">
+      <div>
+        <h1 class="text-lg font-black tracking-tight text-[#1f2d38]">合作咨询</h1>
+        <p class="mt-1 text-xs text-[#687783] sm:text-sm">集中管理来自万椿微卡合作表单的线索，支持筛选、标记、导出与追溯</p>
       </div>
-      <div class="flex flex-col gap-1">
-        <label class="text-sm text-gray-600">合作类型</label>
-        <select v-model="filters.type" class="min-w-[160px] rounded border px-3 py-1.5 text-sm">
-          <option v-for="opt in typeOptions" :key="opt.value" :value="opt.value">
-            {{ opt.label }}
-          </option>
-        </select>
+      <div
+        class="hidden items-center gap-2 rounded-full border border-[rgba(217,236,233,0.9)] bg-white px-3 py-1.5 text-xs text-[#687783] shadow-[0_2px_10px_rgba(36,109,116,0.06)] sm:inline-flex"
+      >
+        <span class="inline-flex h-2 w-2 rounded-full bg-[#4fc7b7]"></span>
+        共 <span class="font-semibold text-[#1f2d38]">{{ total }}</span> 条记录
       </div>
-      <div class="flex flex-col gap-1">
-        <label class="text-sm text-gray-600">处理状态</label>
-        <select v-model="filters.handled" class="min-w-[120px] rounded border px-3 py-1.5 text-sm">
-          <option v-for="opt in handledOptions" :key="opt.value" :value="opt.value">
-            {{ opt.label }}
-          </option>
-        </select>
+    </div>
+
+    <!-- 筛选栏 -->
+    <VCard
+      class="!rounded-[12px] !border-[rgba(217,236,233,0.9)] !shadow-[0_8px_30px_rgba(36,109,116,0.06)] transition-shadow hover:!shadow-[0_18px_45px_rgba(36,109,116,0.10)]"
+      :body-class="['!p-5']"
+    >
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+        <!-- 关键词 -->
+        <div class="flex flex-col gap-1.5">
+          <label class="text-xs font-medium text-[#1f2d38]">关键词</label>
+          <div class="relative">
+            <span
+              class="pointer-events-none absolute left-2.5 top-1/2 -translate-y-1/2 text-[#687783]"
+            >
+              <IconSearch class="h-4 w-4" />
+            </span>
+            <input
+              v-model="filters.keyword"
+              placeholder="搜索 公司/联系人/电话"
+              class="h-9 w-full rounded-lg border border-[rgba(217,236,233,0.9)] bg-white py-2 pl-8 pr-3 text-sm placeholder:text-gray-400 focus:border-[#4fc7b7] focus:outline-none focus:ring-2 focus:ring-[#4fc7b7]/20"
+              @keyup.enter="handleSearch"
+            />
+          </div>
+        </div>
+
+        <!-- 合作类型 -->
+        <div class="flex flex-col gap-1.5">
+          <label class="text-xs font-medium text-[#1f2d38]">合作类型</label>
+          <div class="relative">
+            <select
+              v-model="filters.type"
+              class="h-9 w-full appearance-none rounded-lg border border-[rgba(217,236,233,0.9)] bg-white px-3 pr-8 text-sm text-[#1f2d38] focus:border-[#4fc7b7] focus:outline-none focus:ring-2 focus:ring-[#4fc7b7]/20"
+            >
+              <option v-for="opt in typeOptions" :key="opt.value" :value="opt.value">
+                {{ opt.label }}
+              </option>
+            </select>
+            <IconArrowDown class="pointer-events-none absolute right-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[#687783]" />
+          </div>
+        </div>
+
+        <!-- 处理状态 -->
+        <div class="flex flex-col gap-1.5">
+          <label class="text-xs font-medium text-[#1f2d38]">处理状态</label>
+          <div class="relative">
+            <select
+              v-model="filters.handled"
+              class="h-9 w-full appearance-none rounded-lg border border-[rgba(217,236,233,0.9)] bg-white px-3 pr-8 text-sm text-[#1f2d38] focus:border-[#4fc7b7] focus:outline-none focus:ring-2 focus:ring-[#4fc7b7]/20"
+            >
+              <option v-for="opt in handledOptions" :key="opt.value" :value="opt.value">
+                {{ opt.label }}
+              </option>
+            </select>
+            <IconArrowDown class="pointer-events-none absolute right-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[#687783]" />
+          </div>
+        </div>
+
+        <!-- 开始时间 -->
+        <div class="flex flex-col gap-1.5">
+          <label class="text-xs font-medium text-[#1f2d38]">开始时间</label>
+          <div class="relative">
+            <input
+              v-model="filters.startTime"
+              type="date"
+              class="h-9 w-full rounded-lg border border-[rgba(217,236,233,0.9)] bg-white px-3 py-2 text-sm text-[#1f2d38] focus:border-[#4fc7b7] focus:outline-none focus:ring-2 focus:ring-[#4fc7b7]/20"
+            />
+          </div>
+        </div>
+
+        <!-- 结束时间 -->
+        <div class="flex flex-col gap-1.5">
+          <label class="text-xs font-medium text-[#1f2d38]">结束时间</label>
+          <div class="relative">
+            <input
+              v-model="filters.endTime"
+              type="date"
+              class="h-9 w-full rounded-lg border border-[rgba(217,236,233,0.9)] bg-white px-3 py-2 text-sm text-[#1f2d38] focus:border-[#4fc7b7] focus:outline-none focus:ring-2 focus:ring-[#4fc7b7]/20"
+            />
+          </div>
+        </div>
       </div>
-      <div class="flex flex-col gap-1">
-        <label class="text-sm text-gray-600">开始时间</label>
-        <input v-model="filters.startTime" type="date" class="rounded border px-3 py-1.5 text-sm" />
-      </div>
-      <div class="flex flex-col gap-1">
-        <label class="text-sm text-gray-600">结束时间</label>
-        <input v-model="filters.endTime" type="date" class="rounded border px-3 py-1.5 text-sm" />
-      </div>
-      <div class="ml-auto flex gap-2">
-        <button
-          class="btn btn-primary rounded bg-[#4fc7b7] px-4 py-1.5 text-sm text-white"
-          :disabled="loading"
+
+      <!-- 按钮组 -->
+      <div class="mt-4 flex flex-wrap items-center gap-2 sm:mt-5 sm:justify-end">
+        <VButton
+          type="primary"
+          :loading="loading"
+          class="!bg-[#4fc7b7] !border-[#4fc7b7] hover:!bg-[#3db8a5] hover:!border-[#3db8a5]"
           @click="handleSearch"
         >
+          <template #icon>
+            <IconSearch />
+          </template>
           搜索
-        </button>
-        <button class="btn rounded border px-4 py-1.5 text-sm" @click="handleReset">重置</button>
-        <button
-          class="btn rounded border px-4 py-1.5 text-sm"
-          :class="
-            total === 0
-              ? 'cursor-not-allowed bg-gray-100 text-gray-400'
-              : 'bg-white hover:bg-gray-50'
-          "
+        </VButton>
+        <VButton type="default" @click="handleReset">
+          <template #icon>
+            <IconRefreshLine />
+          </template>
+          重置
+        </VButton>
+        <VButton
           :disabled="total === 0 || exporting"
           @click="handleExport"
         >
+          <template #icon>
+            <IconUpload />
+          </template>
           {{ exporting ? "导出中..." : "导出 CSV" }}
-        </button>
+        </VButton>
       </div>
-    </div>
+    </VCard>
 
-    <!-- 加载中 -->
-    <div v-if="loading" class="py-16 text-center text-gray-500">
-      <div class="inline-block h-8 w-8 animate-spin rounded-full border-b-2 border-[#4fc7b7]"></div>
-      <p class="mt-2 text-sm">加载中...</p>
-    </div>
+    <!-- 加载态 -->
+    <VCard
+      v-if="loading"
+      class="mt-4 !rounded-[12px] !border-[rgba(217,236,233,0.9)] !shadow-[0_8px_30px_rgba(36,109,116,0.06)]"
+      :body-class="['!p-0']"
+    >
+      <div class="flex flex-col items-center justify-center py-20">
+        <VLoading />
+        <p class="mt-3 text-sm font-medium text-[#687783]">正在加载合作咨询…</p>
+        <p class="mt-1 text-xs text-[#a0b8b5]">请稍候，正在获取最新线索</p>
+      </div>
+    </VCard>
 
     <!-- 空状态 -->
-    <div v-else-if="list.length === 0" class="rounded border bg-white py-16 text-center">
-      <div class="mb-3 text-4xl">📋</div>
-      <p class="font-medium text-gray-700">暂无合作咨询数据</p>
-      <p class="mt-1 text-sm text-gray-500">请检查合作表单是否已发布，或尝试调整筛选条件</p>
-      <p class="mt-2 text-xs text-gray-400">
-        表单提交地址：/apis/api.cooperation.vivid.run/v1alpha1/cooperations
-      </p>
-    </div>
+    <VCard
+      v-else-if="list.length === 0"
+      class="mt-4 !rounded-[12px] !border-[rgba(217,236,233,0.9)] !shadow-[0_8px_30px_rgba(36,109,116,0.06)]"
+      :body-class="['!p-0']"
+    >
+      <div class="flex flex-col items-center px-6 py-16 text-center sm:py-20">
+        <div
+          class="flex h-16 w-16 items-center justify-center rounded-full bg-[#eef6f5] text-5xl shadow-inner"
+        >
+          📋
+        </div>
+        <h3 class="mt-4 text-base font-black tracking-tight text-[#1f2d38]">暂无合作咨询数据</h3>
+        <p class="mt-1.5 max-w-[420px] text-sm leading-5 text-[#687783]">
+          请检查合作表单是否已发布，或尝试调整筛选条件后重新搜索
+        </p>
+        <p class="mt-1 max-w-[420px] text-sm leading-5 text-[#687783]">
+          若刚发布表单，提交新数据后会自动出现在这里
+        </p>
+        <code
+          class="mt-4 max-w-full break-all rounded-lg border border-[rgba(217,236,233,0.9)] bg-[#eef6f5] px-3 py-2 font-mono text-xs text-[#246d74]"
+        >
+          /apis/api.cooperation.vivid.run/v1alpha1/cooperations
+        </code>
+        <div class="mt-5 flex gap-2">
+          <VButton type="primary" class="!bg-[#4fc7b7] !border-[#4fc7b7]" @click="handleReset">
+            调整筛选条件
+          </VButton>
+          <VButton @click="handleSearch">刷新</VButton>
+        </div>
+      </div>
+    </VCard>
 
     <!-- 表格 -->
-    <div v-else class="overflow-hidden rounded border bg-white">
+    <VCard
+      v-else
+      class="mt-4 overflow-hidden !rounded-[12px] !border-[rgba(217,236,233,0.9)] !shadow-[0_8px_30px_rgba(36,109,116,0.06)]"
+      :body-class="['!p-0']"
+    >
       <div class="overflow-x-auto">
         <table class="w-full text-sm">
-          <thead class="bg-gray-50 text-gray-600">
+          <thead class="bg-[#eef6f5] text-[#246d74]">
             <tr>
-              <th class="px-3 py-2.5 text-left font-medium whitespace-nowrap">公司名称</th>
-              <th class="px-3 py-2.5 text-left font-medium whitespace-nowrap">联系人</th>
-              <th class="px-3 py-2.5 text-left font-medium whitespace-nowrap">联系电话</th>
-              <th class="px-3 py-2.5 text-left font-medium whitespace-nowrap">合作类型</th>
-              <th class="min-w-[200px] px-3 py-2.5 text-left font-medium">合作意向</th>
-              <th class="px-3 py-2.5 text-left font-medium whitespace-nowrap">提交时间</th>
-              <th class="px-3 py-2.5 text-left font-medium whitespace-nowrap">IP</th>
-              <th class="px-3 py-2.5 text-left font-medium whitespace-nowrap">来源页面</th>
-              <th class="px-3 py-2.5 text-left font-medium whitespace-nowrap">状态</th>
-              <th class="px-3 py-2.5 text-center font-medium whitespace-nowrap">操作</th>
+              <th class="px-3 py-3 text-left text-xs font-bold whitespace-nowrap">公司名称</th>
+              <th class="px-3 py-3 text-left text-xs font-bold whitespace-nowrap">联系人</th>
+              <th class="px-3 py-3 text-left text-xs font-bold whitespace-nowrap">联系电话</th>
+              <th class="px-3 py-3 text-left text-xs font-bold whitespace-nowrap">合作类型</th>
+              <th class="min-w-[200px] px-3 py-3 text-left text-xs font-bold">合作意向</th>
+              <th class="px-3 py-3 text-left text-xs font-bold whitespace-nowrap">提交时间</th>
+              <th class="px-3 py-3 text-left text-xs font-bold whitespace-nowrap">IP</th>
+              <th class="px-3 py-3 text-left text-xs font-bold whitespace-nowrap">来源页面</th>
+              <th class="px-3 py-3 text-left text-xs font-bold whitespace-nowrap">状态</th>
+              <th class="px-3 py-3 text-center text-xs font-bold whitespace-nowrap">操作</th>
             </tr>
           </thead>
-          <tbody class="divide-y">
+          <tbody class="divide-y divide-[rgba(217,236,233,0.6)]">
             <tr
               v-for="item in list"
               :key="item.metadata.name"
-              class="cursor-pointer hover:bg-gray-50"
+              class="cursor-pointer transition-colors hover:bg-[#f8fbfb]"
               @click="openDetail(item)"
             >
-              <td class="max-w-[150px] truncate px-3 py-2.5 font-medium" :title="item.spec.company">
+              <td
+                class="max-w-[150px] truncate px-3 py-3 font-medium text-[#1f2d38]"
+                :title="item.spec.company"
+              >
                 {{ item.spec.company }}
               </td>
-              <td class="px-3 py-2.5 whitespace-nowrap">{{ item.spec.contact }}</td>
-              <td class="px-3 py-2.5 whitespace-nowrap">{{ item.spec.phone }}</td>
-              <td class="px-3 py-2.5 whitespace-nowrap">
-                <span
-                  class="inline-flex rounded border border-[#d9ece9] bg-[#eef7f7] px-2 py-0.5 text-xs text-[#246d74]"
-                  >{{ item.spec.typeLabel || typeLabel(item.spec.type) }}</span
-                >
+              <td class="px-3 py-3 whitespace-nowrap text-[#1f2d38]">{{ item.spec.contact }}</td>
+              <td class="px-3 py-3 whitespace-nowrap text-[#1f2d38]">{{ item.spec.phone }}</td>
+              <td class="px-3 py-3 whitespace-nowrap">
+                <VTag class="!border-[#d9ece9] !bg-[#eef6f5] !text-[#246d74]">{{ item.spec.typeLabel || typeLabel(item.spec.type) }}</VTag>
               </td>
               <td
-                class="max-w-[200px] truncate px-3 py-2.5 text-gray-600"
+                class="max-w-[240px] truncate px-3 py-3 text-[#687783]"
                 :title="item.spec.message"
               >
                 {{ truncate(item.spec.message, 36) }}
               </td>
-              <td class="px-3 py-2.5 text-xs whitespace-nowrap text-gray-600">
+              <td class="px-3 py-3 text-xs whitespace-nowrap text-[#687783]">
                 {{ formatTime(item.metadata.creationTimestamp) }}
               </td>
-              <td class="px-3 py-2.5 text-xs whitespace-nowrap">{{ item.spec.ip || "-" }}</td>
-              <td class="max-w-[120px] truncate px-3 py-2.5" :title="item.spec.sourceUrl">
+              <td class="px-3 py-3 text-xs whitespace-nowrap text-[#687783]">{{ item.spec.ip || "-" }}</td>
+              <td class="max-w-[120px] truncate px-3 py-3" :title="item.spec.sourceUrl">
                 <a
                   v-if="item.spec.sourceUrl"
                   :href="item.spec.sourceUrl"
                   target="_blank"
-                  class="text-xs text-[#4fc7b7] hover:underline"
+                  class="inline-flex items-center gap-1 text-xs font-medium text-[#4fc7b7] hover:text-[#3db8a5] hover:underline"
                   @click.stop
-                  >来源</a
                 >
+                  <IconExternalLinkLine class="h-3.5 w-3.5" />
+                  来源
+                </a>
                 <span v-else class="text-xs text-gray-400">-</span>
               </td>
-              <td class="px-3 py-2.5 whitespace-nowrap">
+              <td class="px-3 py-3 whitespace-nowrap">
                 <span
-                  class="inline-flex rounded px-2 py-0.5 text-xs font-medium"
+                  class="inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-medium"
                   :class="
                     item.spec.handled
-                      ? 'border border-green-200 bg-green-50 text-green-700'
-                      : 'border border-amber-200 bg-amber-50 text-amber-700'
+                      ? 'border-green-200 bg-green-50 text-green-700'
+                      : 'border-amber-200 bg-amber-50 text-amber-700'
                   "
                 >
-                  {{ item.spec.handled ? "已处理" : "未处理" }}
+                  <VStatusDot
+                    :state="item.spec.handled ? 'success' : 'warning'"
+                    :text="item.spec.handled ? '已处理' : '未处理'"
+                  />
                 </span>
               </td>
-              <td class="px-3 py-2.5 text-center whitespace-nowrap" @click.stop>
-                <button
-                  class="mr-1 rounded border bg-white px-2 py-1 text-xs hover:bg-gray-50"
-                  @click="openDetail(item)"
-                >
-                  查看
-                </button>
-                <button
-                  class="mr-1 rounded border px-2 py-1 text-xs"
-                  :class="
-                    item.spec.handled ? 'bg-gray-50' : 'border-[#4fc7b7] bg-[#4fc7b7] text-white'
-                  "
-                  @click="toggleHandled(item)"
-                >
-                  {{ item.spec.handled ? "标为未处理" : "标为已处理" }}
-                </button>
-                <button
-                  class="rounded border border-red-200 bg-red-50 px-2 py-1 text-xs text-red-600 hover:bg-red-100"
-                  @click="confirmDelete(item)"
-                >
-                  删除
-                </button>
+              <td class="px-3 py-3 text-center whitespace-nowrap" @click.stop>
+                <div class="flex items-center justify-center gap-1">
+                  <VButton size="xs" @click="openDetail(item)">
+                    <template #icon>
+                      <IconEye />
+                    </template>
+                    查看
+                  </VButton>
+                  <VButton
+                    size="xs"
+                    :type="item.spec.handled ? 'default' : 'primary'"
+                    :class="!item.spec.handled ? '!bg-[#4fc7b7] !border-[#4fc7b7]' : ''"
+                    @click="toggleHandled(item)"
+                  >
+                    <template #icon>
+                      <IconCheckboxCircle />
+                    </template>
+                    {{ item.spec.handled ? "未处理" : "已处理" }}
+                  </VButton>
+                  <VButton size="xs" type="danger" @click="confirmDelete(item)">
+                    <template #icon>
+                      <IconDeleteBin />
+                    </template>
+                    删除
+                  </VButton>
+                </div>
               </td>
             </tr>
           </tbody>
@@ -173,14 +283,19 @@
       </div>
 
       <!-- 分页 -->
-      <div class="flex items-center justify-between border-t bg-white px-4 py-3">
-        <div class="text-sm text-gray-600">
-          共 <span class="font-medium text-gray-900">{{ total }}</span> 条
-          <span class="ml-3">
+      <div
+        class="flex flex-col gap-3 border-t border-[rgba(217,236,233,0.6)] bg-white px-4 py-3 sm:flex-row sm:items-center sm:justify-between"
+      >
+        <div class="flex items-center gap-2 text-sm text-[#687783]">
+          <span>
+            共 <span class="font-semibold text-[#1f2d38]">{{ total }}</span> 条
+          </span>
+          <span class="hidden h-3 w-px bg-[rgba(217,236,233,0.9)] sm:inline-block"></span>
+          <span class="inline-flex items-center gap-1">
             每页
             <select
               v-model.number="pageSize"
-              class="mx-1 rounded border px-2 py-1 text-sm"
+              class="rounded-lg border border-[rgba(217,236,233,0.9)] bg-white px-2 py-1 text-sm text-[#1f2d38] focus:border-[#4fc7b7] focus:outline-none"
               @change="handleSizeChange"
             >
               <option :value="10">10</option>
@@ -190,157 +305,196 @@
             条
           </span>
         </div>
-        <div class="flex items-center gap-1">
-          <button
-            class="rounded border px-3 py-1 text-sm"
-            :disabled="page === 0"
-            :class="page === 0 ? 'bg-gray-100 text-gray-400' : 'hover:bg-gray-50'"
-            @click="goPage(page - 1)"
-          >
-            上一页
-          </button>
-          <span class="px-2 text-sm">第 {{ page + 1 }} / {{ totalPages || 1 }} 页</span>
-          <button
-            class="rounded border px-3 py-1 text-sm"
-            :disabled="page + 1 >= totalPages"
-            :class="page + 1 >= totalPages ? 'bg-gray-100 text-gray-400' : 'hover:bg-gray-50'"
-            @click="goPage(page + 1)"
-          >
-            下一页
-          </button>
+        <div class="flex justify-center sm:justify-end">
+          <VPagination
+            :page="page + 1"
+            :size="pageSize"
+            :total="total"
+            :size-options="[10, 20, 50]"
+            @change="handlePaginationChange"
+          />
         </div>
       </div>
-    </div>
+    </VCard>
 
-    <!-- 详情抽屉/弹窗 -->
+    <!-- 详情抽屉 -->
     <div v-if="detailVisible" class="fixed inset-0 z-50 flex">
-      <div class="flex-1 bg-black/30" @click="detailVisible = false"></div>
-      <div class="w-[520px] max-w-[90vw] overflow-y-auto bg-white shadow-xl">
-        <div class="sticky top-0 flex items-center justify-between border-b bg-white px-5 py-3">
-          <h3 class="font-semibold">合作详情</h3>
-          <button class="rounded p-1 hover:bg-gray-100" @click="detailVisible = false">✕</button>
+      <div class="flex-1 bg-black/30 backdrop-blur-[1px]" @click="detailVisible = false"></div>
+      <div
+        class="flex w-[560px] max-w-[90vw] flex-col overflow-hidden bg-white shadow-xl sm:rounded-l-[12px]"
+      >
+        <div
+          class="sticky top-0 flex items-center justify-between border-b border-[rgba(217,236,233,0.9)] bg-white px-6 py-4"
+        >
+          <div class="flex items-center gap-3">
+            <h3 class="text-base font-black tracking-tight text-[#1f2d38]">合作详情</h3>
+            <span
+              v-if="current"
+              class="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium"
+              :class="
+                current.spec.handled
+                  ? 'border-green-200 bg-green-50 text-green-700'
+                  : 'border-amber-200 bg-amber-50 text-amber-700'
+              "
+            >
+              <span
+                class="h-1.5 w-1.5 rounded-full"
+                :class="current.spec.handled ? 'bg-green-500' : 'bg-amber-500'"
+              ></span>
+              {{ current.spec.handled ? "已处理" : "未处理" }}
+            </span>
+            <VTag
+              v-if="current"
+              class="!border-[#d9ece9] !bg-[#eef6f5] !text-[#246d74]"
+              >{{ current.spec.typeLabel || typeLabel(current.spec.type) }}</VTag
+            >
+          </div>
+          <button
+            class="inline-flex h-8 w-8 items-center justify-center rounded-lg text-[#687783] hover:bg-[#eef6f5] hover:text-[#1f2d38]"
+            @click="detailVisible = false"
+          >
+            <IconClose class="h-5 w-5" />
+          </button>
         </div>
-        <div v-if="current" class="space-y-4 p-5">
-          <div class="flex gap-2">
-            <span
-              class="inline-flex rounded px-2.5 py-1 text-xs font-medium"
-              :class="
-                current.spec.handled
-                  ? 'border border-green-200 bg-green-50 text-green-700'
-                  : 'border border-amber-200 bg-amber-50 text-amber-700'
-              "
-              >{{ current.spec.handled ? "已处理" : "未处理" }}</span
+
+        <div v-if="current" class="flex-1 space-y-4 overflow-y-auto p-6">
+          <!-- 基础信息卡片 -->
+          <VCard
+            class="!rounded-[12px] !border-[rgba(217,236,233,0.9)] !shadow-[0_8px_30px_rgba(36,109,116,0.06)]"
+            :body-class="['!p-4']"
+          >
+            <h4 class="mb-3 text-sm font-bold text-[#1f2d38]">基础信息</h4>
+            <div class="grid gap-3 text-sm">
+              <div class="flex">
+                <span class="w-28 shrink-0 text-xs font-medium text-[#687783]">公司名称</span
+                ><span class="flex-1 font-medium text-[#1f2d38]">{{ current.spec.company }}</span>
+              </div>
+              <div class="flex">
+                <span class="w-28 shrink-0 text-xs font-medium text-[#687783]">联系人</span
+                ><span class="flex-1 text-[#1f2d38]">{{ current.spec.contact }}</span>
+              </div>
+              <div class="flex">
+                <span class="w-28 shrink-0 text-xs font-medium text-[#687783]">联系电话</span
+                ><span class="flex-1 text-[#1f2d38]">{{ current.spec.phone }}</span>
+              </div>
+              <div class="flex">
+                <span class="w-28 shrink-0 text-xs font-medium text-[#687783]">合作类型</span
+                ><span class="flex-1 text-[#1f2d38]">{{ current.spec.type }}（{{ current.spec.typeLabel }}）</span>
+              </div>
+            </div>
+          </VCard>
+
+          <!-- 合作意向 -->
+          <VCard
+            class="!rounded-[12px] !border-[rgba(217,236,233,0.9)] !shadow-[0_8px_30px_rgba(36,109,116,0.06)]"
+            :body-class="['!p-4']"
+          >
+            <h4 class="mb-3 text-sm font-bold text-[#1f2d38]">合作意向</h4>
+            <div
+              class="rounded-lg border border-[rgba(217,236,233,0.9)] bg-[#f8fbfb] p-4 text-sm leading-6 break-words whitespace-pre-wrap text-[#1f2d38]"
             >
-            <span
-              class="inline-flex rounded border bg-[#eef7f7] px-2.5 py-1 text-xs text-[#246d74]"
-              >{{ current.spec.typeLabel || typeLabel(current.spec.type) }}</span
-            >
-          </div>
-          <div class="grid gap-3 text-sm">
-            <div class="flex">
-              <span class="w-24 shrink-0 text-gray-500">公司名称</span
-              ><span class="flex-1 font-medium">{{ current.spec.company }}</span>
+              {{ current.spec.message || "（未填写）" }}
             </div>
-            <div class="flex">
-              <span class="w-24 shrink-0 text-gray-500">联系人</span
-              ><span class="flex-1">{{ current.spec.contact }}</span>
+          </VCard>
+
+          <!-- 来源追溯 -->
+          <VCard
+            class="!rounded-[12px] !border-[rgba(217,236,233,0.9)] !shadow-[0_8px_30px_rgba(36,109,116,0.06)]"
+            :body-class="['!p-4']"
+          >
+            <h4 class="mb-3 text-sm font-bold text-[#1f2d38]">来源追溯</h4>
+            <div class="grid gap-3 text-sm">
+              <div class="flex">
+                <span class="w-28 shrink-0 text-xs font-medium text-[#687783]">来源页面</span
+                ><span class="flex-1 break-all"
+                  ><a
+                    v-if="current.spec.sourceUrl"
+                    :href="current.spec.sourceUrl"
+                    target="_blank"
+                    class="inline-flex items-center gap-1 font-medium text-[#4fc7b7] hover:text-[#3db8a5] hover:underline"
+                    ><IconExternalLinkLine class="h-4 w-4" />{{ current.spec.sourceUrl }}</a
+                  ><span v-else class="text-gray-400">-</span></span
+                >
+              </div>
+              <div class="flex">
+                <span class="w-28 shrink-0 text-xs font-medium text-[#687783]">UserAgent</span
+                ><span class="flex-1 text-xs break-all text-[#687783]">{{
+                  current.spec.userAgent || "-"
+                }}</span>
+              </div>
+              <div class="flex">
+                <span class="w-28 shrink-0 text-xs font-medium text-[#687783]">提交 IP</span
+                ><span class="flex-1 text-[#1f2d38]">{{ current.spec.ip || "-" }}</span>
+              </div>
+              <div class="flex">
+                <span class="w-28 shrink-0 text-xs font-medium text-[#687783]">前端时间</span
+                ><span class="flex-1 text-[#1f2d38]">{{ current.spec.timestamp || "-" }}</span>
+              </div>
+              <div class="flex">
+                <span class="w-28 shrink-0 text-xs font-medium text-[#687783]">创建时间</span
+                ><span class="flex-1 text-[#1f2d38]">{{ formatTime(current.metadata.creationTimestamp) }}</span>
+              </div>
+              <div class="flex">
+                <span class="w-28 shrink-0 text-xs font-medium text-[#687783]">记录名称</span
+                ><span class="flex-1 font-mono text-xs break-all text-[#687783]">{{ current.metadata.name }}</span>
+              </div>
             </div>
-            <div class="flex">
-              <span class="w-24 shrink-0 text-gray-500">联系电话</span
-              ><span class="flex-1">{{ current.spec.phone }}</span>
-            </div>
-            <div class="flex">
-              <span class="w-24 shrink-0 text-gray-500">合作类型</span
-              ><span class="flex-1">{{ current.spec.type }}（{{ current.spec.typeLabel }}）</span>
-            </div>
-            <div class="flex">
-              <span class="w-24 shrink-0 text-gray-500">合作意向</span
-              ><span class="flex-1 rounded border bg-gray-50 p-3 break-words whitespace-pre-wrap">{{
-                current.spec.message || "（未填写）"
-              }}</span>
-            </div>
-            <div class="flex">
-              <span class="w-24 shrink-0 text-gray-500">来源页面</span
-              ><span class="flex-1 break-all"
-                ><a
-                  v-if="current.spec.sourceUrl"
-                  :href="current.spec.sourceUrl"
-                  target="_blank"
-                  class="text-[#4fc7b7] hover:underline"
-                  >{{ current.spec.sourceUrl }}</a
-                ><span v-else class="text-gray-400">-</span></span
-              >
-            </div>
-            <div class="flex">
-              <span class="w-24 shrink-0 text-gray-500">UserAgent</span
-              ><span class="flex-1 text-xs break-all text-gray-600">{{
-                current.spec.userAgent || "-"
-              }}</span>
-            </div>
-            <div class="flex">
-              <span class="w-24 shrink-0 text-gray-500">提交 IP</span
-              ><span class="flex-1">{{ current.spec.ip || "-" }}</span>
-            </div>
-            <div class="flex">
-              <span class="w-24 shrink-0 text-gray-500">前端时间</span
-              ><span class="flex-1">{{ current.spec.timestamp || "-" }}</span>
-            </div>
-            <div class="flex">
-              <span class="w-24 shrink-0 text-gray-500">创建时间</span
-              ><span class="flex-1">{{ formatTime(current.metadata.creationTimestamp) }}</span>
-            </div>
-            <div class="flex">
-              <span class="w-24 shrink-0 text-gray-500">记录名称</span
-              ><span class="flex-1 font-mono text-xs break-all">{{ current.metadata.name }}</span>
-            </div>
-          </div>
-          <div class="flex gap-2 border-t pt-4">
-            <button
-              class="flex-1 rounded border py-2 text-sm font-medium"
-              :class="
-                current.spec.handled
-                  ? 'bg-white hover:bg-gray-50'
-                  : 'border-[#4fc7b7] bg-[#4fc7b7] text-white hover:opacity-90'
-              "
-              @click="toggleHandled(current)"
-            >
-              {{ current.spec.handled ? "标记为未处理" : "标记为已处理" }}
-            </button>
-            <button
-              class="rounded border px-4 py-2 text-sm hover:bg-gray-50"
-              @click="detailVisible = false"
-            >
-              关闭
-            </button>
-          </div>
+          </VCard>
+        </div>
+
+        <div
+          v-if="current"
+          class="flex gap-2 border-t border-[rgba(217,236,233,0.9)] bg-white p-4"
+        >
+          <VButton
+            class="flex-1 !bg-[#4fc7b7] !border-[#4fc7b7] hover:!bg-[#3db8a5]"
+            :type="current.spec.handled ? 'default' : 'primary'"
+            :class="!current.spec.handled ? '!text-white' : ''"
+            @click="toggleHandled(current)"
+          >
+            <template #icon>
+              <IconCheckboxCircle />
+            </template>
+            {{ current.spec.handled ? "标记为未处理" : "标记为已处理" }}
+          </VButton>
+          <VButton @click="detailVisible = false">关闭</VButton>
         </div>
       </div>
     </div>
 
     <!-- 删除二次确认 -->
-    <div v-if="deleteVisible" class="fixed inset-0 z-[60] flex items-center justify-center">
-      <div class="absolute inset-0 bg-black/40" @click="deleteVisible = false"></div>
-      <div class="relative w-[420px] max-w-[90vw] rounded-lg bg-white p-6 shadow-xl">
-        <h3 class="mb-2 font-semibold">确认删除</h3>
-        <p class="text-sm text-gray-600">
-          确定要删除
-          <span class="font-medium text-gray-900">{{ deleteTarget?.spec.company }}</span>
-          的合作记录吗？删除后不可恢复。
-        </p>
-        <div class="mt-6 flex justify-end gap-2">
-          <button class="rounded border px-4 py-1.5 text-sm" @click="deleteVisible = false">
-            取消
-          </button>
-          <button
-            class="rounded bg-red-600 px-4 py-1.5 text-sm text-white hover:bg-red-700 disabled:opacity-50"
-            :disabled="deleting"
-            @click="handleDelete"
-          >
-            {{ deleting ? "删除中..." : "确认删除" }}
-          </button>
+    <VModal
+      :visible="deleteVisible"
+      title="确认删除"
+      :width="420"
+      :centered="true"
+      @close="deleteVisible = false"
+      @update:visible="(v: boolean) => (deleteVisible = v)"
+    >
+      <div class="flex gap-4">
+        <div
+          class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-red-50 text-red-600"
+        >
+          <IconErrorWarning class="h-5 w-5" />
+        </div>
+        <div class="flex-1">
+          <h3 class="text-sm font-bold text-[#1f2d38]">确认删除</h3>
+          <p class="mt-2 text-sm leading-5 text-[#687783]">
+            确定要删除
+            <span class="font-semibold text-[#1f2d38]">{{ deleteTarget?.spec.company }}</span>
+            的合作记录吗？删除后不可恢复，请谨慎操作。
+          </p>
         </div>
       </div>
-    </div>
+      <template #footer>
+        <div class="flex justify-end gap-2">
+          <VButton @click="deleteVisible = false">取消</VButton>
+          <VButton type="danger" :loading="deleting" @click="handleDelete">
+            确认删除
+          </VButton>
+        </div>
+      </template>
+    </VModal>
 
     <!-- Toast -->
     <div
@@ -361,6 +515,25 @@
 
 <script setup lang="ts">
 import { ref, reactive, computed, onMounted, watch } from "vue";
+import {
+  VCard,
+  VButton,
+  VLoading,
+  VModal,
+  VPagination,
+  VTag,
+  VStatusDot,
+  IconSearch,
+  IconEye,
+  IconDeleteBin,
+  IconCheckboxCircle,
+  IconUpload,
+  IconRefreshLine,
+  IconExternalLinkLine,
+  IconErrorWarning,
+  IconClose,
+  IconArrowDown,
+} from "@halo-dev/components";
 
 import {
   listCooperations,
@@ -443,13 +616,11 @@ async function fetchList() {
     });
     list.value = res.items || [];
     total.value = res.total || 0;
-    // 后端返回的 page 可能与请求不一致，校正
     if (typeof res.page === "number") page.value = res.page;
   } catch (e: unknown) {
     const err = e as { status?: number; message?: string };
     if (err.status === 401) {
       showToast("未登录，请先登录", "error");
-      // 跳转登录：Halo 的登录页为 /login
       setTimeout(() => (window.location.href = "/login"), 1200);
     } else if (err.status === 403) {
       showToast("无权限，需要管理员角色", "error");
@@ -484,6 +655,15 @@ function goPage(p: number) {
   fetchList();
 }
 
+function handlePaginationChange(val: { page: number; size: number }) {
+  const nextPage = val.page - 1;
+  const nextSize = val.size;
+  const sizeChanged = nextSize !== pageSize.value;
+  page.value = sizeChanged ? 0 : nextPage;
+  pageSize.value = nextSize;
+  fetchList();
+}
+
 function openDetail(item: Cooperation) {
   current.value = item;
   detailVisible.value = true;
@@ -499,11 +679,9 @@ async function handleDelete() {
     await deleteCooperation(deleteTarget.value.metadata.name);
     showToast("删除成功", "success");
     deleteVisible.value = false;
-    // 若当前详情是被删除项，关闭详情
     if (current.value?.metadata.name === deleteTarget.value.metadata.name)
       detailVisible.value = false;
     await fetchList();
-    // 若当前页已空且不是第一页，回退一页
     if (list.value.length === 0 && page.value > 0) {
       page.value = Math.max(0, page.value - 1);
       await fetchList();
@@ -519,13 +697,11 @@ async function toggleHandled(item: Cooperation) {
   const next = !item.spec.handled;
   try {
     const updated = await updateHandled(item.metadata.name, next);
-    // 本地更新
     item.spec.handled = updated.spec.handled;
     if (current.value && current.value.metadata.name === item.metadata.name) {
       current.value.spec.handled = updated.spec.handled;
     }
     showToast(next ? "已标记为已处理" : "已标记为未处理", "success");
-    // 若当前筛选为 handled 过滤，可能需要刷新列表
     if (filters.handled !== "all") {
       await fetchList();
     }
@@ -548,7 +724,6 @@ async function handleExport() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     const ts = new Date().toISOString().slice(0, 19).replace(/[-T:]/g, "");
-    // 后端已通过 Content-Disposition 指定文件名，这里提供兜底
     a.href = url;
     a.download = `cooperations-${ts}.csv`;
     document.body.appendChild(a);
@@ -568,16 +743,22 @@ async function handleExport() {
 
 onMounted(fetchList);
 watch([() => filters.type, () => filters.handled], () => {
-  // 类型/状态切换自动搜索并刷新
   page.value = 0;
   fetchList();
 });
 </script>
 
 <style scoped>
-.input:focus {
-  outline: none;
-  border-color: #4fc7b7;
-  box-shadow: 0 0 0 2px rgba(79, 199, 183, 0.2);
+.cooperation-admin :deep(.card-wrapper) {
+  border-radius: 12px;
+}
+
+/* 日期输入统一样式 */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.6;
+}
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
 }
 </style>

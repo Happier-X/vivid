@@ -4,7 +4,7 @@ metadata:
   name: cooperation-plugin
 spec:
   displayName: 合作咨询插件
-  version: 1.1.7
+  version: 1.1.8
   author:
     name: 山东万椿
     website: https://www.wanchunsmart.com
